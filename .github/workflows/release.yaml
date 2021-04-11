@@ -1,0 +1,29 @@
+name: "New Release"
+
+on:
+  milestone:
+    types: [closed]
+
+jobs:
+  bump-version:
+    if: github.event_name == 'milestone'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.16
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.BOT_TOKEN }}
+      - name: Configure Git
+        run: |
+          git config user.name "sv-tools-bot"
+          git config user.email "sv.go.tools@gmail.com"
+          git fetch --all
+      - name: Create Tag
+        run: |
+          docker run --rm -v $PWD:/mount -w /mount svtools/bumptag:latest ${{ github.event.milestone.title }}
+      - name: Push Tag
+        run: git push origin --tags

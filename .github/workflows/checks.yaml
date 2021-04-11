@@ -1,0 +1,84 @@
+name: "Code Analysis"
+
+on:
+  push:
+    tags:
+      - v*
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  CodeQL:
+    # CodeQL runs on ubuntu-latest, windows-latest, and macos-latest
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      # Initializes the CodeQL tools for scanning.
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v1
+        with:
+          languages: go
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v1
+
+  UnitTests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.16
+
+      - name: Run Unit Tests
+        run: go test -race -cover -coverprofile=coverage.out -covermode=atomic
+
+      - name: Codecov
+        uses: codecov/codecov-action@v1.3.2
+        with:
+          file: ./coverage.out
+
+  GolangCI-Lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.16
+
+      - name: Run GolangCi-Lint
+        uses: golangci/golangci-lint-action@v2.5.2
+        with:
+          version: latest
+          skip-build-cache: true
+          skip-go-installation: true
+
+  Nancy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.16
+
+      - name: Prepare go list
+        run: go list -json -m all > go.list
+
+      - name: Run Nancy
+        uses: sonatype-nexus-community/nancy-github-action@v1.0.2
