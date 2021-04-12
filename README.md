@@ -17,4 +17,4 @@ The Interfaces for the MongoDB driver
 - [x] Cursor: https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo#Cursor
 - [ ] Collection: https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo#Collection
 - [x] SingleResult: https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo#SingleResult
-- [ ] IndexView: https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo#IndexView
+- [x] IndexView: https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo#IndexView
