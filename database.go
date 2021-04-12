@@ -5,6 +5,9 @@ import (
 
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
+	"go.mongodb.org/mongo-driver/mongo/readconcern"
+	"go.mongodb.org/mongo-driver/mongo/readpref"
+	"go.mongodb.org/mongo-driver/mongo/writeconcern"
 )
 
 // Database is an interface for `mongo.Database` structure
@@ -21,6 +24,28 @@ type Database interface {
 		opts ...*options.CreateViewOptions,
 	) error
 	Drop(ctx context.Context) error
+	ListCollectionNames(
+		ctx context.Context,
+		filter interface{},
+		opts ...*options.ListCollectionsOptions,
+	) ([]string, error)
+	ListCollections(ctx context.Context, filter interface{}, opts ...*options.ListCollectionsOptions) (Cursor, error)
+	ListCollectionSpecifications(
+		ctx context.Context,
+		filter interface{},
+		opts ...*options.ListCollectionsOptions,
+	) ([]*mongo.CollectionSpecification, error)
+	Name() string
+	ReadConcern() *readconcern.ReadConcern
+	ReadPreference() *readpref.ReadPref
+	RunCommand(ctx context.Context, runCommand interface{}, opts ...*options.RunCmdOptions) SingleResult
+	RunCommandCursor(ctx context.Context, runCommand interface{}, opts ...*options.RunCmdOptions) (Cursor, error)
+	Watch(
+		ctx context.Context,
+		pipeline interface{},
+		opts ...*options.ChangeStreamOptions,
+	) (ChangeStream, error)
+	WriteConcern() *writeconcern.WriteConcern
 
 	WrappedDatabase() *mongo.Database
 }
@@ -66,6 +91,85 @@ func (d *database) CreateView(
 
 func (d *database) Drop(ctx context.Context) error {
 	return d.db.Drop(ctx)
+}
+
+func (d *database) ListCollectionNames(
+	ctx context.Context,
+	filter interface{},
+	opts ...*options.ListCollectionsOptions,
+) ([]string, error) {
+	return d.db.ListCollectionNames(ctx, filter, opts...)
+}
+
+func (d *database) ListCollections(
+	ctx context.Context,
+	filter interface{},
+	opts ...*options.ListCollectionsOptions,
+) (Cursor, error) {
+	cr, err := d.db.ListCollections(ctx, filter, opts...)
+	if err != nil {
+		return nil, err
+	}
+
+	return wrapCursor(cr), nil
+}
+
+func (d *database) ListCollectionSpecifications(
+	ctx context.Context,
+	filter interface{},
+	opts ...*options.ListCollectionsOptions,
+) ([]*mongo.CollectionSpecification, error) {
+	return d.db.ListCollectionSpecifications(ctx, filter, opts...)
+}
+
+func (d *database) Name() string {
+	return d.db.Name()
+}
+
+func (d *database) ReadConcern() *readconcern.ReadConcern {
+	return d.db.ReadConcern()
+}
+
+func (d *database) ReadPreference() *readpref.ReadPref {
+	return d.db.ReadPreference()
+}
+
+func (d *database) RunCommand(
+	ctx context.Context,
+	runCommand interface{},
+	opts ...*options.RunCmdOptions,
+) SingleResult {
+	return wrapSingleResult(d.db.RunCommand(ctx, runCommand, opts...))
+}
+
+func (d *database) RunCommandCursor(
+	ctx context.Context,
+	runCommand interface{},
+	opts ...*options.RunCmdOptions,
+) (Cursor, error) {
+	cr, err := d.db.RunCommandCursor(ctx, runCommand, opts...)
+	if err != nil {
+		return nil, err
+	}
+
+	return wrapCursor(cr), nil
+}
+
+func (d *database) Watch(
+	ctx context.Context,
+	pipeline interface{},
+	opts ...*options.ChangeStreamOptions,
+) (ChangeStream, error) {
+	cs, err := d.db.Watch(ctx, pipeline, opts...)
+	if err != nil {
+		return nil, err
+	}
+
+	return wrapChangeStream(cs), nil
+}
+
+func (d *database) WriteConcern() *writeconcern.WriteConcern {
+	return d.db.WriteConcern()
 }
 
 func (d *database) WrappedDatabase() *mongo.Database {

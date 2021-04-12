@@ -16,3 +16,4 @@ The Interfaces for the MongoDB driver
 - [x] ChangeStream: https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo#ChangeStream
 - [x] Cursor: https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo#Cursor
 - [ ] Collection: https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo#Collection
+- [x] SingleResult: https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo#SingleResult
