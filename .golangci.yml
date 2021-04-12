@@ -44,7 +44,7 @@ linters-settings:
   govet:
     check-shadowing: false
   gci:
-    local-prefixes: github.com/sv-tools/go-repo-template
+    local-prefixes: github.com/sv-tools/mongoifc
   gocognit:
     min-complexity: 15
   gocyclo:
