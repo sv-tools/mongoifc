@@ -6,3 +6,13 @@
 [![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/sv-tools/mongoifc?style=flat)](https://github.com/sv-tools/mongoifc/releases)
 
 The Interfaces for the MongoDB driver
+
+
+## Interfaces
+
+- [x] Client: https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo#Client
+- [ ] Database: https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo#Database
+- [x] Session: https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo#Session
+- [x] ChangeStream: https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo#ChangeStream
+- [x] Cursor: https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo#Cursor
+- [ ] Collection: https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo#Collection
