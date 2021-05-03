@@ -7,6 +7,11 @@ on:
     branches:
       - main
   pull_request:
+  schedule:
+    - cron: "0 0 * * 0"
+
+env:
+  GO: 1.16
 
 jobs:
   CodeQL:
@@ -36,7 +41,7 @@ jobs:
       - name: Install Go
         uses: actions/setup-go@v2
         with:
-          go-version: 1.16
+          go-version: ${{ env.GO }}
 
       - name: Run Unit Tests
         run: go test -race -cover -coverprofile=coverage.out -covermode=atomic
@@ -56,7 +61,7 @@ jobs:
       - name: Install Go
         uses: actions/setup-go@v2
         with:
-          go-version: 1.16
+          go-version: ${{ env.GO }}
 
       - name: Run GolangCi-Lint
         uses: golangci/golangci-lint-action@v2.5.2
@@ -75,7 +80,7 @@ jobs:
       - name: Install Go
         uses: actions/setup-go@v2
         with:
-          go-version: 1.16
+          go-version: ${{ env.GO }}
 
       - name: Prepare go list
         run: go list -json -m all > go.list

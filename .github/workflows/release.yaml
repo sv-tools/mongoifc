@@ -3,27 +3,67 @@ name: "New Release"
 on:
   milestone:
     types: [closed]
+  push:
+    tags:
+      - "v[0-9]+.[0-9]+.[0-9]+"
+
+env:
+  GO: 1.16
 
 jobs:
   bump-version:
     if: github.event_name == 'milestone'
     runs-on: ubuntu-latest
     steps:
-      - name: Install Go
-        uses: actions/setup-go@v2
-        with:
-          go-version: 1.16
-      - uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
         with:
           fetch-depth: 0
           token: ${{ secrets.BOT_TOKEN }}
+
+      - name: Install Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: ${{ env.GO }}
+
       - name: Configure Git
         run: |
           git config user.name "sv-tools-bot"
           git config user.email "sv.go.tools@gmail.com"
           git fetch --all
+
       - name: Create Tag
         run: |
           docker run --rm -v $PWD:/mount -w /mount svtools/bumptag:latest ${{ github.event.milestone.title }}
+
       - name: Push Tag
         run: git push origin --tags
+
+      - name: Create Milestone
+        uses: WyriHaximus/github-action-create-milestone@0.1.0
+        with:
+          title: Next
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+
+  release-lib:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    env:
+      DOCKER_CLI_EXPERIMENTAL: "enabled"
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: ${{ env.GO }}
+
+      - name: Run GoReleaser
+        uses: goreleaser/goreleaser-action@v2
+        with:
+          version: latest
+          args: release --rm-dist --config .github/goreleaser-lib.yml
+        env:
+          GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}

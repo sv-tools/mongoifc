@@ -1,11 +1,8 @@
 tap "golangci/tap"
-tap "go-swagger/go-swagger"
-tap "vektra/tap"
 tap "kyoh86/tap"
 tap "sonatype-nexus-community/nancy-tap"
+tap "sv-tools/apps"
 
-# Toolkit to work with swagger for golang
-brew "go-swagger/go-swagger/go-swagger"
 # Fast linters runner for Go.
 brew "golangci/tap/golangci-lint"
 # Rich-Go will enrich `go test` outputs with text decorations
