@@ -10,6 +10,7 @@ import (
 // ChangeStream is an interface for `mongo.ChangeStream` structure
 // Documentation: https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo#ChangeStream
 type ChangeStream interface {
+	Current() bson.Raw
 	Close(ctx context.Context) error
 	Decode(val interface{}) error
 	Err() error
@@ -23,6 +24,10 @@ type ChangeStream interface {
 
 type changeStream struct {
 	cs *mongo.ChangeStream
+}
+
+func (c *changeStream) Current() bson.Raw {
+	return c.cs.Current
 }
 
 func (c *changeStream) Close(ctx context.Context) error {

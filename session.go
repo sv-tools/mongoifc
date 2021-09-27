@@ -27,6 +27,9 @@ type Session interface {
 	Client() Client
 	ID() bson.Raw
 
+	AdvanceClusterTime(bson.Raw) error
+	AdvanceOperationTime(*primitive.Timestamp) error
+
 	WrappedSession() mongo.Session
 }
 
@@ -73,6 +76,14 @@ func (s *session) Client() Client {
 
 func (s *session) ID() bson.Raw {
 	return s.ss.ID()
+}
+
+func (s *session) AdvanceClusterTime(d bson.Raw) error {
+	return s.ss.AdvanceClusterTime(d)
+}
+
+func (s *session) AdvanceOperationTime(ts *primitive.Timestamp) error {
+	return s.ss.AdvanceOperationTime(ts)
 }
 
 func (s *session) WrappedSession() mongo.Session {
