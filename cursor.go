@@ -3,12 +3,14 @@ package mongoifc
 import (
 	"context"
 
+	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
 // Cursor is an interface for `mongo.Cursor` structure
 // Documentation: https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo#Cursor
 type Cursor interface {
+	Current() bson.Raw
 	All(ctx context.Context, results interface{}) error
 	Close(ctx context.Context) error
 	Decode(val interface{}) error
@@ -23,6 +25,10 @@ type Cursor interface {
 
 type cursor struct {
 	cr *mongo.Cursor
+}
+
+func (c *cursor) Current() bson.Raw {
+	return c.cr.Current
 }
 
 func (c *cursor) All(ctx context.Context, results interface{}) error {
