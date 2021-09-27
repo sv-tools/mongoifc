@@ -11,7 +11,7 @@ on:
     - cron: "0 0 * * 0"
 
 env:
-  GO: 1.16
+  GO: 1.17
 
 jobs:
   CodeQL:
