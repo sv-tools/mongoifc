@@ -8,7 +8,7 @@ on:
       - "v[0-9]+.[0-9]+.[0-9]+"
 
 env:
-  GO: 1.16
+  GO: 1.17
 
 jobs:
   bump-version:
