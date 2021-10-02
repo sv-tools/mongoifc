@@ -40,11 +40,10 @@ jobs:
         run: git push origin --tags
 
       - name: Create Milestone
-        uses: WyriHaximus/github-action-create-milestone@v1.1
+        uses: sv-tools/create-milestone-action@v1.0.0
         with:
+          token: "${{ secrets.GITHUB_TOKEN }}"
           title: Next
-        env:
-          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 
   release-lib:
     if: github.event_name == 'push'
