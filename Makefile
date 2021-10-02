@@ -7,7 +7,7 @@ ifeq ($(shell uname), Darwin)
 all: brew-install
 endif
 
-all: tidy lint nancy test done
+all: tidy lint test done
 
 done:
 	@echo "$(OK_COLOR)==> Done.$(NO_COLOR)"
@@ -25,10 +25,6 @@ run-benchmark:
 	@richgo test -benchmem -run=Bench -bench=. .
 
 test: run-test run-benchmark
-
-nancy:
-	@echo "$(OK_COLOR)==> Checking Vulnerability via nancy...$(NO_COLOR)"
-	@go list -json -m all | nancy sleuth --quiet
 
 lint:
 	@echo "$(OK_COLOR)==> Linting via golangci-lint...$(NO_COLOR)"
