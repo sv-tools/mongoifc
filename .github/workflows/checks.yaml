@@ -15,14 +15,15 @@ env:
 
 jobs:
   CodeQL:
-    # CodeQL runs on ubuntu-latest, windows-latest, and macos-latest
     runs-on: ubuntu-latest
+
+    permissions:
+      security-events: write
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      # Initializes the CodeQL tools for scanning.
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v1
         with:
@@ -69,21 +70,3 @@ jobs:
           version: latest
           skip-build-cache: true
           skip-go-installation: true
-
-  Nancy:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Install Go
-        uses: actions/setup-go@v2
-        with:
-          go-version: ${{ env.GO }}
-
-      - name: Prepare go list
-        run: go list -json -m all > go.list
-
-      - name: Run Nancy
-        uses: sonatype-nexus-community/nancy-github-action@v1.0.2
