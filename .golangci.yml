@@ -16,7 +16,6 @@ linters:
     - gocyclo
     - goerr113
     - gofumpt
-    - golint
     - goprintffuncname
     - gosec
     - ifshort
