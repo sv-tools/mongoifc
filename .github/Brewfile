@@ -1,13 +1,10 @@
 tap "golangci/tap"
 tap "kyoh86/tap"
-tap "sonatype-nexus-community/nancy-tap"
 tap "sv-tools/apps"
 
 # Fast linters runner for Go.
 brew "golangci/tap/golangci-lint"
 # Rich-Go will enrich `go test` outputs with text decorations
 brew "kyoh86/tap/richgo"
-# A tool to check for vulnerabilities in your Golang dependencies, powered by Sonatype OSS Index
-brew "sonatype-nexus-community/nancy-tap/nancy"
 # bumptag is a tool to increment a version and to create a git tag with an annotation.
 brew "sv-tools/apps/bumptag"
