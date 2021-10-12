@@ -12,6 +12,8 @@ on:
 
 env:
   GO: 1.17
+  MONGO_USERNAME: admin
+  MONGO_PASSWORD: adminpass
 
 jobs:
   CodeQL:
@@ -35,6 +37,15 @@ jobs:
   UnitTests:
     runs-on: ubuntu-latest
 
+    services:
+      mongo:
+        image: mongo
+        ports:
+          - 27017:27017
+        env:
+          MONGO_INITDB_ROOT_USERNAME: ${{ env.MONGO_USERNAME }}
+          MONGO_INITDB_ROOT_PASSWORD: ${{ env.MONGO_PASSWORD }}
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -45,6 +56,8 @@ jobs:
           go-version: ${{ env.GO }}
 
       - name: Run Unit Tests
+        env:
+          MONGO_URI: "mongodb://${{ env.MONGO_USERNAME }}:${{ env.MONGO_PASSWORD }}@localhost/?authSource=admin"
         run: go test -race -cover -coverprofile=coverage.out -covermode=atomic
 
       - name: Codecov

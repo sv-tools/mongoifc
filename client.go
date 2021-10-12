@@ -129,7 +129,7 @@ func Connect(ctx context.Context, opts ...*options.ClientOptions) (Client, error
 
 // NewClient is a wrapper for `mongo.NewClient` function to return the object as `Client` interface
 // Documentation: https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo#NewClient
-func NewClient(ctx context.Context, opts ...*options.ClientOptions) (Client, error) {
+func NewClient(opts ...*options.ClientOptions) (Client, error) {
 	cl, err := mongo.NewClient(opts...)
 	if err != nil {
 		return nil, err
@@ -139,6 +139,7 @@ func NewClient(ctx context.Context, opts ...*options.ClientOptions) (Client, err
 }
 
 // WithSession is a wrapper for `mongo.WithSession` function to call then `mongo.WithSession` function
+// *WARNING*: There is no simple way to wrap a SessionContext, so the original client and session will be used
 // Documentation: https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo#WithSession
 func WithSession(ctx context.Context, sess Session, fn func(mongo.SessionContext) error) error {
 	return mongo.WithSession(ctx, sess.WrappedSession(), fn)
