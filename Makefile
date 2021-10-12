@@ -3,6 +3,13 @@ BREWFILE=./.github/Brewfile
 NO_COLOR=\033[0m
 OK_COLOR=\033[32;01m
 
+DOCKER_IMAGE="mongo"
+DOCKER_NAME="mongoifc-test"
+MONGO_PORT=27888
+MONGO_USERNAME="admin"
+MONGO_PASSWORD="adminpass"
+MONGO_URI="mongodb://$(MONGO_USERNAME):$(MONGO_PASSWORD)@localhost:$(MONGO_PORT)/?authSource=admin"
+
 ifeq ($(shell uname), Darwin)
 all: brew-install
 endif
@@ -18,13 +25,22 @@ brew-install:
 
 run-test:
 	@echo "$(OK_COLOR)==> Testing...$(NO_COLOR)"
-	@richgo test -cover -race
+	@MONGO_URI=$(MONGO_URI) richgo test -cover -race
 
 run-benchmark:
 	@echo "$(OK_COLOR)==> Benchmarks...$(NO_COLOR)"
 	@richgo test -benchmem -run=Bench -bench=. .
 
-test: run-test run-benchmark
+stop-docker:
+	@echo "$(OK_COLOR)==> Stopping docker...$(NO_COLOR)"
+	@docker rm --force $(DOCKER_NAME) || true
+
+run-docker:
+	@echo "$(OK_COLOR)==> Running docker...$(NO_COLOR)"
+	@docker rm --force $(DOCKER_NAME) || true
+	@docker run -d --name=$(DOCKER_NAME) -p $(MONGO_PORT):27017 -e MONGO_INITDB_ROOT_USERNAME=$(MONGO_USERNAME) -e MONGO_INITDB_ROOT_PASSWORD=$(MONGO_PASSWORD) $(DOCKER_IMAGE)
+
+test: run-docker run-test run-benchmark stop-docker
 
 lint:
 	@echo "$(OK_COLOR)==> Linting via golangci-lint...$(NO_COLOR)"
@@ -32,5 +48,4 @@ lint:
 
 tidy:
 	@echo "$(OK_COLOR)==> Updating go.mod...$(NO_COLOR)"
-	@rm go.sum || true
 	@go mod tidy
