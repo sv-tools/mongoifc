@@ -1,8 +1,11 @@
 name: "New Release"
 
 on:
-  milestone:
-    types: [closed]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Tag name in semver format. Example: v0.0.1"
+        required: true
   push:
     tags:
       - "v[0-9]+.[0-9]+.[0-9]+"
@@ -12,7 +15,7 @@ env:
 
 jobs:
   bump-version:
-    if: github.event_name == 'milestone'
+    if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -34,16 +37,10 @@ jobs:
 
       - name: Create Tag
         run: |
-          docker run --rm -v $PWD:/mount -w /mount svtools/bumptag:latest ${{ github.event.milestone.title }}
+          docker run --rm -v $PWD:/mount -w /mount svtools/bumptag:latest ${{ github.event.inputs.version }}
 
       - name: Push Tag
         run: git push origin --tags
-
-      - name: Create Milestone
-        uses: sv-tools/create-milestone-action@v1.1.0
-        with:
-          token: "${{ secrets.GITHUB_TOKEN }}"
-          title: Next
 
   release-lib:
     if: github.event_name == 'push'
