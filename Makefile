@@ -14,7 +14,7 @@ ifeq ($(shell uname), Darwin)
 all: brew-install
 endif
 
-all: go-install tidy lint test generate-mocks done
+all: go-install generate-mocks tidy lint test done
 
 done:
 	@echo "$(OK_COLOR)==> Done.$(NO_COLOR)"
@@ -29,11 +29,7 @@ go-install:
 
 run-test:
 	@echo "$(OK_COLOR)==> Testing...$(NO_COLOR)"
-	@MONGO_URI=$(MONGO_URI) richgo test -cover -race
-
-run-benchmark:
-	@echo "$(OK_COLOR)==> Benchmarks...$(NO_COLOR)"
-	@richgo test -benchmem -run=Bench -bench=. .
+	@MONGO_URI=$(MONGO_URI) richgo test -cover -race ./...
 
 stop-docker:
 	@echo "$(OK_COLOR)==> Stopping docker...$(NO_COLOR)"
@@ -44,7 +40,7 @@ run-docker:
 	@docker rm --force $(DOCKER_NAME) || true
 	@docker run -d --name=$(DOCKER_NAME) -p $(MONGO_PORT):27017 -e MONGO_INITDB_ROOT_USERNAME=$(MONGO_USERNAME) -e MONGO_INITDB_ROOT_PASSWORD=$(MONGO_PASSWORD) $(DOCKER_IMAGE)
 
-test: run-docker run-test run-benchmark stop-docker
+test: run-docker run-test stop-docker
 
 lint:
 	@echo "$(OK_COLOR)==> Linting via golangci-lint...$(NO_COLOR)"
@@ -55,7 +51,7 @@ tidy:
 	@go mod tidy
 
 run-mockgen:
-	@find . -name "*.go" | grep -v "_test.go" | grep -v mocks | xargs -I{} mockgen -source {} -destination mocks/gomock/{} -package mocks
+	@find . -name "*.go" -depth 1 | grep -v "_test.go" | xargs -I{} mockgen -source {} -destination mocks/gomock/{} -package mocks
 
 run-mockery:
 	@mockery --all --output mocks/mockery --disable-version-string --case underscore
