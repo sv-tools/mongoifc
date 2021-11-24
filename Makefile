@@ -14,7 +14,7 @@ ifeq ($(shell uname), Darwin)
 all: brew-install
 endif
 
-all: tidy lint test done
+all: go-install tidy lint test generate-mocks done
 
 done:
 	@echo "$(OK_COLOR)==> Done.$(NO_COLOR)"
@@ -22,6 +22,10 @@ done:
 brew-install:
 	@echo "$(OK_COLOR)==> Checking and installing dependencies using brew...$(NO_COLOR)"
 	@brew bundle --file $(BREWFILE)
+
+go-install:
+	@echo "$(OK_COLOR)==> Checking and installing dependencies using go install...$(NO_COLOR)"
+	@go install github.com/golang/mock/mockgen@v1
 
 run-test:
 	@echo "$(OK_COLOR)==> Testing...$(NO_COLOR)"
@@ -49,3 +53,11 @@ lint:
 tidy:
 	@echo "$(OK_COLOR)==> Updating go.mod...$(NO_COLOR)"
 	@go mod tidy
+
+run-mockgen:
+	@find . -name "*.go" | grep -v "_test.go" | grep -v mocks | xargs -I{} mockgen -source {} -destination mocks/gomock/{} -package mocks
+
+run-mockery:
+	@mockery --all --output mocks/mockery --disable-version-string --case underscore
+
+generate-mocks: run-mockgen run-mockery
