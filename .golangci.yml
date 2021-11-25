@@ -1,5 +1,7 @@
 run:
   skip-dirs-use-default: true
+  skip-dirs:
+    - mocks
 
 linters:
   enable: # keep in ascending order

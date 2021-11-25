@@ -8,6 +8,8 @@ brew "golangci/tap/golangci-lint"
 brew "kyoh86/tap/richgo"
 # bumptag is a tool to increment a version and to create a git tag with an annotation.
 brew "sv-tools/apps/bumptag"
+# Mock code autogenerator for Golang
+brew "mockery"
 
 # App to build and share containerized applications and microservices
 cask "docker"
