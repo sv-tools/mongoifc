@@ -14,6 +14,8 @@ import (
 )
 
 func TestNewClient(t *testing.T) {
+	t.Parallel()
+
 	uri := os.Getenv("MONGO_URI")
 	require.NotEmpty(t, uri)
 
@@ -33,6 +35,8 @@ func TestNewClient(t *testing.T) {
 }
 
 func TestConnect(t *testing.T) {
+	t.Parallel()
+
 	uri := os.Getenv("MONGO_URI")
 	require.NotEmpty(t, uri)
 
@@ -50,6 +54,8 @@ func TestConnect(t *testing.T) {
 }
 
 func TestWithSession(t *testing.T) {
+	t.Parallel()
+
 	uri := os.Getenv("MONGO_URI")
 	require.NotEmpty(t, uri)
 

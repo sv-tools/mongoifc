@@ -3,8 +3,6 @@ package simple
 import (
 	"context"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
-
 	"github.com/sv-tools/mongoifc"
 )
 
@@ -13,7 +11,7 @@ const (
 )
 
 type User struct {
-	ID primitive.ObjectID `json:"id,omitempty" bson:"_id,omitempty"`
+	ID string `json:"id,omitempty" bson:"_id,omitempty"`
 	Name string `json:"name,omitempty" bson:"name,omitempty"`
 	Email string `json:"email,omitempty" bson:"email,omitempty"`
 	Active bool `json:"active,omitempty" bson:"active,omitempty"`
@@ -29,7 +27,7 @@ func GetAdmins(ctx context.Context, db mongoifc.Database) ([]*User, error) {
 	if err != nil {
 		return nil, err
 	}
-	if err := cur.Decode(&users); err != nil {
+	if err := cur.All(ctx, &users); err != nil {
 		return nil, err
 	}
 	return users, err
