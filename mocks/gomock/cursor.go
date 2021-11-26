@@ -10,7 +10,6 @@ import (
 
 	gomock "github.com/golang/mock/gomock"
 	bson "go.mongodb.org/mongo-driver/bson"
-	mongo "go.mongodb.org/mongo-driver/mongo"
 )
 
 // MockCursor is a mock of Cursor interface.
@@ -160,18 +159,4 @@ func (m *MockCursor) TryNext(ctx context.Context) bool {
 func (mr *MockCursorMockRecorder) TryNext(ctx interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "TryNext", reflect.TypeOf((*MockCursor)(nil).TryNext), ctx)
-}
-
-// WrappedCursor mocks base method.
-func (m *MockCursor) WrappedCursor() *mongo.Cursor {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "WrappedCursor")
-	ret0, _ := ret[0].(*mongo.Cursor)
-	return ret0
-}
-
-// WrappedCursor indicates an expected call of WrappedCursor.
-func (mr *MockCursorMockRecorder) WrappedCursor() *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "WrappedCursor", reflect.TypeOf((*MockCursor)(nil).WrappedCursor))
 }

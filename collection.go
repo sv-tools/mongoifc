@@ -81,8 +81,6 @@ type Collection interface {
 		opts ...*options.UpdateOptions,
 	) (*mongo.UpdateResult, error)
 	Watch(ctx context.Context, pipeline interface{}, opts ...*options.ChangeStreamOptions) (ChangeStream, error)
-
-	WrappedCollection() *mongo.Collection
 }
 
 type collection struct {
@@ -279,10 +277,6 @@ func (c *collection) Watch(
 	}
 
 	return wrapChangeStream(cs), nil
-}
-
-func (c *collection) WrappedCollection() *mongo.Collection {
-	return c.co
 }
 
 func wrapCollection(co *mongo.Collection, db *database) Collection {

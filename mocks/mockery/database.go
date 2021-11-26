@@ -368,22 +368,6 @@ func (_m *Database) Watch(ctx context.Context, pipeline interface{}, opts ...*op
 	return r0, r1
 }
 
-// WrappedDatabase provides a mock function with given fields:
-func (_m *Database) WrappedDatabase() *mongo.Database {
-	ret := _m.Called()
-
-	var r0 *mongo.Database
-	if rf, ok := ret.Get(0).(func() *mongo.Database); ok {
-		r0 = rf()
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*mongo.Database)
-		}
-	}
-
-	return r0
-}
-
 // WriteConcern provides a mock function with given fields:
 func (_m *Database) WriteConcern() *writeconcern.WriteConcern {
 	ret := _m.Called()

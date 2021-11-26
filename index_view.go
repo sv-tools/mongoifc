@@ -17,8 +17,6 @@ type IndexView interface {
 	DropOne(ctx context.Context, name string, opts ...*options.DropIndexesOptions) (bson.Raw, error)
 	List(ctx context.Context, opts ...*options.ListIndexesOptions) (Cursor, error)
 	ListSpecifications(ctx context.Context, opts ...*options.ListIndexesOptions) ([]*mongo.IndexSpecification, error)
-
-	WrappedIndexView() *mongo.IndexView
 }
 
 type indexView struct {
@@ -63,10 +61,6 @@ func (i *indexView) ListSpecifications(
 	opts ...*options.ListIndexesOptions,
 ) ([]*mongo.IndexSpecification, error) {
 	return i.iv.ListSpecifications(ctx, opts...)
-}
-
-func (i *indexView) WrappedIndexView() *mongo.IndexView {
-	return i.iv
 }
 
 func wrapIndexView(iv *mongo.IndexView) IndexView {

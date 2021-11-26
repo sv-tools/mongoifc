@@ -30,7 +30,6 @@ type Client interface {
 		pipeline interface{},
 		opts ...*options.ChangeStreamOptions,
 	) (ChangeStream, error)
-	WrappedClient() *mongo.Client
 }
 
 type client struct {
@@ -107,13 +106,12 @@ func (c *client) Watch(
 	return wrapChangeStream(cs), nil
 }
 
-func (c *client) WrappedClient() *mongo.Client {
-	return c.cl
-}
-
-// WrapClient an original object of `mongo.Client` type and returns the object as `Client` interface
 func WrapClient(cl *mongo.Client) Client {
 	return &client{cl: cl}
+}
+
+func UnWrapClient(cl Client) *mongo.Client {
+	return cl.(*client).cl
 }
 
 // Connect is a wrapper for `mongo.Connect` function to return the object as `Client` interface
@@ -142,5 +140,5 @@ func NewClient(opts ...*options.ClientOptions) (Client, error) {
 // *WARNING*: There is no simple way to wrap a SessionContext, so the original client and session will be used
 // Documentation: https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo#WithSession
 func WithSession(ctx context.Context, sess Session, fn func(mongo.SessionContext) error) error {
-	return mongo.WithSession(ctx, sess.WrappedSession(), fn)
+	return mongo.WithSession(ctx, sess.(*session).ss, fn)
 }

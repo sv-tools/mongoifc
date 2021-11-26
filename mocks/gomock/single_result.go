@@ -9,7 +9,6 @@ import (
 
 	gomock "github.com/golang/mock/gomock"
 	bson "go.mongodb.org/mongo-driver/bson"
-	mongo "go.mongodb.org/mongo-driver/mongo"
 )
 
 // MockSingleResult is a mock of SingleResult interface.
@@ -76,18 +75,4 @@ func (m *MockSingleResult) Err() error {
 func (mr *MockSingleResultMockRecorder) Err() *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Err", reflect.TypeOf((*MockSingleResult)(nil).Err))
-}
-
-// WrappedSingleResult mocks base method.
-func (m *MockSingleResult) WrappedSingleResult() *mongo.SingleResult {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "WrappedSingleResult")
-	ret0, _ := ret[0].(*mongo.SingleResult)
-	return ret0
-}
-
-// WrappedSingleResult indicates an expected call of WrappedSingleResult.
-func (mr *MockSingleResultMockRecorder) WrappedSingleResult() *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "WrappedSingleResult", reflect.TypeOf((*MockSingleResult)(nil).WrappedSingleResult))
 }

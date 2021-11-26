@@ -219,17 +219,3 @@ func (mr *MockClientMockRecorder) Watch(ctx, pipeline interface{}, opts ...inter
 	varargs := append([]interface{}{ctx, pipeline}, opts...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Watch", reflect.TypeOf((*MockClient)(nil).Watch), varargs...)
 }
-
-// WrappedClient mocks base method.
-func (m *MockClient) WrappedClient() *mongo.Client {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "WrappedClient")
-	ret0, _ := ret[0].(*mongo.Client)
-	return ret0
-}
-
-// WrappedClient indicates an expected call of WrappedClient.
-func (mr *MockClientMockRecorder) WrappedClient() *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "WrappedClient", reflect.TypeOf((*MockClient)(nil).WrappedClient))
-}

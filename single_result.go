@@ -11,8 +11,6 @@ type SingleResult interface {
 	Decode(v interface{}) error
 	DecodeBytes() (bson.Raw, error)
 	Err() error
-
-	WrappedSingleResult() *mongo.SingleResult
 }
 
 type singleResult struct {
@@ -29,10 +27,6 @@ func (s *singleResult) DecodeBytes() (bson.Raw, error) {
 
 func (s *singleResult) Err() error {
 	return s.sr.Err()
-}
-
-func (s *singleResult) WrappedSingleResult() *mongo.SingleResult {
-	return s.sr
 }
 
 func wrapSingleResult(sr *mongo.SingleResult) SingleResult {

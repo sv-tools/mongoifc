@@ -306,20 +306,6 @@ func (mr *MockDatabaseMockRecorder) Watch(ctx, pipeline interface{}, opts ...int
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Watch", reflect.TypeOf((*MockDatabase)(nil).Watch), varargs...)
 }
 
-// WrappedDatabase mocks base method.
-func (m *MockDatabase) WrappedDatabase() *mongo.Database {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "WrappedDatabase")
-	ret0, _ := ret[0].(*mongo.Database)
-	return ret0
-}
-
-// WrappedDatabase indicates an expected call of WrappedDatabase.
-func (mr *MockDatabaseMockRecorder) WrappedDatabase() *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "WrappedDatabase", reflect.TypeOf((*MockDatabase)(nil).WrappedDatabase))
-}
-
 // WriteConcern mocks base method.
 func (m *MockDatabase) WriteConcern() *writeconcern.WriteConcern {
 	m.ctrl.T.Helper()

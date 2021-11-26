@@ -197,19 +197,3 @@ func (_m *Session) WithTransaction(ctx context.Context, fn func(mongo.SessionCon
 
 	return r0, r1
 }
-
-// WrappedSession provides a mock function with given fields:
-func (_m *Session) WrappedSession() mongo.Session {
-	ret := _m.Called()
-
-	var r0 mongo.Session
-	if rf, ok := ret.Get(0).(func() mongo.Session); ok {
-		r0 = rf()
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(mongo.Session)
-		}
-	}
-
-	return r0
-}

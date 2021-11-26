@@ -243,19 +243,3 @@ func (_m *Client) Watch(ctx context.Context, pipeline interface{}, opts ...*opti
 
 	return r0, r1
 }
-
-// WrappedClient provides a mock function with given fields:
-func (_m *Client) WrappedClient() *mongo.Client {
-	ret := _m.Called()
-
-	var r0 *mongo.Client
-	if rf, ok := ret.Get(0).(func() *mongo.Client); ok {
-		r0 = rf()
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*mongo.Client)
-		}
-	}
-
-	return r0
-}

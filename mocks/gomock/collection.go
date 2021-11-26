@@ -487,17 +487,3 @@ func (mr *MockCollectionMockRecorder) Watch(ctx, pipeline interface{}, opts ...i
 	varargs := append([]interface{}{ctx, pipeline}, opts...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Watch", reflect.TypeOf((*MockCollection)(nil).Watch), varargs...)
 }
-
-// WrappedCollection mocks base method.
-func (m *MockCollection) WrappedCollection() *mongo.Collection {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "WrappedCollection")
-	ret0, _ := ret[0].(*mongo.Collection)
-	return ret0
-}
-
-// WrappedCollection indicates an expected call of WrappedCollection.
-func (mr *MockCollectionMockRecorder) WrappedCollection() *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "WrappedCollection", reflect.TypeOf((*MockCollection)(nil).WrappedCollection))
-}

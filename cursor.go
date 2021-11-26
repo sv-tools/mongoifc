@@ -19,8 +19,6 @@ type Cursor interface {
 	Next(ctx context.Context) bool
 	RemainingBatchLength() int
 	TryNext(ctx context.Context) bool
-
-	WrappedCursor() *mongo.Cursor
 }
 
 type cursor struct {
@@ -61,10 +59,6 @@ func (c *cursor) RemainingBatchLength() int {
 
 func (c *cursor) TryNext(ctx context.Context) bool {
 	return c.cr.TryNext(ctx)
-}
-
-func (c *cursor) WrappedCursor() *mongo.Cursor {
-	return c.cr
 }
 
 func wrapCursor(cr *mongo.Cursor) Cursor {

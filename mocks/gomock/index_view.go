@@ -157,17 +157,3 @@ func (mr *MockIndexViewMockRecorder) ListSpecifications(ctx interface{}, opts ..
 	varargs := append([]interface{}{ctx}, opts...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ListSpecifications", reflect.TypeOf((*MockIndexView)(nil).ListSpecifications), varargs...)
 }
-
-// WrappedIndexView mocks base method.
-func (m *MockIndexView) WrappedIndexView() *mongo.IndexView {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "WrappedIndexView")
-	ret0, _ := ret[0].(*mongo.IndexView)
-	return ret0
-}
-
-// WrappedIndexView indicates an expected call of WrappedIndexView.
-func (mr *MockIndexViewMockRecorder) WrappedIndexView() *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "WrappedIndexView", reflect.TypeOf((*MockIndexView)(nil).WrappedIndexView))
-}

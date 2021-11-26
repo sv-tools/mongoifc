@@ -18,8 +18,6 @@ type ChangeStream interface {
 	Next(ctx context.Context) bool
 	ResumeToken() bson.Raw
 	TryNext(ctx context.Context) bool
-
-	WrappedChangeStream() *mongo.ChangeStream
 }
 
 type changeStream struct {
@@ -56,10 +54,6 @@ func (c *changeStream) ResumeToken() bson.Raw {
 
 func (c *changeStream) TryNext(ctx context.Context) bool {
 	return c.cs.TryNext(ctx)
-}
-
-func (c *changeStream) WrappedChangeStream() *mongo.ChangeStream {
-	return c.cs
 }
 
 func wrapChangeStream(cs *mongo.ChangeStream) ChangeStream {
