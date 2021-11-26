@@ -200,17 +200,3 @@ func (mr *MockSessionMockRecorder) WithTransaction(ctx, fn interface{}, opts ...
 	varargs := append([]interface{}{ctx, fn}, opts...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "WithTransaction", reflect.TypeOf((*MockSession)(nil).WithTransaction), varargs...)
 }
-
-// WrappedSession mocks base method.
-func (m *MockSession) WrappedSession() mongo.Session {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "WrappedSession")
-	ret0, _ := ret[0].(mongo.Session)
-	return ret0
-}
-
-// WrappedSession indicates an expected call of WrappedSession.
-func (mr *MockSessionMockRecorder) WrappedSession() *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "WrappedSession", reflect.TypeOf((*MockSession)(nil).WrappedSession))
-}

@@ -10,7 +10,6 @@ import (
 
 	gomock "github.com/golang/mock/gomock"
 	bson "go.mongodb.org/mongo-driver/bson"
-	mongo "go.mongodb.org/mongo-driver/mongo"
 )
 
 // MockChangeStream is a mock of ChangeStream interface.
@@ -146,18 +145,4 @@ func (m *MockChangeStream) TryNext(ctx context.Context) bool {
 func (mr *MockChangeStreamMockRecorder) TryNext(ctx interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "TryNext", reflect.TypeOf((*MockChangeStream)(nil).TryNext), ctx)
-}
-
-// WrappedChangeStream mocks base method.
-func (m *MockChangeStream) WrappedChangeStream() *mongo.ChangeStream {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "WrappedChangeStream")
-	ret0, _ := ret[0].(*mongo.ChangeStream)
-	return ret0
-}
-
-// WrappedChangeStream indicates an expected call of WrappedChangeStream.
-func (mr *MockChangeStreamMockRecorder) WrappedChangeStream() *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "WrappedChangeStream", reflect.TypeOf((*MockChangeStream)(nil).WrappedChangeStream))
 }

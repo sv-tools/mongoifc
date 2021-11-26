@@ -46,8 +46,6 @@ type Database interface {
 		opts ...*options.ChangeStreamOptions,
 	) (ChangeStream, error)
 	WriteConcern() *writeconcern.WriteConcern
-
-	WrappedDatabase() *mongo.Database
 }
 
 type database struct {
@@ -170,10 +168,6 @@ func (d *database) Watch(
 
 func (d *database) WriteConcern() *writeconcern.WriteConcern {
 	return d.db.WriteConcern()
-}
-
-func (d *database) WrappedDatabase() *mongo.Database {
-	return d.db
 }
 
 func wrapDatabase(db *mongo.Database, cl *client) Database {

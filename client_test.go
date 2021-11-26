@@ -97,12 +97,6 @@ func TestWithSession(t *testing.T) {
 	require.NoError(t, err)
 }
 
-func TestClient_WrappedClient(t *testing.T) {
-	cl, err := mongoifc.NewClient()
-	require.NoError(t, err)
-	require.IsType(t, &mongo.Client{}, cl.WrappedClient())
-}
-
 func TestClient_Database(t *testing.T) {
 	t.Parallel()
 
@@ -292,7 +286,7 @@ func TestWrapClient(t *testing.T) {
 	require.NotNil(t, cl)
 
 	wcl := mongoifc.WrapClient(cl)
-	require.Equal(t, cl, wcl.WrappedClient())
+	require.Equal(t, cl, mongoifc.UnWrapClient(wcl))
 }
 
 func TestClient_Watch(t *testing.T) {

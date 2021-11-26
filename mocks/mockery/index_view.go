@@ -198,19 +198,3 @@ func (_m *IndexView) ListSpecifications(ctx context.Context, opts ...*options.Li
 
 	return r0, r1
 }
-
-// WrappedIndexView provides a mock function with given fields:
-func (_m *IndexView) WrappedIndexView() *mongo.IndexView {
-	ret := _m.Called()
-
-	var r0 *mongo.IndexView
-	if rf, ok := ret.Get(0).(func() *mongo.IndexView); ok {
-		r0 = rf()
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*mongo.IndexView)
-		}
-	}
-
-	return r0
-}

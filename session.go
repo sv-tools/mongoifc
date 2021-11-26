@@ -29,8 +29,6 @@ type Session interface {
 
 	AdvanceClusterTime(bson.Raw) error
 	AdvanceOperationTime(*primitive.Timestamp) error
-
-	WrappedSession() mongo.Session
 }
 
 type session struct {
@@ -84,10 +82,6 @@ func (s *session) AdvanceClusterTime(d bson.Raw) error {
 
 func (s *session) AdvanceOperationTime(ts *primitive.Timestamp) error {
 	return s.ss.AdvanceOperationTime(ts)
-}
-
-func (s *session) WrappedSession() mongo.Session {
-	return s.ss
 }
 
 func wrapSession(ss mongo.Session, cl *client) Session {

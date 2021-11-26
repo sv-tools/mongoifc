@@ -644,19 +644,3 @@ func (_m *Collection) Watch(ctx context.Context, pipeline interface{}, opts ...*
 
 	return r0, r1
 }
-
-// WrappedCollection provides a mock function with given fields:
-func (_m *Collection) WrappedCollection() *mongo.Collection {
-	ret := _m.Called()
-
-	var r0 *mongo.Collection
-	if rf, ok := ret.Get(0).(func() *mongo.Collection); ok {
-		r0 = rf()
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*mongo.Collection)
-		}
-	}
-
-	return r0
-}
