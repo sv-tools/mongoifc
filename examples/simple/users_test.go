@@ -31,15 +31,18 @@ func TestGetAdmins(t *testing.T) {
 		t.Parallel()
 
 		cur := &mockeryMocks.Cursor{}
+		defer cur.AssertExpectations(t)
 		cur.On("All", ctx, mock.Anything).Run(func(args mock.Arguments) {
 			users := args[1].(*[]*simple.User)
 			*users = append(*users, expectedUsers...)
 		}).Return(nil)
 
 		col := &mockeryMocks.Collection{}
+		defer col.AssertExpectations(t)
 		col.On("Find", ctx, mock.AnythingOfType("User")).Return(cur, nil)
 
 		db := &mockeryMocks.Database{}
+		defer db.AssertExpectations(t)
 		db.On("Collection", simple.UsersCollection).Return(col)
 
 		users, err := simple.GetAdmins(ctx, db)
