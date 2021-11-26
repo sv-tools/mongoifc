@@ -17,7 +17,7 @@ type Session interface {
 	CommitTransaction(ctx context.Context) error
 	WithTransaction(
 		ctx context.Context,
-		fn func(sessCtx mongo.SessionContext) (interface{}, error),
+		fn func(sc SessionContext) (interface{}, error),
 		opts ...*options.TransactionOptions,
 	) (interface{}, error)
 	EndSession(ctx context.Context)
@@ -50,10 +50,10 @@ func (s *session) CommitTransaction(ctx context.Context) error {
 
 func (s *session) WithTransaction(
 	ctx context.Context,
-	fn func(sessCtx mongo.SessionContext) (interface{}, error),
+	fn func(sc SessionContext) (interface{}, error),
 	opts ...*options.TransactionOptions,
 ) (interface{}, error) {
-	return s.ss.WithTransaction(ctx, fn, opts...)
+	return s.ss.WithTransaction(ctx, wrapFn2(fn, s.cl), opts...)
 }
 
 func (s *session) EndSession(ctx context.Context) {
