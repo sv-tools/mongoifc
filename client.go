@@ -23,8 +23,8 @@ type Client interface {
 	NumberSessionsInProgress() int
 	Ping(ctx context.Context, rp *readpref.ReadPref) error
 	StartSession(opts ...*options.SessionOptions) (Session, error)
-	UseSession(ctx context.Context, fn func(mongo.SessionContext) error) error
-	UseSessionWithOptions(ctx context.Context, opts *options.SessionOptions, fn func(mongo.SessionContext) error) error
+	UseSession(ctx context.Context, fn func(sc SessionContext) error) error
+	UseSessionWithOptions(ctx context.Context, opts *options.SessionOptions, fn func(sc SessionContext) error) error
 	Watch(
 		ctx context.Context,
 		pipeline interface{},
@@ -81,16 +81,16 @@ func (c *client) StartSession(opts ...*options.SessionOptions) (Session, error) 
 	return wrapSession(ss, c), nil
 }
 
-func (c *client) UseSession(ctx context.Context, fn func(mongo.SessionContext) error) error {
-	return c.cl.UseSession(ctx, fn)
+func (c *client) UseSession(ctx context.Context, fn func(sc SessionContext) error) error {
+	return c.cl.UseSession(ctx, wrapFn1(fn, c))
 }
 
 func (c *client) UseSessionWithOptions(
 	ctx context.Context,
 	opts *options.SessionOptions,
-	fn func(mongo.SessionContext) error,
+	fn func(sc SessionContext) error,
 ) error {
-	return c.cl.UseSessionWithOptions(ctx, opts, fn)
+	return c.cl.UseSessionWithOptions(ctx, opts, wrapFn1(fn, c))
 }
 
 func (c *client) Watch(
@@ -137,8 +137,7 @@ func NewClient(opts ...*options.ClientOptions) (Client, error) {
 }
 
 // WithSession is a wrapper for `mongo.WithSession` function to call then `mongo.WithSession` function
-// *WARNING*: There is no simple way to wrap a SessionContext, so the original client and session will be used
 // Documentation: https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo#WithSession
-func WithSession(ctx context.Context, sess Session, fn func(mongo.SessionContext) error) error {
-	return mongo.WithSession(ctx, sess.(*session).ss, fn)
+func WithSession(ctx context.Context, sess Session, fn func(sc SessionContext) error) error {
+	return mongo.WithSession(ctx, sess.(*session).ss, wrapFn1(fn, sess.Client().(*client)))
 }

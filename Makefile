@@ -51,7 +51,7 @@ tidy:
 	@go mod tidy
 
 run-mockgen:
-	@mockgen -destination=mocks/gomock/mocks.go -package mocks . ChangeStream,Client,Collection,Cursor,Database,IndexView,Session,SingleResult
+	@mockgen -destination=mocks/gomock/mocks.go -package mocks . ChangeStream,Client,Collection,Cursor,Database,IndexView,Session,SingleResult,SessionContext
 
 run-mockery:
 	@mockery --all --output mocks/mockery --disable-version-string --case underscore

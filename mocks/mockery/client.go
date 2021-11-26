@@ -187,11 +187,11 @@ func (_m *Client) StartSession(opts ...*options.SessionOptions) (mongoifc.Sessio
 }
 
 // UseSession provides a mock function with given fields: ctx, fn
-func (_m *Client) UseSession(ctx context.Context, fn func(mongo.SessionContext) error) error {
+func (_m *Client) UseSession(ctx context.Context, fn func(mongoifc.SessionContext) error) error {
 	ret := _m.Called(ctx, fn)
 
 	var r0 error
-	if rf, ok := ret.Get(0).(func(context.Context, func(mongo.SessionContext) error) error); ok {
+	if rf, ok := ret.Get(0).(func(context.Context, func(mongoifc.SessionContext) error) error); ok {
 		r0 = rf(ctx, fn)
 	} else {
 		r0 = ret.Error(0)
@@ -201,11 +201,11 @@ func (_m *Client) UseSession(ctx context.Context, fn func(mongo.SessionContext) 
 }
 
 // UseSessionWithOptions provides a mock function with given fields: ctx, opts, fn
-func (_m *Client) UseSessionWithOptions(ctx context.Context, opts *options.SessionOptions, fn func(mongo.SessionContext) error) error {
+func (_m *Client) UseSessionWithOptions(ctx context.Context, opts *options.SessionOptions, fn func(mongoifc.SessionContext) error) error {
 	ret := _m.Called(ctx, opts, fn)
 
 	var r0 error
-	if rf, ok := ret.Get(0).(func(context.Context, *options.SessionOptions, func(mongo.SessionContext) error) error); ok {
+	if rf, ok := ret.Get(0).(func(context.Context, *options.SessionOptions, func(mongoifc.SessionContext) error) error); ok {
 		r0 = rf(ctx, opts, fn)
 	} else {
 		r0 = ret.Error(0)

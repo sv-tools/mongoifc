@@ -90,8 +90,8 @@ func TestWithSession(t *testing.T) {
 		sess.EndSession(context.Background())
 	})
 
-	err = mongoifc.WithSession(context.Background(), sess, func(sessionContext mongo.SessionContext) error {
-		require.NotNil(t, sessionContext.ID())
+	err = mongoifc.WithSession(context.Background(), sess, func(sc mongoifc.SessionContext) error {
+		require.NotNil(t, sc.ID())
 		return nil
 	})
 	require.NoError(t, err)
@@ -201,13 +201,13 @@ func TestClient_UseSession(t *testing.T) {
 		require.NoError(t, cl.Disconnect(context.Background()))
 	})
 
-	err = cl.UseSession(context.Background(), func(sessionContext mongo.SessionContext) error {
-		require.NotNil(t, sessionContext.ID())
+	err = cl.UseSession(context.Background(), func(sc mongoifc.SessionContext) error {
+		require.NotNil(t, sc.ID())
 		return nil
 	})
 	require.NoError(t, err)
 
-	err = cl.UseSession(context.Background(), func(sessionContext mongo.SessionContext) error {
+	err = cl.UseSession(context.Background(), func(sc mongoifc.SessionContext) error {
 		return testErr
 	})
 	require.ErrorIs(t, err, testErr)
@@ -231,8 +231,8 @@ func TestClient_UseSessionWithOptions(t *testing.T) {
 	err = cl.UseSessionWithOptions(
 		context.Background(),
 		options.Session(),
-		func(sessionContext mongo.SessionContext) error {
-			require.NotNil(t, sessionContext.ID())
+		func(sc mongoifc.SessionContext) error {
+			require.NotNil(t, sc.ID())
 			return nil
 		},
 	)
@@ -241,7 +241,7 @@ func TestClient_UseSessionWithOptions(t *testing.T) {
 	err = cl.UseSessionWithOptions(
 		context.Background(),
 		options.Session(),
-		func(sessionContext mongo.SessionContext) error {
+		func(sc mongoifc.SessionContext) error {
 			return testErr
 		},
 	)
