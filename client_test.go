@@ -19,6 +19,22 @@ import (
 
 var testErr = errors.New("test")
 
+func connect(t testing.TB) mongoifc.Client {
+	t.Helper()
+
+	uri := os.Getenv("MONGO_URI")
+	require.NotEmpty(t, uri)
+	opt := options.Client().ApplyURI(uri)
+
+	cl, err := mongoifc.Connect(context.Background(), opt)
+	require.NoError(t, err)
+	t.Cleanup(func() {
+		require.NoError(t, cl.Disconnect(context.Background()))
+	})
+
+	return cl
+}
+
 func TestNewClient(t *testing.T) {
 	t.Parallel()
 
@@ -35,9 +51,6 @@ func TestNewClient(t *testing.T) {
 	t.Cleanup(func() {
 		require.NoError(t, cl.Disconnect(context.Background()))
 	})
-
-	err = cl.Ping(context.Background(), readpref.Primary())
-	require.NoError(t, err)
 
 	opt2 := options.Client().ApplyURI("fake")
 	cl2, err := mongoifc.NewClient(opt2)
@@ -72,18 +85,7 @@ func TestConnect(t *testing.T) {
 func TestWithSession(t *testing.T) {
 	t.Parallel()
 
-	uri := os.Getenv("MONGO_URI")
-	require.NotEmpty(t, uri)
-
-	opt := options.Client().ApplyURI(uri)
-	cl, err := mongoifc.Connect(context.Background(), opt)
-	require.NoError(t, err)
-	require.NotNil(t, cl)
-
-	t.Cleanup(func() {
-		require.NoError(t, cl.Disconnect(context.Background()))
-	})
-
+	cl := connect(t)
 	sess, err := cl.StartSession()
 	require.NoError(t, err)
 	t.Cleanup(func() {
@@ -100,40 +102,17 @@ func TestWithSession(t *testing.T) {
 func TestClient_Database(t *testing.T) {
 	t.Parallel()
 
-	uri := os.Getenv("MONGO_URI")
-	require.NotEmpty(t, uri)
-
-	opt := options.Client().ApplyURI(uri)
-	cl, err := mongoifc.Connect(context.Background(), opt)
-	require.NoError(t, err)
-	require.NotNil(t, cl)
-
-	t.Cleanup(func() {
-		require.NoError(t, cl.Disconnect(context.Background()))
-	})
-
+	cl := connect(t)
 	name := fmt.Sprintf("test_%d", time.Now().Unix())
 	db := cl.Database(name)
 	require.NotNil(t, db)
-	require.Equal(t, cl, db.Client())
 	require.Equal(t, name, db.Name())
 }
 
 func TestClient_ListDatabaseNames(t *testing.T) {
 	t.Parallel()
 
-	uri := os.Getenv("MONGO_URI")
-	require.NotEmpty(t, uri)
-
-	opt := options.Client().ApplyURI(uri)
-	cl, err := mongoifc.Connect(context.Background(), opt)
-	require.NoError(t, err)
-	require.NotNil(t, cl)
-
-	t.Cleanup(func() {
-		require.NoError(t, cl.Disconnect(context.Background()))
-	})
-
+	cl := connect(t)
 	names, err := cl.ListDatabaseNames(context.Background(), bson.M{})
 	require.NoError(t, err)
 	t.Logf("database names: %v", names)
@@ -144,18 +123,7 @@ func TestClient_ListDatabaseNames(t *testing.T) {
 func TestClient_ListDatabases(t *testing.T) {
 	t.Parallel()
 
-	uri := os.Getenv("MONGO_URI")
-	require.NotEmpty(t, uri)
-
-	opt := options.Client().ApplyURI(uri)
-	cl, err := mongoifc.Connect(context.Background(), opt)
-	require.NoError(t, err)
-	require.NotNil(t, cl)
-
-	t.Cleanup(func() {
-		require.NoError(t, cl.Disconnect(context.Background()))
-	})
-
+	cl := connect(t)
 	dbs, err := cl.ListDatabases(context.Background(), bson.M{})
 	require.NoError(t, err)
 	require.NotZero(t, dbs.TotalSize)
@@ -165,18 +133,7 @@ func TestClient_ListDatabases(t *testing.T) {
 func TestClient_NumberSessionsInProgress(t *testing.T) {
 	t.Parallel()
 
-	uri := os.Getenv("MONGO_URI")
-	require.NotEmpty(t, uri)
-
-	opt := options.Client().ApplyURI(uri)
-	cl, err := mongoifc.Connect(context.Background(), opt)
-	require.NoError(t, err)
-	require.NotNil(t, cl)
-
-	t.Cleanup(func() {
-		require.NoError(t, cl.Disconnect(context.Background()))
-	})
-
+	cl := connect(t)
 	sess, err := cl.StartSession()
 	require.NoError(t, err)
 	t.Cleanup(func() {
@@ -189,19 +146,8 @@ func TestClient_NumberSessionsInProgress(t *testing.T) {
 func TestClient_UseSession(t *testing.T) {
 	t.Parallel()
 
-	uri := os.Getenv("MONGO_URI")
-	require.NotEmpty(t, uri)
-
-	opt := options.Client().ApplyURI(uri)
-	cl, err := mongoifc.Connect(context.Background(), opt)
-	require.NoError(t, err)
-	require.NotNil(t, cl)
-
-	t.Cleanup(func() {
-		require.NoError(t, cl.Disconnect(context.Background()))
-	})
-
-	err = cl.UseSession(context.Background(), func(sc mongoifc.SessionContext) error {
+	cl := connect(t)
+	err := cl.UseSession(context.Background(), func(sc mongoifc.SessionContext) error {
 		require.NotNil(t, sc.ID())
 		return nil
 	})
@@ -216,19 +162,8 @@ func TestClient_UseSession(t *testing.T) {
 func TestClient_UseSessionWithOptions(t *testing.T) {
 	t.Parallel()
 
-	uri := os.Getenv("MONGO_URI")
-	require.NotEmpty(t, uri)
-
-	opt := options.Client().ApplyURI(uri)
-	cl, err := mongoifc.Connect(context.Background(), opt)
-	require.NoError(t, err)
-	require.NotNil(t, cl)
-
-	t.Cleanup(func() {
-		require.NoError(t, cl.Disconnect(context.Background()))
-	})
-
-	err = cl.UseSessionWithOptions(
+	cl := connect(t)
+	err := cl.UseSessionWithOptions(
 		context.Background(),
 		options.Session(),
 		func(sc mongoifc.SessionContext) error {
@@ -251,18 +186,7 @@ func TestClient_UseSessionWithOptions(t *testing.T) {
 func TestClient_StartSession(t *testing.T) {
 	t.Parallel()
 
-	uri := os.Getenv("MONGO_URI")
-	require.NotEmpty(t, uri)
-
-	opt := options.Client().ApplyURI(uri)
-	cl, err := mongoifc.Connect(context.Background(), opt)
-	require.NoError(t, err)
-	require.NotNil(t, cl)
-
-	t.Cleanup(func() {
-		require.NoError(t, cl.Disconnect(context.Background()))
-	})
-
+	cl := connect(t)
 	sess, err := cl.StartSession()
 	require.NoError(t, err)
 	t.Cleanup(func() {
@@ -292,18 +216,7 @@ func TestWrapClient(t *testing.T) {
 func TestClient_Watch(t *testing.T) {
 	t.Parallel()
 
-	uri := os.Getenv("MONGO_URI")
-	require.NotEmpty(t, uri)
-
-	opt := options.Client().ApplyURI(uri)
-	cl, err := mongoifc.Connect(context.Background(), opt)
-	require.NoError(t, err)
-	require.NotNil(t, cl)
-
-	t.Cleanup(func() {
-		require.NoError(t, cl.Disconnect(context.Background()))
-	})
-
+	cl := connect(t)
 	cur, err := cl.Watch(context.Background(), mongo.Pipeline{})
 	require.Error(t, err)
 	require.Contains(t, err.Error(), "The $changeStream stage is only supported on replica sets")

@@ -3,13 +3,11 @@ package mongoifc_test
 import (
 	"context"
 	"fmt"
-	"os"
 	"testing"
 	"time"
 
 	"github.com/stretchr/testify/require"
 	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/mongo/options"
 
 	"github.com/sv-tools/mongoifc"
 )
@@ -17,18 +15,7 @@ import (
 func TestSession_WithTransaction(t *testing.T) {
 	t.Parallel()
 
-	uri := os.Getenv("MONGO_URI")
-	require.NotEmpty(t, uri)
-
-	opt := options.Client().ApplyURI(uri)
-	cl, err := mongoifc.Connect(context.Background(), opt)
-	require.NoError(t, err)
-	require.NotNil(t, cl)
-
-	t.Cleanup(func() {
-		require.NoError(t, cl.Disconnect(context.Background()))
-	})
-
+	cl := connect(t)
 	sess, err := cl.StartSession()
 	require.NoError(t, err)
 	t.Cleanup(func() {
@@ -48,20 +35,9 @@ func TestSession_WithTransaction(t *testing.T) {
 func TestSession_StartTransaction(t *testing.T) {
 	t.Parallel()
 
-	uri := os.Getenv("MONGO_URI")
-	require.NotEmpty(t, uri)
-
-	opt := options.Client().ApplyURI(uri)
-	cl, err := mongoifc.Connect(context.Background(), opt)
-	require.NoError(t, err)
-	require.NotNil(t, cl)
-
-	t.Cleanup(func() {
-		require.NoError(t, cl.Disconnect(context.Background()))
-	})
-
-	err = cl.UseSession(context.Background(), func(sc mongoifc.SessionContext) error {
-		err = sc.StartTransaction()
+	cl := connect(t)
+	err := cl.UseSession(context.Background(), func(sc mongoifc.SessionContext) error {
+		err := sc.StartTransaction()
 		require.NoError(t, err)
 
 		res, err := cl.
