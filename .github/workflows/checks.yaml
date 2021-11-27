@@ -10,10 +10,14 @@ on:
   schedule:
     - cron: "0 0 * * 0"
 
+concurrency:
+  group: ${{ format('{0}-{1}', github.workflow, github.head_ref) }}
+  cancel-in-progress: true
+
 env:
-  GO: 1.17
-  MONGO_USERNAME: admin
-  MONGO_PASSWORD: adminpass
+  GO: "1.17"
+  MONGO_USERNAME: "admin"
+  MONGO_PASSWORD: "adminpass"
 
 jobs:
   CodeQL:
