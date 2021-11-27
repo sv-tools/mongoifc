@@ -27,6 +27,7 @@ brew-install:
 go-install:
 	@echo "$(OK_COLOR)==> Checking and installing dependencies using go install...$(NO_COLOR)"
 	@go install github.com/golang/mock/mockgen@v1
+	@go install github.com/vektra/mockery/v2@v2
 
 run-test:
 	@echo "$(OK_COLOR)==> Testing...$(NO_COLOR)"

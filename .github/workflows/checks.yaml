@@ -78,3 +78,27 @@ jobs:
           version: latest
           skip-build-cache: true
           skip-go-installation: true
+
+  Mocks:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: ${{ env.GO }}
+
+      - name: Generate Mocks
+        run: make go-install generate-mocks
+
+      - name: Checking Git
+        run: |
+          DELTA="$(git status --short)"
+          if [ -n "${DELTA}" ]
+          then
+            echo "::error title=Mocks are outdated::Please run 'make generate-mocks' to re-generate the mocks"
+            exit 1
+          fi
