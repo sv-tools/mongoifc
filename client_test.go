@@ -19,18 +19,21 @@ import (
 
 var testErr = errors.New("test")
 
-func connect(t testing.TB) mongoifc.Client {
-	t.Helper()
+func connect(tb testing.TB) mongoifc.Client {
+	tb.Helper()
 
 	uri := os.Getenv("MONGO_URI")
-	require.NotEmpty(t, uri)
+	require.NotEmpty(tb, uri)
 	opt := options.Client().ApplyURI(uri)
 
 	cl, err := mongoifc.Connect(context.Background(), opt)
-	require.NoError(t, err)
-	t.Cleanup(func() {
-		require.NoError(t, cl.Disconnect(context.Background()))
+	require.NoError(tb, err)
+	tb.Cleanup(func() {
+		require.NoError(tb, cl.Disconnect(context.Background()))
 	})
+
+	err = cl.Ping(context.Background(), readpref.Primary())
+	require.NoError(tb, err)
 
 	return cl
 }
@@ -218,10 +221,9 @@ func TestClient_Watch(t *testing.T) {
 
 	cl := connect(t)
 	cur, err := cl.Watch(context.Background(), mongo.Pipeline{})
-	require.Error(t, err)
-	require.Contains(t, err.Error(), "The $changeStream stage is only supported on replica sets")
-	require.Nil(t, cur)
-
-	// There is no simple way of booting mongo in docker as replica with one node
-	// So the success scenario is skipped
+	require.NoError(t, err)
+	t.Cleanup(func() {
+		require.NoError(t, cur.Close(context.Background()))
+	})
+	require.NotZero(t, cur.ID())
 }

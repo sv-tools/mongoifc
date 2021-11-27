@@ -36,16 +36,6 @@ jobs:
 
   UnitTests:
     runs-on: ubuntu-latest
-
-    services:
-      mongo:
-        image: mongo
-        ports:
-          - 27017:27017
-        env:
-          MONGO_INITDB_ROOT_USERNAME: ${{ env.MONGO_USERNAME }}
-          MONGO_INITDB_ROOT_PASSWORD: ${{ env.MONGO_PASSWORD }}
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -55,9 +45,14 @@ jobs:
         with:
           go-version: ${{ env.GO }}
 
+      - name: Build and Run MongoDB
+        run: make run-docker
+        env:
+          SLEEP: 10
+
       - name: Run Unit Tests
         env:
-          MONGO_URI: "mongodb://${{ env.MONGO_USERNAME }}:${{ env.MONGO_PASSWORD }}@localhost/?authSource=admin"
+          MONGO_URI: "mongodb://${{ env.MONGO_USERNAME }}:${{ env.MONGO_PASSWORD }}@127.0.0.1:27888/?authSource=admin&directConnection=true"
         run: go test -race -cover -coverprofile=coverage.out -covermode=atomic
 
       - name: Codecov
