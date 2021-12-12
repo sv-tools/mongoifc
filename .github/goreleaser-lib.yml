@@ -1,9 +1,4 @@
 project_name: mongoifc
 
-release:
-  github:
-    owner: sv-tools
-    name: mongoifc
-
 builds:
   - skip: true
