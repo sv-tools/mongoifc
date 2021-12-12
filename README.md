@@ -7,6 +7,12 @@
 
 The Interfaces for the MongoDB driver
 
+## Versioning Policy
+
+The `mongoifc` code is stabilized, so now the version will match the version of the MongoDB driver since `v1.8.0`.
+
+In case of need for bug fixes in `mongoifc`, the version will be in this format `v1.8.1-N`, where `v1.8.1` is the version of MongoDD driver and `N` is a patch of `mongoifc`. 
+
 ## :bangbang: **Important**
 
 It is not a simple drop in replacement because of the limitations in Go.
@@ -60,7 +66,7 @@ then compilation fails with such error:
              have Aggregate(context.Context, interface {}, ...*"go.mongodb.org/mongo-driver/mongo/options".AggregateOptions) (*mongo.Cursor, error)
              want Aggregate(context.Context, interface {}, ...*"go.mongodb.org/mongo-driver/mongo/options".AggregateOptions) (mongoifc.Cursor, error)
 
-## Interfaces
+## Wrapped Interfaces
 
 - [x] Client: https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo#Client
 - [x] Database: https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo#Database
