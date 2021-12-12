@@ -11,7 +11,7 @@ The Interfaces for the MongoDB driver
 
 The `mongoifc` code is stabilized, so now the version will match the version of the MongoDB driver since `v1.8.0`.
 
-In case of need for bug fixes in `mongoifc`, the version will be in this format `v1.8.1-N`, where `v1.8.1` is the version of MongoDB driver and `N` is a patch of `mongoifc`. 
+In case of need for bug fixes in `mongoifc`, the version will be in this format `v1.8.1+N`, where `v1.8.1` is the version of MongoDB driver and `N` is a patch of `mongoifc`. 
 The new version for changes in README.md, tests, examples, GitHub workflows is not required.
 
 ## :bangbang: **Important**
