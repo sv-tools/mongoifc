@@ -87,3 +87,13 @@ func (s *session) AdvanceOperationTime(ts *primitive.Timestamp) error {
 func wrapSession(ss mongo.Session, cl *client) Session {
 	return &session{ss: ss, cl: cl}
 }
+
+// WrapSession returns an instance of Session interface for given mongo.Session object
+func WrapSession(ss mongo.Session) Session {
+	return wrapSession(ss, WrapClient(ss.Client()).(*client))
+}
+
+// UnWrapSession returns original mongo.Session
+func UnWrapSession(ss Session) mongo.Session {
+	return ss.(*session).ss
+}
