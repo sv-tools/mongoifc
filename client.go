@@ -109,7 +109,6 @@ func (c *client) Watch(
 // WrapClient returns an instance of Client interface for given mongo.Client object
 func WrapClient(cl *mongo.Client) Client {
 	return &client{cl: cl}
-
 }
 
 // UnWrapClient returns original mongo.Client
