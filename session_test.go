@@ -67,3 +67,13 @@ func TestSession_StartAndAbortTransaction(t *testing.T) {
 	require.NoError(t, err)
 	require.Zero(t, n)
 }
+
+func TestWrapSession_UnWrapSession(t *testing.T) {
+	t.Parallel()
+	cl := connect(t)
+	mcl := mongoifc.UnWrapClient(cl)
+	orig, err := mcl.StartSession()
+	require.NoError(t, err)
+	wrapped := mongoifc.WrapSession(orig)
+	require.Equal(t, orig, mongoifc.UnWrapSession(wrapped))
+}

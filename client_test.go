@@ -205,7 +205,7 @@ func TestClient_StartSession(t *testing.T) {
 	require.Nil(t, sess2)
 }
 
-func TestWrapClient(t *testing.T) {
+func TestWrapClient_UnWrapClient(t *testing.T) {
 	t.Parallel()
 
 	cl, err := mongo.NewClient()

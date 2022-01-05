@@ -282,3 +282,13 @@ func (c *collection) Watch(
 func wrapCollection(co *mongo.Collection, db *database) Collection {
 	return &collection{co: co, db: db}
 }
+
+// WrapCollection returns an instance of Collection interface for given mongo.Collection object
+func WrapCollection(co *mongo.Collection) Collection {
+	return wrapCollection(co, WrapDatabase(co.Database()).(*database))
+}
+
+// UnWrapCollection returns original mongo.Collection
+func UnWrapCollection(co Collection) *mongo.Collection {
+	return co.(*collection).co
+}

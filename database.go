@@ -176,3 +176,13 @@ func wrapDatabase(db *mongo.Database, cl *client) Database {
 		cl: cl,
 	}
 }
+
+// WrapDatabase returns an instance of Database interface for given mongo.Database object
+func WrapDatabase(db *mongo.Database) Database {
+	return wrapDatabase(db, WrapClient(db.Client()).(*client))
+}
+
+// UnWrapDatabase returns original mongo.Database
+func UnWrapDatabase(db Database) *mongo.Database {
+	return db.(*database).db
+}
