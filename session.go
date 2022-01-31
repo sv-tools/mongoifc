@@ -21,12 +21,10 @@ type Session interface {
 		opts ...*options.TransactionOptions,
 	) (interface{}, error)
 	EndSession(ctx context.Context)
-
 	ClusterTime() bson.Raw
 	OperationTime() *primitive.Timestamp
 	Client() Client
 	ID() bson.Raw
-
 	AdvanceClusterTime(bson.Raw) error
 	AdvanceOperationTime(*primitive.Timestamp) error
 }
