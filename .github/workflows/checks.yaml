@@ -77,7 +77,7 @@ jobs:
           go-version: ${{ env.GO }}
 
       - name: Run GolangCi-Lint
-        uses: golangci/golangci-lint-action@remove_setup_go
+        uses: golangci/golangci-lint-action@update-deps
         with:
           version: latest
           skip-build-cache: true
