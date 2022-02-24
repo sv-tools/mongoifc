@@ -77,11 +77,10 @@ jobs:
           go-version: ${{ env.GO }}
 
       - name: Run GolangCi-Lint
-        uses: golangci/golangci-lint-action@v2.5.2
+        uses: golangci/golangci-lint-action@remove_setup_go
         with:
           version: latest
           skip-build-cache: true
-          skip-go-installation: true
 
   Mocks:
     runs-on: ubuntu-latest
