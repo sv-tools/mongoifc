@@ -4,6 +4,7 @@ import (
 	"context"
 
 	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/bson/bsoncodec"
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
@@ -63,4 +64,14 @@ func (c *cursor) TryNext(ctx context.Context) bool {
 
 func wrapCursor(cr *mongo.Cursor) Cursor {
 	return &cursor{cr: cr}
+}
+
+// NewCursorFromDocuments is a wrapper for NewCursorFromDocuments function of the mongodb to return Cursor
+// https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo#NewCursorFromDocuments
+func NewCursorFromDocuments(documents []interface{}, err error, registry *bsoncodec.Registry) (Cursor, error) {
+	cr, err := mongo.NewCursorFromDocuments(documents, err, registry)
+	if err != nil {
+		return nil, err
+	}
+	return wrapCursor(cr), nil
 }
