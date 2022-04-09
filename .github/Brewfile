@@ -1,13 +1,8 @@
-tap "golangci/tap"
 tap "kyoh86/tap"
 tap "sv-tools/apps"
 
-# Fast linters runner for Go.
-brew "golangci/tap/golangci-lint"
 # Rich-Go will enrich `go test` outputs with text decorations
 brew "kyoh86/tap/richgo"
-# bumptag is a tool to increment a version and to create a git tag with an annotation.
-brew "sv-tools/apps/bumptag"
 
 # App to build and share containerized applications and microservices
 cask "docker"
