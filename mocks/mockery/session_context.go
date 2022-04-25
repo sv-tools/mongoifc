@@ -15,6 +15,8 @@ import (
 
 	primitive "go.mongodb.org/mongo-driver/bson/primitive"
 
+	testing "testing"
+
 	time "time"
 )
 
@@ -263,4 +265,14 @@ func (_m *SessionContext) WithTransaction(ctx context.Context, fn func(mongoifc.
 	}
 
 	return r0, r1
+}
+
+// NewSessionContext creates a new instance of SessionContext. It also registers the testing.TB interface on the mock and a cleanup function to assert the mocks expectations.
+func NewSessionContext(t testing.TB) *SessionContext {
+	mock := &SessionContext{}
+	mock.Mock.Test(t)
+
+	t.Cleanup(func() { mock.AssertExpectations(t) })
+
+	return mock
 }
