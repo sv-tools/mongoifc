@@ -16,6 +16,8 @@ import (
 
 	readpref "go.mongodb.org/mongo-driver/mongo/readpref"
 
+	testing "testing"
+
 	writeconcern "go.mongodb.org/mongo-driver/mongo/writeconcern"
 )
 
@@ -382,4 +384,14 @@ func (_m *Database) WriteConcern() *writeconcern.WriteConcern {
 	}
 
 	return r0
+}
+
+// NewDatabase creates a new instance of Database. It also registers the testing.TB interface on the mock and a cleanup function to assert the mocks expectations.
+func NewDatabase(t testing.TB) *Database {
+	mock := &Database{}
+	mock.Mock.Test(t)
+
+	t.Cleanup(func() { mock.AssertExpectations(t) })
+
+	return mock
 }
