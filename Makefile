@@ -28,6 +28,7 @@ go-install:
 	@echo "$(OK_COLOR)==> Checking and installing dependencies using go install...$(NO_COLOR)"
 	@go install github.com/golang/mock/mockgen@v1
 	@go install github.com/vektra/mockery/v2@v2
+	@go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
 
 run-test:
 	@echo "$(OK_COLOR)==> Testing...$(NO_COLOR)"
@@ -59,6 +60,9 @@ run-mockgen:
 	@mockgen -destination=mocks/gomock/mocks.go -package mocks . ChangeStream,Client,Collection,Cursor,Database,IndexView,Session,SingleResult,SessionContext
 
 run-mockery:
-	@mockery --all --output mocks/mockery --disable-version-string --case underscore
+	@mockery --all --srcpkg github.com/sv-tools/mongoifc --output mocks/mockery --disable-version-string --case underscore
 
-generate-mocks: run-mockgen run-mockery
+clean-mocks:
+	@rm -rf mocks
+
+generate-mocks: clean-mocks run-mockgen run-mockery

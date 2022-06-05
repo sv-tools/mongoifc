@@ -44,7 +44,10 @@ linters-settings:
   govet:
     check-shadowing: false
   gci:
-    local-prefixes: github.com/sv-tools/mongoifc
+    sections:
+      - standard
+      - default
+      - prefix(github.com/sv-tools/mongoifc)
   gocognit:
     min-complexity: 15
   gocyclo:
