@@ -384,13 +384,13 @@ func (_m *Database) WriteConcern() *writeconcern.WriteConcern {
 	return r0
 }
 
-type NewDatabaseT interface {
+type mockConstructorTestingTNewDatabase interface {
 	mock.TestingT
 	Cleanup(func())
 }
 
 // NewDatabase creates a new instance of Database. It also registers a testing interface on the mock and a cleanup function to assert the mocks expectations.
-func NewDatabase(t NewDatabaseT) *Database {
+func NewDatabase(t mockConstructorTestingTNewDatabase) *Database {
 	mock := &Database{}
 	mock.Mock.Test(t)
 

@@ -196,13 +196,13 @@ func (_m *Session) WithTransaction(ctx context.Context, fn func(mongoifc.Session
 	return r0, r1
 }
 
-type NewSessionT interface {
+type mockConstructorTestingTNewSession interface {
 	mock.TestingT
 	Cleanup(func())
 }
 
 // NewSession creates a new instance of Session. It also registers a testing interface on the mock and a cleanup function to assert the mocks expectations.
-func NewSession(t NewSessionT) *Session {
+func NewSession(t mockConstructorTestingTNewSession) *Session {
 	mock := &Session{}
 	mock.Mock.Test(t)
 
