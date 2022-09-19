@@ -56,7 +56,7 @@ lint:
 
 tidy:
 	@echo "$(OK_COLOR)==> Updating go.mod...$(NO_COLOR)"
-	@go mod tidy
+	@go mod tidy -compat=1.19
 
 run-mockgen:
 	@mockgen -destination=mocks/gomock/mocks.go -package mocks . ChangeStream,Client,Collection,Cursor,Database,IndexView,Session,SingleResult,SessionContext
