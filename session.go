@@ -12,21 +12,21 @@ import (
 // Session is an interface for `mongo.Session` structure
 // Documentation: https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo#Session
 type Session interface {
-	StartTransaction(opts ...*options.TransactionOptions) error
 	AbortTransaction(ctx context.Context) error
+	AdvanceClusterTime(bson.Raw) error
+	AdvanceOperationTime(*primitive.Timestamp) error
+	Client() Client
+	ClusterTime() bson.Raw
 	CommitTransaction(ctx context.Context) error
+	EndSession(ctx context.Context)
+	ID() bson.Raw
+	OperationTime() *primitive.Timestamp
+	StartTransaction(opts ...*options.TransactionOptions) error
 	WithTransaction(
 		ctx context.Context,
 		fn func(sc SessionContext) (interface{}, error),
 		opts ...*options.TransactionOptions,
 	) (interface{}, error)
-	EndSession(ctx context.Context)
-	ClusterTime() bson.Raw
-	OperationTime() *primitive.Timestamp
-	Client() Client
-	ID() bson.Raw
-	AdvanceClusterTime(bson.Raw) error
-	AdvanceOperationTime(*primitive.Timestamp) error
 }
 
 type session struct {
