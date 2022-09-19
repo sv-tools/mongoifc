@@ -38,13 +38,15 @@ stop-docker:
 	@echo "$(OK_COLOR)==> Stopping docker...$(NO_COLOR)"
 	@docker rm --force $(DOCKER_NAME) || true
 
-run-docker:
-	@echo "$(OK_COLOR)==> Running docker...$(NO_COLOR)"
+docker-build:
 	@docker rm --force $(DOCKER_NAME) || true
 	@docker build . --rm --file $(DOCKER_FILE) --tag $(DOCKER_IMAGE)
+
+run-docker: docker-build
+	@echo "$(OK_COLOR)==> Running docker...$(NO_COLOR)"
 	@docker run -d --name=$(DOCKER_NAME) -p $(MONGO_PORT):27017 -e MONGO_INITDB_ROOT_USERNAME=$(MONGO_USERNAME) -e MONGO_INITDB_ROOT_PASSWORD=$(MONGO_PASSWORD) $(DOCKER_IMAGE)
 	@sleep $${SLEEP:-4}
-	@docker exec $(DOCKER_NAME) /usr/bin/mongo -u $(MONGO_USERNAME) -p $(MONGO_PASSWORD) --eval "rs.initiate()"
+	@docker exec $(DOCKER_NAME) /usr/bin/mongosh -u $(MONGO_USERNAME) -p $(MONGO_PASSWORD) --eval "rs.initiate()"
 
 test: run-docker run-test stop-docker
 
