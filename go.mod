@@ -5,7 +5,7 @@ go 1.19
 require (
 	github.com/golang/mock v1.6.0
 	github.com/stretchr/testify v1.8.0
-	go.mongodb.org/mongo-driver v1.10.2
+	go.mongodb.org/mongo-driver v1.10.3
 )
 
 require (
