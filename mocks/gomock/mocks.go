@@ -312,6 +312,20 @@ func (mr *MockClientMockRecorder) StartSession(arg0 ...interface{}) *gomock.Call
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "StartSession", reflect.TypeOf((*MockClient)(nil).StartSession), arg0...)
 }
 
+// Timeout mocks base method.
+func (m *MockClient) Timeout() *time.Duration {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "Timeout")
+	ret0, _ := ret[0].(*time.Duration)
+	return ret0
+}
+
+// Timeout indicates an expected call of Timeout.
+func (mr *MockClientMockRecorder) Timeout() *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Timeout", reflect.TypeOf((*MockClient)(nil).Timeout))
+}
+
 // UseSession mocks base method.
 func (m *MockClient) UseSession(arg0 context.Context, arg1 func(mongoifc.SessionContext) error) error {
 	m.ctrl.T.Helper()

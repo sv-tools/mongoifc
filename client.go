@@ -2,6 +2,7 @@ package mongoifc
 
 import (
 	"context"
+	"time"
 
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
@@ -23,6 +24,7 @@ type Client interface {
 	NumberSessionsInProgress() int
 	Ping(ctx context.Context, rp *readpref.ReadPref) error
 	StartSession(opts ...*options.SessionOptions) (Session, error)
+	Timeout() *time.Duration
 	UseSession(ctx context.Context, fn func(sc SessionContext) error) error
 	UseSessionWithOptions(ctx context.Context, opts *options.SessionOptions, fn func(sc SessionContext) error) error
 	Watch(
@@ -79,6 +81,10 @@ func (c *client) StartSession(opts ...*options.SessionOptions) (Session, error) 
 	}
 
 	return wrapSession(ss, c), nil
+}
+
+func (c *client) Timeout() *time.Duration {
+	return c.cl.Timeout()
 }
 
 func (c *client) UseSession(ctx context.Context, fn func(sc SessionContext) error) error {
