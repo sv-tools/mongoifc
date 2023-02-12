@@ -64,8 +64,8 @@ rewrote it using `mongoifc`:
 package users
 
 // Original: func GetAdmins(ctx context.Context, db *mongo.Database) ([]*User, error)
-func GetAdmins(ctx context.Context, db mongoifc.Database) ([]*User, error) {
-	var users []*User
+func GetAdmins(ctx context.Context, db mongoifc.Database) ([]User, error) {
+	var users []User
 	cur, err := db.Collection(UsersCollection).Find(ctx, User{
 		Active:  true,
 		IsAdmin: true,
@@ -118,147 +118,18 @@ and [gomock](https://github.com/golang/mock) tools.
 The examples of how to use the mocks can be found in the `examples` folder or check any of the `*_test.go` files as
 well.
 
-## Example
+## Simple Example
 
-Here you can find the examples of how to use and mock mongodb functions
+to test workflow:
+1. Create 4 users, with two admins, using `InsertMany` function.
+2. Get the admin users only using `Find` function
+3. Delete all users using `DeleteMany` function 
 
-```go
-package main
-
-import (
-	"context"
-	"encoding/json"
-	"os"
-
-	"go.mongodb.org/mongo-driver/bson/primitive"
-	"go.mongodb.org/mongo-driver/mongo/options"
-
-	"github.com/sv-tools/mongoifc"
-)
-
-const (
-	UsersCollection = "users"
-)
-
-type User struct {
-	ID      string `json:"id,omitempty" bson:"_id,omitempty"`
-	Name    string `json:"name,omitempty" bson:"name,omitempty"`
-	Email   string `json:"email,omitempty" bson:"email,omitempty"`
-	Active  bool   `json:"active,omitempty" bson:"active,omitempty"`
-	IsAdmin bool   `json:"is_admin,omitempty" bson:"is_admin,omitempty"`
-}
-
-func GetAdmins(ctx context.Context, db mongoifc.Database) ([]*User, error) {
-	var users []*User
-	cur, err := db.Collection(UsersCollection).Find(ctx, User{
-		Active:  true,
-		IsAdmin: true,
-	})
-	if err != nil {
-		return nil, err
-	}
-	if err := cur.All(ctx, &users); err != nil {
-		return nil, err
-	}
-	return users, err
-}
-
-// go run main.go "mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_HOST}:${MONGO_PORT}/?authSource=admin" "${DATABASE}"
-func main() {
-	uri, database := os.Args[1], os.Args[2]
-	opt := options.Client().ApplyURI(uri)
-	cl, err := mongoifc.NewClient(opt)
-	if err != nil {
-		panic(err)
-	}
-
-	if err = cl.Connect(context.Background()); err != nil {
-		panic(err)
-	}
-	defer cl.Disconnect(context.Background())
-
-	db := cl.Database(database)
-	users, err := GetAdmins(context.Background(), db)
-	if err != nil {
-		panic(err)
-	}
-	enc := json.NewEncoder(os.Stdout)
-	enc.SetIndent("", "  ")
-	if err := enc.Encode(users); err != nil {
-		panic(err)
-	}
-}
-```
-
-### How to mock
-
-```go
-package main
-
-import (
-	"context"
-	"testing"
-
-	"github.com/golang/mock/gomock"
-	"github.com/stretchr/testify/mock"
-	"github.com/stretchr/testify/require"
-	"go.mongodb.org/mongo-driver/mongo/options"
-
-	"github.com/sv-tools/mongoifc"
-	gomockMocks "github.com/sv-tools/mongoifc/mocks/gomock"
-	mockeryMocks "github.com/sv-tools/mongoifc/mocks/mockery"
-)
-
-func TestGetAdmins(t *testing.T) {
-	t.Parallel()
-
-	expectedUsers := []*User{
-		{Name: "foo", Active: true, IsAdmin: true},
-		{Name: "bar", Active: true, IsAdmin: true},
-	}
-	ctx := context.Background()
-
-	t.Run("mockery", func(t *testing.T) {
-		t.Parallel()
-
-		cur := &mockeryMocks.Cursor{}
-		cur.On("All", ctx, mock.Anything).Run(func(args mock.Arguments) {
-			users := args[1].(*[]*User)
-			*users = append(*users, expectedUsers...)
-		}).Return(nil)
-
-		col := &mockeryMocks.Collection{}
-		col.On("Find", ctx, mock.AnythingOfType("User")).Return(cur, nil)
-
-		db := &mockeryMocks.Database{}
-		db.On("Collection", UsersCollection).Return(col)
-
-		users, err := GetAdmins(ctx, db)
-		require.NoError(t, err)
-		require.Equal(t, expectedUsers, users)
-	})
-
-	t.Run("gomock", func(t *testing.T) {
-		t.Parallel()
-
-		ctrl := gomock.NewController(t)
-		defer ctrl.Finish()
-
-		cur := gomockMocks.NewMockCursor(ctrl)
-		cur.EXPECT().All(ctx, gomock.Any()).Do(func(ctx context.Context, arg interface{}) {
-			users := arg.(*[]*User)
-			*users = append(*users, expectedUsers...)
-		}).Return(nil)
-
-		col := gomockMocks.NewMockCollection(ctrl)
-		col.EXPECT().Find(ctx, gomock.Any()).Return(cur, nil)
-
-		db := gomockMocks.NewMockDatabase(ctrl)
-		db.EXPECT().Collection(UsersCollection).Return(col)
-
-		users, err := GetAdmins(ctx, db)
-		require.NoError(t, err)
-		require.Equal(t, expectedUsers, users)
-	})
-}
-```
+* [users.go](https://github.com/sv-tools/mongoifc/blob/main/examples/simple/users.go) is a file with a set of functions, like:
+  * `Create` to create the users using `InsertMany`
+  * `Delete` to delete the users by given IDs
+  * `GetAdmins` to return the list of admin users
+* [users_test.go](https://github.com/sv-tools/mongoifc/blob/main/examples/simple/users_test.go) is a file with `TestUsersWorkflow` unit tests:
+  * `mockery` tests the workflow using `mockery` mocks
+  * `gomock` tests the workflow using `gomock` mocks
+  * `docker` tests the workflow using real mongo database run by docker
