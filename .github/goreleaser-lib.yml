@@ -1,4 +1,0 @@
-project_name: mongoifc
-
-builds:
-  - skip: true

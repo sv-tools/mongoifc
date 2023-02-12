@@ -1,8 +1,0 @@
-tap "kyoh86/tap"
-tap "sv-tools/apps"
-
-# Rich-Go will enrich `go test` outputs with text decorations
-brew "kyoh86/tap/richgo"
-
-# App to build and share containerized applications and microservices
-cask "docker"

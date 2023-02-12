@@ -11,24 +11,17 @@ MONGO_USERNAME="admin"
 MONGO_PASSWORD="adminpass"
 MONGO_URI="mongodb://$(MONGO_USERNAME):$(MONGO_PASSWORD)@127.0.0.1:$(MONGO_PORT)/?authSource=admin&directConnection=true"
 
-ifeq ($(shell uname), Darwin)
-all: brew-install
-endif
-
 all: go-install generate-mocks tidy lint test done
 
 done:
 	@echo "$(OK_COLOR)==> Done.$(NO_COLOR)"
-
-brew-install:
-	@echo "$(OK_COLOR)==> Checking and installing dependencies using brew...$(NO_COLOR)"
-	@brew bundle --file $(BREWFILE)
 
 go-install:
 	@echo "$(OK_COLOR)==> Checking and installing dependencies using go install...$(NO_COLOR)"
 	@go install github.com/golang/mock/mockgen@v1
 	@go install github.com/vektra/mockery/v2@v2
 	@go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
+	@go install github.com/kyoh86/richgo@latest
 
 run-test:
 	@echo "$(OK_COLOR)==> Testing...$(NO_COLOR)"
