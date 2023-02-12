@@ -36,6 +36,10 @@ func (_m *Database) Aggregate(ctx context.Context, pipeline interface{}, opts ..
 	ret := _m.Called(_ca...)
 
 	var r0 mongoifc.Cursor
+	var r1 error
+	if rf, ok := ret.Get(0).(func(context.Context, interface{}, ...*options.AggregateOptions) (mongoifc.Cursor, error)); ok {
+		return rf(ctx, pipeline, opts...)
+	}
 	if rf, ok := ret.Get(0).(func(context.Context, interface{}, ...*options.AggregateOptions) mongoifc.Cursor); ok {
 		r0 = rf(ctx, pipeline, opts...)
 	} else {
@@ -44,7 +48,6 @@ func (_m *Database) Aggregate(ctx context.Context, pipeline interface{}, opts ..
 		}
 	}
 
-	var r1 error
 	if rf, ok := ret.Get(1).(func(context.Context, interface{}, ...*options.AggregateOptions) error); ok {
 		r1 = rf(ctx, pipeline, opts...)
 	} else {
@@ -161,6 +164,10 @@ func (_m *Database) ListCollectionNames(ctx context.Context, filter interface{},
 	ret := _m.Called(_ca...)
 
 	var r0 []string
+	var r1 error
+	if rf, ok := ret.Get(0).(func(context.Context, interface{}, ...*options.ListCollectionsOptions) ([]string, error)); ok {
+		return rf(ctx, filter, opts...)
+	}
 	if rf, ok := ret.Get(0).(func(context.Context, interface{}, ...*options.ListCollectionsOptions) []string); ok {
 		r0 = rf(ctx, filter, opts...)
 	} else {
@@ -169,7 +176,6 @@ func (_m *Database) ListCollectionNames(ctx context.Context, filter interface{},
 		}
 	}
 
-	var r1 error
 	if rf, ok := ret.Get(1).(func(context.Context, interface{}, ...*options.ListCollectionsOptions) error); ok {
 		r1 = rf(ctx, filter, opts...)
 	} else {
@@ -191,6 +197,10 @@ func (_m *Database) ListCollectionSpecifications(ctx context.Context, filter int
 	ret := _m.Called(_ca...)
 
 	var r0 []*mongo.CollectionSpecification
+	var r1 error
+	if rf, ok := ret.Get(0).(func(context.Context, interface{}, ...*options.ListCollectionsOptions) ([]*mongo.CollectionSpecification, error)); ok {
+		return rf(ctx, filter, opts...)
+	}
 	if rf, ok := ret.Get(0).(func(context.Context, interface{}, ...*options.ListCollectionsOptions) []*mongo.CollectionSpecification); ok {
 		r0 = rf(ctx, filter, opts...)
 	} else {
@@ -199,7 +209,6 @@ func (_m *Database) ListCollectionSpecifications(ctx context.Context, filter int
 		}
 	}
 
-	var r1 error
 	if rf, ok := ret.Get(1).(func(context.Context, interface{}, ...*options.ListCollectionsOptions) error); ok {
 		r1 = rf(ctx, filter, opts...)
 	} else {
@@ -221,6 +230,10 @@ func (_m *Database) ListCollections(ctx context.Context, filter interface{}, opt
 	ret := _m.Called(_ca...)
 
 	var r0 mongoifc.Cursor
+	var r1 error
+	if rf, ok := ret.Get(0).(func(context.Context, interface{}, ...*options.ListCollectionsOptions) (mongoifc.Cursor, error)); ok {
+		return rf(ctx, filter, opts...)
+	}
 	if rf, ok := ret.Get(0).(func(context.Context, interface{}, ...*options.ListCollectionsOptions) mongoifc.Cursor); ok {
 		r0 = rf(ctx, filter, opts...)
 	} else {
@@ -229,7 +242,6 @@ func (_m *Database) ListCollections(ctx context.Context, filter interface{}, opt
 		}
 	}
 
-	var r1 error
 	if rf, ok := ret.Get(1).(func(context.Context, interface{}, ...*options.ListCollectionsOptions) error); ok {
 		r1 = rf(ctx, filter, opts...)
 	} else {
@@ -320,6 +332,10 @@ func (_m *Database) RunCommandCursor(ctx context.Context, runCommand interface{}
 	ret := _m.Called(_ca...)
 
 	var r0 mongoifc.Cursor
+	var r1 error
+	if rf, ok := ret.Get(0).(func(context.Context, interface{}, ...*options.RunCmdOptions) (mongoifc.Cursor, error)); ok {
+		return rf(ctx, runCommand, opts...)
+	}
 	if rf, ok := ret.Get(0).(func(context.Context, interface{}, ...*options.RunCmdOptions) mongoifc.Cursor); ok {
 		r0 = rf(ctx, runCommand, opts...)
 	} else {
@@ -328,7 +344,6 @@ func (_m *Database) RunCommandCursor(ctx context.Context, runCommand interface{}
 		}
 	}
 
-	var r1 error
 	if rf, ok := ret.Get(1).(func(context.Context, interface{}, ...*options.RunCmdOptions) error); ok {
 		r1 = rf(ctx, runCommand, opts...)
 	} else {
@@ -350,6 +365,10 @@ func (_m *Database) Watch(ctx context.Context, pipeline interface{}, opts ...*op
 	ret := _m.Called(_ca...)
 
 	var r0 mongoifc.ChangeStream
+	var r1 error
+	if rf, ok := ret.Get(0).(func(context.Context, interface{}, ...*options.ChangeStreamOptions) (mongoifc.ChangeStream, error)); ok {
+		return rf(ctx, pipeline, opts...)
+	}
 	if rf, ok := ret.Get(0).(func(context.Context, interface{}, ...*options.ChangeStreamOptions) mongoifc.ChangeStream); ok {
 		r0 = rf(ctx, pipeline, opts...)
 	} else {
@@ -358,7 +377,6 @@ func (_m *Database) Watch(ctx context.Context, pipeline interface{}, opts ...*op
 		}
 	}
 
-	var r1 error
 	if rf, ok := ret.Get(1).(func(context.Context, interface{}, ...*options.ChangeStreamOptions) error); ok {
 		r1 = rf(ctx, pipeline, opts...)
 	} else {

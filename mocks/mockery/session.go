@@ -178,6 +178,10 @@ func (_m *Session) WithTransaction(ctx context.Context, fn func(mongoifc.Session
 	ret := _m.Called(_ca...)
 
 	var r0 interface{}
+	var r1 error
+	if rf, ok := ret.Get(0).(func(context.Context, func(mongoifc.SessionContext) (interface{}, error), ...*options.TransactionOptions) (interface{}, error)); ok {
+		return rf(ctx, fn, opts...)
+	}
 	if rf, ok := ret.Get(0).(func(context.Context, func(mongoifc.SessionContext) (interface{}, error), ...*options.TransactionOptions) interface{}); ok {
 		r0 = rf(ctx, fn, opts...)
 	} else {
@@ -186,7 +190,6 @@ func (_m *Session) WithTransaction(ctx context.Context, fn func(mongoifc.Session
 		}
 	}
 
-	var r1 error
 	if rf, ok := ret.Get(1).(func(context.Context, func(mongoifc.SessionContext) (interface{}, error), ...*options.TransactionOptions) error); ok {
 		r1 = rf(ctx, fn, opts...)
 	} else {

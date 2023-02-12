@@ -33,6 +33,10 @@ func (_m *IndexView) CreateMany(ctx context.Context, models []mongo.IndexModel, 
 	ret := _m.Called(_ca...)
 
 	var r0 []string
+	var r1 error
+	if rf, ok := ret.Get(0).(func(context.Context, []mongo.IndexModel, ...*options.CreateIndexesOptions) ([]string, error)); ok {
+		return rf(ctx, models, opts...)
+	}
 	if rf, ok := ret.Get(0).(func(context.Context, []mongo.IndexModel, ...*options.CreateIndexesOptions) []string); ok {
 		r0 = rf(ctx, models, opts...)
 	} else {
@@ -41,7 +45,6 @@ func (_m *IndexView) CreateMany(ctx context.Context, models []mongo.IndexModel, 
 		}
 	}
 
-	var r1 error
 	if rf, ok := ret.Get(1).(func(context.Context, []mongo.IndexModel, ...*options.CreateIndexesOptions) error); ok {
 		r1 = rf(ctx, models, opts...)
 	} else {
@@ -63,13 +66,16 @@ func (_m *IndexView) CreateOne(ctx context.Context, model mongo.IndexModel, opts
 	ret := _m.Called(_ca...)
 
 	var r0 string
+	var r1 error
+	if rf, ok := ret.Get(0).(func(context.Context, mongo.IndexModel, ...*options.CreateIndexesOptions) (string, error)); ok {
+		return rf(ctx, model, opts...)
+	}
 	if rf, ok := ret.Get(0).(func(context.Context, mongo.IndexModel, ...*options.CreateIndexesOptions) string); ok {
 		r0 = rf(ctx, model, opts...)
 	} else {
 		r0 = ret.Get(0).(string)
 	}
 
-	var r1 error
 	if rf, ok := ret.Get(1).(func(context.Context, mongo.IndexModel, ...*options.CreateIndexesOptions) error); ok {
 		r1 = rf(ctx, model, opts...)
 	} else {
@@ -91,6 +97,10 @@ func (_m *IndexView) DropAll(ctx context.Context, opts ...*options.DropIndexesOp
 	ret := _m.Called(_ca...)
 
 	var r0 bson.Raw
+	var r1 error
+	if rf, ok := ret.Get(0).(func(context.Context, ...*options.DropIndexesOptions) (bson.Raw, error)); ok {
+		return rf(ctx, opts...)
+	}
 	if rf, ok := ret.Get(0).(func(context.Context, ...*options.DropIndexesOptions) bson.Raw); ok {
 		r0 = rf(ctx, opts...)
 	} else {
@@ -99,7 +109,6 @@ func (_m *IndexView) DropAll(ctx context.Context, opts ...*options.DropIndexesOp
 		}
 	}
 
-	var r1 error
 	if rf, ok := ret.Get(1).(func(context.Context, ...*options.DropIndexesOptions) error); ok {
 		r1 = rf(ctx, opts...)
 	} else {
@@ -121,6 +130,10 @@ func (_m *IndexView) DropOne(ctx context.Context, name string, opts ...*options.
 	ret := _m.Called(_ca...)
 
 	var r0 bson.Raw
+	var r1 error
+	if rf, ok := ret.Get(0).(func(context.Context, string, ...*options.DropIndexesOptions) (bson.Raw, error)); ok {
+		return rf(ctx, name, opts...)
+	}
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...*options.DropIndexesOptions) bson.Raw); ok {
 		r0 = rf(ctx, name, opts...)
 	} else {
@@ -129,7 +142,6 @@ func (_m *IndexView) DropOne(ctx context.Context, name string, opts ...*options.
 		}
 	}
 
-	var r1 error
 	if rf, ok := ret.Get(1).(func(context.Context, string, ...*options.DropIndexesOptions) error); ok {
 		r1 = rf(ctx, name, opts...)
 	} else {
@@ -151,6 +163,10 @@ func (_m *IndexView) List(ctx context.Context, opts ...*options.ListIndexesOptio
 	ret := _m.Called(_ca...)
 
 	var r0 mongoifc.Cursor
+	var r1 error
+	if rf, ok := ret.Get(0).(func(context.Context, ...*options.ListIndexesOptions) (mongoifc.Cursor, error)); ok {
+		return rf(ctx, opts...)
+	}
 	if rf, ok := ret.Get(0).(func(context.Context, ...*options.ListIndexesOptions) mongoifc.Cursor); ok {
 		r0 = rf(ctx, opts...)
 	} else {
@@ -159,7 +175,6 @@ func (_m *IndexView) List(ctx context.Context, opts ...*options.ListIndexesOptio
 		}
 	}
 
-	var r1 error
 	if rf, ok := ret.Get(1).(func(context.Context, ...*options.ListIndexesOptions) error); ok {
 		r1 = rf(ctx, opts...)
 	} else {
@@ -181,6 +196,10 @@ func (_m *IndexView) ListSpecifications(ctx context.Context, opts ...*options.Li
 	ret := _m.Called(_ca...)
 
 	var r0 []*mongo.IndexSpecification
+	var r1 error
+	if rf, ok := ret.Get(0).(func(context.Context, ...*options.ListIndexesOptions) ([]*mongo.IndexSpecification, error)); ok {
+		return rf(ctx, opts...)
+	}
 	if rf, ok := ret.Get(0).(func(context.Context, ...*options.ListIndexesOptions) []*mongo.IndexSpecification); ok {
 		r0 = rf(ctx, opts...)
 	} else {
@@ -189,7 +208,6 @@ func (_m *IndexView) ListSpecifications(ctx context.Context, opts ...*options.Li
 		}
 	}
 
-	var r1 error
 	if rf, ok := ret.Get(1).(func(context.Context, ...*options.ListIndexesOptions) error); ok {
 		r1 = rf(ctx, opts...)
 	} else {

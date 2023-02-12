@@ -30,6 +30,10 @@ func (_m *Collection) Aggregate(ctx context.Context, pipeline interface{}, opts 
 	ret := _m.Called(_ca...)
 
 	var r0 mongoifc.Cursor
+	var r1 error
+	if rf, ok := ret.Get(0).(func(context.Context, interface{}, ...*options.AggregateOptions) (mongoifc.Cursor, error)); ok {
+		return rf(ctx, pipeline, opts...)
+	}
 	if rf, ok := ret.Get(0).(func(context.Context, interface{}, ...*options.AggregateOptions) mongoifc.Cursor); ok {
 		r0 = rf(ctx, pipeline, opts...)
 	} else {
@@ -38,7 +42,6 @@ func (_m *Collection) Aggregate(ctx context.Context, pipeline interface{}, opts 
 		}
 	}
 
-	var r1 error
 	if rf, ok := ret.Get(1).(func(context.Context, interface{}, ...*options.AggregateOptions) error); ok {
 		r1 = rf(ctx, pipeline, opts...)
 	} else {
@@ -60,6 +63,10 @@ func (_m *Collection) BulkWrite(ctx context.Context, models []mongo.WriteModel, 
 	ret := _m.Called(_ca...)
 
 	var r0 *mongo.BulkWriteResult
+	var r1 error
+	if rf, ok := ret.Get(0).(func(context.Context, []mongo.WriteModel, ...*options.BulkWriteOptions) (*mongo.BulkWriteResult, error)); ok {
+		return rf(ctx, models, opts...)
+	}
 	if rf, ok := ret.Get(0).(func(context.Context, []mongo.WriteModel, ...*options.BulkWriteOptions) *mongo.BulkWriteResult); ok {
 		r0 = rf(ctx, models, opts...)
 	} else {
@@ -68,7 +75,6 @@ func (_m *Collection) BulkWrite(ctx context.Context, models []mongo.WriteModel, 
 		}
 	}
 
-	var r1 error
 	if rf, ok := ret.Get(1).(func(context.Context, []mongo.WriteModel, ...*options.BulkWriteOptions) error); ok {
 		r1 = rf(ctx, models, opts...)
 	} else {
@@ -89,6 +95,10 @@ func (_m *Collection) Clone(opts ...*options.CollectionOptions) (mongoifc.Collec
 	ret := _m.Called(_ca...)
 
 	var r0 mongoifc.Collection
+	var r1 error
+	if rf, ok := ret.Get(0).(func(...*options.CollectionOptions) (mongoifc.Collection, error)); ok {
+		return rf(opts...)
+	}
 	if rf, ok := ret.Get(0).(func(...*options.CollectionOptions) mongoifc.Collection); ok {
 		r0 = rf(opts...)
 	} else {
@@ -97,7 +107,6 @@ func (_m *Collection) Clone(opts ...*options.CollectionOptions) (mongoifc.Collec
 		}
 	}
 
-	var r1 error
 	if rf, ok := ret.Get(1).(func(...*options.CollectionOptions) error); ok {
 		r1 = rf(opts...)
 	} else {
@@ -119,13 +128,16 @@ func (_m *Collection) CountDocuments(ctx context.Context, filter interface{}, op
 	ret := _m.Called(_ca...)
 
 	var r0 int64
+	var r1 error
+	if rf, ok := ret.Get(0).(func(context.Context, interface{}, ...*options.CountOptions) (int64, error)); ok {
+		return rf(ctx, filter, opts...)
+	}
 	if rf, ok := ret.Get(0).(func(context.Context, interface{}, ...*options.CountOptions) int64); ok {
 		r0 = rf(ctx, filter, opts...)
 	} else {
 		r0 = ret.Get(0).(int64)
 	}
 
-	var r1 error
 	if rf, ok := ret.Get(1).(func(context.Context, interface{}, ...*options.CountOptions) error); ok {
 		r1 = rf(ctx, filter, opts...)
 	} else {
@@ -163,6 +175,10 @@ func (_m *Collection) DeleteMany(ctx context.Context, filter interface{}, opts .
 	ret := _m.Called(_ca...)
 
 	var r0 *mongo.DeleteResult
+	var r1 error
+	if rf, ok := ret.Get(0).(func(context.Context, interface{}, ...*options.DeleteOptions) (*mongo.DeleteResult, error)); ok {
+		return rf(ctx, filter, opts...)
+	}
 	if rf, ok := ret.Get(0).(func(context.Context, interface{}, ...*options.DeleteOptions) *mongo.DeleteResult); ok {
 		r0 = rf(ctx, filter, opts...)
 	} else {
@@ -171,7 +187,6 @@ func (_m *Collection) DeleteMany(ctx context.Context, filter interface{}, opts .
 		}
 	}
 
-	var r1 error
 	if rf, ok := ret.Get(1).(func(context.Context, interface{}, ...*options.DeleteOptions) error); ok {
 		r1 = rf(ctx, filter, opts...)
 	} else {
@@ -193,6 +208,10 @@ func (_m *Collection) DeleteOne(ctx context.Context, filter interface{}, opts ..
 	ret := _m.Called(_ca...)
 
 	var r0 *mongo.DeleteResult
+	var r1 error
+	if rf, ok := ret.Get(0).(func(context.Context, interface{}, ...*options.DeleteOptions) (*mongo.DeleteResult, error)); ok {
+		return rf(ctx, filter, opts...)
+	}
 	if rf, ok := ret.Get(0).(func(context.Context, interface{}, ...*options.DeleteOptions) *mongo.DeleteResult); ok {
 		r0 = rf(ctx, filter, opts...)
 	} else {
@@ -201,7 +220,6 @@ func (_m *Collection) DeleteOne(ctx context.Context, filter interface{}, opts ..
 		}
 	}
 
-	var r1 error
 	if rf, ok := ret.Get(1).(func(context.Context, interface{}, ...*options.DeleteOptions) error); ok {
 		r1 = rf(ctx, filter, opts...)
 	} else {
@@ -223,6 +241,10 @@ func (_m *Collection) Distinct(ctx context.Context, fieldName string, filter int
 	ret := _m.Called(_ca...)
 
 	var r0 []interface{}
+	var r1 error
+	if rf, ok := ret.Get(0).(func(context.Context, string, interface{}, ...*options.DistinctOptions) ([]interface{}, error)); ok {
+		return rf(ctx, fieldName, filter, opts...)
+	}
 	if rf, ok := ret.Get(0).(func(context.Context, string, interface{}, ...*options.DistinctOptions) []interface{}); ok {
 		r0 = rf(ctx, fieldName, filter, opts...)
 	} else {
@@ -231,7 +253,6 @@ func (_m *Collection) Distinct(ctx context.Context, fieldName string, filter int
 		}
 	}
 
-	var r1 error
 	if rf, ok := ret.Get(1).(func(context.Context, string, interface{}, ...*options.DistinctOptions) error); ok {
 		r1 = rf(ctx, fieldName, filter, opts...)
 	} else {
@@ -267,13 +288,16 @@ func (_m *Collection) EstimatedDocumentCount(ctx context.Context, opts ...*optio
 	ret := _m.Called(_ca...)
 
 	var r0 int64
+	var r1 error
+	if rf, ok := ret.Get(0).(func(context.Context, ...*options.EstimatedDocumentCountOptions) (int64, error)); ok {
+		return rf(ctx, opts...)
+	}
 	if rf, ok := ret.Get(0).(func(context.Context, ...*options.EstimatedDocumentCountOptions) int64); ok {
 		r0 = rf(ctx, opts...)
 	} else {
 		r0 = ret.Get(0).(int64)
 	}
 
-	var r1 error
 	if rf, ok := ret.Get(1).(func(context.Context, ...*options.EstimatedDocumentCountOptions) error); ok {
 		r1 = rf(ctx, opts...)
 	} else {
@@ -295,6 +319,10 @@ func (_m *Collection) Find(ctx context.Context, filter interface{}, opts ...*opt
 	ret := _m.Called(_ca...)
 
 	var r0 mongoifc.Cursor
+	var r1 error
+	if rf, ok := ret.Get(0).(func(context.Context, interface{}, ...*options.FindOptions) (mongoifc.Cursor, error)); ok {
+		return rf(ctx, filter, opts...)
+	}
 	if rf, ok := ret.Get(0).(func(context.Context, interface{}, ...*options.FindOptions) mongoifc.Cursor); ok {
 		r0 = rf(ctx, filter, opts...)
 	} else {
@@ -303,7 +331,6 @@ func (_m *Collection) Find(ctx context.Context, filter interface{}, opts ...*opt
 		}
 	}
 
-	var r1 error
 	if rf, ok := ret.Get(1).(func(context.Context, interface{}, ...*options.FindOptions) error); ok {
 		r1 = rf(ctx, filter, opts...)
 	} else {
@@ -433,6 +460,10 @@ func (_m *Collection) InsertMany(ctx context.Context, documents []interface{}, o
 	ret := _m.Called(_ca...)
 
 	var r0 *mongo.InsertManyResult
+	var r1 error
+	if rf, ok := ret.Get(0).(func(context.Context, []interface{}, ...*options.InsertManyOptions) (*mongo.InsertManyResult, error)); ok {
+		return rf(ctx, documents, opts...)
+	}
 	if rf, ok := ret.Get(0).(func(context.Context, []interface{}, ...*options.InsertManyOptions) *mongo.InsertManyResult); ok {
 		r0 = rf(ctx, documents, opts...)
 	} else {
@@ -441,7 +472,6 @@ func (_m *Collection) InsertMany(ctx context.Context, documents []interface{}, o
 		}
 	}
 
-	var r1 error
 	if rf, ok := ret.Get(1).(func(context.Context, []interface{}, ...*options.InsertManyOptions) error); ok {
 		r1 = rf(ctx, documents, opts...)
 	} else {
@@ -463,6 +493,10 @@ func (_m *Collection) InsertOne(ctx context.Context, document interface{}, opts 
 	ret := _m.Called(_ca...)
 
 	var r0 *mongo.InsertOneResult
+	var r1 error
+	if rf, ok := ret.Get(0).(func(context.Context, interface{}, ...*options.InsertOneOptions) (*mongo.InsertOneResult, error)); ok {
+		return rf(ctx, document, opts...)
+	}
 	if rf, ok := ret.Get(0).(func(context.Context, interface{}, ...*options.InsertOneOptions) *mongo.InsertOneResult); ok {
 		r0 = rf(ctx, document, opts...)
 	} else {
@@ -471,7 +505,6 @@ func (_m *Collection) InsertOne(ctx context.Context, document interface{}, opts 
 		}
 	}
 
-	var r1 error
 	if rf, ok := ret.Get(1).(func(context.Context, interface{}, ...*options.InsertOneOptions) error); ok {
 		r1 = rf(ctx, document, opts...)
 	} else {
@@ -507,6 +540,10 @@ func (_m *Collection) ReplaceOne(ctx context.Context, filter interface{}, replac
 	ret := _m.Called(_ca...)
 
 	var r0 *mongo.UpdateResult
+	var r1 error
+	if rf, ok := ret.Get(0).(func(context.Context, interface{}, interface{}, ...*options.ReplaceOptions) (*mongo.UpdateResult, error)); ok {
+		return rf(ctx, filter, replacement, opts...)
+	}
 	if rf, ok := ret.Get(0).(func(context.Context, interface{}, interface{}, ...*options.ReplaceOptions) *mongo.UpdateResult); ok {
 		r0 = rf(ctx, filter, replacement, opts...)
 	} else {
@@ -515,7 +552,6 @@ func (_m *Collection) ReplaceOne(ctx context.Context, filter interface{}, replac
 		}
 	}
 
-	var r1 error
 	if rf, ok := ret.Get(1).(func(context.Context, interface{}, interface{}, ...*options.ReplaceOptions) error); ok {
 		r1 = rf(ctx, filter, replacement, opts...)
 	} else {
@@ -537,6 +573,10 @@ func (_m *Collection) UpdateByID(ctx context.Context, id interface{}, update int
 	ret := _m.Called(_ca...)
 
 	var r0 *mongo.UpdateResult
+	var r1 error
+	if rf, ok := ret.Get(0).(func(context.Context, interface{}, interface{}, ...*options.UpdateOptions) (*mongo.UpdateResult, error)); ok {
+		return rf(ctx, id, update, opts...)
+	}
 	if rf, ok := ret.Get(0).(func(context.Context, interface{}, interface{}, ...*options.UpdateOptions) *mongo.UpdateResult); ok {
 		r0 = rf(ctx, id, update, opts...)
 	} else {
@@ -545,7 +585,6 @@ func (_m *Collection) UpdateByID(ctx context.Context, id interface{}, update int
 		}
 	}
 
-	var r1 error
 	if rf, ok := ret.Get(1).(func(context.Context, interface{}, interface{}, ...*options.UpdateOptions) error); ok {
 		r1 = rf(ctx, id, update, opts...)
 	} else {
@@ -567,6 +606,10 @@ func (_m *Collection) UpdateMany(ctx context.Context, filter interface{}, update
 	ret := _m.Called(_ca...)
 
 	var r0 *mongo.UpdateResult
+	var r1 error
+	if rf, ok := ret.Get(0).(func(context.Context, interface{}, interface{}, ...*options.UpdateOptions) (*mongo.UpdateResult, error)); ok {
+		return rf(ctx, filter, update, opts...)
+	}
 	if rf, ok := ret.Get(0).(func(context.Context, interface{}, interface{}, ...*options.UpdateOptions) *mongo.UpdateResult); ok {
 		r0 = rf(ctx, filter, update, opts...)
 	} else {
@@ -575,7 +618,6 @@ func (_m *Collection) UpdateMany(ctx context.Context, filter interface{}, update
 		}
 	}
 
-	var r1 error
 	if rf, ok := ret.Get(1).(func(context.Context, interface{}, interface{}, ...*options.UpdateOptions) error); ok {
 		r1 = rf(ctx, filter, update, opts...)
 	} else {
@@ -597,6 +639,10 @@ func (_m *Collection) UpdateOne(ctx context.Context, filter interface{}, update 
 	ret := _m.Called(_ca...)
 
 	var r0 *mongo.UpdateResult
+	var r1 error
+	if rf, ok := ret.Get(0).(func(context.Context, interface{}, interface{}, ...*options.UpdateOptions) (*mongo.UpdateResult, error)); ok {
+		return rf(ctx, filter, update, opts...)
+	}
 	if rf, ok := ret.Get(0).(func(context.Context, interface{}, interface{}, ...*options.UpdateOptions) *mongo.UpdateResult); ok {
 		r0 = rf(ctx, filter, update, opts...)
 	} else {
@@ -605,7 +651,6 @@ func (_m *Collection) UpdateOne(ctx context.Context, filter interface{}, update 
 		}
 	}
 
-	var r1 error
 	if rf, ok := ret.Get(1).(func(context.Context, interface{}, interface{}, ...*options.UpdateOptions) error); ok {
 		r1 = rf(ctx, filter, update, opts...)
 	} else {
@@ -627,6 +672,10 @@ func (_m *Collection) Watch(ctx context.Context, pipeline interface{}, opts ...*
 	ret := _m.Called(_ca...)
 
 	var r0 mongoifc.ChangeStream
+	var r1 error
+	if rf, ok := ret.Get(0).(func(context.Context, interface{}, ...*options.ChangeStreamOptions) (mongoifc.ChangeStream, error)); ok {
+		return rf(ctx, pipeline, opts...)
+	}
 	if rf, ok := ret.Get(0).(func(context.Context, interface{}, ...*options.ChangeStreamOptions) mongoifc.ChangeStream); ok {
 		r0 = rf(ctx, pipeline, opts...)
 	} else {
@@ -635,7 +684,6 @@ func (_m *Collection) Watch(ctx context.Context, pipeline interface{}, opts ...*
 		}
 	}
 
-	var r1 error
 	if rf, ok := ret.Get(1).(func(context.Context, interface{}, ...*options.ChangeStreamOptions) error); ok {
 		r1 = rf(ctx, pipeline, opts...)
 	} else {

@@ -116,13 +116,16 @@ func (_m *SessionContext) Deadline() (time.Time, bool) {
 	ret := _m.Called()
 
 	var r0 time.Time
+	var r1 bool
+	if rf, ok := ret.Get(0).(func() (time.Time, bool)); ok {
+		return rf()
+	}
 	if rf, ok := ret.Get(0).(func() time.Time); ok {
 		r0 = rf()
 	} else {
 		r0 = ret.Get(0).(time.Time)
 	}
 
-	var r1 bool
 	if rf, ok := ret.Get(1).(func() bool); ok {
 		r1 = rf()
 	} else {
@@ -247,6 +250,10 @@ func (_m *SessionContext) WithTransaction(ctx context.Context, fn func(mongoifc.
 	ret := _m.Called(_ca...)
 
 	var r0 interface{}
+	var r1 error
+	if rf, ok := ret.Get(0).(func(context.Context, func(mongoifc.SessionContext) (interface{}, error), ...*options.TransactionOptions) (interface{}, error)); ok {
+		return rf(ctx, fn, opts...)
+	}
 	if rf, ok := ret.Get(0).(func(context.Context, func(mongoifc.SessionContext) (interface{}, error), ...*options.TransactionOptions) interface{}); ok {
 		r0 = rf(ctx, fn, opts...)
 	} else {
@@ -255,7 +262,6 @@ func (_m *SessionContext) WithTransaction(ctx context.Context, fn func(mongoifc.
 		}
 	}
 
-	var r1 error
 	if rf, ok := ret.Get(1).(func(context.Context, func(mongoifc.SessionContext) (interface{}, error), ...*options.TransactionOptions) error); ok {
 		r1 = rf(ctx, fn, opts...)
 	} else {

@@ -31,6 +31,10 @@ func (_m *SingleResult) DecodeBytes() (bson.Raw, error) {
 	ret := _m.Called()
 
 	var r0 bson.Raw
+	var r1 error
+	if rf, ok := ret.Get(0).(func() (bson.Raw, error)); ok {
+		return rf()
+	}
 	if rf, ok := ret.Get(0).(func() bson.Raw); ok {
 		r0 = rf()
 	} else {
@@ -39,7 +43,6 @@ func (_m *SingleResult) DecodeBytes() (bson.Raw, error) {
 		}
 	}
 
-	var r1 error
 	if rf, ok := ret.Get(1).(func() error); ok {
 		r1 = rf()
 	} else {

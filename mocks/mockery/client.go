@@ -85,6 +85,10 @@ func (_m *Client) ListDatabaseNames(ctx context.Context, filter interface{}, opt
 	ret := _m.Called(_ca...)
 
 	var r0 []string
+	var r1 error
+	if rf, ok := ret.Get(0).(func(context.Context, interface{}, ...*options.ListDatabasesOptions) ([]string, error)); ok {
+		return rf(ctx, filter, opts...)
+	}
 	if rf, ok := ret.Get(0).(func(context.Context, interface{}, ...*options.ListDatabasesOptions) []string); ok {
 		r0 = rf(ctx, filter, opts...)
 	} else {
@@ -93,7 +97,6 @@ func (_m *Client) ListDatabaseNames(ctx context.Context, filter interface{}, opt
 		}
 	}
 
-	var r1 error
 	if rf, ok := ret.Get(1).(func(context.Context, interface{}, ...*options.ListDatabasesOptions) error); ok {
 		r1 = rf(ctx, filter, opts...)
 	} else {
@@ -115,13 +118,16 @@ func (_m *Client) ListDatabases(ctx context.Context, filter interface{}, opts ..
 	ret := _m.Called(_ca...)
 
 	var r0 mongo.ListDatabasesResult
+	var r1 error
+	if rf, ok := ret.Get(0).(func(context.Context, interface{}, ...*options.ListDatabasesOptions) (mongo.ListDatabasesResult, error)); ok {
+		return rf(ctx, filter, opts...)
+	}
 	if rf, ok := ret.Get(0).(func(context.Context, interface{}, ...*options.ListDatabasesOptions) mongo.ListDatabasesResult); ok {
 		r0 = rf(ctx, filter, opts...)
 	} else {
 		r0 = ret.Get(0).(mongo.ListDatabasesResult)
 	}
 
-	var r1 error
 	if rf, ok := ret.Get(1).(func(context.Context, interface{}, ...*options.ListDatabasesOptions) error); ok {
 		r1 = rf(ctx, filter, opts...)
 	} else {
@@ -170,6 +176,10 @@ func (_m *Client) StartSession(opts ...*options.SessionOptions) (mongoifc.Sessio
 	ret := _m.Called(_ca...)
 
 	var r0 mongoifc.Session
+	var r1 error
+	if rf, ok := ret.Get(0).(func(...*options.SessionOptions) (mongoifc.Session, error)); ok {
+		return rf(opts...)
+	}
 	if rf, ok := ret.Get(0).(func(...*options.SessionOptions) mongoifc.Session); ok {
 		r0 = rf(opts...)
 	} else {
@@ -178,7 +188,6 @@ func (_m *Client) StartSession(opts ...*options.SessionOptions) (mongoifc.Sessio
 		}
 	}
 
-	var r1 error
 	if rf, ok := ret.Get(1).(func(...*options.SessionOptions) error); ok {
 		r1 = rf(opts...)
 	} else {
@@ -244,6 +253,10 @@ func (_m *Client) Watch(ctx context.Context, pipeline interface{}, opts ...*opti
 	ret := _m.Called(_ca...)
 
 	var r0 mongoifc.ChangeStream
+	var r1 error
+	if rf, ok := ret.Get(0).(func(context.Context, interface{}, ...*options.ChangeStreamOptions) (mongoifc.ChangeStream, error)); ok {
+		return rf(ctx, pipeline, opts...)
+	}
 	if rf, ok := ret.Get(0).(func(context.Context, interface{}, ...*options.ChangeStreamOptions) mongoifc.ChangeStream); ok {
 		r0 = rf(ctx, pipeline, opts...)
 	} else {
@@ -252,7 +265,6 @@ func (_m *Client) Watch(ctx context.Context, pipeline interface{}, opts ...*opti
 		}
 	}
 
-	var r1 error
 	if rf, ok := ret.Get(1).(func(context.Context, interface{}, ...*options.ChangeStreamOptions) error); ok {
 		r1 = rf(ctx, pipeline, opts...)
 	} else {
