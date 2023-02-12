@@ -120,16 +120,32 @@ well.
 
 ## Simple Example
 
-to test workflow:
+### user workflow
 1. Create 4 users, with two admins, using `InsertMany` function.
 2. Get the admin users only using `Find` function
-3. Delete all users using `DeleteMany` function 
+3. Delete all users using `DeleteMany` function
 
 * [users.go](https://github.com/sv-tools/mongoifc/blob/main/examples/simple/users.go) is a file with a set of functions, like:
   * `Create` to create the users using `InsertMany`
   * `Delete` to delete the users by given IDs
   * `GetAdmins` to return the list of admin users
 * [users_test.go](https://github.com/sv-tools/mongoifc/blob/main/examples/simple/users_test.go) is a file with `TestUsersWorkflow` unit tests:
+  * `mockery` tests the workflow using `mockery` mocks
+  * `gomock` tests the workflow using `gomock` mocks
+  * `docker` tests the workflow using real mongo database run by docker
+
+### collection workflow
+1. Create a collection with random name.
+2. Check that the collection exists.
+3. Check that another collection does not exist.
+4. Drop collection.
+5. Check that the original collection does not exist.
+
+* [collections.go](https://github.com/sv-tools/mongoifc/blob/main/examples/simple/collections.go) is a file with a set of functions, like:
+  * `CreateCollection` to create a collection using `CreateCollection`
+  * `DropCollection` to delete a collection by given name
+  * `CollectionExists` to check that a collection exists
+* [collections_test.go](https://github.com/sv-tools/mongoifc/blob/main/examples/simple/collections_test.go) is a file with `TestCollectionsWorkflow` unit tests:
   * `mockery` tests the workflow using `mockery` mocks
   * `gomock` tests the workflow using `gomock` mocks
   * `docker` tests the workflow using real mongo database run by docker

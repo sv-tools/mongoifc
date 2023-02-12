@@ -66,7 +66,7 @@ func TestUsersWorkflow(t *testing.T) {
 		defer db.AssertExpectations(t)
 		db.On("Collection", simple.UsersCollection).Return(col)
 
-		workflow(t, db)
+		usersWorkflow(t, db)
 	})
 
 	t.Run("gomock", func(t *testing.T) {
@@ -104,7 +104,7 @@ func TestUsersWorkflow(t *testing.T) {
 		db := gomockMocks.NewMockDatabase(ctrl)
 		db.EXPECT().Collection(simple.UsersCollection).Return(col).AnyTimes()
 
-		workflow(t, db)
+		usersWorkflow(t, db)
 	})
 
 	t.Run("docker", func(t *testing.T) {
@@ -125,11 +125,11 @@ func TestUsersWorkflow(t *testing.T) {
 		})
 
 		db := cl.Database(fmt.Sprintf("simple_%d", time.Now().Unix()))
-		workflow(t, db)
+		usersWorkflow(t, db)
 	})
 }
 
-func workflow(t testing.TB, db mongoifc.Database) {
+func usersWorkflow(t testing.TB, db mongoifc.Database) {
 	ctx := context.Background()
 	ids, err := simple.Create(ctx, db,
 		simple.User{Name: "blocked admin", Active: false, IsAdmin: true},
