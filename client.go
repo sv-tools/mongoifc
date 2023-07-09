@@ -38,6 +38,7 @@ type client struct {
 	cl *mongo.Client
 }
 
+// Deprecated: Use [mongo.Connect] instead.
 func (c *client) Connect(ctx context.Context) error {
 	return c.cl.Connect(ctx)
 }
@@ -135,6 +136,8 @@ func Connect(ctx context.Context, opts ...*options.ClientOptions) (Client, error
 
 // NewClient is a wrapper for `mongo.NewClient` function to return the object as `Client` interface
 // Documentation: https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo#NewClient
+//
+// Deprecated: Use [Connect] instead.
 func NewClient(opts ...*options.ClientOptions) (Client, error) {
 	cl, err := mongo.NewClient(opts...)
 	if err != nil {
