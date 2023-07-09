@@ -66,13 +66,12 @@ func (_m *SingleResult) Err() error {
 	return r0
 }
 
-type mockConstructorTestingTNewSingleResult interface {
+// NewSingleResult creates a new instance of SingleResult. It also registers a testing interface on the mock and a cleanup function to assert the mocks expectations.
+// The first argument is typically a *testing.T value.
+func NewSingleResult(t interface {
 	mock.TestingT
 	Cleanup(func())
-}
-
-// NewSingleResult creates a new instance of SingleResult. It also registers a testing interface on the mock and a cleanup function to assert the mocks expectations.
-func NewSingleResult(t mockConstructorTestingTNewSingleResult) *SingleResult {
+}) *SingleResult {
 	mock := &SingleResult{}
 	mock.Mock.Test(t)
 

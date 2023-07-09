@@ -131,13 +131,12 @@ func (_m *ChangeStream) TryNext(ctx context.Context) bool {
 	return r0
 }
 
-type mockConstructorTestingTNewChangeStream interface {
+// NewChangeStream creates a new instance of ChangeStream. It also registers a testing interface on the mock and a cleanup function to assert the mocks expectations.
+// The first argument is typically a *testing.T value.
+func NewChangeStream(t interface {
 	mock.TestingT
 	Cleanup(func())
-}
-
-// NewChangeStream creates a new instance of ChangeStream. It also registers a testing interface on the mock and a cleanup function to assert the mocks expectations.
-func NewChangeStream(t mockConstructorTestingTNewChangeStream) *ChangeStream {
+}) *ChangeStream {
 	mock := &ChangeStream{}
 	mock.Mock.Test(t)
 

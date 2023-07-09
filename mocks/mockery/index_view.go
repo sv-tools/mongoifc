@@ -217,13 +217,12 @@ func (_m *IndexView) ListSpecifications(ctx context.Context, opts ...*options.Li
 	return r0, r1
 }
 
-type mockConstructorTestingTNewIndexView interface {
+// NewIndexView creates a new instance of IndexView. It also registers a testing interface on the mock and a cleanup function to assert the mocks expectations.
+// The first argument is typically a *testing.T value.
+func NewIndexView(t interface {
 	mock.TestingT
 	Cleanup(func())
-}
-
-// NewIndexView creates a new instance of IndexView. It also registers a testing interface on the mock and a cleanup function to assert the mocks expectations.
-func NewIndexView(t mockConstructorTestingTNewIndexView) *IndexView {
+}) *IndexView {
 	mock := &IndexView{}
 	mock.Mock.Test(t)
 

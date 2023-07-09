@@ -143,13 +143,12 @@ func (_m *Cursor) TryNext(ctx context.Context) bool {
 	return r0
 }
 
-type mockConstructorTestingTNewCursor interface {
+// NewCursor creates a new instance of Cursor. It also registers a testing interface on the mock and a cleanup function to assert the mocks expectations.
+// The first argument is typically a *testing.T value.
+func NewCursor(t interface {
 	mock.TestingT
 	Cleanup(func())
-}
-
-// NewCursor creates a new instance of Cursor. It also registers a testing interface on the mock and a cleanup function to assert the mocks expectations.
-func NewCursor(t mockConstructorTestingTNewCursor) *Cursor {
+}) *Cursor {
 	mock := &Cursor{}
 	mock.Mock.Test(t)
 

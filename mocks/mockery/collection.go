@@ -693,13 +693,12 @@ func (_m *Collection) Watch(ctx context.Context, pipeline interface{}, opts ...*
 	return r0, r1
 }
 
-type mockConstructorTestingTNewCollection interface {
+// NewCollection creates a new instance of Collection. It also registers a testing interface on the mock and a cleanup function to assert the mocks expectations.
+// The first argument is typically a *testing.T value.
+func NewCollection(t interface {
 	mock.TestingT
 	Cleanup(func())
-}
-
-// NewCollection creates a new instance of Collection. It also registers a testing interface on the mock and a cleanup function to assert the mocks expectations.
-func NewCollection(t mockConstructorTestingTNewCollection) *Collection {
+}) *Collection {
 	mock := &Collection{}
 	mock.Mock.Test(t)
 
