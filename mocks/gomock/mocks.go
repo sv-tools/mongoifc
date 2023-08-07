@@ -9,7 +9,6 @@ import (
 	reflect "reflect"
 	time "time"
 
-	gomock "github.com/golang/mock/gomock"
 	mongoifc "github.com/sv-tools/mongoifc"
 	bson "go.mongodb.org/mongo-driver/bson"
 	primitive "go.mongodb.org/mongo-driver/bson/primitive"
@@ -18,6 +17,7 @@ import (
 	readconcern "go.mongodb.org/mongo-driver/mongo/readconcern"
 	readpref "go.mongodb.org/mongo-driver/mongo/readpref"
 	writeconcern "go.mongodb.org/mongo-driver/mongo/writeconcern"
+	gomock "go.uber.org/mock/gomock"
 )
 
 // MockChangeStream is a mock of ChangeStream interface.

@@ -8,10 +8,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/require"
 	"go.mongodb.org/mongo-driver/mongo/options"
+	"go.uber.org/mock/gomock"
 
 	"github.com/sv-tools/mongoifc"
 	"github.com/sv-tools/mongoifc/examples/simple"
