@@ -141,6 +141,18 @@ func (mr *MockChangeStreamMockRecorder) ResumeToken() *gomock.Call {
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ResumeToken", reflect.TypeOf((*MockChangeStream)(nil).ResumeToken))
 }
 
+// SetBatchSize mocks base method.
+func (m *MockChangeStream) SetBatchSize(arg0 int32) {
+	m.ctrl.T.Helper()
+	m.ctrl.Call(m, "SetBatchSize", arg0)
+}
+
+// SetBatchSize indicates an expected call of SetBatchSize.
+func (mr *MockChangeStreamMockRecorder) SetBatchSize(arg0 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "SetBatchSize", reflect.TypeOf((*MockChangeStream)(nil).SetBatchSize), arg0)
+}
+
 // TryNext mocks base method.
 func (m *MockChangeStream) TryNext(arg0 context.Context) bool {
 	m.ctrl.T.Helper()
@@ -981,6 +993,18 @@ func (m *MockCursor) RemainingBatchLength() int {
 func (mr *MockCursorMockRecorder) RemainingBatchLength() *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "RemainingBatchLength", reflect.TypeOf((*MockCursor)(nil).RemainingBatchLength))
+}
+
+// SetBatchSize mocks base method.
+func (m *MockCursor) SetBatchSize(arg0 int32) {
+	m.ctrl.T.Helper()
+	m.ctrl.Call(m, "SetBatchSize", arg0)
+}
+
+// SetBatchSize indicates an expected call of SetBatchSize.
+func (mr *MockCursorMockRecorder) SetBatchSize(arg0 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "SetBatchSize", reflect.TypeOf((*MockCursor)(nil).SetBatchSize), arg0)
 }
 
 // TryNext mocks base method.

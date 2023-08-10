@@ -129,6 +129,11 @@ func (_m *Cursor) RemainingBatchLength() int {
 	return r0
 }
 
+// SetBatchSize provides a mock function with given fields: batchSize
+func (_m *Cursor) SetBatchSize(batchSize int32) {
+	_m.Called(batchSize)
+}
+
 // TryNext provides a mock function with given fields: ctx
 func (_m *Cursor) TryNext(ctx context.Context) bool {
 	ret := _m.Called(ctx)

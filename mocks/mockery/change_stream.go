@@ -117,6 +117,11 @@ func (_m *ChangeStream) ResumeToken() bson.Raw {
 	return r0
 }
 
+// SetBatchSize provides a mock function with given fields: size
+func (_m *ChangeStream) SetBatchSize(size int32) {
+	_m.Called(size)
+}
+
 // TryNext provides a mock function with given fields: ctx
 func (_m *ChangeStream) TryNext(ctx context.Context) bool {
 	ret := _m.Called(ctx)
