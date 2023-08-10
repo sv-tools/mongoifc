@@ -17,6 +17,7 @@ type ChangeStream interface {
 	ID() int64
 	Next(ctx context.Context) bool
 	ResumeToken() bson.Raw
+	SetBatchSize(size int32)
 	TryNext(ctx context.Context) bool
 }
 
@@ -50,6 +51,10 @@ func (c *changeStream) Next(ctx context.Context) bool {
 
 func (c *changeStream) ResumeToken() bson.Raw {
 	return c.cs.ResumeToken()
+}
+
+func (c *changeStream) SetBatchSize(size int32) {
+	c.cs.SetBatchSize(size)
 }
 
 func (c *changeStream) TryNext(ctx context.Context) bool {
