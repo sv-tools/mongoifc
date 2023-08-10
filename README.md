@@ -109,6 +109,7 @@ This is the main reason of wrapping the original objects and using the `mongoifc
 - [x] SingleResult: https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo#SingleResult
 - [x] IndexView: https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo#IndexView
 - [x] SessionContext: https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo#SessionContext
+- [x] ClientEncryption: https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo#ClientEncryption
 
 ## Mocks
 
