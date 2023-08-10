@@ -19,6 +19,7 @@ type Cursor interface {
 	ID() int64
 	Next(ctx context.Context) bool
 	RemainingBatchLength() int
+	SetBatchSize(batchSize int32)
 	TryNext(ctx context.Context) bool
 }
 
@@ -60,6 +61,10 @@ func (c *cursor) RemainingBatchLength() int {
 
 func (c *cursor) TryNext(ctx context.Context) bool {
 	return c.cr.TryNext(ctx)
+}
+
+func (c *cursor) SetBatchSize(batchSize int32) {
+	c.cr.SetBatchSize(batchSize)
 }
 
 func wrapCursor(cr *mongo.Cursor) Cursor {

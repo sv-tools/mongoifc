@@ -29,12 +29,12 @@ type Database interface {
 		filter interface{},
 		opts ...*options.ListCollectionsOptions,
 	) ([]string, error)
-	ListCollections(ctx context.Context, filter interface{}, opts ...*options.ListCollectionsOptions) (Cursor, error)
 	ListCollectionSpecifications(
 		ctx context.Context,
 		filter interface{},
 		opts ...*options.ListCollectionsOptions,
 	) ([]*mongo.CollectionSpecification, error)
+	ListCollections(ctx context.Context, filter interface{}, opts ...*options.ListCollectionsOptions) (Cursor, error)
 	Name() string
 	ReadConcern() *readconcern.ReadConcern
 	ReadPreference() *readpref.ReadPref
