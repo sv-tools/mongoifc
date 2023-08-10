@@ -15,7 +15,11 @@ type Client interface {
 	Connect(ctx context.Context) error
 	Database(name string, opts ...*options.DatabaseOptions) Database
 	Disconnect(ctx context.Context) error
-	ListDatabaseNames(ctx context.Context, filter interface{}, opts ...*options.ListDatabasesOptions) ([]string, error)
+	ListDatabaseNames(
+		ctx context.Context,
+		filter interface{},
+		opts ...*options.ListDatabasesOptions,
+	) ([]string, error)
 	ListDatabases(
 		ctx context.Context,
 		filter interface{},
@@ -25,8 +29,15 @@ type Client interface {
 	Ping(ctx context.Context, rp *readpref.ReadPref) error
 	StartSession(opts ...*options.SessionOptions) (Session, error)
 	Timeout() *time.Duration
-	UseSession(ctx context.Context, fn func(sc SessionContext) error) error
-	UseSessionWithOptions(ctx context.Context, opts *options.SessionOptions, fn func(sc SessionContext) error) error
+	UseSession(
+		ctx context.Context,
+		fn func(sc SessionContext) error,
+	) error
+	UseSessionWithOptions(
+		ctx context.Context,
+		opts *options.SessionOptions,
+		fn func(sc SessionContext) error,
+	) error
 	Watch(
 		ctx context.Context,
 		pipeline interface{},

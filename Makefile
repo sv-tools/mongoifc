@@ -49,10 +49,10 @@ lint:
 
 tidy:
 	@echo "$(OK_COLOR)==> Updating go.mod...$(NO_COLOR)"
-	@go mod tidy -compat=1.19
+	@go mod tidy -compat=1.21
 
 run-mockgen:
-	@mockgen -destination=mocks/gomock/mocks.go -package mocks . ChangeStream,Client,Collection,Cursor,Database,IndexView,Session,SingleResult,SessionContext
+	@mockgen -destination=mocks/gomock/mocks.go -package mocks . ChangeStream,Client,Collection,Cursor,Database,IndexView,Session,SingleResult,SessionContext,ClientEncryption
 
 run-mockery:
 	@mockery --all --srcpkg github.com/sv-tools/mongoifc --output mocks/mockery --disable-version-string --case underscore
