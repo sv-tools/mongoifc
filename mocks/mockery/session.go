@@ -21,6 +21,14 @@ type Session struct {
 	mock.Mock
 }
 
+type Session_Expecter struct {
+	mock *mock.Mock
+}
+
+func (_m *Session) EXPECT() *Session_Expecter {
+	return &Session_Expecter{mock: &_m.Mock}
+}
+
 // AbortTransaction provides a mock function with given fields: ctx
 func (_m *Session) AbortTransaction(ctx context.Context) error {
 	ret := _m.Called(ctx)
@@ -33,6 +41,34 @@ func (_m *Session) AbortTransaction(ctx context.Context) error {
 	}
 
 	return r0
+}
+
+// Session_AbortTransaction_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'AbortTransaction'
+type Session_AbortTransaction_Call struct {
+	*mock.Call
+}
+
+// AbortTransaction is a helper method to define mock.On call
+//   - ctx context.Context
+func (_e *Session_Expecter) AbortTransaction(ctx interface{}) *Session_AbortTransaction_Call {
+	return &Session_AbortTransaction_Call{Call: _e.mock.On("AbortTransaction", ctx)}
+}
+
+func (_c *Session_AbortTransaction_Call) Run(run func(ctx context.Context)) *Session_AbortTransaction_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context))
+	})
+	return _c
+}
+
+func (_c *Session_AbortTransaction_Call) Return(_a0 error) *Session_AbortTransaction_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *Session_AbortTransaction_Call) RunAndReturn(run func(context.Context) error) *Session_AbortTransaction_Call {
+	_c.Call.Return(run)
+	return _c
 }
 
 // AdvanceClusterTime provides a mock function with given fields: _a0
@@ -49,6 +85,34 @@ func (_m *Session) AdvanceClusterTime(_a0 bson.Raw) error {
 	return r0
 }
 
+// Session_AdvanceClusterTime_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'AdvanceClusterTime'
+type Session_AdvanceClusterTime_Call struct {
+	*mock.Call
+}
+
+// AdvanceClusterTime is a helper method to define mock.On call
+//   - _a0 bson.Raw
+func (_e *Session_Expecter) AdvanceClusterTime(_a0 interface{}) *Session_AdvanceClusterTime_Call {
+	return &Session_AdvanceClusterTime_Call{Call: _e.mock.On("AdvanceClusterTime", _a0)}
+}
+
+func (_c *Session_AdvanceClusterTime_Call) Run(run func(_a0 bson.Raw)) *Session_AdvanceClusterTime_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(bson.Raw))
+	})
+	return _c
+}
+
+func (_c *Session_AdvanceClusterTime_Call) Return(_a0 error) *Session_AdvanceClusterTime_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *Session_AdvanceClusterTime_Call) RunAndReturn(run func(bson.Raw) error) *Session_AdvanceClusterTime_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // AdvanceOperationTime provides a mock function with given fields: _a0
 func (_m *Session) AdvanceOperationTime(_a0 *primitive.Timestamp) error {
 	ret := _m.Called(_a0)
@@ -61,6 +125,34 @@ func (_m *Session) AdvanceOperationTime(_a0 *primitive.Timestamp) error {
 	}
 
 	return r0
+}
+
+// Session_AdvanceOperationTime_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'AdvanceOperationTime'
+type Session_AdvanceOperationTime_Call struct {
+	*mock.Call
+}
+
+// AdvanceOperationTime is a helper method to define mock.On call
+//   - _a0 *primitive.Timestamp
+func (_e *Session_Expecter) AdvanceOperationTime(_a0 interface{}) *Session_AdvanceOperationTime_Call {
+	return &Session_AdvanceOperationTime_Call{Call: _e.mock.On("AdvanceOperationTime", _a0)}
+}
+
+func (_c *Session_AdvanceOperationTime_Call) Run(run func(_a0 *primitive.Timestamp)) *Session_AdvanceOperationTime_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(*primitive.Timestamp))
+	})
+	return _c
+}
+
+func (_c *Session_AdvanceOperationTime_Call) Return(_a0 error) *Session_AdvanceOperationTime_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *Session_AdvanceOperationTime_Call) RunAndReturn(run func(*primitive.Timestamp) error) *Session_AdvanceOperationTime_Call {
+	_c.Call.Return(run)
+	return _c
 }
 
 // Client provides a mock function with given fields:
@@ -79,6 +171,33 @@ func (_m *Session) Client() mongoifc.Client {
 	return r0
 }
 
+// Session_Client_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'Client'
+type Session_Client_Call struct {
+	*mock.Call
+}
+
+// Client is a helper method to define mock.On call
+func (_e *Session_Expecter) Client() *Session_Client_Call {
+	return &Session_Client_Call{Call: _e.mock.On("Client")}
+}
+
+func (_c *Session_Client_Call) Run(run func()) *Session_Client_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run()
+	})
+	return _c
+}
+
+func (_c *Session_Client_Call) Return(_a0 mongoifc.Client) *Session_Client_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *Session_Client_Call) RunAndReturn(run func() mongoifc.Client) *Session_Client_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // ClusterTime provides a mock function with given fields:
 func (_m *Session) ClusterTime() bson.Raw {
 	ret := _m.Called()
@@ -95,6 +214,33 @@ func (_m *Session) ClusterTime() bson.Raw {
 	return r0
 }
 
+// Session_ClusterTime_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'ClusterTime'
+type Session_ClusterTime_Call struct {
+	*mock.Call
+}
+
+// ClusterTime is a helper method to define mock.On call
+func (_e *Session_Expecter) ClusterTime() *Session_ClusterTime_Call {
+	return &Session_ClusterTime_Call{Call: _e.mock.On("ClusterTime")}
+}
+
+func (_c *Session_ClusterTime_Call) Run(run func()) *Session_ClusterTime_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run()
+	})
+	return _c
+}
+
+func (_c *Session_ClusterTime_Call) Return(_a0 bson.Raw) *Session_ClusterTime_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *Session_ClusterTime_Call) RunAndReturn(run func() bson.Raw) *Session_ClusterTime_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // CommitTransaction provides a mock function with given fields: ctx
 func (_m *Session) CommitTransaction(ctx context.Context) error {
 	ret := _m.Called(ctx)
@@ -109,9 +255,65 @@ func (_m *Session) CommitTransaction(ctx context.Context) error {
 	return r0
 }
 
+// Session_CommitTransaction_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'CommitTransaction'
+type Session_CommitTransaction_Call struct {
+	*mock.Call
+}
+
+// CommitTransaction is a helper method to define mock.On call
+//   - ctx context.Context
+func (_e *Session_Expecter) CommitTransaction(ctx interface{}) *Session_CommitTransaction_Call {
+	return &Session_CommitTransaction_Call{Call: _e.mock.On("CommitTransaction", ctx)}
+}
+
+func (_c *Session_CommitTransaction_Call) Run(run func(ctx context.Context)) *Session_CommitTransaction_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context))
+	})
+	return _c
+}
+
+func (_c *Session_CommitTransaction_Call) Return(_a0 error) *Session_CommitTransaction_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *Session_CommitTransaction_Call) RunAndReturn(run func(context.Context) error) *Session_CommitTransaction_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // EndSession provides a mock function with given fields: ctx
 func (_m *Session) EndSession(ctx context.Context) {
 	_m.Called(ctx)
+}
+
+// Session_EndSession_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'EndSession'
+type Session_EndSession_Call struct {
+	*mock.Call
+}
+
+// EndSession is a helper method to define mock.On call
+//   - ctx context.Context
+func (_e *Session_Expecter) EndSession(ctx interface{}) *Session_EndSession_Call {
+	return &Session_EndSession_Call{Call: _e.mock.On("EndSession", ctx)}
+}
+
+func (_c *Session_EndSession_Call) Run(run func(ctx context.Context)) *Session_EndSession_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context))
+	})
+	return _c
+}
+
+func (_c *Session_EndSession_Call) Return() *Session_EndSession_Call {
+	_c.Call.Return()
+	return _c
+}
+
+func (_c *Session_EndSession_Call) RunAndReturn(run func(context.Context)) *Session_EndSession_Call {
+	_c.Call.Return(run)
+	return _c
 }
 
 // ID provides a mock function with given fields:
@@ -130,6 +332,33 @@ func (_m *Session) ID() bson.Raw {
 	return r0
 }
 
+// Session_ID_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'ID'
+type Session_ID_Call struct {
+	*mock.Call
+}
+
+// ID is a helper method to define mock.On call
+func (_e *Session_Expecter) ID() *Session_ID_Call {
+	return &Session_ID_Call{Call: _e.mock.On("ID")}
+}
+
+func (_c *Session_ID_Call) Run(run func()) *Session_ID_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run()
+	})
+	return _c
+}
+
+func (_c *Session_ID_Call) Return(_a0 bson.Raw) *Session_ID_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *Session_ID_Call) RunAndReturn(run func() bson.Raw) *Session_ID_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // OperationTime provides a mock function with given fields:
 func (_m *Session) OperationTime() *primitive.Timestamp {
 	ret := _m.Called()
@@ -144,6 +373,33 @@ func (_m *Session) OperationTime() *primitive.Timestamp {
 	}
 
 	return r0
+}
+
+// Session_OperationTime_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'OperationTime'
+type Session_OperationTime_Call struct {
+	*mock.Call
+}
+
+// OperationTime is a helper method to define mock.On call
+func (_e *Session_Expecter) OperationTime() *Session_OperationTime_Call {
+	return &Session_OperationTime_Call{Call: _e.mock.On("OperationTime")}
+}
+
+func (_c *Session_OperationTime_Call) Run(run func()) *Session_OperationTime_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run()
+	})
+	return _c
+}
+
+func (_c *Session_OperationTime_Call) Return(_a0 *primitive.Timestamp) *Session_OperationTime_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *Session_OperationTime_Call) RunAndReturn(run func() *primitive.Timestamp) *Session_OperationTime_Call {
+	_c.Call.Return(run)
+	return _c
 }
 
 // StartTransaction provides a mock function with given fields: opts
@@ -164,6 +420,41 @@ func (_m *Session) StartTransaction(opts ...*options.TransactionOptions) error {
 	}
 
 	return r0
+}
+
+// Session_StartTransaction_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'StartTransaction'
+type Session_StartTransaction_Call struct {
+	*mock.Call
+}
+
+// StartTransaction is a helper method to define mock.On call
+//   - opts ...*options.TransactionOptions
+func (_e *Session_Expecter) StartTransaction(opts ...interface{}) *Session_StartTransaction_Call {
+	return &Session_StartTransaction_Call{Call: _e.mock.On("StartTransaction",
+		append([]interface{}{}, opts...)...)}
+}
+
+func (_c *Session_StartTransaction_Call) Run(run func(opts ...*options.TransactionOptions)) *Session_StartTransaction_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]*options.TransactionOptions, len(args)-0)
+		for i, a := range args[0:] {
+			if a != nil {
+				variadicArgs[i] = a.(*options.TransactionOptions)
+			}
+		}
+		run(variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *Session_StartTransaction_Call) Return(_a0 error) *Session_StartTransaction_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *Session_StartTransaction_Call) RunAndReturn(run func(...*options.TransactionOptions) error) *Session_StartTransaction_Call {
+	_c.Call.Return(run)
+	return _c
 }
 
 // WithTransaction provides a mock function with given fields: ctx, fn, opts
@@ -197,6 +488,43 @@ func (_m *Session) WithTransaction(ctx context.Context, fn func(mongoifc.Session
 	}
 
 	return r0, r1
+}
+
+// Session_WithTransaction_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'WithTransaction'
+type Session_WithTransaction_Call struct {
+	*mock.Call
+}
+
+// WithTransaction is a helper method to define mock.On call
+//   - ctx context.Context
+//   - fn func(mongoifc.SessionContext)(interface{} , error)
+//   - opts ...*options.TransactionOptions
+func (_e *Session_Expecter) WithTransaction(ctx interface{}, fn interface{}, opts ...interface{}) *Session_WithTransaction_Call {
+	return &Session_WithTransaction_Call{Call: _e.mock.On("WithTransaction",
+		append([]interface{}{ctx, fn}, opts...)...)}
+}
+
+func (_c *Session_WithTransaction_Call) Run(run func(ctx context.Context, fn func(mongoifc.SessionContext) (interface{}, error), opts ...*options.TransactionOptions)) *Session_WithTransaction_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]*options.TransactionOptions, len(args)-2)
+		for i, a := range args[2:] {
+			if a != nil {
+				variadicArgs[i] = a.(*options.TransactionOptions)
+			}
+		}
+		run(args[0].(context.Context), args[1].(func(mongoifc.SessionContext) (interface{}, error)), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *Session_WithTransaction_Call) Return(_a0 interface{}, _a1 error) *Session_WithTransaction_Call {
+	_c.Call.Return(_a0, _a1)
+	return _c
+}
+
+func (_c *Session_WithTransaction_Call) RunAndReturn(run func(context.Context, func(mongoifc.SessionContext) (interface{}, error), ...*options.TransactionOptions) (interface{}, error)) *Session_WithTransaction_Call {
+	_c.Call.Return(run)
+	return _c
 }
 
 // NewSession creates a new instance of Session. It also registers a testing interface on the mock and a cleanup function to assert the mocks expectations.

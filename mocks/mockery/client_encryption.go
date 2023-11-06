@@ -23,6 +23,14 @@ type ClientEncryption struct {
 	mock.Mock
 }
 
+type ClientEncryption_Expecter struct {
+	mock *mock.Mock
+}
+
+func (_m *ClientEncryption) EXPECT() *ClientEncryption_Expecter {
+	return &ClientEncryption_Expecter{mock: &_m.Mock}
+}
+
 // AddKeyAltName provides a mock function with given fields: ctx, id, keyAltName
 func (_m *ClientEncryption) AddKeyAltName(ctx context.Context, id primitive.Binary, keyAltName string) mongoifc.SingleResult {
 	ret := _m.Called(ctx, id, keyAltName)
@@ -39,6 +47,36 @@ func (_m *ClientEncryption) AddKeyAltName(ctx context.Context, id primitive.Bina
 	return r0
 }
 
+// ClientEncryption_AddKeyAltName_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'AddKeyAltName'
+type ClientEncryption_AddKeyAltName_Call struct {
+	*mock.Call
+}
+
+// AddKeyAltName is a helper method to define mock.On call
+//   - ctx context.Context
+//   - id primitive.Binary
+//   - keyAltName string
+func (_e *ClientEncryption_Expecter) AddKeyAltName(ctx interface{}, id interface{}, keyAltName interface{}) *ClientEncryption_AddKeyAltName_Call {
+	return &ClientEncryption_AddKeyAltName_Call{Call: _e.mock.On("AddKeyAltName", ctx, id, keyAltName)}
+}
+
+func (_c *ClientEncryption_AddKeyAltName_Call) Run(run func(ctx context.Context, id primitive.Binary, keyAltName string)) *ClientEncryption_AddKeyAltName_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(primitive.Binary), args[2].(string))
+	})
+	return _c
+}
+
+func (_c *ClientEncryption_AddKeyAltName_Call) Return(_a0 mongoifc.SingleResult) *ClientEncryption_AddKeyAltName_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *ClientEncryption_AddKeyAltName_Call) RunAndReturn(run func(context.Context, primitive.Binary, string) mongoifc.SingleResult) *ClientEncryption_AddKeyAltName_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // Close provides a mock function with given fields: ctx
 func (_m *ClientEncryption) Close(ctx context.Context) error {
 	ret := _m.Called(ctx)
@@ -51,6 +89,34 @@ func (_m *ClientEncryption) Close(ctx context.Context) error {
 	}
 
 	return r0
+}
+
+// ClientEncryption_Close_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'Close'
+type ClientEncryption_Close_Call struct {
+	*mock.Call
+}
+
+// Close is a helper method to define mock.On call
+//   - ctx context.Context
+func (_e *ClientEncryption_Expecter) Close(ctx interface{}) *ClientEncryption_Close_Call {
+	return &ClientEncryption_Close_Call{Call: _e.mock.On("Close", ctx)}
+}
+
+func (_c *ClientEncryption_Close_Call) Run(run func(ctx context.Context)) *ClientEncryption_Close_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context))
+	})
+	return _c
+}
+
+func (_c *ClientEncryption_Close_Call) Return(_a0 error) *ClientEncryption_Close_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *ClientEncryption_Close_Call) RunAndReturn(run func(context.Context) error) *ClientEncryption_Close_Call {
+	_c.Call.Return(run)
+	return _c
 }
 
 // CreateDataKey provides a mock function with given fields: ctx, kmsProvider, opts
@@ -82,6 +148,43 @@ func (_m *ClientEncryption) CreateDataKey(ctx context.Context, kmsProvider strin
 	}
 
 	return r0, r1
+}
+
+// ClientEncryption_CreateDataKey_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'CreateDataKey'
+type ClientEncryption_CreateDataKey_Call struct {
+	*mock.Call
+}
+
+// CreateDataKey is a helper method to define mock.On call
+//   - ctx context.Context
+//   - kmsProvider string
+//   - opts ...*options.DataKeyOptions
+func (_e *ClientEncryption_Expecter) CreateDataKey(ctx interface{}, kmsProvider interface{}, opts ...interface{}) *ClientEncryption_CreateDataKey_Call {
+	return &ClientEncryption_CreateDataKey_Call{Call: _e.mock.On("CreateDataKey",
+		append([]interface{}{ctx, kmsProvider}, opts...)...)}
+}
+
+func (_c *ClientEncryption_CreateDataKey_Call) Run(run func(ctx context.Context, kmsProvider string, opts ...*options.DataKeyOptions)) *ClientEncryption_CreateDataKey_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]*options.DataKeyOptions, len(args)-2)
+		for i, a := range args[2:] {
+			if a != nil {
+				variadicArgs[i] = a.(*options.DataKeyOptions)
+			}
+		}
+		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *ClientEncryption_CreateDataKey_Call) Return(_a0 primitive.Binary, _a1 error) *ClientEncryption_CreateDataKey_Call {
+	_c.Call.Return(_a0, _a1)
+	return _c
+}
+
+func (_c *ClientEncryption_CreateDataKey_Call) RunAndReturn(run func(context.Context, string, ...*options.DataKeyOptions) (primitive.Binary, error)) *ClientEncryption_CreateDataKey_Call {
+	_c.Call.Return(run)
+	return _c
 }
 
 // CreateEncryptedCollection provides a mock function with given fields: ctx, db, coll, createOpts, kmsProvider, masterKey
@@ -119,6 +222,39 @@ func (_m *ClientEncryption) CreateEncryptedCollection(ctx context.Context, db mo
 	return r0, r1, r2
 }
 
+// ClientEncryption_CreateEncryptedCollection_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'CreateEncryptedCollection'
+type ClientEncryption_CreateEncryptedCollection_Call struct {
+	*mock.Call
+}
+
+// CreateEncryptedCollection is a helper method to define mock.On call
+//   - ctx context.Context
+//   - db mongoifc.Database
+//   - coll string
+//   - createOpts *options.CreateCollectionOptions
+//   - kmsProvider string
+//   - masterKey interface{}
+func (_e *ClientEncryption_Expecter) CreateEncryptedCollection(ctx interface{}, db interface{}, coll interface{}, createOpts interface{}, kmsProvider interface{}, masterKey interface{}) *ClientEncryption_CreateEncryptedCollection_Call {
+	return &ClientEncryption_CreateEncryptedCollection_Call{Call: _e.mock.On("CreateEncryptedCollection", ctx, db, coll, createOpts, kmsProvider, masterKey)}
+}
+
+func (_c *ClientEncryption_CreateEncryptedCollection_Call) Run(run func(ctx context.Context, db mongoifc.Database, coll string, createOpts *options.CreateCollectionOptions, kmsProvider string, masterKey interface{})) *ClientEncryption_CreateEncryptedCollection_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(mongoifc.Database), args[2].(string), args[3].(*options.CreateCollectionOptions), args[4].(string), args[5].(interface{}))
+	})
+	return _c
+}
+
+func (_c *ClientEncryption_CreateEncryptedCollection_Call) Return(_a0 mongoifc.Collection, _a1 primitive.M, _a2 error) *ClientEncryption_CreateEncryptedCollection_Call {
+	_c.Call.Return(_a0, _a1, _a2)
+	return _c
+}
+
+func (_c *ClientEncryption_CreateEncryptedCollection_Call) RunAndReturn(run func(context.Context, mongoifc.Database, string, *options.CreateCollectionOptions, string, interface{}) (mongoifc.Collection, primitive.M, error)) *ClientEncryption_CreateEncryptedCollection_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // Decrypt provides a mock function with given fields: ctx, val
 func (_m *ClientEncryption) Decrypt(ctx context.Context, val primitive.Binary) (bson.RawValue, error) {
 	ret := _m.Called(ctx, val)
@@ -141,6 +277,35 @@ func (_m *ClientEncryption) Decrypt(ctx context.Context, val primitive.Binary) (
 	}
 
 	return r0, r1
+}
+
+// ClientEncryption_Decrypt_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'Decrypt'
+type ClientEncryption_Decrypt_Call struct {
+	*mock.Call
+}
+
+// Decrypt is a helper method to define mock.On call
+//   - ctx context.Context
+//   - val primitive.Binary
+func (_e *ClientEncryption_Expecter) Decrypt(ctx interface{}, val interface{}) *ClientEncryption_Decrypt_Call {
+	return &ClientEncryption_Decrypt_Call{Call: _e.mock.On("Decrypt", ctx, val)}
+}
+
+func (_c *ClientEncryption_Decrypt_Call) Run(run func(ctx context.Context, val primitive.Binary)) *ClientEncryption_Decrypt_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(primitive.Binary))
+	})
+	return _c
+}
+
+func (_c *ClientEncryption_Decrypt_Call) Return(_a0 bson.RawValue, _a1 error) *ClientEncryption_Decrypt_Call {
+	_c.Call.Return(_a0, _a1)
+	return _c
+}
+
+func (_c *ClientEncryption_Decrypt_Call) RunAndReturn(run func(context.Context, primitive.Binary) (bson.RawValue, error)) *ClientEncryption_Decrypt_Call {
+	_c.Call.Return(run)
+	return _c
 }
 
 // DeleteKey provides a mock function with given fields: ctx, id
@@ -167,6 +332,35 @@ func (_m *ClientEncryption) DeleteKey(ctx context.Context, id primitive.Binary) 
 	}
 
 	return r0, r1
+}
+
+// ClientEncryption_DeleteKey_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'DeleteKey'
+type ClientEncryption_DeleteKey_Call struct {
+	*mock.Call
+}
+
+// DeleteKey is a helper method to define mock.On call
+//   - ctx context.Context
+//   - id primitive.Binary
+func (_e *ClientEncryption_Expecter) DeleteKey(ctx interface{}, id interface{}) *ClientEncryption_DeleteKey_Call {
+	return &ClientEncryption_DeleteKey_Call{Call: _e.mock.On("DeleteKey", ctx, id)}
+}
+
+func (_c *ClientEncryption_DeleteKey_Call) Run(run func(ctx context.Context, id primitive.Binary)) *ClientEncryption_DeleteKey_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(primitive.Binary))
+	})
+	return _c
+}
+
+func (_c *ClientEncryption_DeleteKey_Call) Return(_a0 *mongo.DeleteResult, _a1 error) *ClientEncryption_DeleteKey_Call {
+	_c.Call.Return(_a0, _a1)
+	return _c
+}
+
+func (_c *ClientEncryption_DeleteKey_Call) RunAndReturn(run func(context.Context, primitive.Binary) (*mongo.DeleteResult, error)) *ClientEncryption_DeleteKey_Call {
+	_c.Call.Return(run)
+	return _c
 }
 
 // Encrypt provides a mock function with given fields: ctx, val, opts
@@ -200,6 +394,43 @@ func (_m *ClientEncryption) Encrypt(ctx context.Context, val bson.RawValue, opts
 	return r0, r1
 }
 
+// ClientEncryption_Encrypt_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'Encrypt'
+type ClientEncryption_Encrypt_Call struct {
+	*mock.Call
+}
+
+// Encrypt is a helper method to define mock.On call
+//   - ctx context.Context
+//   - val bson.RawValue
+//   - opts ...*options.EncryptOptions
+func (_e *ClientEncryption_Expecter) Encrypt(ctx interface{}, val interface{}, opts ...interface{}) *ClientEncryption_Encrypt_Call {
+	return &ClientEncryption_Encrypt_Call{Call: _e.mock.On("Encrypt",
+		append([]interface{}{ctx, val}, opts...)...)}
+}
+
+func (_c *ClientEncryption_Encrypt_Call) Run(run func(ctx context.Context, val bson.RawValue, opts ...*options.EncryptOptions)) *ClientEncryption_Encrypt_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]*options.EncryptOptions, len(args)-2)
+		for i, a := range args[2:] {
+			if a != nil {
+				variadicArgs[i] = a.(*options.EncryptOptions)
+			}
+		}
+		run(args[0].(context.Context), args[1].(bson.RawValue), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *ClientEncryption_Encrypt_Call) Return(_a0 primitive.Binary, _a1 error) *ClientEncryption_Encrypt_Call {
+	_c.Call.Return(_a0, _a1)
+	return _c
+}
+
+func (_c *ClientEncryption_Encrypt_Call) RunAndReturn(run func(context.Context, bson.RawValue, ...*options.EncryptOptions) (primitive.Binary, error)) *ClientEncryption_Encrypt_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // EncryptExpression provides a mock function with given fields: ctx, expr, result, opts
 func (_m *ClientEncryption) EncryptExpression(ctx context.Context, expr interface{}, result interface{}, opts ...*options.EncryptOptions) error {
 	_va := make([]interface{}, len(opts))
@@ -221,6 +452,44 @@ func (_m *ClientEncryption) EncryptExpression(ctx context.Context, expr interfac
 	return r0
 }
 
+// ClientEncryption_EncryptExpression_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'EncryptExpression'
+type ClientEncryption_EncryptExpression_Call struct {
+	*mock.Call
+}
+
+// EncryptExpression is a helper method to define mock.On call
+//   - ctx context.Context
+//   - expr interface{}
+//   - result interface{}
+//   - opts ...*options.EncryptOptions
+func (_e *ClientEncryption_Expecter) EncryptExpression(ctx interface{}, expr interface{}, result interface{}, opts ...interface{}) *ClientEncryption_EncryptExpression_Call {
+	return &ClientEncryption_EncryptExpression_Call{Call: _e.mock.On("EncryptExpression",
+		append([]interface{}{ctx, expr, result}, opts...)...)}
+}
+
+func (_c *ClientEncryption_EncryptExpression_Call) Run(run func(ctx context.Context, expr interface{}, result interface{}, opts ...*options.EncryptOptions)) *ClientEncryption_EncryptExpression_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]*options.EncryptOptions, len(args)-3)
+		for i, a := range args[3:] {
+			if a != nil {
+				variadicArgs[i] = a.(*options.EncryptOptions)
+			}
+		}
+		run(args[0].(context.Context), args[1].(interface{}), args[2].(interface{}), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *ClientEncryption_EncryptExpression_Call) Return(_a0 error) *ClientEncryption_EncryptExpression_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *ClientEncryption_EncryptExpression_Call) RunAndReturn(run func(context.Context, interface{}, interface{}, ...*options.EncryptOptions) error) *ClientEncryption_EncryptExpression_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // GetKey provides a mock function with given fields: ctx, id
 func (_m *ClientEncryption) GetKey(ctx context.Context, id primitive.Binary) mongoifc.SingleResult {
 	ret := _m.Called(ctx, id)
@@ -237,6 +506,35 @@ func (_m *ClientEncryption) GetKey(ctx context.Context, id primitive.Binary) mon
 	return r0
 }
 
+// ClientEncryption_GetKey_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'GetKey'
+type ClientEncryption_GetKey_Call struct {
+	*mock.Call
+}
+
+// GetKey is a helper method to define mock.On call
+//   - ctx context.Context
+//   - id primitive.Binary
+func (_e *ClientEncryption_Expecter) GetKey(ctx interface{}, id interface{}) *ClientEncryption_GetKey_Call {
+	return &ClientEncryption_GetKey_Call{Call: _e.mock.On("GetKey", ctx, id)}
+}
+
+func (_c *ClientEncryption_GetKey_Call) Run(run func(ctx context.Context, id primitive.Binary)) *ClientEncryption_GetKey_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(primitive.Binary))
+	})
+	return _c
+}
+
+func (_c *ClientEncryption_GetKey_Call) Return(_a0 mongoifc.SingleResult) *ClientEncryption_GetKey_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *ClientEncryption_GetKey_Call) RunAndReturn(run func(context.Context, primitive.Binary) mongoifc.SingleResult) *ClientEncryption_GetKey_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // GetKeyByAltName provides a mock function with given fields: ctx, keyAltName
 func (_m *ClientEncryption) GetKeyByAltName(ctx context.Context, keyAltName string) mongoifc.SingleResult {
 	ret := _m.Called(ctx, keyAltName)
@@ -251,6 +549,35 @@ func (_m *ClientEncryption) GetKeyByAltName(ctx context.Context, keyAltName stri
 	}
 
 	return r0
+}
+
+// ClientEncryption_GetKeyByAltName_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'GetKeyByAltName'
+type ClientEncryption_GetKeyByAltName_Call struct {
+	*mock.Call
+}
+
+// GetKeyByAltName is a helper method to define mock.On call
+//   - ctx context.Context
+//   - keyAltName string
+func (_e *ClientEncryption_Expecter) GetKeyByAltName(ctx interface{}, keyAltName interface{}) *ClientEncryption_GetKeyByAltName_Call {
+	return &ClientEncryption_GetKeyByAltName_Call{Call: _e.mock.On("GetKeyByAltName", ctx, keyAltName)}
+}
+
+func (_c *ClientEncryption_GetKeyByAltName_Call) Run(run func(ctx context.Context, keyAltName string)) *ClientEncryption_GetKeyByAltName_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(string))
+	})
+	return _c
+}
+
+func (_c *ClientEncryption_GetKeyByAltName_Call) Return(_a0 mongoifc.SingleResult) *ClientEncryption_GetKeyByAltName_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *ClientEncryption_GetKeyByAltName_Call) RunAndReturn(run func(context.Context, string) mongoifc.SingleResult) *ClientEncryption_GetKeyByAltName_Call {
+	_c.Call.Return(run)
+	return _c
 }
 
 // GetKeys provides a mock function with given fields: ctx
@@ -279,6 +606,34 @@ func (_m *ClientEncryption) GetKeys(ctx context.Context) (mongoifc.Cursor, error
 	return r0, r1
 }
 
+// ClientEncryption_GetKeys_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'GetKeys'
+type ClientEncryption_GetKeys_Call struct {
+	*mock.Call
+}
+
+// GetKeys is a helper method to define mock.On call
+//   - ctx context.Context
+func (_e *ClientEncryption_Expecter) GetKeys(ctx interface{}) *ClientEncryption_GetKeys_Call {
+	return &ClientEncryption_GetKeys_Call{Call: _e.mock.On("GetKeys", ctx)}
+}
+
+func (_c *ClientEncryption_GetKeys_Call) Run(run func(ctx context.Context)) *ClientEncryption_GetKeys_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context))
+	})
+	return _c
+}
+
+func (_c *ClientEncryption_GetKeys_Call) Return(_a0 mongoifc.Cursor, _a1 error) *ClientEncryption_GetKeys_Call {
+	_c.Call.Return(_a0, _a1)
+	return _c
+}
+
+func (_c *ClientEncryption_GetKeys_Call) RunAndReturn(run func(context.Context) (mongoifc.Cursor, error)) *ClientEncryption_GetKeys_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // RemoveKeyAltName provides a mock function with given fields: ctx, id, keyAltName
 func (_m *ClientEncryption) RemoveKeyAltName(ctx context.Context, id primitive.Binary, keyAltName string) mongoifc.SingleResult {
 	ret := _m.Called(ctx, id, keyAltName)
@@ -293,6 +648,36 @@ func (_m *ClientEncryption) RemoveKeyAltName(ctx context.Context, id primitive.B
 	}
 
 	return r0
+}
+
+// ClientEncryption_RemoveKeyAltName_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'RemoveKeyAltName'
+type ClientEncryption_RemoveKeyAltName_Call struct {
+	*mock.Call
+}
+
+// RemoveKeyAltName is a helper method to define mock.On call
+//   - ctx context.Context
+//   - id primitive.Binary
+//   - keyAltName string
+func (_e *ClientEncryption_Expecter) RemoveKeyAltName(ctx interface{}, id interface{}, keyAltName interface{}) *ClientEncryption_RemoveKeyAltName_Call {
+	return &ClientEncryption_RemoveKeyAltName_Call{Call: _e.mock.On("RemoveKeyAltName", ctx, id, keyAltName)}
+}
+
+func (_c *ClientEncryption_RemoveKeyAltName_Call) Run(run func(ctx context.Context, id primitive.Binary, keyAltName string)) *ClientEncryption_RemoveKeyAltName_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(primitive.Binary), args[2].(string))
+	})
+	return _c
+}
+
+func (_c *ClientEncryption_RemoveKeyAltName_Call) Return(_a0 mongoifc.SingleResult) *ClientEncryption_RemoveKeyAltName_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *ClientEncryption_RemoveKeyAltName_Call) RunAndReturn(run func(context.Context, primitive.Binary, string) mongoifc.SingleResult) *ClientEncryption_RemoveKeyAltName_Call {
+	_c.Call.Return(run)
+	return _c
 }
 
 // RewrapManyDataKey provides a mock function with given fields: ctx, filter, opts
@@ -326,6 +711,43 @@ func (_m *ClientEncryption) RewrapManyDataKey(ctx context.Context, filter interf
 	}
 
 	return r0, r1
+}
+
+// ClientEncryption_RewrapManyDataKey_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'RewrapManyDataKey'
+type ClientEncryption_RewrapManyDataKey_Call struct {
+	*mock.Call
+}
+
+// RewrapManyDataKey is a helper method to define mock.On call
+//   - ctx context.Context
+//   - filter interface{}
+//   - opts ...*options.RewrapManyDataKeyOptions
+func (_e *ClientEncryption_Expecter) RewrapManyDataKey(ctx interface{}, filter interface{}, opts ...interface{}) *ClientEncryption_RewrapManyDataKey_Call {
+	return &ClientEncryption_RewrapManyDataKey_Call{Call: _e.mock.On("RewrapManyDataKey",
+		append([]interface{}{ctx, filter}, opts...)...)}
+}
+
+func (_c *ClientEncryption_RewrapManyDataKey_Call) Run(run func(ctx context.Context, filter interface{}, opts ...*options.RewrapManyDataKeyOptions)) *ClientEncryption_RewrapManyDataKey_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]*options.RewrapManyDataKeyOptions, len(args)-2)
+		for i, a := range args[2:] {
+			if a != nil {
+				variadicArgs[i] = a.(*options.RewrapManyDataKeyOptions)
+			}
+		}
+		run(args[0].(context.Context), args[1].(interface{}), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *ClientEncryption_RewrapManyDataKey_Call) Return(_a0 *mongo.RewrapManyDataKeyResult, _a1 error) *ClientEncryption_RewrapManyDataKey_Call {
+	_c.Call.Return(_a0, _a1)
+	return _c
+}
+
+func (_c *ClientEncryption_RewrapManyDataKey_Call) RunAndReturn(run func(context.Context, interface{}, ...*options.RewrapManyDataKeyOptions) (*mongo.RewrapManyDataKeyResult, error)) *ClientEncryption_RewrapManyDataKey_Call {
+	_c.Call.Return(run)
+	return _c
 }
 
 // NewClientEncryption creates a new instance of ClientEncryption. It also registers a testing interface on the mock and a cleanup function to assert the mocks expectations.

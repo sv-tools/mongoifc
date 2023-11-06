@@ -15,6 +15,14 @@ type Cursor struct {
 	mock.Mock
 }
 
+type Cursor_Expecter struct {
+	mock *mock.Mock
+}
+
+func (_m *Cursor) EXPECT() *Cursor_Expecter {
+	return &Cursor_Expecter{mock: &_m.Mock}
+}
+
 // All provides a mock function with given fields: ctx, results
 func (_m *Cursor) All(ctx context.Context, results interface{}) error {
 	ret := _m.Called(ctx, results)
@@ -29,6 +37,35 @@ func (_m *Cursor) All(ctx context.Context, results interface{}) error {
 	return r0
 }
 
+// Cursor_All_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'All'
+type Cursor_All_Call struct {
+	*mock.Call
+}
+
+// All is a helper method to define mock.On call
+//   - ctx context.Context
+//   - results interface{}
+func (_e *Cursor_Expecter) All(ctx interface{}, results interface{}) *Cursor_All_Call {
+	return &Cursor_All_Call{Call: _e.mock.On("All", ctx, results)}
+}
+
+func (_c *Cursor_All_Call) Run(run func(ctx context.Context, results interface{})) *Cursor_All_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(interface{}))
+	})
+	return _c
+}
+
+func (_c *Cursor_All_Call) Return(_a0 error) *Cursor_All_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *Cursor_All_Call) RunAndReturn(run func(context.Context, interface{}) error) *Cursor_All_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // Close provides a mock function with given fields: ctx
 func (_m *Cursor) Close(ctx context.Context) error {
 	ret := _m.Called(ctx)
@@ -41,6 +78,34 @@ func (_m *Cursor) Close(ctx context.Context) error {
 	}
 
 	return r0
+}
+
+// Cursor_Close_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'Close'
+type Cursor_Close_Call struct {
+	*mock.Call
+}
+
+// Close is a helper method to define mock.On call
+//   - ctx context.Context
+func (_e *Cursor_Expecter) Close(ctx interface{}) *Cursor_Close_Call {
+	return &Cursor_Close_Call{Call: _e.mock.On("Close", ctx)}
+}
+
+func (_c *Cursor_Close_Call) Run(run func(ctx context.Context)) *Cursor_Close_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context))
+	})
+	return _c
+}
+
+func (_c *Cursor_Close_Call) Return(_a0 error) *Cursor_Close_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *Cursor_Close_Call) RunAndReturn(run func(context.Context) error) *Cursor_Close_Call {
+	_c.Call.Return(run)
+	return _c
 }
 
 // Current provides a mock function with given fields:
@@ -59,6 +124,33 @@ func (_m *Cursor) Current() bson.Raw {
 	return r0
 }
 
+// Cursor_Current_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'Current'
+type Cursor_Current_Call struct {
+	*mock.Call
+}
+
+// Current is a helper method to define mock.On call
+func (_e *Cursor_Expecter) Current() *Cursor_Current_Call {
+	return &Cursor_Current_Call{Call: _e.mock.On("Current")}
+}
+
+func (_c *Cursor_Current_Call) Run(run func()) *Cursor_Current_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run()
+	})
+	return _c
+}
+
+func (_c *Cursor_Current_Call) Return(_a0 bson.Raw) *Cursor_Current_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *Cursor_Current_Call) RunAndReturn(run func() bson.Raw) *Cursor_Current_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // Decode provides a mock function with given fields: val
 func (_m *Cursor) Decode(val interface{}) error {
 	ret := _m.Called(val)
@@ -71,6 +163,34 @@ func (_m *Cursor) Decode(val interface{}) error {
 	}
 
 	return r0
+}
+
+// Cursor_Decode_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'Decode'
+type Cursor_Decode_Call struct {
+	*mock.Call
+}
+
+// Decode is a helper method to define mock.On call
+//   - val interface{}
+func (_e *Cursor_Expecter) Decode(val interface{}) *Cursor_Decode_Call {
+	return &Cursor_Decode_Call{Call: _e.mock.On("Decode", val)}
+}
+
+func (_c *Cursor_Decode_Call) Run(run func(val interface{})) *Cursor_Decode_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(interface{}))
+	})
+	return _c
+}
+
+func (_c *Cursor_Decode_Call) Return(_a0 error) *Cursor_Decode_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *Cursor_Decode_Call) RunAndReturn(run func(interface{}) error) *Cursor_Decode_Call {
+	_c.Call.Return(run)
+	return _c
 }
 
 // Err provides a mock function with given fields:
@@ -87,6 +207,33 @@ func (_m *Cursor) Err() error {
 	return r0
 }
 
+// Cursor_Err_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'Err'
+type Cursor_Err_Call struct {
+	*mock.Call
+}
+
+// Err is a helper method to define mock.On call
+func (_e *Cursor_Expecter) Err() *Cursor_Err_Call {
+	return &Cursor_Err_Call{Call: _e.mock.On("Err")}
+}
+
+func (_c *Cursor_Err_Call) Run(run func()) *Cursor_Err_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run()
+	})
+	return _c
+}
+
+func (_c *Cursor_Err_Call) Return(_a0 error) *Cursor_Err_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *Cursor_Err_Call) RunAndReturn(run func() error) *Cursor_Err_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // ID provides a mock function with given fields:
 func (_m *Cursor) ID() int64 {
 	ret := _m.Called()
@@ -99,6 +246,33 @@ func (_m *Cursor) ID() int64 {
 	}
 
 	return r0
+}
+
+// Cursor_ID_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'ID'
+type Cursor_ID_Call struct {
+	*mock.Call
+}
+
+// ID is a helper method to define mock.On call
+func (_e *Cursor_Expecter) ID() *Cursor_ID_Call {
+	return &Cursor_ID_Call{Call: _e.mock.On("ID")}
+}
+
+func (_c *Cursor_ID_Call) Run(run func()) *Cursor_ID_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run()
+	})
+	return _c
+}
+
+func (_c *Cursor_ID_Call) Return(_a0 int64) *Cursor_ID_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *Cursor_ID_Call) RunAndReturn(run func() int64) *Cursor_ID_Call {
+	_c.Call.Return(run)
+	return _c
 }
 
 // Next provides a mock function with given fields: ctx
@@ -115,6 +289,34 @@ func (_m *Cursor) Next(ctx context.Context) bool {
 	return r0
 }
 
+// Cursor_Next_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'Next'
+type Cursor_Next_Call struct {
+	*mock.Call
+}
+
+// Next is a helper method to define mock.On call
+//   - ctx context.Context
+func (_e *Cursor_Expecter) Next(ctx interface{}) *Cursor_Next_Call {
+	return &Cursor_Next_Call{Call: _e.mock.On("Next", ctx)}
+}
+
+func (_c *Cursor_Next_Call) Run(run func(ctx context.Context)) *Cursor_Next_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context))
+	})
+	return _c
+}
+
+func (_c *Cursor_Next_Call) Return(_a0 bool) *Cursor_Next_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *Cursor_Next_Call) RunAndReturn(run func(context.Context) bool) *Cursor_Next_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // RemainingBatchLength provides a mock function with given fields:
 func (_m *Cursor) RemainingBatchLength() int {
 	ret := _m.Called()
@@ -129,9 +331,64 @@ func (_m *Cursor) RemainingBatchLength() int {
 	return r0
 }
 
+// Cursor_RemainingBatchLength_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'RemainingBatchLength'
+type Cursor_RemainingBatchLength_Call struct {
+	*mock.Call
+}
+
+// RemainingBatchLength is a helper method to define mock.On call
+func (_e *Cursor_Expecter) RemainingBatchLength() *Cursor_RemainingBatchLength_Call {
+	return &Cursor_RemainingBatchLength_Call{Call: _e.mock.On("RemainingBatchLength")}
+}
+
+func (_c *Cursor_RemainingBatchLength_Call) Run(run func()) *Cursor_RemainingBatchLength_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run()
+	})
+	return _c
+}
+
+func (_c *Cursor_RemainingBatchLength_Call) Return(_a0 int) *Cursor_RemainingBatchLength_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *Cursor_RemainingBatchLength_Call) RunAndReturn(run func() int) *Cursor_RemainingBatchLength_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // SetBatchSize provides a mock function with given fields: batchSize
 func (_m *Cursor) SetBatchSize(batchSize int32) {
 	_m.Called(batchSize)
+}
+
+// Cursor_SetBatchSize_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'SetBatchSize'
+type Cursor_SetBatchSize_Call struct {
+	*mock.Call
+}
+
+// SetBatchSize is a helper method to define mock.On call
+//   - batchSize int32
+func (_e *Cursor_Expecter) SetBatchSize(batchSize interface{}) *Cursor_SetBatchSize_Call {
+	return &Cursor_SetBatchSize_Call{Call: _e.mock.On("SetBatchSize", batchSize)}
+}
+
+func (_c *Cursor_SetBatchSize_Call) Run(run func(batchSize int32)) *Cursor_SetBatchSize_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(int32))
+	})
+	return _c
+}
+
+func (_c *Cursor_SetBatchSize_Call) Return() *Cursor_SetBatchSize_Call {
+	_c.Call.Return()
+	return _c
+}
+
+func (_c *Cursor_SetBatchSize_Call) RunAndReturn(run func(int32)) *Cursor_SetBatchSize_Call {
+	_c.Call.Return(run)
+	return _c
 }
 
 // TryNext provides a mock function with given fields: ctx
@@ -146,6 +403,34 @@ func (_m *Cursor) TryNext(ctx context.Context) bool {
 	}
 
 	return r0
+}
+
+// Cursor_TryNext_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'TryNext'
+type Cursor_TryNext_Call struct {
+	*mock.Call
+}
+
+// TryNext is a helper method to define mock.On call
+//   - ctx context.Context
+func (_e *Cursor_Expecter) TryNext(ctx interface{}) *Cursor_TryNext_Call {
+	return &Cursor_TryNext_Call{Call: _e.mock.On("TryNext", ctx)}
+}
+
+func (_c *Cursor_TryNext_Call) Run(run func(ctx context.Context)) *Cursor_TryNext_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context))
+	})
+	return _c
+}
+
+func (_c *Cursor_TryNext_Call) Return(_a0 bool) *Cursor_TryNext_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *Cursor_TryNext_Call) RunAndReturn(run func(context.Context) bool) *Cursor_TryNext_Call {
+	_c.Call.Return(run)
+	return _c
 }
 
 // NewCursor creates a new instance of Cursor. It also registers a testing interface on the mock and a cleanup function to assert the mocks expectations.

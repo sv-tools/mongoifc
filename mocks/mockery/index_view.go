@@ -21,6 +21,14 @@ type IndexView struct {
 	mock.Mock
 }
 
+type IndexView_Expecter struct {
+	mock *mock.Mock
+}
+
+func (_m *IndexView) EXPECT() *IndexView_Expecter {
+	return &IndexView_Expecter{mock: &_m.Mock}
+}
+
 // CreateMany provides a mock function with given fields: ctx, models, opts
 func (_m *IndexView) CreateMany(ctx context.Context, models []mongo.IndexModel, opts ...*options.CreateIndexesOptions) ([]string, error) {
 	_va := make([]interface{}, len(opts))
@@ -54,6 +62,43 @@ func (_m *IndexView) CreateMany(ctx context.Context, models []mongo.IndexModel, 
 	return r0, r1
 }
 
+// IndexView_CreateMany_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'CreateMany'
+type IndexView_CreateMany_Call struct {
+	*mock.Call
+}
+
+// CreateMany is a helper method to define mock.On call
+//   - ctx context.Context
+//   - models []mongo.IndexModel
+//   - opts ...*options.CreateIndexesOptions
+func (_e *IndexView_Expecter) CreateMany(ctx interface{}, models interface{}, opts ...interface{}) *IndexView_CreateMany_Call {
+	return &IndexView_CreateMany_Call{Call: _e.mock.On("CreateMany",
+		append([]interface{}{ctx, models}, opts...)...)}
+}
+
+func (_c *IndexView_CreateMany_Call) Run(run func(ctx context.Context, models []mongo.IndexModel, opts ...*options.CreateIndexesOptions)) *IndexView_CreateMany_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]*options.CreateIndexesOptions, len(args)-2)
+		for i, a := range args[2:] {
+			if a != nil {
+				variadicArgs[i] = a.(*options.CreateIndexesOptions)
+			}
+		}
+		run(args[0].(context.Context), args[1].([]mongo.IndexModel), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *IndexView_CreateMany_Call) Return(_a0 []string, _a1 error) *IndexView_CreateMany_Call {
+	_c.Call.Return(_a0, _a1)
+	return _c
+}
+
+func (_c *IndexView_CreateMany_Call) RunAndReturn(run func(context.Context, []mongo.IndexModel, ...*options.CreateIndexesOptions) ([]string, error)) *IndexView_CreateMany_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // CreateOne provides a mock function with given fields: ctx, model, opts
 func (_m *IndexView) CreateOne(ctx context.Context, model mongo.IndexModel, opts ...*options.CreateIndexesOptions) (string, error) {
 	_va := make([]interface{}, len(opts))
@@ -83,6 +128,43 @@ func (_m *IndexView) CreateOne(ctx context.Context, model mongo.IndexModel, opts
 	}
 
 	return r0, r1
+}
+
+// IndexView_CreateOne_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'CreateOne'
+type IndexView_CreateOne_Call struct {
+	*mock.Call
+}
+
+// CreateOne is a helper method to define mock.On call
+//   - ctx context.Context
+//   - model mongo.IndexModel
+//   - opts ...*options.CreateIndexesOptions
+func (_e *IndexView_Expecter) CreateOne(ctx interface{}, model interface{}, opts ...interface{}) *IndexView_CreateOne_Call {
+	return &IndexView_CreateOne_Call{Call: _e.mock.On("CreateOne",
+		append([]interface{}{ctx, model}, opts...)...)}
+}
+
+func (_c *IndexView_CreateOne_Call) Run(run func(ctx context.Context, model mongo.IndexModel, opts ...*options.CreateIndexesOptions)) *IndexView_CreateOne_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]*options.CreateIndexesOptions, len(args)-2)
+		for i, a := range args[2:] {
+			if a != nil {
+				variadicArgs[i] = a.(*options.CreateIndexesOptions)
+			}
+		}
+		run(args[0].(context.Context), args[1].(mongo.IndexModel), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *IndexView_CreateOne_Call) Return(_a0 string, _a1 error) *IndexView_CreateOne_Call {
+	_c.Call.Return(_a0, _a1)
+	return _c
+}
+
+func (_c *IndexView_CreateOne_Call) RunAndReturn(run func(context.Context, mongo.IndexModel, ...*options.CreateIndexesOptions) (string, error)) *IndexView_CreateOne_Call {
+	_c.Call.Return(run)
+	return _c
 }
 
 // DropAll provides a mock function with given fields: ctx, opts
@@ -118,6 +200,42 @@ func (_m *IndexView) DropAll(ctx context.Context, opts ...*options.DropIndexesOp
 	return r0, r1
 }
 
+// IndexView_DropAll_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'DropAll'
+type IndexView_DropAll_Call struct {
+	*mock.Call
+}
+
+// DropAll is a helper method to define mock.On call
+//   - ctx context.Context
+//   - opts ...*options.DropIndexesOptions
+func (_e *IndexView_Expecter) DropAll(ctx interface{}, opts ...interface{}) *IndexView_DropAll_Call {
+	return &IndexView_DropAll_Call{Call: _e.mock.On("DropAll",
+		append([]interface{}{ctx}, opts...)...)}
+}
+
+func (_c *IndexView_DropAll_Call) Run(run func(ctx context.Context, opts ...*options.DropIndexesOptions)) *IndexView_DropAll_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]*options.DropIndexesOptions, len(args)-1)
+		for i, a := range args[1:] {
+			if a != nil {
+				variadicArgs[i] = a.(*options.DropIndexesOptions)
+			}
+		}
+		run(args[0].(context.Context), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *IndexView_DropAll_Call) Return(_a0 bson.Raw, _a1 error) *IndexView_DropAll_Call {
+	_c.Call.Return(_a0, _a1)
+	return _c
+}
+
+func (_c *IndexView_DropAll_Call) RunAndReturn(run func(context.Context, ...*options.DropIndexesOptions) (bson.Raw, error)) *IndexView_DropAll_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // DropOne provides a mock function with given fields: ctx, name, opts
 func (_m *IndexView) DropOne(ctx context.Context, name string, opts ...*options.DropIndexesOptions) (bson.Raw, error) {
 	_va := make([]interface{}, len(opts))
@@ -149,6 +267,43 @@ func (_m *IndexView) DropOne(ctx context.Context, name string, opts ...*options.
 	}
 
 	return r0, r1
+}
+
+// IndexView_DropOne_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'DropOne'
+type IndexView_DropOne_Call struct {
+	*mock.Call
+}
+
+// DropOne is a helper method to define mock.On call
+//   - ctx context.Context
+//   - name string
+//   - opts ...*options.DropIndexesOptions
+func (_e *IndexView_Expecter) DropOne(ctx interface{}, name interface{}, opts ...interface{}) *IndexView_DropOne_Call {
+	return &IndexView_DropOne_Call{Call: _e.mock.On("DropOne",
+		append([]interface{}{ctx, name}, opts...)...)}
+}
+
+func (_c *IndexView_DropOne_Call) Run(run func(ctx context.Context, name string, opts ...*options.DropIndexesOptions)) *IndexView_DropOne_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]*options.DropIndexesOptions, len(args)-2)
+		for i, a := range args[2:] {
+			if a != nil {
+				variadicArgs[i] = a.(*options.DropIndexesOptions)
+			}
+		}
+		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *IndexView_DropOne_Call) Return(_a0 bson.Raw, _a1 error) *IndexView_DropOne_Call {
+	_c.Call.Return(_a0, _a1)
+	return _c
+}
+
+func (_c *IndexView_DropOne_Call) RunAndReturn(run func(context.Context, string, ...*options.DropIndexesOptions) (bson.Raw, error)) *IndexView_DropOne_Call {
+	_c.Call.Return(run)
+	return _c
 }
 
 // List provides a mock function with given fields: ctx, opts
@@ -184,6 +339,42 @@ func (_m *IndexView) List(ctx context.Context, opts ...*options.ListIndexesOptio
 	return r0, r1
 }
 
+// IndexView_List_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'List'
+type IndexView_List_Call struct {
+	*mock.Call
+}
+
+// List is a helper method to define mock.On call
+//   - ctx context.Context
+//   - opts ...*options.ListIndexesOptions
+func (_e *IndexView_Expecter) List(ctx interface{}, opts ...interface{}) *IndexView_List_Call {
+	return &IndexView_List_Call{Call: _e.mock.On("List",
+		append([]interface{}{ctx}, opts...)...)}
+}
+
+func (_c *IndexView_List_Call) Run(run func(ctx context.Context, opts ...*options.ListIndexesOptions)) *IndexView_List_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]*options.ListIndexesOptions, len(args)-1)
+		for i, a := range args[1:] {
+			if a != nil {
+				variadicArgs[i] = a.(*options.ListIndexesOptions)
+			}
+		}
+		run(args[0].(context.Context), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *IndexView_List_Call) Return(_a0 mongoifc.Cursor, _a1 error) *IndexView_List_Call {
+	_c.Call.Return(_a0, _a1)
+	return _c
+}
+
+func (_c *IndexView_List_Call) RunAndReturn(run func(context.Context, ...*options.ListIndexesOptions) (mongoifc.Cursor, error)) *IndexView_List_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // ListSpecifications provides a mock function with given fields: ctx, opts
 func (_m *IndexView) ListSpecifications(ctx context.Context, opts ...*options.ListIndexesOptions) ([]*mongo.IndexSpecification, error) {
 	_va := make([]interface{}, len(opts))
@@ -215,6 +406,42 @@ func (_m *IndexView) ListSpecifications(ctx context.Context, opts ...*options.Li
 	}
 
 	return r0, r1
+}
+
+// IndexView_ListSpecifications_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'ListSpecifications'
+type IndexView_ListSpecifications_Call struct {
+	*mock.Call
+}
+
+// ListSpecifications is a helper method to define mock.On call
+//   - ctx context.Context
+//   - opts ...*options.ListIndexesOptions
+func (_e *IndexView_Expecter) ListSpecifications(ctx interface{}, opts ...interface{}) *IndexView_ListSpecifications_Call {
+	return &IndexView_ListSpecifications_Call{Call: _e.mock.On("ListSpecifications",
+		append([]interface{}{ctx}, opts...)...)}
+}
+
+func (_c *IndexView_ListSpecifications_Call) Run(run func(ctx context.Context, opts ...*options.ListIndexesOptions)) *IndexView_ListSpecifications_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]*options.ListIndexesOptions, len(args)-1)
+		for i, a := range args[1:] {
+			if a != nil {
+				variadicArgs[i] = a.(*options.ListIndexesOptions)
+			}
+		}
+		run(args[0].(context.Context), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *IndexView_ListSpecifications_Call) Return(_a0 []*mongo.IndexSpecification, _a1 error) *IndexView_ListSpecifications_Call {
+	_c.Call.Return(_a0, _a1)
+	return _c
+}
+
+func (_c *IndexView_ListSpecifications_Call) RunAndReturn(run func(context.Context, ...*options.ListIndexesOptions) ([]*mongo.IndexSpecification, error)) *IndexView_ListSpecifications_Call {
+	_c.Call.Return(run)
+	return _c
 }
 
 // NewIndexView creates a new instance of IndexView. It also registers a testing interface on the mock and a cleanup function to assert the mocks expectations.
