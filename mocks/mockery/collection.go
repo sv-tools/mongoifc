@@ -18,6 +18,14 @@ type Collection struct {
 	mock.Mock
 }
 
+type Collection_Expecter struct {
+	mock *mock.Mock
+}
+
+func (_m *Collection) EXPECT() *Collection_Expecter {
+	return &Collection_Expecter{mock: &_m.Mock}
+}
+
 // Aggregate provides a mock function with given fields: ctx, pipeline, opts
 func (_m *Collection) Aggregate(ctx context.Context, pipeline interface{}, opts ...*options.AggregateOptions) (mongoifc.Cursor, error) {
 	_va := make([]interface{}, len(opts))
@@ -49,6 +57,43 @@ func (_m *Collection) Aggregate(ctx context.Context, pipeline interface{}, opts 
 	}
 
 	return r0, r1
+}
+
+// Collection_Aggregate_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'Aggregate'
+type Collection_Aggregate_Call struct {
+	*mock.Call
+}
+
+// Aggregate is a helper method to define mock.On call
+//   - ctx context.Context
+//   - pipeline interface{}
+//   - opts ...*options.AggregateOptions
+func (_e *Collection_Expecter) Aggregate(ctx interface{}, pipeline interface{}, opts ...interface{}) *Collection_Aggregate_Call {
+	return &Collection_Aggregate_Call{Call: _e.mock.On("Aggregate",
+		append([]interface{}{ctx, pipeline}, opts...)...)}
+}
+
+func (_c *Collection_Aggregate_Call) Run(run func(ctx context.Context, pipeline interface{}, opts ...*options.AggregateOptions)) *Collection_Aggregate_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]*options.AggregateOptions, len(args)-2)
+		for i, a := range args[2:] {
+			if a != nil {
+				variadicArgs[i] = a.(*options.AggregateOptions)
+			}
+		}
+		run(args[0].(context.Context), args[1].(interface{}), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *Collection_Aggregate_Call) Return(_a0 mongoifc.Cursor, _a1 error) *Collection_Aggregate_Call {
+	_c.Call.Return(_a0, _a1)
+	return _c
+}
+
+func (_c *Collection_Aggregate_Call) RunAndReturn(run func(context.Context, interface{}, ...*options.AggregateOptions) (mongoifc.Cursor, error)) *Collection_Aggregate_Call {
+	_c.Call.Return(run)
+	return _c
 }
 
 // BulkWrite provides a mock function with given fields: ctx, models, opts
@@ -84,6 +129,43 @@ func (_m *Collection) BulkWrite(ctx context.Context, models []mongo.WriteModel, 
 	return r0, r1
 }
 
+// Collection_BulkWrite_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'BulkWrite'
+type Collection_BulkWrite_Call struct {
+	*mock.Call
+}
+
+// BulkWrite is a helper method to define mock.On call
+//   - ctx context.Context
+//   - models []mongo.WriteModel
+//   - opts ...*options.BulkWriteOptions
+func (_e *Collection_Expecter) BulkWrite(ctx interface{}, models interface{}, opts ...interface{}) *Collection_BulkWrite_Call {
+	return &Collection_BulkWrite_Call{Call: _e.mock.On("BulkWrite",
+		append([]interface{}{ctx, models}, opts...)...)}
+}
+
+func (_c *Collection_BulkWrite_Call) Run(run func(ctx context.Context, models []mongo.WriteModel, opts ...*options.BulkWriteOptions)) *Collection_BulkWrite_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]*options.BulkWriteOptions, len(args)-2)
+		for i, a := range args[2:] {
+			if a != nil {
+				variadicArgs[i] = a.(*options.BulkWriteOptions)
+			}
+		}
+		run(args[0].(context.Context), args[1].([]mongo.WriteModel), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *Collection_BulkWrite_Call) Return(_a0 *mongo.BulkWriteResult, _a1 error) *Collection_BulkWrite_Call {
+	_c.Call.Return(_a0, _a1)
+	return _c
+}
+
+func (_c *Collection_BulkWrite_Call) RunAndReturn(run func(context.Context, []mongo.WriteModel, ...*options.BulkWriteOptions) (*mongo.BulkWriteResult, error)) *Collection_BulkWrite_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // Clone provides a mock function with given fields: opts
 func (_m *Collection) Clone(opts ...*options.CollectionOptions) (mongoifc.Collection, error) {
 	_va := make([]interface{}, len(opts))
@@ -114,6 +196,41 @@ func (_m *Collection) Clone(opts ...*options.CollectionOptions) (mongoifc.Collec
 	}
 
 	return r0, r1
+}
+
+// Collection_Clone_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'Clone'
+type Collection_Clone_Call struct {
+	*mock.Call
+}
+
+// Clone is a helper method to define mock.On call
+//   - opts ...*options.CollectionOptions
+func (_e *Collection_Expecter) Clone(opts ...interface{}) *Collection_Clone_Call {
+	return &Collection_Clone_Call{Call: _e.mock.On("Clone",
+		append([]interface{}{}, opts...)...)}
+}
+
+func (_c *Collection_Clone_Call) Run(run func(opts ...*options.CollectionOptions)) *Collection_Clone_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]*options.CollectionOptions, len(args)-0)
+		for i, a := range args[0:] {
+			if a != nil {
+				variadicArgs[i] = a.(*options.CollectionOptions)
+			}
+		}
+		run(variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *Collection_Clone_Call) Return(_a0 mongoifc.Collection, _a1 error) *Collection_Clone_Call {
+	_c.Call.Return(_a0, _a1)
+	return _c
+}
+
+func (_c *Collection_Clone_Call) RunAndReturn(run func(...*options.CollectionOptions) (mongoifc.Collection, error)) *Collection_Clone_Call {
+	_c.Call.Return(run)
+	return _c
 }
 
 // CountDocuments provides a mock function with given fields: ctx, filter, opts
@@ -147,6 +264,43 @@ func (_m *Collection) CountDocuments(ctx context.Context, filter interface{}, op
 	return r0, r1
 }
 
+// Collection_CountDocuments_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'CountDocuments'
+type Collection_CountDocuments_Call struct {
+	*mock.Call
+}
+
+// CountDocuments is a helper method to define mock.On call
+//   - ctx context.Context
+//   - filter interface{}
+//   - opts ...*options.CountOptions
+func (_e *Collection_Expecter) CountDocuments(ctx interface{}, filter interface{}, opts ...interface{}) *Collection_CountDocuments_Call {
+	return &Collection_CountDocuments_Call{Call: _e.mock.On("CountDocuments",
+		append([]interface{}{ctx, filter}, opts...)...)}
+}
+
+func (_c *Collection_CountDocuments_Call) Run(run func(ctx context.Context, filter interface{}, opts ...*options.CountOptions)) *Collection_CountDocuments_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]*options.CountOptions, len(args)-2)
+		for i, a := range args[2:] {
+			if a != nil {
+				variadicArgs[i] = a.(*options.CountOptions)
+			}
+		}
+		run(args[0].(context.Context), args[1].(interface{}), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *Collection_CountDocuments_Call) Return(_a0 int64, _a1 error) *Collection_CountDocuments_Call {
+	_c.Call.Return(_a0, _a1)
+	return _c
+}
+
+func (_c *Collection_CountDocuments_Call) RunAndReturn(run func(context.Context, interface{}, ...*options.CountOptions) (int64, error)) *Collection_CountDocuments_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // Database provides a mock function with given fields:
 func (_m *Collection) Database() mongoifc.Database {
 	ret := _m.Called()
@@ -161,6 +315,33 @@ func (_m *Collection) Database() mongoifc.Database {
 	}
 
 	return r0
+}
+
+// Collection_Database_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'Database'
+type Collection_Database_Call struct {
+	*mock.Call
+}
+
+// Database is a helper method to define mock.On call
+func (_e *Collection_Expecter) Database() *Collection_Database_Call {
+	return &Collection_Database_Call{Call: _e.mock.On("Database")}
+}
+
+func (_c *Collection_Database_Call) Run(run func()) *Collection_Database_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run()
+	})
+	return _c
+}
+
+func (_c *Collection_Database_Call) Return(_a0 mongoifc.Database) *Collection_Database_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *Collection_Database_Call) RunAndReturn(run func() mongoifc.Database) *Collection_Database_Call {
+	_c.Call.Return(run)
+	return _c
 }
 
 // DeleteMany provides a mock function with given fields: ctx, filter, opts
@@ -196,6 +377,43 @@ func (_m *Collection) DeleteMany(ctx context.Context, filter interface{}, opts .
 	return r0, r1
 }
 
+// Collection_DeleteMany_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'DeleteMany'
+type Collection_DeleteMany_Call struct {
+	*mock.Call
+}
+
+// DeleteMany is a helper method to define mock.On call
+//   - ctx context.Context
+//   - filter interface{}
+//   - opts ...*options.DeleteOptions
+func (_e *Collection_Expecter) DeleteMany(ctx interface{}, filter interface{}, opts ...interface{}) *Collection_DeleteMany_Call {
+	return &Collection_DeleteMany_Call{Call: _e.mock.On("DeleteMany",
+		append([]interface{}{ctx, filter}, opts...)...)}
+}
+
+func (_c *Collection_DeleteMany_Call) Run(run func(ctx context.Context, filter interface{}, opts ...*options.DeleteOptions)) *Collection_DeleteMany_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]*options.DeleteOptions, len(args)-2)
+		for i, a := range args[2:] {
+			if a != nil {
+				variadicArgs[i] = a.(*options.DeleteOptions)
+			}
+		}
+		run(args[0].(context.Context), args[1].(interface{}), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *Collection_DeleteMany_Call) Return(_a0 *mongo.DeleteResult, _a1 error) *Collection_DeleteMany_Call {
+	_c.Call.Return(_a0, _a1)
+	return _c
+}
+
+func (_c *Collection_DeleteMany_Call) RunAndReturn(run func(context.Context, interface{}, ...*options.DeleteOptions) (*mongo.DeleteResult, error)) *Collection_DeleteMany_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // DeleteOne provides a mock function with given fields: ctx, filter, opts
 func (_m *Collection) DeleteOne(ctx context.Context, filter interface{}, opts ...*options.DeleteOptions) (*mongo.DeleteResult, error) {
 	_va := make([]interface{}, len(opts))
@@ -227,6 +445,43 @@ func (_m *Collection) DeleteOne(ctx context.Context, filter interface{}, opts ..
 	}
 
 	return r0, r1
+}
+
+// Collection_DeleteOne_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'DeleteOne'
+type Collection_DeleteOne_Call struct {
+	*mock.Call
+}
+
+// DeleteOne is a helper method to define mock.On call
+//   - ctx context.Context
+//   - filter interface{}
+//   - opts ...*options.DeleteOptions
+func (_e *Collection_Expecter) DeleteOne(ctx interface{}, filter interface{}, opts ...interface{}) *Collection_DeleteOne_Call {
+	return &Collection_DeleteOne_Call{Call: _e.mock.On("DeleteOne",
+		append([]interface{}{ctx, filter}, opts...)...)}
+}
+
+func (_c *Collection_DeleteOne_Call) Run(run func(ctx context.Context, filter interface{}, opts ...*options.DeleteOptions)) *Collection_DeleteOne_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]*options.DeleteOptions, len(args)-2)
+		for i, a := range args[2:] {
+			if a != nil {
+				variadicArgs[i] = a.(*options.DeleteOptions)
+			}
+		}
+		run(args[0].(context.Context), args[1].(interface{}), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *Collection_DeleteOne_Call) Return(_a0 *mongo.DeleteResult, _a1 error) *Collection_DeleteOne_Call {
+	_c.Call.Return(_a0, _a1)
+	return _c
+}
+
+func (_c *Collection_DeleteOne_Call) RunAndReturn(run func(context.Context, interface{}, ...*options.DeleteOptions) (*mongo.DeleteResult, error)) *Collection_DeleteOne_Call {
+	_c.Call.Return(run)
+	return _c
 }
 
 // Distinct provides a mock function with given fields: ctx, fieldName, filter, opts
@@ -262,6 +517,44 @@ func (_m *Collection) Distinct(ctx context.Context, fieldName string, filter int
 	return r0, r1
 }
 
+// Collection_Distinct_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'Distinct'
+type Collection_Distinct_Call struct {
+	*mock.Call
+}
+
+// Distinct is a helper method to define mock.On call
+//   - ctx context.Context
+//   - fieldName string
+//   - filter interface{}
+//   - opts ...*options.DistinctOptions
+func (_e *Collection_Expecter) Distinct(ctx interface{}, fieldName interface{}, filter interface{}, opts ...interface{}) *Collection_Distinct_Call {
+	return &Collection_Distinct_Call{Call: _e.mock.On("Distinct",
+		append([]interface{}{ctx, fieldName, filter}, opts...)...)}
+}
+
+func (_c *Collection_Distinct_Call) Run(run func(ctx context.Context, fieldName string, filter interface{}, opts ...*options.DistinctOptions)) *Collection_Distinct_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]*options.DistinctOptions, len(args)-3)
+		for i, a := range args[3:] {
+			if a != nil {
+				variadicArgs[i] = a.(*options.DistinctOptions)
+			}
+		}
+		run(args[0].(context.Context), args[1].(string), args[2].(interface{}), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *Collection_Distinct_Call) Return(_a0 []interface{}, _a1 error) *Collection_Distinct_Call {
+	_c.Call.Return(_a0, _a1)
+	return _c
+}
+
+func (_c *Collection_Distinct_Call) RunAndReturn(run func(context.Context, string, interface{}, ...*options.DistinctOptions) ([]interface{}, error)) *Collection_Distinct_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // Drop provides a mock function with given fields: ctx
 func (_m *Collection) Drop(ctx context.Context) error {
 	ret := _m.Called(ctx)
@@ -274,6 +567,34 @@ func (_m *Collection) Drop(ctx context.Context) error {
 	}
 
 	return r0
+}
+
+// Collection_Drop_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'Drop'
+type Collection_Drop_Call struct {
+	*mock.Call
+}
+
+// Drop is a helper method to define mock.On call
+//   - ctx context.Context
+func (_e *Collection_Expecter) Drop(ctx interface{}) *Collection_Drop_Call {
+	return &Collection_Drop_Call{Call: _e.mock.On("Drop", ctx)}
+}
+
+func (_c *Collection_Drop_Call) Run(run func(ctx context.Context)) *Collection_Drop_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context))
+	})
+	return _c
+}
+
+func (_c *Collection_Drop_Call) Return(_a0 error) *Collection_Drop_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *Collection_Drop_Call) RunAndReturn(run func(context.Context) error) *Collection_Drop_Call {
+	_c.Call.Return(run)
+	return _c
 }
 
 // EstimatedDocumentCount provides a mock function with given fields: ctx, opts
@@ -305,6 +626,42 @@ func (_m *Collection) EstimatedDocumentCount(ctx context.Context, opts ...*optio
 	}
 
 	return r0, r1
+}
+
+// Collection_EstimatedDocumentCount_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'EstimatedDocumentCount'
+type Collection_EstimatedDocumentCount_Call struct {
+	*mock.Call
+}
+
+// EstimatedDocumentCount is a helper method to define mock.On call
+//   - ctx context.Context
+//   - opts ...*options.EstimatedDocumentCountOptions
+func (_e *Collection_Expecter) EstimatedDocumentCount(ctx interface{}, opts ...interface{}) *Collection_EstimatedDocumentCount_Call {
+	return &Collection_EstimatedDocumentCount_Call{Call: _e.mock.On("EstimatedDocumentCount",
+		append([]interface{}{ctx}, opts...)...)}
+}
+
+func (_c *Collection_EstimatedDocumentCount_Call) Run(run func(ctx context.Context, opts ...*options.EstimatedDocumentCountOptions)) *Collection_EstimatedDocumentCount_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]*options.EstimatedDocumentCountOptions, len(args)-1)
+		for i, a := range args[1:] {
+			if a != nil {
+				variadicArgs[i] = a.(*options.EstimatedDocumentCountOptions)
+			}
+		}
+		run(args[0].(context.Context), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *Collection_EstimatedDocumentCount_Call) Return(_a0 int64, _a1 error) *Collection_EstimatedDocumentCount_Call {
+	_c.Call.Return(_a0, _a1)
+	return _c
+}
+
+func (_c *Collection_EstimatedDocumentCount_Call) RunAndReturn(run func(context.Context, ...*options.EstimatedDocumentCountOptions) (int64, error)) *Collection_EstimatedDocumentCount_Call {
+	_c.Call.Return(run)
+	return _c
 }
 
 // Find provides a mock function with given fields: ctx, filter, opts
@@ -340,6 +697,43 @@ func (_m *Collection) Find(ctx context.Context, filter interface{}, opts ...*opt
 	return r0, r1
 }
 
+// Collection_Find_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'Find'
+type Collection_Find_Call struct {
+	*mock.Call
+}
+
+// Find is a helper method to define mock.On call
+//   - ctx context.Context
+//   - filter interface{}
+//   - opts ...*options.FindOptions
+func (_e *Collection_Expecter) Find(ctx interface{}, filter interface{}, opts ...interface{}) *Collection_Find_Call {
+	return &Collection_Find_Call{Call: _e.mock.On("Find",
+		append([]interface{}{ctx, filter}, opts...)...)}
+}
+
+func (_c *Collection_Find_Call) Run(run func(ctx context.Context, filter interface{}, opts ...*options.FindOptions)) *Collection_Find_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]*options.FindOptions, len(args)-2)
+		for i, a := range args[2:] {
+			if a != nil {
+				variadicArgs[i] = a.(*options.FindOptions)
+			}
+		}
+		run(args[0].(context.Context), args[1].(interface{}), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *Collection_Find_Call) Return(_a0 mongoifc.Cursor, _a1 error) *Collection_Find_Call {
+	_c.Call.Return(_a0, _a1)
+	return _c
+}
+
+func (_c *Collection_Find_Call) RunAndReturn(run func(context.Context, interface{}, ...*options.FindOptions) (mongoifc.Cursor, error)) *Collection_Find_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // FindOne provides a mock function with given fields: ctx, filter, opts
 func (_m *Collection) FindOne(ctx context.Context, filter interface{}, opts ...*options.FindOneOptions) mongoifc.SingleResult {
 	_va := make([]interface{}, len(opts))
@@ -361,6 +755,43 @@ func (_m *Collection) FindOne(ctx context.Context, filter interface{}, opts ...*
 	}
 
 	return r0
+}
+
+// Collection_FindOne_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'FindOne'
+type Collection_FindOne_Call struct {
+	*mock.Call
+}
+
+// FindOne is a helper method to define mock.On call
+//   - ctx context.Context
+//   - filter interface{}
+//   - opts ...*options.FindOneOptions
+func (_e *Collection_Expecter) FindOne(ctx interface{}, filter interface{}, opts ...interface{}) *Collection_FindOne_Call {
+	return &Collection_FindOne_Call{Call: _e.mock.On("FindOne",
+		append([]interface{}{ctx, filter}, opts...)...)}
+}
+
+func (_c *Collection_FindOne_Call) Run(run func(ctx context.Context, filter interface{}, opts ...*options.FindOneOptions)) *Collection_FindOne_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]*options.FindOneOptions, len(args)-2)
+		for i, a := range args[2:] {
+			if a != nil {
+				variadicArgs[i] = a.(*options.FindOneOptions)
+			}
+		}
+		run(args[0].(context.Context), args[1].(interface{}), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *Collection_FindOne_Call) Return(_a0 mongoifc.SingleResult) *Collection_FindOne_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *Collection_FindOne_Call) RunAndReturn(run func(context.Context, interface{}, ...*options.FindOneOptions) mongoifc.SingleResult) *Collection_FindOne_Call {
+	_c.Call.Return(run)
+	return _c
 }
 
 // FindOneAndDelete provides a mock function with given fields: ctx, filter, opts
@@ -386,6 +817,43 @@ func (_m *Collection) FindOneAndDelete(ctx context.Context, filter interface{}, 
 	return r0
 }
 
+// Collection_FindOneAndDelete_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'FindOneAndDelete'
+type Collection_FindOneAndDelete_Call struct {
+	*mock.Call
+}
+
+// FindOneAndDelete is a helper method to define mock.On call
+//   - ctx context.Context
+//   - filter interface{}
+//   - opts ...*options.FindOneAndDeleteOptions
+func (_e *Collection_Expecter) FindOneAndDelete(ctx interface{}, filter interface{}, opts ...interface{}) *Collection_FindOneAndDelete_Call {
+	return &Collection_FindOneAndDelete_Call{Call: _e.mock.On("FindOneAndDelete",
+		append([]interface{}{ctx, filter}, opts...)...)}
+}
+
+func (_c *Collection_FindOneAndDelete_Call) Run(run func(ctx context.Context, filter interface{}, opts ...*options.FindOneAndDeleteOptions)) *Collection_FindOneAndDelete_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]*options.FindOneAndDeleteOptions, len(args)-2)
+		for i, a := range args[2:] {
+			if a != nil {
+				variadicArgs[i] = a.(*options.FindOneAndDeleteOptions)
+			}
+		}
+		run(args[0].(context.Context), args[1].(interface{}), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *Collection_FindOneAndDelete_Call) Return(_a0 mongoifc.SingleResult) *Collection_FindOneAndDelete_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *Collection_FindOneAndDelete_Call) RunAndReturn(run func(context.Context, interface{}, ...*options.FindOneAndDeleteOptions) mongoifc.SingleResult) *Collection_FindOneAndDelete_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // FindOneAndReplace provides a mock function with given fields: ctx, filter, replacement, opts
 func (_m *Collection) FindOneAndReplace(ctx context.Context, filter interface{}, replacement interface{}, opts ...*options.FindOneAndReplaceOptions) mongoifc.SingleResult {
 	_va := make([]interface{}, len(opts))
@@ -407,6 +875,44 @@ func (_m *Collection) FindOneAndReplace(ctx context.Context, filter interface{},
 	}
 
 	return r0
+}
+
+// Collection_FindOneAndReplace_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'FindOneAndReplace'
+type Collection_FindOneAndReplace_Call struct {
+	*mock.Call
+}
+
+// FindOneAndReplace is a helper method to define mock.On call
+//   - ctx context.Context
+//   - filter interface{}
+//   - replacement interface{}
+//   - opts ...*options.FindOneAndReplaceOptions
+func (_e *Collection_Expecter) FindOneAndReplace(ctx interface{}, filter interface{}, replacement interface{}, opts ...interface{}) *Collection_FindOneAndReplace_Call {
+	return &Collection_FindOneAndReplace_Call{Call: _e.mock.On("FindOneAndReplace",
+		append([]interface{}{ctx, filter, replacement}, opts...)...)}
+}
+
+func (_c *Collection_FindOneAndReplace_Call) Run(run func(ctx context.Context, filter interface{}, replacement interface{}, opts ...*options.FindOneAndReplaceOptions)) *Collection_FindOneAndReplace_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]*options.FindOneAndReplaceOptions, len(args)-3)
+		for i, a := range args[3:] {
+			if a != nil {
+				variadicArgs[i] = a.(*options.FindOneAndReplaceOptions)
+			}
+		}
+		run(args[0].(context.Context), args[1].(interface{}), args[2].(interface{}), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *Collection_FindOneAndReplace_Call) Return(_a0 mongoifc.SingleResult) *Collection_FindOneAndReplace_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *Collection_FindOneAndReplace_Call) RunAndReturn(run func(context.Context, interface{}, interface{}, ...*options.FindOneAndReplaceOptions) mongoifc.SingleResult) *Collection_FindOneAndReplace_Call {
+	_c.Call.Return(run)
+	return _c
 }
 
 // FindOneAndUpdate provides a mock function with given fields: ctx, filter, update, opts
@@ -432,6 +938,44 @@ func (_m *Collection) FindOneAndUpdate(ctx context.Context, filter interface{}, 
 	return r0
 }
 
+// Collection_FindOneAndUpdate_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'FindOneAndUpdate'
+type Collection_FindOneAndUpdate_Call struct {
+	*mock.Call
+}
+
+// FindOneAndUpdate is a helper method to define mock.On call
+//   - ctx context.Context
+//   - filter interface{}
+//   - update interface{}
+//   - opts ...*options.FindOneAndUpdateOptions
+func (_e *Collection_Expecter) FindOneAndUpdate(ctx interface{}, filter interface{}, update interface{}, opts ...interface{}) *Collection_FindOneAndUpdate_Call {
+	return &Collection_FindOneAndUpdate_Call{Call: _e.mock.On("FindOneAndUpdate",
+		append([]interface{}{ctx, filter, update}, opts...)...)}
+}
+
+func (_c *Collection_FindOneAndUpdate_Call) Run(run func(ctx context.Context, filter interface{}, update interface{}, opts ...*options.FindOneAndUpdateOptions)) *Collection_FindOneAndUpdate_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]*options.FindOneAndUpdateOptions, len(args)-3)
+		for i, a := range args[3:] {
+			if a != nil {
+				variadicArgs[i] = a.(*options.FindOneAndUpdateOptions)
+			}
+		}
+		run(args[0].(context.Context), args[1].(interface{}), args[2].(interface{}), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *Collection_FindOneAndUpdate_Call) Return(_a0 mongoifc.SingleResult) *Collection_FindOneAndUpdate_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *Collection_FindOneAndUpdate_Call) RunAndReturn(run func(context.Context, interface{}, interface{}, ...*options.FindOneAndUpdateOptions) mongoifc.SingleResult) *Collection_FindOneAndUpdate_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // Indexes provides a mock function with given fields:
 func (_m *Collection) Indexes() mongoifc.IndexView {
 	ret := _m.Called()
@@ -446,6 +990,33 @@ func (_m *Collection) Indexes() mongoifc.IndexView {
 	}
 
 	return r0
+}
+
+// Collection_Indexes_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'Indexes'
+type Collection_Indexes_Call struct {
+	*mock.Call
+}
+
+// Indexes is a helper method to define mock.On call
+func (_e *Collection_Expecter) Indexes() *Collection_Indexes_Call {
+	return &Collection_Indexes_Call{Call: _e.mock.On("Indexes")}
+}
+
+func (_c *Collection_Indexes_Call) Run(run func()) *Collection_Indexes_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run()
+	})
+	return _c
+}
+
+func (_c *Collection_Indexes_Call) Return(_a0 mongoifc.IndexView) *Collection_Indexes_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *Collection_Indexes_Call) RunAndReturn(run func() mongoifc.IndexView) *Collection_Indexes_Call {
+	_c.Call.Return(run)
+	return _c
 }
 
 // InsertMany provides a mock function with given fields: ctx, documents, opts
@@ -481,6 +1052,43 @@ func (_m *Collection) InsertMany(ctx context.Context, documents []interface{}, o
 	return r0, r1
 }
 
+// Collection_InsertMany_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'InsertMany'
+type Collection_InsertMany_Call struct {
+	*mock.Call
+}
+
+// InsertMany is a helper method to define mock.On call
+//   - ctx context.Context
+//   - documents []interface{}
+//   - opts ...*options.InsertManyOptions
+func (_e *Collection_Expecter) InsertMany(ctx interface{}, documents interface{}, opts ...interface{}) *Collection_InsertMany_Call {
+	return &Collection_InsertMany_Call{Call: _e.mock.On("InsertMany",
+		append([]interface{}{ctx, documents}, opts...)...)}
+}
+
+func (_c *Collection_InsertMany_Call) Run(run func(ctx context.Context, documents []interface{}, opts ...*options.InsertManyOptions)) *Collection_InsertMany_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]*options.InsertManyOptions, len(args)-2)
+		for i, a := range args[2:] {
+			if a != nil {
+				variadicArgs[i] = a.(*options.InsertManyOptions)
+			}
+		}
+		run(args[0].(context.Context), args[1].([]interface{}), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *Collection_InsertMany_Call) Return(_a0 *mongo.InsertManyResult, _a1 error) *Collection_InsertMany_Call {
+	_c.Call.Return(_a0, _a1)
+	return _c
+}
+
+func (_c *Collection_InsertMany_Call) RunAndReturn(run func(context.Context, []interface{}, ...*options.InsertManyOptions) (*mongo.InsertManyResult, error)) *Collection_InsertMany_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // InsertOne provides a mock function with given fields: ctx, document, opts
 func (_m *Collection) InsertOne(ctx context.Context, document interface{}, opts ...*options.InsertOneOptions) (*mongo.InsertOneResult, error) {
 	_va := make([]interface{}, len(opts))
@@ -514,6 +1122,43 @@ func (_m *Collection) InsertOne(ctx context.Context, document interface{}, opts 
 	return r0, r1
 }
 
+// Collection_InsertOne_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'InsertOne'
+type Collection_InsertOne_Call struct {
+	*mock.Call
+}
+
+// InsertOne is a helper method to define mock.On call
+//   - ctx context.Context
+//   - document interface{}
+//   - opts ...*options.InsertOneOptions
+func (_e *Collection_Expecter) InsertOne(ctx interface{}, document interface{}, opts ...interface{}) *Collection_InsertOne_Call {
+	return &Collection_InsertOne_Call{Call: _e.mock.On("InsertOne",
+		append([]interface{}{ctx, document}, opts...)...)}
+}
+
+func (_c *Collection_InsertOne_Call) Run(run func(ctx context.Context, document interface{}, opts ...*options.InsertOneOptions)) *Collection_InsertOne_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]*options.InsertOneOptions, len(args)-2)
+		for i, a := range args[2:] {
+			if a != nil {
+				variadicArgs[i] = a.(*options.InsertOneOptions)
+			}
+		}
+		run(args[0].(context.Context), args[1].(interface{}), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *Collection_InsertOne_Call) Return(_a0 *mongo.InsertOneResult, _a1 error) *Collection_InsertOne_Call {
+	_c.Call.Return(_a0, _a1)
+	return _c
+}
+
+func (_c *Collection_InsertOne_Call) RunAndReturn(run func(context.Context, interface{}, ...*options.InsertOneOptions) (*mongo.InsertOneResult, error)) *Collection_InsertOne_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // Name provides a mock function with given fields:
 func (_m *Collection) Name() string {
 	ret := _m.Called()
@@ -526,6 +1171,33 @@ func (_m *Collection) Name() string {
 	}
 
 	return r0
+}
+
+// Collection_Name_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'Name'
+type Collection_Name_Call struct {
+	*mock.Call
+}
+
+// Name is a helper method to define mock.On call
+func (_e *Collection_Expecter) Name() *Collection_Name_Call {
+	return &Collection_Name_Call{Call: _e.mock.On("Name")}
+}
+
+func (_c *Collection_Name_Call) Run(run func()) *Collection_Name_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run()
+	})
+	return _c
+}
+
+func (_c *Collection_Name_Call) Return(_a0 string) *Collection_Name_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *Collection_Name_Call) RunAndReturn(run func() string) *Collection_Name_Call {
+	_c.Call.Return(run)
+	return _c
 }
 
 // ReplaceOne provides a mock function with given fields: ctx, filter, replacement, opts
@@ -561,6 +1233,44 @@ func (_m *Collection) ReplaceOne(ctx context.Context, filter interface{}, replac
 	return r0, r1
 }
 
+// Collection_ReplaceOne_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'ReplaceOne'
+type Collection_ReplaceOne_Call struct {
+	*mock.Call
+}
+
+// ReplaceOne is a helper method to define mock.On call
+//   - ctx context.Context
+//   - filter interface{}
+//   - replacement interface{}
+//   - opts ...*options.ReplaceOptions
+func (_e *Collection_Expecter) ReplaceOne(ctx interface{}, filter interface{}, replacement interface{}, opts ...interface{}) *Collection_ReplaceOne_Call {
+	return &Collection_ReplaceOne_Call{Call: _e.mock.On("ReplaceOne",
+		append([]interface{}{ctx, filter, replacement}, opts...)...)}
+}
+
+func (_c *Collection_ReplaceOne_Call) Run(run func(ctx context.Context, filter interface{}, replacement interface{}, opts ...*options.ReplaceOptions)) *Collection_ReplaceOne_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]*options.ReplaceOptions, len(args)-3)
+		for i, a := range args[3:] {
+			if a != nil {
+				variadicArgs[i] = a.(*options.ReplaceOptions)
+			}
+		}
+		run(args[0].(context.Context), args[1].(interface{}), args[2].(interface{}), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *Collection_ReplaceOne_Call) Return(_a0 *mongo.UpdateResult, _a1 error) *Collection_ReplaceOne_Call {
+	_c.Call.Return(_a0, _a1)
+	return _c
+}
+
+func (_c *Collection_ReplaceOne_Call) RunAndReturn(run func(context.Context, interface{}, interface{}, ...*options.ReplaceOptions) (*mongo.UpdateResult, error)) *Collection_ReplaceOne_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // UpdateByID provides a mock function with given fields: ctx, id, update, opts
 func (_m *Collection) UpdateByID(ctx context.Context, id interface{}, update interface{}, opts ...*options.UpdateOptions) (*mongo.UpdateResult, error) {
 	_va := make([]interface{}, len(opts))
@@ -592,6 +1302,44 @@ func (_m *Collection) UpdateByID(ctx context.Context, id interface{}, update int
 	}
 
 	return r0, r1
+}
+
+// Collection_UpdateByID_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'UpdateByID'
+type Collection_UpdateByID_Call struct {
+	*mock.Call
+}
+
+// UpdateByID is a helper method to define mock.On call
+//   - ctx context.Context
+//   - id interface{}
+//   - update interface{}
+//   - opts ...*options.UpdateOptions
+func (_e *Collection_Expecter) UpdateByID(ctx interface{}, id interface{}, update interface{}, opts ...interface{}) *Collection_UpdateByID_Call {
+	return &Collection_UpdateByID_Call{Call: _e.mock.On("UpdateByID",
+		append([]interface{}{ctx, id, update}, opts...)...)}
+}
+
+func (_c *Collection_UpdateByID_Call) Run(run func(ctx context.Context, id interface{}, update interface{}, opts ...*options.UpdateOptions)) *Collection_UpdateByID_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]*options.UpdateOptions, len(args)-3)
+		for i, a := range args[3:] {
+			if a != nil {
+				variadicArgs[i] = a.(*options.UpdateOptions)
+			}
+		}
+		run(args[0].(context.Context), args[1].(interface{}), args[2].(interface{}), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *Collection_UpdateByID_Call) Return(_a0 *mongo.UpdateResult, _a1 error) *Collection_UpdateByID_Call {
+	_c.Call.Return(_a0, _a1)
+	return _c
+}
+
+func (_c *Collection_UpdateByID_Call) RunAndReturn(run func(context.Context, interface{}, interface{}, ...*options.UpdateOptions) (*mongo.UpdateResult, error)) *Collection_UpdateByID_Call {
+	_c.Call.Return(run)
+	return _c
 }
 
 // UpdateMany provides a mock function with given fields: ctx, filter, update, opts
@@ -627,6 +1375,44 @@ func (_m *Collection) UpdateMany(ctx context.Context, filter interface{}, update
 	return r0, r1
 }
 
+// Collection_UpdateMany_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'UpdateMany'
+type Collection_UpdateMany_Call struct {
+	*mock.Call
+}
+
+// UpdateMany is a helper method to define mock.On call
+//   - ctx context.Context
+//   - filter interface{}
+//   - update interface{}
+//   - opts ...*options.UpdateOptions
+func (_e *Collection_Expecter) UpdateMany(ctx interface{}, filter interface{}, update interface{}, opts ...interface{}) *Collection_UpdateMany_Call {
+	return &Collection_UpdateMany_Call{Call: _e.mock.On("UpdateMany",
+		append([]interface{}{ctx, filter, update}, opts...)...)}
+}
+
+func (_c *Collection_UpdateMany_Call) Run(run func(ctx context.Context, filter interface{}, update interface{}, opts ...*options.UpdateOptions)) *Collection_UpdateMany_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]*options.UpdateOptions, len(args)-3)
+		for i, a := range args[3:] {
+			if a != nil {
+				variadicArgs[i] = a.(*options.UpdateOptions)
+			}
+		}
+		run(args[0].(context.Context), args[1].(interface{}), args[2].(interface{}), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *Collection_UpdateMany_Call) Return(_a0 *mongo.UpdateResult, _a1 error) *Collection_UpdateMany_Call {
+	_c.Call.Return(_a0, _a1)
+	return _c
+}
+
+func (_c *Collection_UpdateMany_Call) RunAndReturn(run func(context.Context, interface{}, interface{}, ...*options.UpdateOptions) (*mongo.UpdateResult, error)) *Collection_UpdateMany_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // UpdateOne provides a mock function with given fields: ctx, filter, update, opts
 func (_m *Collection) UpdateOne(ctx context.Context, filter interface{}, update interface{}, opts ...*options.UpdateOptions) (*mongo.UpdateResult, error) {
 	_va := make([]interface{}, len(opts))
@@ -660,6 +1446,44 @@ func (_m *Collection) UpdateOne(ctx context.Context, filter interface{}, update 
 	return r0, r1
 }
 
+// Collection_UpdateOne_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'UpdateOne'
+type Collection_UpdateOne_Call struct {
+	*mock.Call
+}
+
+// UpdateOne is a helper method to define mock.On call
+//   - ctx context.Context
+//   - filter interface{}
+//   - update interface{}
+//   - opts ...*options.UpdateOptions
+func (_e *Collection_Expecter) UpdateOne(ctx interface{}, filter interface{}, update interface{}, opts ...interface{}) *Collection_UpdateOne_Call {
+	return &Collection_UpdateOne_Call{Call: _e.mock.On("UpdateOne",
+		append([]interface{}{ctx, filter, update}, opts...)...)}
+}
+
+func (_c *Collection_UpdateOne_Call) Run(run func(ctx context.Context, filter interface{}, update interface{}, opts ...*options.UpdateOptions)) *Collection_UpdateOne_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]*options.UpdateOptions, len(args)-3)
+		for i, a := range args[3:] {
+			if a != nil {
+				variadicArgs[i] = a.(*options.UpdateOptions)
+			}
+		}
+		run(args[0].(context.Context), args[1].(interface{}), args[2].(interface{}), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *Collection_UpdateOne_Call) Return(_a0 *mongo.UpdateResult, _a1 error) *Collection_UpdateOne_Call {
+	_c.Call.Return(_a0, _a1)
+	return _c
+}
+
+func (_c *Collection_UpdateOne_Call) RunAndReturn(run func(context.Context, interface{}, interface{}, ...*options.UpdateOptions) (*mongo.UpdateResult, error)) *Collection_UpdateOne_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // Watch provides a mock function with given fields: ctx, pipeline, opts
 func (_m *Collection) Watch(ctx context.Context, pipeline interface{}, opts ...*options.ChangeStreamOptions) (mongoifc.ChangeStream, error) {
 	_va := make([]interface{}, len(opts))
@@ -691,6 +1515,43 @@ func (_m *Collection) Watch(ctx context.Context, pipeline interface{}, opts ...*
 	}
 
 	return r0, r1
+}
+
+// Collection_Watch_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'Watch'
+type Collection_Watch_Call struct {
+	*mock.Call
+}
+
+// Watch is a helper method to define mock.On call
+//   - ctx context.Context
+//   - pipeline interface{}
+//   - opts ...*options.ChangeStreamOptions
+func (_e *Collection_Expecter) Watch(ctx interface{}, pipeline interface{}, opts ...interface{}) *Collection_Watch_Call {
+	return &Collection_Watch_Call{Call: _e.mock.On("Watch",
+		append([]interface{}{ctx, pipeline}, opts...)...)}
+}
+
+func (_c *Collection_Watch_Call) Run(run func(ctx context.Context, pipeline interface{}, opts ...*options.ChangeStreamOptions)) *Collection_Watch_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]*options.ChangeStreamOptions, len(args)-2)
+		for i, a := range args[2:] {
+			if a != nil {
+				variadicArgs[i] = a.(*options.ChangeStreamOptions)
+			}
+		}
+		run(args[0].(context.Context), args[1].(interface{}), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *Collection_Watch_Call) Return(_a0 mongoifc.ChangeStream, _a1 error) *Collection_Watch_Call {
+	_c.Call.Return(_a0, _a1)
+	return _c
+}
+
+func (_c *Collection_Watch_Call) RunAndReturn(run func(context.Context, interface{}, ...*options.ChangeStreamOptions) (mongoifc.ChangeStream, error)) *Collection_Watch_Call {
+	_c.Call.Return(run)
+	return _c
 }
 
 // NewCollection creates a new instance of Collection. It also registers a testing interface on the mock and a cleanup function to assert the mocks expectations.

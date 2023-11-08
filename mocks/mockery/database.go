@@ -24,6 +24,14 @@ type Database struct {
 	mock.Mock
 }
 
+type Database_Expecter struct {
+	mock *mock.Mock
+}
+
+func (_m *Database) EXPECT() *Database_Expecter {
+	return &Database_Expecter{mock: &_m.Mock}
+}
+
 // Aggregate provides a mock function with given fields: ctx, pipeline, opts
 func (_m *Database) Aggregate(ctx context.Context, pipeline interface{}, opts ...*options.AggregateOptions) (mongoifc.Cursor, error) {
 	_va := make([]interface{}, len(opts))
@@ -57,6 +65,43 @@ func (_m *Database) Aggregate(ctx context.Context, pipeline interface{}, opts ..
 	return r0, r1
 }
 
+// Database_Aggregate_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'Aggregate'
+type Database_Aggregate_Call struct {
+	*mock.Call
+}
+
+// Aggregate is a helper method to define mock.On call
+//   - ctx context.Context
+//   - pipeline interface{}
+//   - opts ...*options.AggregateOptions
+func (_e *Database_Expecter) Aggregate(ctx interface{}, pipeline interface{}, opts ...interface{}) *Database_Aggregate_Call {
+	return &Database_Aggregate_Call{Call: _e.mock.On("Aggregate",
+		append([]interface{}{ctx, pipeline}, opts...)...)}
+}
+
+func (_c *Database_Aggregate_Call) Run(run func(ctx context.Context, pipeline interface{}, opts ...*options.AggregateOptions)) *Database_Aggregate_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]*options.AggregateOptions, len(args)-2)
+		for i, a := range args[2:] {
+			if a != nil {
+				variadicArgs[i] = a.(*options.AggregateOptions)
+			}
+		}
+		run(args[0].(context.Context), args[1].(interface{}), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *Database_Aggregate_Call) Return(_a0 mongoifc.Cursor, _a1 error) *Database_Aggregate_Call {
+	_c.Call.Return(_a0, _a1)
+	return _c
+}
+
+func (_c *Database_Aggregate_Call) RunAndReturn(run func(context.Context, interface{}, ...*options.AggregateOptions) (mongoifc.Cursor, error)) *Database_Aggregate_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // Client provides a mock function with given fields:
 func (_m *Database) Client() mongoifc.Client {
 	ret := _m.Called()
@@ -71,6 +116,33 @@ func (_m *Database) Client() mongoifc.Client {
 	}
 
 	return r0
+}
+
+// Database_Client_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'Client'
+type Database_Client_Call struct {
+	*mock.Call
+}
+
+// Client is a helper method to define mock.On call
+func (_e *Database_Expecter) Client() *Database_Client_Call {
+	return &Database_Client_Call{Call: _e.mock.On("Client")}
+}
+
+func (_c *Database_Client_Call) Run(run func()) *Database_Client_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run()
+	})
+	return _c
+}
+
+func (_c *Database_Client_Call) Return(_a0 mongoifc.Client) *Database_Client_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *Database_Client_Call) RunAndReturn(run func() mongoifc.Client) *Database_Client_Call {
+	_c.Call.Return(run)
+	return _c
 }
 
 // Collection provides a mock function with given fields: name, opts
@@ -96,6 +168,42 @@ func (_m *Database) Collection(name string, opts ...*options.CollectionOptions) 
 	return r0
 }
 
+// Database_Collection_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'Collection'
+type Database_Collection_Call struct {
+	*mock.Call
+}
+
+// Collection is a helper method to define mock.On call
+//   - name string
+//   - opts ...*options.CollectionOptions
+func (_e *Database_Expecter) Collection(name interface{}, opts ...interface{}) *Database_Collection_Call {
+	return &Database_Collection_Call{Call: _e.mock.On("Collection",
+		append([]interface{}{name}, opts...)...)}
+}
+
+func (_c *Database_Collection_Call) Run(run func(name string, opts ...*options.CollectionOptions)) *Database_Collection_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]*options.CollectionOptions, len(args)-1)
+		for i, a := range args[1:] {
+			if a != nil {
+				variadicArgs[i] = a.(*options.CollectionOptions)
+			}
+		}
+		run(args[0].(string), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *Database_Collection_Call) Return(_a0 mongoifc.Collection) *Database_Collection_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *Database_Collection_Call) RunAndReturn(run func(string, ...*options.CollectionOptions) mongoifc.Collection) *Database_Collection_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // CreateCollection provides a mock function with given fields: ctx, name, opts
 func (_m *Database) CreateCollection(ctx context.Context, name string, opts ...*options.CreateCollectionOptions) error {
 	_va := make([]interface{}, len(opts))
@@ -115,6 +223,43 @@ func (_m *Database) CreateCollection(ctx context.Context, name string, opts ...*
 	}
 
 	return r0
+}
+
+// Database_CreateCollection_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'CreateCollection'
+type Database_CreateCollection_Call struct {
+	*mock.Call
+}
+
+// CreateCollection is a helper method to define mock.On call
+//   - ctx context.Context
+//   - name string
+//   - opts ...*options.CreateCollectionOptions
+func (_e *Database_Expecter) CreateCollection(ctx interface{}, name interface{}, opts ...interface{}) *Database_CreateCollection_Call {
+	return &Database_CreateCollection_Call{Call: _e.mock.On("CreateCollection",
+		append([]interface{}{ctx, name}, opts...)...)}
+}
+
+func (_c *Database_CreateCollection_Call) Run(run func(ctx context.Context, name string, opts ...*options.CreateCollectionOptions)) *Database_CreateCollection_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]*options.CreateCollectionOptions, len(args)-2)
+		for i, a := range args[2:] {
+			if a != nil {
+				variadicArgs[i] = a.(*options.CreateCollectionOptions)
+			}
+		}
+		run(args[0].(context.Context), args[1].(string), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *Database_CreateCollection_Call) Return(_a0 error) *Database_CreateCollection_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *Database_CreateCollection_Call) RunAndReturn(run func(context.Context, string, ...*options.CreateCollectionOptions) error) *Database_CreateCollection_Call {
+	_c.Call.Return(run)
+	return _c
 }
 
 // CreateView provides a mock function with given fields: ctx, viewName, viewOn, pipeline, opts
@@ -138,6 +283,45 @@ func (_m *Database) CreateView(ctx context.Context, viewName string, viewOn stri
 	return r0
 }
 
+// Database_CreateView_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'CreateView'
+type Database_CreateView_Call struct {
+	*mock.Call
+}
+
+// CreateView is a helper method to define mock.On call
+//   - ctx context.Context
+//   - viewName string
+//   - viewOn string
+//   - pipeline interface{}
+//   - opts ...*options.CreateViewOptions
+func (_e *Database_Expecter) CreateView(ctx interface{}, viewName interface{}, viewOn interface{}, pipeline interface{}, opts ...interface{}) *Database_CreateView_Call {
+	return &Database_CreateView_Call{Call: _e.mock.On("CreateView",
+		append([]interface{}{ctx, viewName, viewOn, pipeline}, opts...)...)}
+}
+
+func (_c *Database_CreateView_Call) Run(run func(ctx context.Context, viewName string, viewOn string, pipeline interface{}, opts ...*options.CreateViewOptions)) *Database_CreateView_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]*options.CreateViewOptions, len(args)-4)
+		for i, a := range args[4:] {
+			if a != nil {
+				variadicArgs[i] = a.(*options.CreateViewOptions)
+			}
+		}
+		run(args[0].(context.Context), args[1].(string), args[2].(string), args[3].(interface{}), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *Database_CreateView_Call) Return(_a0 error) *Database_CreateView_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *Database_CreateView_Call) RunAndReturn(run func(context.Context, string, string, interface{}, ...*options.CreateViewOptions) error) *Database_CreateView_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // Drop provides a mock function with given fields: ctx
 func (_m *Database) Drop(ctx context.Context) error {
 	ret := _m.Called(ctx)
@@ -150,6 +334,34 @@ func (_m *Database) Drop(ctx context.Context) error {
 	}
 
 	return r0
+}
+
+// Database_Drop_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'Drop'
+type Database_Drop_Call struct {
+	*mock.Call
+}
+
+// Drop is a helper method to define mock.On call
+//   - ctx context.Context
+func (_e *Database_Expecter) Drop(ctx interface{}) *Database_Drop_Call {
+	return &Database_Drop_Call{Call: _e.mock.On("Drop", ctx)}
+}
+
+func (_c *Database_Drop_Call) Run(run func(ctx context.Context)) *Database_Drop_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context))
+	})
+	return _c
+}
+
+func (_c *Database_Drop_Call) Return(_a0 error) *Database_Drop_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *Database_Drop_Call) RunAndReturn(run func(context.Context) error) *Database_Drop_Call {
+	_c.Call.Return(run)
+	return _c
 }
 
 // ListCollectionNames provides a mock function with given fields: ctx, filter, opts
@@ -185,6 +397,43 @@ func (_m *Database) ListCollectionNames(ctx context.Context, filter interface{},
 	return r0, r1
 }
 
+// Database_ListCollectionNames_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'ListCollectionNames'
+type Database_ListCollectionNames_Call struct {
+	*mock.Call
+}
+
+// ListCollectionNames is a helper method to define mock.On call
+//   - ctx context.Context
+//   - filter interface{}
+//   - opts ...*options.ListCollectionsOptions
+func (_e *Database_Expecter) ListCollectionNames(ctx interface{}, filter interface{}, opts ...interface{}) *Database_ListCollectionNames_Call {
+	return &Database_ListCollectionNames_Call{Call: _e.mock.On("ListCollectionNames",
+		append([]interface{}{ctx, filter}, opts...)...)}
+}
+
+func (_c *Database_ListCollectionNames_Call) Run(run func(ctx context.Context, filter interface{}, opts ...*options.ListCollectionsOptions)) *Database_ListCollectionNames_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]*options.ListCollectionsOptions, len(args)-2)
+		for i, a := range args[2:] {
+			if a != nil {
+				variadicArgs[i] = a.(*options.ListCollectionsOptions)
+			}
+		}
+		run(args[0].(context.Context), args[1].(interface{}), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *Database_ListCollectionNames_Call) Return(_a0 []string, _a1 error) *Database_ListCollectionNames_Call {
+	_c.Call.Return(_a0, _a1)
+	return _c
+}
+
+func (_c *Database_ListCollectionNames_Call) RunAndReturn(run func(context.Context, interface{}, ...*options.ListCollectionsOptions) ([]string, error)) *Database_ListCollectionNames_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // ListCollectionSpecifications provides a mock function with given fields: ctx, filter, opts
 func (_m *Database) ListCollectionSpecifications(ctx context.Context, filter interface{}, opts ...*options.ListCollectionsOptions) ([]*mongo.CollectionSpecification, error) {
 	_va := make([]interface{}, len(opts))
@@ -216,6 +465,43 @@ func (_m *Database) ListCollectionSpecifications(ctx context.Context, filter int
 	}
 
 	return r0, r1
+}
+
+// Database_ListCollectionSpecifications_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'ListCollectionSpecifications'
+type Database_ListCollectionSpecifications_Call struct {
+	*mock.Call
+}
+
+// ListCollectionSpecifications is a helper method to define mock.On call
+//   - ctx context.Context
+//   - filter interface{}
+//   - opts ...*options.ListCollectionsOptions
+func (_e *Database_Expecter) ListCollectionSpecifications(ctx interface{}, filter interface{}, opts ...interface{}) *Database_ListCollectionSpecifications_Call {
+	return &Database_ListCollectionSpecifications_Call{Call: _e.mock.On("ListCollectionSpecifications",
+		append([]interface{}{ctx, filter}, opts...)...)}
+}
+
+func (_c *Database_ListCollectionSpecifications_Call) Run(run func(ctx context.Context, filter interface{}, opts ...*options.ListCollectionsOptions)) *Database_ListCollectionSpecifications_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]*options.ListCollectionsOptions, len(args)-2)
+		for i, a := range args[2:] {
+			if a != nil {
+				variadicArgs[i] = a.(*options.ListCollectionsOptions)
+			}
+		}
+		run(args[0].(context.Context), args[1].(interface{}), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *Database_ListCollectionSpecifications_Call) Return(_a0 []*mongo.CollectionSpecification, _a1 error) *Database_ListCollectionSpecifications_Call {
+	_c.Call.Return(_a0, _a1)
+	return _c
+}
+
+func (_c *Database_ListCollectionSpecifications_Call) RunAndReturn(run func(context.Context, interface{}, ...*options.ListCollectionsOptions) ([]*mongo.CollectionSpecification, error)) *Database_ListCollectionSpecifications_Call {
+	_c.Call.Return(run)
+	return _c
 }
 
 // ListCollections provides a mock function with given fields: ctx, filter, opts
@@ -251,6 +537,43 @@ func (_m *Database) ListCollections(ctx context.Context, filter interface{}, opt
 	return r0, r1
 }
 
+// Database_ListCollections_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'ListCollections'
+type Database_ListCollections_Call struct {
+	*mock.Call
+}
+
+// ListCollections is a helper method to define mock.On call
+//   - ctx context.Context
+//   - filter interface{}
+//   - opts ...*options.ListCollectionsOptions
+func (_e *Database_Expecter) ListCollections(ctx interface{}, filter interface{}, opts ...interface{}) *Database_ListCollections_Call {
+	return &Database_ListCollections_Call{Call: _e.mock.On("ListCollections",
+		append([]interface{}{ctx, filter}, opts...)...)}
+}
+
+func (_c *Database_ListCollections_Call) Run(run func(ctx context.Context, filter interface{}, opts ...*options.ListCollectionsOptions)) *Database_ListCollections_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]*options.ListCollectionsOptions, len(args)-2)
+		for i, a := range args[2:] {
+			if a != nil {
+				variadicArgs[i] = a.(*options.ListCollectionsOptions)
+			}
+		}
+		run(args[0].(context.Context), args[1].(interface{}), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *Database_ListCollections_Call) Return(_a0 mongoifc.Cursor, _a1 error) *Database_ListCollections_Call {
+	_c.Call.Return(_a0, _a1)
+	return _c
+}
+
+func (_c *Database_ListCollections_Call) RunAndReturn(run func(context.Context, interface{}, ...*options.ListCollectionsOptions) (mongoifc.Cursor, error)) *Database_ListCollections_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // Name provides a mock function with given fields:
 func (_m *Database) Name() string {
 	ret := _m.Called()
@@ -263,6 +586,33 @@ func (_m *Database) Name() string {
 	}
 
 	return r0
+}
+
+// Database_Name_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'Name'
+type Database_Name_Call struct {
+	*mock.Call
+}
+
+// Name is a helper method to define mock.On call
+func (_e *Database_Expecter) Name() *Database_Name_Call {
+	return &Database_Name_Call{Call: _e.mock.On("Name")}
+}
+
+func (_c *Database_Name_Call) Run(run func()) *Database_Name_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run()
+	})
+	return _c
+}
+
+func (_c *Database_Name_Call) Return(_a0 string) *Database_Name_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *Database_Name_Call) RunAndReturn(run func() string) *Database_Name_Call {
+	_c.Call.Return(run)
+	return _c
 }
 
 // ReadConcern provides a mock function with given fields:
@@ -281,6 +631,33 @@ func (_m *Database) ReadConcern() *readconcern.ReadConcern {
 	return r0
 }
 
+// Database_ReadConcern_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'ReadConcern'
+type Database_ReadConcern_Call struct {
+	*mock.Call
+}
+
+// ReadConcern is a helper method to define mock.On call
+func (_e *Database_Expecter) ReadConcern() *Database_ReadConcern_Call {
+	return &Database_ReadConcern_Call{Call: _e.mock.On("ReadConcern")}
+}
+
+func (_c *Database_ReadConcern_Call) Run(run func()) *Database_ReadConcern_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run()
+	})
+	return _c
+}
+
+func (_c *Database_ReadConcern_Call) Return(_a0 *readconcern.ReadConcern) *Database_ReadConcern_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *Database_ReadConcern_Call) RunAndReturn(run func() *readconcern.ReadConcern) *Database_ReadConcern_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // ReadPreference provides a mock function with given fields:
 func (_m *Database) ReadPreference() *readpref.ReadPref {
 	ret := _m.Called()
@@ -295,6 +672,33 @@ func (_m *Database) ReadPreference() *readpref.ReadPref {
 	}
 
 	return r0
+}
+
+// Database_ReadPreference_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'ReadPreference'
+type Database_ReadPreference_Call struct {
+	*mock.Call
+}
+
+// ReadPreference is a helper method to define mock.On call
+func (_e *Database_Expecter) ReadPreference() *Database_ReadPreference_Call {
+	return &Database_ReadPreference_Call{Call: _e.mock.On("ReadPreference")}
+}
+
+func (_c *Database_ReadPreference_Call) Run(run func()) *Database_ReadPreference_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run()
+	})
+	return _c
+}
+
+func (_c *Database_ReadPreference_Call) Return(_a0 *readpref.ReadPref) *Database_ReadPreference_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *Database_ReadPreference_Call) RunAndReturn(run func() *readpref.ReadPref) *Database_ReadPreference_Call {
+	_c.Call.Return(run)
+	return _c
 }
 
 // RunCommand provides a mock function with given fields: ctx, runCommand, opts
@@ -318,6 +722,43 @@ func (_m *Database) RunCommand(ctx context.Context, runCommand interface{}, opts
 	}
 
 	return r0
+}
+
+// Database_RunCommand_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'RunCommand'
+type Database_RunCommand_Call struct {
+	*mock.Call
+}
+
+// RunCommand is a helper method to define mock.On call
+//   - ctx context.Context
+//   - runCommand interface{}
+//   - opts ...*options.RunCmdOptions
+func (_e *Database_Expecter) RunCommand(ctx interface{}, runCommand interface{}, opts ...interface{}) *Database_RunCommand_Call {
+	return &Database_RunCommand_Call{Call: _e.mock.On("RunCommand",
+		append([]interface{}{ctx, runCommand}, opts...)...)}
+}
+
+func (_c *Database_RunCommand_Call) Run(run func(ctx context.Context, runCommand interface{}, opts ...*options.RunCmdOptions)) *Database_RunCommand_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]*options.RunCmdOptions, len(args)-2)
+		for i, a := range args[2:] {
+			if a != nil {
+				variadicArgs[i] = a.(*options.RunCmdOptions)
+			}
+		}
+		run(args[0].(context.Context), args[1].(interface{}), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *Database_RunCommand_Call) Return(_a0 mongoifc.SingleResult) *Database_RunCommand_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *Database_RunCommand_Call) RunAndReturn(run func(context.Context, interface{}, ...*options.RunCmdOptions) mongoifc.SingleResult) *Database_RunCommand_Call {
+	_c.Call.Return(run)
+	return _c
 }
 
 // RunCommandCursor provides a mock function with given fields: ctx, runCommand, opts
@@ -353,6 +794,43 @@ func (_m *Database) RunCommandCursor(ctx context.Context, runCommand interface{}
 	return r0, r1
 }
 
+// Database_RunCommandCursor_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'RunCommandCursor'
+type Database_RunCommandCursor_Call struct {
+	*mock.Call
+}
+
+// RunCommandCursor is a helper method to define mock.On call
+//   - ctx context.Context
+//   - runCommand interface{}
+//   - opts ...*options.RunCmdOptions
+func (_e *Database_Expecter) RunCommandCursor(ctx interface{}, runCommand interface{}, opts ...interface{}) *Database_RunCommandCursor_Call {
+	return &Database_RunCommandCursor_Call{Call: _e.mock.On("RunCommandCursor",
+		append([]interface{}{ctx, runCommand}, opts...)...)}
+}
+
+func (_c *Database_RunCommandCursor_Call) Run(run func(ctx context.Context, runCommand interface{}, opts ...*options.RunCmdOptions)) *Database_RunCommandCursor_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]*options.RunCmdOptions, len(args)-2)
+		for i, a := range args[2:] {
+			if a != nil {
+				variadicArgs[i] = a.(*options.RunCmdOptions)
+			}
+		}
+		run(args[0].(context.Context), args[1].(interface{}), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *Database_RunCommandCursor_Call) Return(_a0 mongoifc.Cursor, _a1 error) *Database_RunCommandCursor_Call {
+	_c.Call.Return(_a0, _a1)
+	return _c
+}
+
+func (_c *Database_RunCommandCursor_Call) RunAndReturn(run func(context.Context, interface{}, ...*options.RunCmdOptions) (mongoifc.Cursor, error)) *Database_RunCommandCursor_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // Watch provides a mock function with given fields: ctx, pipeline, opts
 func (_m *Database) Watch(ctx context.Context, pipeline interface{}, opts ...*options.ChangeStreamOptions) (mongoifc.ChangeStream, error) {
 	_va := make([]interface{}, len(opts))
@@ -386,6 +864,43 @@ func (_m *Database) Watch(ctx context.Context, pipeline interface{}, opts ...*op
 	return r0, r1
 }
 
+// Database_Watch_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'Watch'
+type Database_Watch_Call struct {
+	*mock.Call
+}
+
+// Watch is a helper method to define mock.On call
+//   - ctx context.Context
+//   - pipeline interface{}
+//   - opts ...*options.ChangeStreamOptions
+func (_e *Database_Expecter) Watch(ctx interface{}, pipeline interface{}, opts ...interface{}) *Database_Watch_Call {
+	return &Database_Watch_Call{Call: _e.mock.On("Watch",
+		append([]interface{}{ctx, pipeline}, opts...)...)}
+}
+
+func (_c *Database_Watch_Call) Run(run func(ctx context.Context, pipeline interface{}, opts ...*options.ChangeStreamOptions)) *Database_Watch_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]*options.ChangeStreamOptions, len(args)-2)
+		for i, a := range args[2:] {
+			if a != nil {
+				variadicArgs[i] = a.(*options.ChangeStreamOptions)
+			}
+		}
+		run(args[0].(context.Context), args[1].(interface{}), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *Database_Watch_Call) Return(_a0 mongoifc.ChangeStream, _a1 error) *Database_Watch_Call {
+	_c.Call.Return(_a0, _a1)
+	return _c
+}
+
+func (_c *Database_Watch_Call) RunAndReturn(run func(context.Context, interface{}, ...*options.ChangeStreamOptions) (mongoifc.ChangeStream, error)) *Database_Watch_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // WriteConcern provides a mock function with given fields:
 func (_m *Database) WriteConcern() *writeconcern.WriteConcern {
 	ret := _m.Called()
@@ -400,6 +915,33 @@ func (_m *Database) WriteConcern() *writeconcern.WriteConcern {
 	}
 
 	return r0
+}
+
+// Database_WriteConcern_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'WriteConcern'
+type Database_WriteConcern_Call struct {
+	*mock.Call
+}
+
+// WriteConcern is a helper method to define mock.On call
+func (_e *Database_Expecter) WriteConcern() *Database_WriteConcern_Call {
+	return &Database_WriteConcern_Call{Call: _e.mock.On("WriteConcern")}
+}
+
+func (_c *Database_WriteConcern_Call) Run(run func()) *Database_WriteConcern_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run()
+	})
+	return _c
+}
+
+func (_c *Database_WriteConcern_Call) Return(_a0 *writeconcern.WriteConcern) *Database_WriteConcern_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *Database_WriteConcern_Call) RunAndReturn(run func() *writeconcern.WriteConcern) *Database_WriteConcern_Call {
+	_c.Call.Return(run)
+	return _c
 }
 
 // NewDatabase creates a new instance of Database. It also registers a testing interface on the mock and a cleanup function to assert the mocks expectations.

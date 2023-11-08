@@ -55,7 +55,7 @@ run-mockgen:
 	@mockgen -destination=mocks/gomock/mocks.go -package mocks . ChangeStream,Client,Collection,Cursor,Database,IndexView,Session,SingleResult,SessionContext,ClientEncryption
 
 run-mockery:
-	@mockery --all --srcpkg github.com/sv-tools/mongoifc --output mocks/mockery --disable-version-string --case underscore
+	@mockery --all --with-expecter --srcpkg github.com/sv-tools/mongoifc --output mocks/mockery --disable-version-string --case underscore
 
 clean-mocks:
 	@rm -rf mocks

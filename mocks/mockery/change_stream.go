@@ -15,6 +15,14 @@ type ChangeStream struct {
 	mock.Mock
 }
 
+type ChangeStream_Expecter struct {
+	mock *mock.Mock
+}
+
+func (_m *ChangeStream) EXPECT() *ChangeStream_Expecter {
+	return &ChangeStream_Expecter{mock: &_m.Mock}
+}
+
 // Close provides a mock function with given fields: ctx
 func (_m *ChangeStream) Close(ctx context.Context) error {
 	ret := _m.Called(ctx)
@@ -27,6 +35,34 @@ func (_m *ChangeStream) Close(ctx context.Context) error {
 	}
 
 	return r0
+}
+
+// ChangeStream_Close_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'Close'
+type ChangeStream_Close_Call struct {
+	*mock.Call
+}
+
+// Close is a helper method to define mock.On call
+//   - ctx context.Context
+func (_e *ChangeStream_Expecter) Close(ctx interface{}) *ChangeStream_Close_Call {
+	return &ChangeStream_Close_Call{Call: _e.mock.On("Close", ctx)}
+}
+
+func (_c *ChangeStream_Close_Call) Run(run func(ctx context.Context)) *ChangeStream_Close_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context))
+	})
+	return _c
+}
+
+func (_c *ChangeStream_Close_Call) Return(_a0 error) *ChangeStream_Close_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *ChangeStream_Close_Call) RunAndReturn(run func(context.Context) error) *ChangeStream_Close_Call {
+	_c.Call.Return(run)
+	return _c
 }
 
 // Current provides a mock function with given fields:
@@ -45,6 +81,33 @@ func (_m *ChangeStream) Current() bson.Raw {
 	return r0
 }
 
+// ChangeStream_Current_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'Current'
+type ChangeStream_Current_Call struct {
+	*mock.Call
+}
+
+// Current is a helper method to define mock.On call
+func (_e *ChangeStream_Expecter) Current() *ChangeStream_Current_Call {
+	return &ChangeStream_Current_Call{Call: _e.mock.On("Current")}
+}
+
+func (_c *ChangeStream_Current_Call) Run(run func()) *ChangeStream_Current_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run()
+	})
+	return _c
+}
+
+func (_c *ChangeStream_Current_Call) Return(_a0 bson.Raw) *ChangeStream_Current_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *ChangeStream_Current_Call) RunAndReturn(run func() bson.Raw) *ChangeStream_Current_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // Decode provides a mock function with given fields: val
 func (_m *ChangeStream) Decode(val interface{}) error {
 	ret := _m.Called(val)
@@ -57,6 +120,34 @@ func (_m *ChangeStream) Decode(val interface{}) error {
 	}
 
 	return r0
+}
+
+// ChangeStream_Decode_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'Decode'
+type ChangeStream_Decode_Call struct {
+	*mock.Call
+}
+
+// Decode is a helper method to define mock.On call
+//   - val interface{}
+func (_e *ChangeStream_Expecter) Decode(val interface{}) *ChangeStream_Decode_Call {
+	return &ChangeStream_Decode_Call{Call: _e.mock.On("Decode", val)}
+}
+
+func (_c *ChangeStream_Decode_Call) Run(run func(val interface{})) *ChangeStream_Decode_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(interface{}))
+	})
+	return _c
+}
+
+func (_c *ChangeStream_Decode_Call) Return(_a0 error) *ChangeStream_Decode_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *ChangeStream_Decode_Call) RunAndReturn(run func(interface{}) error) *ChangeStream_Decode_Call {
+	_c.Call.Return(run)
+	return _c
 }
 
 // Err provides a mock function with given fields:
@@ -73,6 +164,33 @@ func (_m *ChangeStream) Err() error {
 	return r0
 }
 
+// ChangeStream_Err_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'Err'
+type ChangeStream_Err_Call struct {
+	*mock.Call
+}
+
+// Err is a helper method to define mock.On call
+func (_e *ChangeStream_Expecter) Err() *ChangeStream_Err_Call {
+	return &ChangeStream_Err_Call{Call: _e.mock.On("Err")}
+}
+
+func (_c *ChangeStream_Err_Call) Run(run func()) *ChangeStream_Err_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run()
+	})
+	return _c
+}
+
+func (_c *ChangeStream_Err_Call) Return(_a0 error) *ChangeStream_Err_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *ChangeStream_Err_Call) RunAndReturn(run func() error) *ChangeStream_Err_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // ID provides a mock function with given fields:
 func (_m *ChangeStream) ID() int64 {
 	ret := _m.Called()
@@ -87,6 +205,33 @@ func (_m *ChangeStream) ID() int64 {
 	return r0
 }
 
+// ChangeStream_ID_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'ID'
+type ChangeStream_ID_Call struct {
+	*mock.Call
+}
+
+// ID is a helper method to define mock.On call
+func (_e *ChangeStream_Expecter) ID() *ChangeStream_ID_Call {
+	return &ChangeStream_ID_Call{Call: _e.mock.On("ID")}
+}
+
+func (_c *ChangeStream_ID_Call) Run(run func()) *ChangeStream_ID_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run()
+	})
+	return _c
+}
+
+func (_c *ChangeStream_ID_Call) Return(_a0 int64) *ChangeStream_ID_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *ChangeStream_ID_Call) RunAndReturn(run func() int64) *ChangeStream_ID_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // Next provides a mock function with given fields: ctx
 func (_m *ChangeStream) Next(ctx context.Context) bool {
 	ret := _m.Called(ctx)
@@ -99,6 +244,34 @@ func (_m *ChangeStream) Next(ctx context.Context) bool {
 	}
 
 	return r0
+}
+
+// ChangeStream_Next_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'Next'
+type ChangeStream_Next_Call struct {
+	*mock.Call
+}
+
+// Next is a helper method to define mock.On call
+//   - ctx context.Context
+func (_e *ChangeStream_Expecter) Next(ctx interface{}) *ChangeStream_Next_Call {
+	return &ChangeStream_Next_Call{Call: _e.mock.On("Next", ctx)}
+}
+
+func (_c *ChangeStream_Next_Call) Run(run func(ctx context.Context)) *ChangeStream_Next_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context))
+	})
+	return _c
+}
+
+func (_c *ChangeStream_Next_Call) Return(_a0 bool) *ChangeStream_Next_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *ChangeStream_Next_Call) RunAndReturn(run func(context.Context) bool) *ChangeStream_Next_Call {
+	_c.Call.Return(run)
+	return _c
 }
 
 // ResumeToken provides a mock function with given fields:
@@ -117,9 +290,64 @@ func (_m *ChangeStream) ResumeToken() bson.Raw {
 	return r0
 }
 
+// ChangeStream_ResumeToken_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'ResumeToken'
+type ChangeStream_ResumeToken_Call struct {
+	*mock.Call
+}
+
+// ResumeToken is a helper method to define mock.On call
+func (_e *ChangeStream_Expecter) ResumeToken() *ChangeStream_ResumeToken_Call {
+	return &ChangeStream_ResumeToken_Call{Call: _e.mock.On("ResumeToken")}
+}
+
+func (_c *ChangeStream_ResumeToken_Call) Run(run func()) *ChangeStream_ResumeToken_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run()
+	})
+	return _c
+}
+
+func (_c *ChangeStream_ResumeToken_Call) Return(_a0 bson.Raw) *ChangeStream_ResumeToken_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *ChangeStream_ResumeToken_Call) RunAndReturn(run func() bson.Raw) *ChangeStream_ResumeToken_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // SetBatchSize provides a mock function with given fields: size
 func (_m *ChangeStream) SetBatchSize(size int32) {
 	_m.Called(size)
+}
+
+// ChangeStream_SetBatchSize_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'SetBatchSize'
+type ChangeStream_SetBatchSize_Call struct {
+	*mock.Call
+}
+
+// SetBatchSize is a helper method to define mock.On call
+//   - size int32
+func (_e *ChangeStream_Expecter) SetBatchSize(size interface{}) *ChangeStream_SetBatchSize_Call {
+	return &ChangeStream_SetBatchSize_Call{Call: _e.mock.On("SetBatchSize", size)}
+}
+
+func (_c *ChangeStream_SetBatchSize_Call) Run(run func(size int32)) *ChangeStream_SetBatchSize_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(int32))
+	})
+	return _c
+}
+
+func (_c *ChangeStream_SetBatchSize_Call) Return() *ChangeStream_SetBatchSize_Call {
+	_c.Call.Return()
+	return _c
+}
+
+func (_c *ChangeStream_SetBatchSize_Call) RunAndReturn(run func(int32)) *ChangeStream_SetBatchSize_Call {
+	_c.Call.Return(run)
+	return _c
 }
 
 // TryNext provides a mock function with given fields: ctx
@@ -134,6 +362,34 @@ func (_m *ChangeStream) TryNext(ctx context.Context) bool {
 	}
 
 	return r0
+}
+
+// ChangeStream_TryNext_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'TryNext'
+type ChangeStream_TryNext_Call struct {
+	*mock.Call
+}
+
+// TryNext is a helper method to define mock.On call
+//   - ctx context.Context
+func (_e *ChangeStream_Expecter) TryNext(ctx interface{}) *ChangeStream_TryNext_Call {
+	return &ChangeStream_TryNext_Call{Call: _e.mock.On("TryNext", ctx)}
+}
+
+func (_c *ChangeStream_TryNext_Call) Run(run func(ctx context.Context)) *ChangeStream_TryNext_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context))
+	})
+	return _c
+}
+
+func (_c *ChangeStream_TryNext_Call) Return(_a0 bool) *ChangeStream_TryNext_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *ChangeStream_TryNext_Call) RunAndReturn(run func(context.Context) bool) *ChangeStream_TryNext_Call {
+	_c.Call.Return(run)
+	return _c
 }
 
 // NewChangeStream creates a new instance of ChangeStream. It also registers a testing interface on the mock and a cleanup function to assert the mocks expectations.

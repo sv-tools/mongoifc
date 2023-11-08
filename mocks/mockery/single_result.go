@@ -12,6 +12,14 @@ type SingleResult struct {
 	mock.Mock
 }
 
+type SingleResult_Expecter struct {
+	mock *mock.Mock
+}
+
+func (_m *SingleResult) EXPECT() *SingleResult_Expecter {
+	return &SingleResult_Expecter{mock: &_m.Mock}
+}
+
 // Decode provides a mock function with given fields: v
 func (_m *SingleResult) Decode(v interface{}) error {
 	ret := _m.Called(v)
@@ -24,6 +32,34 @@ func (_m *SingleResult) Decode(v interface{}) error {
 	}
 
 	return r0
+}
+
+// SingleResult_Decode_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'Decode'
+type SingleResult_Decode_Call struct {
+	*mock.Call
+}
+
+// Decode is a helper method to define mock.On call
+//   - v interface{}
+func (_e *SingleResult_Expecter) Decode(v interface{}) *SingleResult_Decode_Call {
+	return &SingleResult_Decode_Call{Call: _e.mock.On("Decode", v)}
+}
+
+func (_c *SingleResult_Decode_Call) Run(run func(v interface{})) *SingleResult_Decode_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(interface{}))
+	})
+	return _c
+}
+
+func (_c *SingleResult_Decode_Call) Return(_a0 error) *SingleResult_Decode_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *SingleResult_Decode_Call) RunAndReturn(run func(interface{}) error) *SingleResult_Decode_Call {
+	_c.Call.Return(run)
+	return _c
 }
 
 // DecodeBytes provides a mock function with given fields:
@@ -52,6 +88,33 @@ func (_m *SingleResult) DecodeBytes() (bson.Raw, error) {
 	return r0, r1
 }
 
+// SingleResult_DecodeBytes_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'DecodeBytes'
+type SingleResult_DecodeBytes_Call struct {
+	*mock.Call
+}
+
+// DecodeBytes is a helper method to define mock.On call
+func (_e *SingleResult_Expecter) DecodeBytes() *SingleResult_DecodeBytes_Call {
+	return &SingleResult_DecodeBytes_Call{Call: _e.mock.On("DecodeBytes")}
+}
+
+func (_c *SingleResult_DecodeBytes_Call) Run(run func()) *SingleResult_DecodeBytes_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run()
+	})
+	return _c
+}
+
+func (_c *SingleResult_DecodeBytes_Call) Return(_a0 bson.Raw, _a1 error) *SingleResult_DecodeBytes_Call {
+	_c.Call.Return(_a0, _a1)
+	return _c
+}
+
+func (_c *SingleResult_DecodeBytes_Call) RunAndReturn(run func() (bson.Raw, error)) *SingleResult_DecodeBytes_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // Err provides a mock function with given fields:
 func (_m *SingleResult) Err() error {
 	ret := _m.Called()
@@ -64,6 +127,33 @@ func (_m *SingleResult) Err() error {
 	}
 
 	return r0
+}
+
+// SingleResult_Err_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'Err'
+type SingleResult_Err_Call struct {
+	*mock.Call
+}
+
+// Err is a helper method to define mock.On call
+func (_e *SingleResult_Expecter) Err() *SingleResult_Err_Call {
+	return &SingleResult_Err_Call{Call: _e.mock.On("Err")}
+}
+
+func (_c *SingleResult_Err_Call) Run(run func()) *SingleResult_Err_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run()
+	})
+	return _c
+}
+
+func (_c *SingleResult_Err_Call) Return(_a0 error) *SingleResult_Err_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *SingleResult_Err_Call) RunAndReturn(run func() error) *SingleResult_Err_Call {
+	_c.Call.Return(run)
+	return _c
 }
 
 // NewSingleResult creates a new instance of SingleResult. It also registers a testing interface on the mock and a cleanup function to assert the mocks expectations.
