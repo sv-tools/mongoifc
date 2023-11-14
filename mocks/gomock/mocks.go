@@ -784,6 +784,20 @@ func (mr *MockCollectionMockRecorder) ReplaceOne(arg0, arg1, arg2 any, arg3 ...a
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ReplaceOne", reflect.TypeOf((*MockCollection)(nil).ReplaceOne), varargs...)
 }
 
+// SearchIndexes mocks base method.
+func (m *MockCollection) SearchIndexes() mongoifc.SearchIndexView {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "SearchIndexes")
+	ret0, _ := ret[0].(mongoifc.SearchIndexView)
+	return ret0
+}
+
+// SearchIndexes indicates an expected call of SearchIndexes.
+func (mr *MockCollectionMockRecorder) SearchIndexes() *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "SearchIndexes", reflect.TypeOf((*MockCollection)(nil).SearchIndexes))
+}
+
 // UpdateByID mocks base method.
 func (m *MockCollection) UpdateByID(arg0 context.Context, arg1, arg2 any, arg3 ...*options.UpdateOptions) (*mongo.UpdateResult, error) {
 	m.ctrl.T.Helper()
@@ -1009,6 +1023,30 @@ func (m *MockCursor) SetBatchSize(arg0 int32) {
 func (mr *MockCursorMockRecorder) SetBatchSize(arg0 any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "SetBatchSize", reflect.TypeOf((*MockCursor)(nil).SetBatchSize), arg0)
+}
+
+// SetComment mocks base method.
+func (m *MockCursor) SetComment(arg0 any) {
+	m.ctrl.T.Helper()
+	m.ctrl.Call(m, "SetComment", arg0)
+}
+
+// SetComment indicates an expected call of SetComment.
+func (mr *MockCursorMockRecorder) SetComment(arg0 any) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "SetComment", reflect.TypeOf((*MockCursor)(nil).SetComment), arg0)
+}
+
+// SetMaxTime mocks base method.
+func (m *MockCursor) SetMaxTime(arg0 time.Duration) {
+	m.ctrl.T.Helper()
+	m.ctrl.Call(m, "SetMaxTime", arg0)
+}
+
+// SetMaxTime indicates an expected call of SetMaxTime.
+func (mr *MockCursorMockRecorder) SetMaxTime(arg0 any) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "SetMaxTime", reflect.TypeOf((*MockCursor)(nil).SetMaxTime), arg0)
 }
 
 // TryNext mocks base method.
@@ -1720,6 +1758,21 @@ func (m *MockSingleResult) Err() error {
 func (mr *MockSingleResultMockRecorder) Err() *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Err", reflect.TypeOf((*MockSingleResult)(nil).Err))
+}
+
+// Raw mocks base method.
+func (m *MockSingleResult) Raw() (bson.Raw, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "Raw")
+	ret0, _ := ret[0].(bson.Raw)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// Raw indicates an expected call of Raw.
+func (mr *MockSingleResultMockRecorder) Raw() *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Raw", reflect.TypeOf((*MockSingleResult)(nil).Raw))
 }
 
 // MockSessionContext is a mock of SessionContext interface.

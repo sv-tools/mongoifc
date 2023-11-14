@@ -156,6 +156,59 @@ func (_c *SingleResult_Err_Call) RunAndReturn(run func() error) *SingleResult_Er
 	return _c
 }
 
+// Raw provides a mock function with given fields:
+func (_m *SingleResult) Raw() (bson.Raw, error) {
+	ret := _m.Called()
+
+	var r0 bson.Raw
+	var r1 error
+	if rf, ok := ret.Get(0).(func() (bson.Raw, error)); ok {
+		return rf()
+	}
+	if rf, ok := ret.Get(0).(func() bson.Raw); ok {
+		r0 = rf()
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(bson.Raw)
+		}
+	}
+
+	if rf, ok := ret.Get(1).(func() error); ok {
+		r1 = rf()
+	} else {
+		r1 = ret.Error(1)
+	}
+
+	return r0, r1
+}
+
+// SingleResult_Raw_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'Raw'
+type SingleResult_Raw_Call struct {
+	*mock.Call
+}
+
+// Raw is a helper method to define mock.On call
+func (_e *SingleResult_Expecter) Raw() *SingleResult_Raw_Call {
+	return &SingleResult_Raw_Call{Call: _e.mock.On("Raw")}
+}
+
+func (_c *SingleResult_Raw_Call) Run(run func()) *SingleResult_Raw_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run()
+	})
+	return _c
+}
+
+func (_c *SingleResult_Raw_Call) Return(_a0 bson.Raw, _a1 error) *SingleResult_Raw_Call {
+	_c.Call.Return(_a0, _a1)
+	return _c
+}
+
+func (_c *SingleResult_Raw_Call) RunAndReturn(run func() (bson.Raw, error)) *SingleResult_Raw_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // NewSingleResult creates a new instance of SingleResult. It also registers a testing interface on the mock and a cleanup function to assert the mocks expectations.
 // The first argument is typically a *testing.T value.
 func NewSingleResult(t interface {

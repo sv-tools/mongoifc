@@ -62,6 +62,7 @@ type Collection interface {
 		replacement interface{},
 		opts ...*options.ReplaceOptions,
 	) (*mongo.UpdateResult, error)
+	SearchIndexes() SearchIndexView
 	UpdateByID(
 		ctx context.Context,
 		id interface{},
@@ -237,6 +238,11 @@ func (c *collection) ReplaceOne(
 	opts ...*options.ReplaceOptions,
 ) (*mongo.UpdateResult, error) {
 	return c.co.ReplaceOne(ctx, filter, replacement, opts...)
+}
+
+func (c *collection) SearchIndexes() SearchIndexView {
+	siv := c.co.SearchIndexes()
+	return wrapSearchIndexView(&siv)
 }
 
 func (c *collection) UpdateByID(
