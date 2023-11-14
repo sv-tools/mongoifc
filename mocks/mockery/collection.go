@@ -1271,6 +1271,49 @@ func (_c *Collection_ReplaceOne_Call) RunAndReturn(run func(context.Context, int
 	return _c
 }
 
+// SearchIndexes provides a mock function with given fields:
+func (_m *Collection) SearchIndexes() mongoifc.SearchIndexView {
+	ret := _m.Called()
+
+	var r0 mongoifc.SearchIndexView
+	if rf, ok := ret.Get(0).(func() mongoifc.SearchIndexView); ok {
+		r0 = rf()
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(mongoifc.SearchIndexView)
+		}
+	}
+
+	return r0
+}
+
+// Collection_SearchIndexes_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'SearchIndexes'
+type Collection_SearchIndexes_Call struct {
+	*mock.Call
+}
+
+// SearchIndexes is a helper method to define mock.On call
+func (_e *Collection_Expecter) SearchIndexes() *Collection_SearchIndexes_Call {
+	return &Collection_SearchIndexes_Call{Call: _e.mock.On("SearchIndexes")}
+}
+
+func (_c *Collection_SearchIndexes_Call) Run(run func()) *Collection_SearchIndexes_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run()
+	})
+	return _c
+}
+
+func (_c *Collection_SearchIndexes_Call) Return(_a0 mongoifc.SearchIndexView) *Collection_SearchIndexes_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *Collection_SearchIndexes_Call) RunAndReturn(run func() mongoifc.SearchIndexView) *Collection_SearchIndexes_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // UpdateByID provides a mock function with given fields: ctx, id, update, opts
 func (_m *Collection) UpdateByID(ctx context.Context, id interface{}, update interface{}, opts ...*options.UpdateOptions) (*mongo.UpdateResult, error) {
 	_va := make([]interface{}, len(opts))
