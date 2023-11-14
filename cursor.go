@@ -2,6 +2,7 @@ package mongoifc
 
 import (
 	"context"
+	"time"
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/bsoncodec"
@@ -20,6 +21,8 @@ type Cursor interface {
 	Next(ctx context.Context) bool
 	RemainingBatchLength() int
 	SetBatchSize(batchSize int32)
+	SetComment(comment interface{})
+	SetMaxTime(dur time.Duration)
 	TryNext(ctx context.Context) bool
 }
 
@@ -57,6 +60,14 @@ func (c *cursor) Next(ctx context.Context) bool {
 
 func (c *cursor) RemainingBatchLength() int {
 	return c.cr.RemainingBatchLength()
+}
+
+func (c *cursor) SetComment(comment interface{}) {
+	c.cr.SetComment(comment)
+}
+
+func (c *cursor) SetMaxTime(dur time.Duration) {
+	c.cr.SetMaxTime(dur)
 }
 
 func (c *cursor) TryNext(ctx context.Context) bool {
