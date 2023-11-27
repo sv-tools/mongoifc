@@ -35,6 +35,10 @@ func (_m *SessionContext) EXPECT() *SessionContext_Expecter {
 func (_m *SessionContext) AbortTransaction(ctx context.Context) error {
 	ret := _m.Called(ctx)
 
+	if len(ret) == 0 {
+		panic("no return value specified for AbortTransaction")
+	}
+
 	var r0 error
 	if rf, ok := ret.Get(0).(func(context.Context) error); ok {
 		r0 = rf(ctx)
@@ -76,6 +80,10 @@ func (_c *SessionContext_AbortTransaction_Call) RunAndReturn(run func(context.Co
 // AdvanceClusterTime provides a mock function with given fields: _a0
 func (_m *SessionContext) AdvanceClusterTime(_a0 bson.Raw) error {
 	ret := _m.Called(_a0)
+
+	if len(ret) == 0 {
+		panic("no return value specified for AdvanceClusterTime")
+	}
 
 	var r0 error
 	if rf, ok := ret.Get(0).(func(bson.Raw) error); ok {
@@ -119,6 +127,10 @@ func (_c *SessionContext_AdvanceClusterTime_Call) RunAndReturn(run func(bson.Raw
 func (_m *SessionContext) AdvanceOperationTime(_a0 *primitive.Timestamp) error {
 	ret := _m.Called(_a0)
 
+	if len(ret) == 0 {
+		panic("no return value specified for AdvanceOperationTime")
+	}
+
 	var r0 error
 	if rf, ok := ret.Get(0).(func(*primitive.Timestamp) error); ok {
 		r0 = rf(_a0)
@@ -160,6 +172,10 @@ func (_c *SessionContext_AdvanceOperationTime_Call) RunAndReturn(run func(*primi
 // Client provides a mock function with given fields:
 func (_m *SessionContext) Client() mongoifc.Client {
 	ret := _m.Called()
+
+	if len(ret) == 0 {
+		panic("no return value specified for Client")
+	}
 
 	var r0 mongoifc.Client
 	if rf, ok := ret.Get(0).(func() mongoifc.Client); ok {
@@ -204,6 +220,10 @@ func (_c *SessionContext_Client_Call) RunAndReturn(run func() mongoifc.Client) *
 func (_m *SessionContext) ClusterTime() bson.Raw {
 	ret := _m.Called()
 
+	if len(ret) == 0 {
+		panic("no return value specified for ClusterTime")
+	}
+
 	var r0 bson.Raw
 	if rf, ok := ret.Get(0).(func() bson.Raw); ok {
 		r0 = rf()
@@ -247,6 +267,10 @@ func (_c *SessionContext_ClusterTime_Call) RunAndReturn(run func() bson.Raw) *Se
 func (_m *SessionContext) CommitTransaction(ctx context.Context) error {
 	ret := _m.Called(ctx)
 
+	if len(ret) == 0 {
+		panic("no return value specified for CommitTransaction")
+	}
+
 	var r0 error
 	if rf, ok := ret.Get(0).(func(context.Context) error); ok {
 		r0 = rf(ctx)
@@ -288,6 +312,10 @@ func (_c *SessionContext_CommitTransaction_Call) RunAndReturn(run func(context.C
 // Deadline provides a mock function with given fields:
 func (_m *SessionContext) Deadline() (time.Time, bool) {
 	ret := _m.Called()
+
+	if len(ret) == 0 {
+		panic("no return value specified for Deadline")
+	}
 
 	var r0 time.Time
 	var r1 bool
@@ -339,6 +367,10 @@ func (_c *SessionContext_Deadline_Call) RunAndReturn(run func() (time.Time, bool
 // Done provides a mock function with given fields:
 func (_m *SessionContext) Done() <-chan struct{} {
 	ret := _m.Called()
+
+	if len(ret) == 0 {
+		panic("no return value specified for Done")
+	}
 
 	var r0 <-chan struct{}
 	if rf, ok := ret.Get(0).(func() <-chan struct{}); ok {
@@ -416,6 +448,10 @@ func (_c *SessionContext_EndSession_Call) RunAndReturn(run func(context.Context)
 func (_m *SessionContext) Err() error {
 	ret := _m.Called()
 
+	if len(ret) == 0 {
+		panic("no return value specified for Err")
+	}
+
 	var r0 error
 	if rf, ok := ret.Get(0).(func() error); ok {
 		r0 = rf()
@@ -456,6 +492,10 @@ func (_c *SessionContext_Err_Call) RunAndReturn(run func() error) *SessionContex
 // ID provides a mock function with given fields:
 func (_m *SessionContext) ID() bson.Raw {
 	ret := _m.Called()
+
+	if len(ret) == 0 {
+		panic("no return value specified for ID")
+	}
 
 	var r0 bson.Raw
 	if rf, ok := ret.Get(0).(func() bson.Raw); ok {
@@ -499,6 +539,10 @@ func (_c *SessionContext_ID_Call) RunAndReturn(run func() bson.Raw) *SessionCont
 // OperationTime provides a mock function with given fields:
 func (_m *SessionContext) OperationTime() *primitive.Timestamp {
 	ret := _m.Called()
+
+	if len(ret) == 0 {
+		panic("no return value specified for OperationTime")
+	}
 
 	var r0 *primitive.Timestamp
 	if rf, ok := ret.Get(0).(func() *primitive.Timestamp); ok {
@@ -549,6 +593,10 @@ func (_m *SessionContext) StartTransaction(opts ...*options.TransactionOptions) 
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
 
+	if len(ret) == 0 {
+		panic("no return value specified for StartTransaction")
+	}
+
 	var r0 error
 	if rf, ok := ret.Get(0).(func(...*options.TransactionOptions) error); ok {
 		r0 = rf(opts...)
@@ -597,6 +645,10 @@ func (_c *SessionContext_StartTransaction_Call) RunAndReturn(run func(...*option
 // Value provides a mock function with given fields: key
 func (_m *SessionContext) Value(key interface{}) interface{} {
 	ret := _m.Called(key)
+
+	if len(ret) == 0 {
+		panic("no return value specified for Value")
+	}
 
 	var r0 interface{}
 	if rf, ok := ret.Get(0).(func(interface{}) interface{}); ok {
@@ -648,6 +700,10 @@ func (_m *SessionContext) WithTransaction(ctx context.Context, fn func(mongoifc.
 	_ca = append(_ca, ctx, fn)
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for WithTransaction")
+	}
 
 	var r0 interface{}
 	var r1 error

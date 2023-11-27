@@ -37,6 +37,10 @@ func (_m *SearchIndexView) CreateMany(ctx context.Context, models []mongo.Search
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
 
+	if len(ret) == 0 {
+		panic("no return value specified for CreateMany")
+	}
+
 	var r0 []string
 	var r1 error
 	if rf, ok := ret.Get(0).(func(context.Context, []mongo.SearchIndexModel, ...*options.CreateSearchIndexesOptions) ([]string, error)); ok {
@@ -107,6 +111,10 @@ func (_m *SearchIndexView) CreateOne(ctx context.Context, model mongo.SearchInde
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
 
+	if len(ret) == 0 {
+		panic("no return value specified for CreateOne")
+	}
+
 	var r0 string
 	var r1 error
 	if rf, ok := ret.Get(0).(func(context.Context, mongo.SearchIndexModel, ...*options.CreateSearchIndexesOptions) (string, error)); ok {
@@ -175,6 +183,10 @@ func (_m *SearchIndexView) DropOne(ctx context.Context, name string, opts ...*op
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
 
+	if len(ret) == 0 {
+		panic("no return value specified for DropOne")
+	}
+
 	var r0 error
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...*options.DropSearchIndexOptions) error); ok {
 		r0 = rf(ctx, name, opts...)
@@ -232,6 +244,10 @@ func (_m *SearchIndexView) List(ctx context.Context, searchIdxOpts *options.Sear
 	_ca = append(_ca, ctx, searchIdxOpts)
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for List")
+	}
 
 	var r0 mongoifc.Cursor
 	var r1 error
@@ -302,6 +318,10 @@ func (_m *SearchIndexView) UpdateOne(ctx context.Context, name string, definitio
 	_ca = append(_ca, ctx, name, definition)
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for UpdateOne")
+	}
 
 	var r0 error
 	if rf, ok := ret.Get(0).(func(context.Context, string, interface{}, ...*options.UpdateSearchIndexOptions) error); ok {

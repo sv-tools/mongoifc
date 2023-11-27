@@ -37,6 +37,10 @@ func (_m *Collection) Aggregate(ctx context.Context, pipeline interface{}, opts 
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
 
+	if len(ret) == 0 {
+		panic("no return value specified for Aggregate")
+	}
+
 	var r0 mongoifc.Cursor
 	var r1 error
 	if rf, ok := ret.Get(0).(func(context.Context, interface{}, ...*options.AggregateOptions) (mongoifc.Cursor, error)); ok {
@@ -107,6 +111,10 @@ func (_m *Collection) BulkWrite(ctx context.Context, models []mongo.WriteModel, 
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
 
+	if len(ret) == 0 {
+		panic("no return value specified for BulkWrite")
+	}
+
 	var r0 *mongo.BulkWriteResult
 	var r1 error
 	if rf, ok := ret.Get(0).(func(context.Context, []mongo.WriteModel, ...*options.BulkWriteOptions) (*mongo.BulkWriteResult, error)); ok {
@@ -176,6 +184,10 @@ func (_m *Collection) Clone(opts ...*options.CollectionOptions) (mongoifc.Collec
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
 
+	if len(ret) == 0 {
+		panic("no return value specified for Clone")
+	}
+
 	var r0 mongoifc.Collection
 	var r1 error
 	if rf, ok := ret.Get(0).(func(...*options.CollectionOptions) (mongoifc.Collection, error)); ok {
@@ -244,6 +256,10 @@ func (_m *Collection) CountDocuments(ctx context.Context, filter interface{}, op
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
 
+	if len(ret) == 0 {
+		panic("no return value specified for CountDocuments")
+	}
+
 	var r0 int64
 	var r1 error
 	if rf, ok := ret.Get(0).(func(context.Context, interface{}, ...*options.CountOptions) (int64, error)); ok {
@@ -305,6 +321,10 @@ func (_c *Collection_CountDocuments_Call) RunAndReturn(run func(context.Context,
 func (_m *Collection) Database() mongoifc.Database {
 	ret := _m.Called()
 
+	if len(ret) == 0 {
+		panic("no return value specified for Database")
+	}
+
 	var r0 mongoifc.Database
 	if rf, ok := ret.Get(0).(func() mongoifc.Database); ok {
 		r0 = rf()
@@ -354,6 +374,10 @@ func (_m *Collection) DeleteMany(ctx context.Context, filter interface{}, opts .
 	_ca = append(_ca, ctx, filter)
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for DeleteMany")
+	}
 
 	var r0 *mongo.DeleteResult
 	var r1 error
@@ -425,6 +449,10 @@ func (_m *Collection) DeleteOne(ctx context.Context, filter interface{}, opts ..
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
 
+	if len(ret) == 0 {
+		panic("no return value specified for DeleteOne")
+	}
+
 	var r0 *mongo.DeleteResult
 	var r1 error
 	if rf, ok := ret.Get(0).(func(context.Context, interface{}, ...*options.DeleteOptions) (*mongo.DeleteResult, error)); ok {
@@ -495,6 +523,10 @@ func (_m *Collection) Distinct(ctx context.Context, fieldName string, filter int
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
 
+	if len(ret) == 0 {
+		panic("no return value specified for Distinct")
+	}
+
 	var r0 []interface{}
 	var r1 error
 	if rf, ok := ret.Get(0).(func(context.Context, string, interface{}, ...*options.DistinctOptions) ([]interface{}, error)); ok {
@@ -559,6 +591,10 @@ func (_c *Collection_Distinct_Call) RunAndReturn(run func(context.Context, strin
 func (_m *Collection) Drop(ctx context.Context) error {
 	ret := _m.Called(ctx)
 
+	if len(ret) == 0 {
+		panic("no return value specified for Drop")
+	}
+
 	var r0 error
 	if rf, ok := ret.Get(0).(func(context.Context) error); ok {
 		r0 = rf(ctx)
@@ -607,6 +643,10 @@ func (_m *Collection) EstimatedDocumentCount(ctx context.Context, opts ...*optio
 	_ca = append(_ca, ctx)
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for EstimatedDocumentCount")
+	}
 
 	var r0 int64
 	var r1 error
@@ -674,6 +714,10 @@ func (_m *Collection) Find(ctx context.Context, filter interface{}, opts ...*opt
 	_ca = append(_ca, ctx, filter)
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for Find")
+	}
 
 	var r0 mongoifc.Cursor
 	var r1 error
@@ -745,6 +789,10 @@ func (_m *Collection) FindOne(ctx context.Context, filter interface{}, opts ...*
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
 
+	if len(ret) == 0 {
+		panic("no return value specified for FindOne")
+	}
+
 	var r0 mongoifc.SingleResult
 	if rf, ok := ret.Get(0).(func(context.Context, interface{}, ...*options.FindOneOptions) mongoifc.SingleResult); ok {
 		r0 = rf(ctx, filter, opts...)
@@ -805,6 +853,10 @@ func (_m *Collection) FindOneAndDelete(ctx context.Context, filter interface{}, 
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
 
+	if len(ret) == 0 {
+		panic("no return value specified for FindOneAndDelete")
+	}
+
 	var r0 mongoifc.SingleResult
 	if rf, ok := ret.Get(0).(func(context.Context, interface{}, ...*options.FindOneAndDeleteOptions) mongoifc.SingleResult); ok {
 		r0 = rf(ctx, filter, opts...)
@@ -864,6 +916,10 @@ func (_m *Collection) FindOneAndReplace(ctx context.Context, filter interface{},
 	_ca = append(_ca, ctx, filter, replacement)
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for FindOneAndReplace")
+	}
 
 	var r0 mongoifc.SingleResult
 	if rf, ok := ret.Get(0).(func(context.Context, interface{}, interface{}, ...*options.FindOneAndReplaceOptions) mongoifc.SingleResult); ok {
@@ -926,6 +982,10 @@ func (_m *Collection) FindOneAndUpdate(ctx context.Context, filter interface{}, 
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
 
+	if len(ret) == 0 {
+		panic("no return value specified for FindOneAndUpdate")
+	}
+
 	var r0 mongoifc.SingleResult
 	if rf, ok := ret.Get(0).(func(context.Context, interface{}, interface{}, ...*options.FindOneAndUpdateOptions) mongoifc.SingleResult); ok {
 		r0 = rf(ctx, filter, update, opts...)
@@ -980,6 +1040,10 @@ func (_c *Collection_FindOneAndUpdate_Call) RunAndReturn(run func(context.Contex
 func (_m *Collection) Indexes() mongoifc.IndexView {
 	ret := _m.Called()
 
+	if len(ret) == 0 {
+		panic("no return value specified for Indexes")
+	}
+
 	var r0 mongoifc.IndexView
 	if rf, ok := ret.Get(0).(func() mongoifc.IndexView); ok {
 		r0 = rf()
@@ -1029,6 +1093,10 @@ func (_m *Collection) InsertMany(ctx context.Context, documents []interface{}, o
 	_ca = append(_ca, ctx, documents)
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for InsertMany")
+	}
 
 	var r0 *mongo.InsertManyResult
 	var r1 error
@@ -1100,6 +1168,10 @@ func (_m *Collection) InsertOne(ctx context.Context, document interface{}, opts 
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
 
+	if len(ret) == 0 {
+		panic("no return value specified for InsertOne")
+	}
+
 	var r0 *mongo.InsertOneResult
 	var r1 error
 	if rf, ok := ret.Get(0).(func(context.Context, interface{}, ...*options.InsertOneOptions) (*mongo.InsertOneResult, error)); ok {
@@ -1163,6 +1235,10 @@ func (_c *Collection_InsertOne_Call) RunAndReturn(run func(context.Context, inte
 func (_m *Collection) Name() string {
 	ret := _m.Called()
 
+	if len(ret) == 0 {
+		panic("no return value specified for Name")
+	}
+
 	var r0 string
 	if rf, ok := ret.Get(0).(func() string); ok {
 		r0 = rf()
@@ -1210,6 +1286,10 @@ func (_m *Collection) ReplaceOne(ctx context.Context, filter interface{}, replac
 	_ca = append(_ca, ctx, filter, replacement)
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for ReplaceOne")
+	}
 
 	var r0 *mongo.UpdateResult
 	var r1 error
@@ -1275,6 +1355,10 @@ func (_c *Collection_ReplaceOne_Call) RunAndReturn(run func(context.Context, int
 func (_m *Collection) SearchIndexes() mongoifc.SearchIndexView {
 	ret := _m.Called()
 
+	if len(ret) == 0 {
+		panic("no return value specified for SearchIndexes")
+	}
+
 	var r0 mongoifc.SearchIndexView
 	if rf, ok := ret.Get(0).(func() mongoifc.SearchIndexView); ok {
 		r0 = rf()
@@ -1324,6 +1408,10 @@ func (_m *Collection) UpdateByID(ctx context.Context, id interface{}, update int
 	_ca = append(_ca, ctx, id, update)
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for UpdateByID")
+	}
 
 	var r0 *mongo.UpdateResult
 	var r1 error
@@ -1396,6 +1484,10 @@ func (_m *Collection) UpdateMany(ctx context.Context, filter interface{}, update
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
 
+	if len(ret) == 0 {
+		panic("no return value specified for UpdateMany")
+	}
+
 	var r0 *mongo.UpdateResult
 	var r1 error
 	if rf, ok := ret.Get(0).(func(context.Context, interface{}, interface{}, ...*options.UpdateOptions) (*mongo.UpdateResult, error)); ok {
@@ -1467,6 +1559,10 @@ func (_m *Collection) UpdateOne(ctx context.Context, filter interface{}, update 
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
 
+	if len(ret) == 0 {
+		panic("no return value specified for UpdateOne")
+	}
+
 	var r0 *mongo.UpdateResult
 	var r1 error
 	if rf, ok := ret.Get(0).(func(context.Context, interface{}, interface{}, ...*options.UpdateOptions) (*mongo.UpdateResult, error)); ok {
@@ -1537,6 +1633,10 @@ func (_m *Collection) Watch(ctx context.Context, pipeline interface{}, opts ...*
 	_ca = append(_ca, ctx, pipeline)
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for Watch")
+	}
 
 	var r0 mongoifc.ChangeStream
 	var r1 error

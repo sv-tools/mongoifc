@@ -27,6 +27,10 @@ func (_m *ChangeStream) EXPECT() *ChangeStream_Expecter {
 func (_m *ChangeStream) Close(ctx context.Context) error {
 	ret := _m.Called(ctx)
 
+	if len(ret) == 0 {
+		panic("no return value specified for Close")
+	}
+
 	var r0 error
 	if rf, ok := ret.Get(0).(func(context.Context) error); ok {
 		r0 = rf(ctx)
@@ -68,6 +72,10 @@ func (_c *ChangeStream_Close_Call) RunAndReturn(run func(context.Context) error)
 // Current provides a mock function with given fields:
 func (_m *ChangeStream) Current() bson.Raw {
 	ret := _m.Called()
+
+	if len(ret) == 0 {
+		panic("no return value specified for Current")
+	}
 
 	var r0 bson.Raw
 	if rf, ok := ret.Get(0).(func() bson.Raw); ok {
@@ -112,6 +120,10 @@ func (_c *ChangeStream_Current_Call) RunAndReturn(run func() bson.Raw) *ChangeSt
 func (_m *ChangeStream) Decode(val interface{}) error {
 	ret := _m.Called(val)
 
+	if len(ret) == 0 {
+		panic("no return value specified for Decode")
+	}
+
 	var r0 error
 	if rf, ok := ret.Get(0).(func(interface{}) error); ok {
 		r0 = rf(val)
@@ -154,6 +166,10 @@ func (_c *ChangeStream_Decode_Call) RunAndReturn(run func(interface{}) error) *C
 func (_m *ChangeStream) Err() error {
 	ret := _m.Called()
 
+	if len(ret) == 0 {
+		panic("no return value specified for Err")
+	}
+
 	var r0 error
 	if rf, ok := ret.Get(0).(func() error); ok {
 		r0 = rf()
@@ -194,6 +210,10 @@ func (_c *ChangeStream_Err_Call) RunAndReturn(run func() error) *ChangeStream_Er
 // ID provides a mock function with given fields:
 func (_m *ChangeStream) ID() int64 {
 	ret := _m.Called()
+
+	if len(ret) == 0 {
+		panic("no return value specified for ID")
+	}
 
 	var r0 int64
 	if rf, ok := ret.Get(0).(func() int64); ok {
@@ -236,6 +256,10 @@ func (_c *ChangeStream_ID_Call) RunAndReturn(run func() int64) *ChangeStream_ID_
 func (_m *ChangeStream) Next(ctx context.Context) bool {
 	ret := _m.Called(ctx)
 
+	if len(ret) == 0 {
+		panic("no return value specified for Next")
+	}
+
 	var r0 bool
 	if rf, ok := ret.Get(0).(func(context.Context) bool); ok {
 		r0 = rf(ctx)
@@ -277,6 +301,10 @@ func (_c *ChangeStream_Next_Call) RunAndReturn(run func(context.Context) bool) *
 // ResumeToken provides a mock function with given fields:
 func (_m *ChangeStream) ResumeToken() bson.Raw {
 	ret := _m.Called()
+
+	if len(ret) == 0 {
+		panic("no return value specified for ResumeToken")
+	}
 
 	var r0 bson.Raw
 	if rf, ok := ret.Get(0).(func() bson.Raw); ok {
@@ -353,6 +381,10 @@ func (_c *ChangeStream_SetBatchSize_Call) RunAndReturn(run func(int32)) *ChangeS
 // TryNext provides a mock function with given fields: ctx
 func (_m *ChangeStream) TryNext(ctx context.Context) bool {
 	ret := _m.Called(ctx)
+
+	if len(ret) == 0 {
+		panic("no return value specified for TryNext")
+	}
 
 	var r0 bool
 	if rf, ok := ret.Get(0).(func(context.Context) bool); ok {
