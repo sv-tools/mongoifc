@@ -40,6 +40,10 @@ func (_m *IndexView) CreateMany(ctx context.Context, models []mongo.IndexModel, 
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
 
+	if len(ret) == 0 {
+		panic("no return value specified for CreateMany")
+	}
+
 	var r0 []string
 	var r1 error
 	if rf, ok := ret.Get(0).(func(context.Context, []mongo.IndexModel, ...*options.CreateIndexesOptions) ([]string, error)); ok {
@@ -110,6 +114,10 @@ func (_m *IndexView) CreateOne(ctx context.Context, model mongo.IndexModel, opts
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
 
+	if len(ret) == 0 {
+		panic("no return value specified for CreateOne")
+	}
+
 	var r0 string
 	var r1 error
 	if rf, ok := ret.Get(0).(func(context.Context, mongo.IndexModel, ...*options.CreateIndexesOptions) (string, error)); ok {
@@ -177,6 +185,10 @@ func (_m *IndexView) DropAll(ctx context.Context, opts ...*options.DropIndexesOp
 	_ca = append(_ca, ctx)
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for DropAll")
+	}
 
 	var r0 bson.Raw
 	var r1 error
@@ -246,6 +258,10 @@ func (_m *IndexView) DropOne(ctx context.Context, name string, opts ...*options.
 	_ca = append(_ca, ctx, name)
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for DropOne")
+	}
 
 	var r0 bson.Raw
 	var r1 error
@@ -317,6 +333,10 @@ func (_m *IndexView) List(ctx context.Context, opts ...*options.ListIndexesOptio
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
 
+	if len(ret) == 0 {
+		panic("no return value specified for List")
+	}
+
 	var r0 mongoifc.Cursor
 	var r1 error
 	if rf, ok := ret.Get(0).(func(context.Context, ...*options.ListIndexesOptions) (mongoifc.Cursor, error)); ok {
@@ -385,6 +405,10 @@ func (_m *IndexView) ListSpecifications(ctx context.Context, opts ...*options.Li
 	_ca = append(_ca, ctx)
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for ListSpecifications")
+	}
 
 	var r0 []*mongo.IndexSpecification
 	var r1 error

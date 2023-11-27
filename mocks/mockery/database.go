@@ -43,6 +43,10 @@ func (_m *Database) Aggregate(ctx context.Context, pipeline interface{}, opts ..
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
 
+	if len(ret) == 0 {
+		panic("no return value specified for Aggregate")
+	}
+
 	var r0 mongoifc.Cursor
 	var r1 error
 	if rf, ok := ret.Get(0).(func(context.Context, interface{}, ...*options.AggregateOptions) (mongoifc.Cursor, error)); ok {
@@ -106,6 +110,10 @@ func (_c *Database_Aggregate_Call) RunAndReturn(run func(context.Context, interf
 func (_m *Database) Client() mongoifc.Client {
 	ret := _m.Called()
 
+	if len(ret) == 0 {
+		panic("no return value specified for Client")
+	}
+
 	var r0 mongoifc.Client
 	if rf, ok := ret.Get(0).(func() mongoifc.Client); ok {
 		r0 = rf()
@@ -155,6 +163,10 @@ func (_m *Database) Collection(name string, opts ...*options.CollectionOptions) 
 	_ca = append(_ca, name)
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for Collection")
+	}
 
 	var r0 mongoifc.Collection
 	if rf, ok := ret.Get(0).(func(string, ...*options.CollectionOptions) mongoifc.Collection); ok {
@@ -215,6 +227,10 @@ func (_m *Database) CreateCollection(ctx context.Context, name string, opts ...*
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
 
+	if len(ret) == 0 {
+		panic("no return value specified for CreateCollection")
+	}
+
 	var r0 error
 	if rf, ok := ret.Get(0).(func(context.Context, string, ...*options.CreateCollectionOptions) error); ok {
 		r0 = rf(ctx, name, opts...)
@@ -273,6 +289,10 @@ func (_m *Database) CreateView(ctx context.Context, viewName string, viewOn stri
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
 
+	if len(ret) == 0 {
+		panic("no return value specified for CreateView")
+	}
+
 	var r0 error
 	if rf, ok := ret.Get(0).(func(context.Context, string, string, interface{}, ...*options.CreateViewOptions) error); ok {
 		r0 = rf(ctx, viewName, viewOn, pipeline, opts...)
@@ -326,6 +346,10 @@ func (_c *Database_CreateView_Call) RunAndReturn(run func(context.Context, strin
 func (_m *Database) Drop(ctx context.Context) error {
 	ret := _m.Called(ctx)
 
+	if len(ret) == 0 {
+		panic("no return value specified for Drop")
+	}
+
 	var r0 error
 	if rf, ok := ret.Get(0).(func(context.Context) error); ok {
 		r0 = rf(ctx)
@@ -374,6 +398,10 @@ func (_m *Database) ListCollectionNames(ctx context.Context, filter interface{},
 	_ca = append(_ca, ctx, filter)
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for ListCollectionNames")
+	}
 
 	var r0 []string
 	var r1 error
@@ -445,6 +473,10 @@ func (_m *Database) ListCollectionSpecifications(ctx context.Context, filter int
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
 
+	if len(ret) == 0 {
+		panic("no return value specified for ListCollectionSpecifications")
+	}
+
 	var r0 []*mongo.CollectionSpecification
 	var r1 error
 	if rf, ok := ret.Get(0).(func(context.Context, interface{}, ...*options.ListCollectionsOptions) ([]*mongo.CollectionSpecification, error)); ok {
@@ -515,6 +547,10 @@ func (_m *Database) ListCollections(ctx context.Context, filter interface{}, opt
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
 
+	if len(ret) == 0 {
+		panic("no return value specified for ListCollections")
+	}
+
 	var r0 mongoifc.Cursor
 	var r1 error
 	if rf, ok := ret.Get(0).(func(context.Context, interface{}, ...*options.ListCollectionsOptions) (mongoifc.Cursor, error)); ok {
@@ -578,6 +614,10 @@ func (_c *Database_ListCollections_Call) RunAndReturn(run func(context.Context, 
 func (_m *Database) Name() string {
 	ret := _m.Called()
 
+	if len(ret) == 0 {
+		panic("no return value specified for Name")
+	}
+
 	var r0 string
 	if rf, ok := ret.Get(0).(func() string); ok {
 		r0 = rf()
@@ -618,6 +658,10 @@ func (_c *Database_Name_Call) RunAndReturn(run func() string) *Database_Name_Cal
 // ReadConcern provides a mock function with given fields:
 func (_m *Database) ReadConcern() *readconcern.ReadConcern {
 	ret := _m.Called()
+
+	if len(ret) == 0 {
+		panic("no return value specified for ReadConcern")
+	}
 
 	var r0 *readconcern.ReadConcern
 	if rf, ok := ret.Get(0).(func() *readconcern.ReadConcern); ok {
@@ -661,6 +705,10 @@ func (_c *Database_ReadConcern_Call) RunAndReturn(run func() *readconcern.ReadCo
 // ReadPreference provides a mock function with given fields:
 func (_m *Database) ReadPreference() *readpref.ReadPref {
 	ret := _m.Called()
+
+	if len(ret) == 0 {
+		panic("no return value specified for ReadPreference")
+	}
 
 	var r0 *readpref.ReadPref
 	if rf, ok := ret.Get(0).(func() *readpref.ReadPref); ok {
@@ -711,6 +759,10 @@ func (_m *Database) RunCommand(ctx context.Context, runCommand interface{}, opts
 	_ca = append(_ca, ctx, runCommand)
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for RunCommand")
+	}
 
 	var r0 mongoifc.SingleResult
 	if rf, ok := ret.Get(0).(func(context.Context, interface{}, ...*options.RunCmdOptions) mongoifc.SingleResult); ok {
@@ -771,6 +823,10 @@ func (_m *Database) RunCommandCursor(ctx context.Context, runCommand interface{}
 	_ca = append(_ca, ctx, runCommand)
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for RunCommandCursor")
+	}
 
 	var r0 mongoifc.Cursor
 	var r1 error
@@ -842,6 +898,10 @@ func (_m *Database) Watch(ctx context.Context, pipeline interface{}, opts ...*op
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
 
+	if len(ret) == 0 {
+		panic("no return value specified for Watch")
+	}
+
 	var r0 mongoifc.ChangeStream
 	var r1 error
 	if rf, ok := ret.Get(0).(func(context.Context, interface{}, ...*options.ChangeStreamOptions) (mongoifc.ChangeStream, error)); ok {
@@ -904,6 +964,10 @@ func (_c *Database_Watch_Call) RunAndReturn(run func(context.Context, interface{
 // WriteConcern provides a mock function with given fields:
 func (_m *Database) WriteConcern() *writeconcern.WriteConcern {
 	ret := _m.Called()
+
+	if len(ret) == 0 {
+		panic("no return value specified for WriteConcern")
+	}
 
 	var r0 *writeconcern.WriteConcern
 	if rf, ok := ret.Get(0).(func() *writeconcern.WriteConcern); ok {

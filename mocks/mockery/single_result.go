@@ -24,6 +24,10 @@ func (_m *SingleResult) EXPECT() *SingleResult_Expecter {
 func (_m *SingleResult) Decode(v interface{}) error {
 	ret := _m.Called(v)
 
+	if len(ret) == 0 {
+		panic("no return value specified for Decode")
+	}
+
 	var r0 error
 	if rf, ok := ret.Get(0).(func(interface{}) error); ok {
 		r0 = rf(v)
@@ -65,6 +69,10 @@ func (_c *SingleResult_Decode_Call) RunAndReturn(run func(interface{}) error) *S
 // DecodeBytes provides a mock function with given fields:
 func (_m *SingleResult) DecodeBytes() (bson.Raw, error) {
 	ret := _m.Called()
+
+	if len(ret) == 0 {
+		panic("no return value specified for DecodeBytes")
+	}
 
 	var r0 bson.Raw
 	var r1 error
@@ -119,6 +127,10 @@ func (_c *SingleResult_DecodeBytes_Call) RunAndReturn(run func() (bson.Raw, erro
 func (_m *SingleResult) Err() error {
 	ret := _m.Called()
 
+	if len(ret) == 0 {
+		panic("no return value specified for Err")
+	}
+
 	var r0 error
 	if rf, ok := ret.Get(0).(func() error); ok {
 		r0 = rf()
@@ -159,6 +171,10 @@ func (_c *SingleResult_Err_Call) RunAndReturn(run func() error) *SingleResult_Er
 // Raw provides a mock function with given fields:
 func (_m *SingleResult) Raw() (bson.Raw, error) {
 	ret := _m.Called()
+
+	if len(ret) == 0 {
+		panic("no return value specified for Raw")
+	}
 
 	var r0 bson.Raw
 	var r1 error

@@ -29,6 +29,10 @@ func (_m *Cursor) EXPECT() *Cursor_Expecter {
 func (_m *Cursor) All(ctx context.Context, results interface{}) error {
 	ret := _m.Called(ctx, results)
 
+	if len(ret) == 0 {
+		panic("no return value specified for All")
+	}
+
 	var r0 error
 	if rf, ok := ret.Get(0).(func(context.Context, interface{}) error); ok {
 		r0 = rf(ctx, results)
@@ -72,6 +76,10 @@ func (_c *Cursor_All_Call) RunAndReturn(run func(context.Context, interface{}) e
 func (_m *Cursor) Close(ctx context.Context) error {
 	ret := _m.Called(ctx)
 
+	if len(ret) == 0 {
+		panic("no return value specified for Close")
+	}
+
 	var r0 error
 	if rf, ok := ret.Get(0).(func(context.Context) error); ok {
 		r0 = rf(ctx)
@@ -113,6 +121,10 @@ func (_c *Cursor_Close_Call) RunAndReturn(run func(context.Context) error) *Curs
 // Current provides a mock function with given fields:
 func (_m *Cursor) Current() bson.Raw {
 	ret := _m.Called()
+
+	if len(ret) == 0 {
+		panic("no return value specified for Current")
+	}
 
 	var r0 bson.Raw
 	if rf, ok := ret.Get(0).(func() bson.Raw); ok {
@@ -157,6 +169,10 @@ func (_c *Cursor_Current_Call) RunAndReturn(run func() bson.Raw) *Cursor_Current
 func (_m *Cursor) Decode(val interface{}) error {
 	ret := _m.Called(val)
 
+	if len(ret) == 0 {
+		panic("no return value specified for Decode")
+	}
+
 	var r0 error
 	if rf, ok := ret.Get(0).(func(interface{}) error); ok {
 		r0 = rf(val)
@@ -199,6 +215,10 @@ func (_c *Cursor_Decode_Call) RunAndReturn(run func(interface{}) error) *Cursor_
 func (_m *Cursor) Err() error {
 	ret := _m.Called()
 
+	if len(ret) == 0 {
+		panic("no return value specified for Err")
+	}
+
 	var r0 error
 	if rf, ok := ret.Get(0).(func() error); ok {
 		r0 = rf()
@@ -239,6 +259,10 @@ func (_c *Cursor_Err_Call) RunAndReturn(run func() error) *Cursor_Err_Call {
 // ID provides a mock function with given fields:
 func (_m *Cursor) ID() int64 {
 	ret := _m.Called()
+
+	if len(ret) == 0 {
+		panic("no return value specified for ID")
+	}
 
 	var r0 int64
 	if rf, ok := ret.Get(0).(func() int64); ok {
@@ -281,6 +305,10 @@ func (_c *Cursor_ID_Call) RunAndReturn(run func() int64) *Cursor_ID_Call {
 func (_m *Cursor) Next(ctx context.Context) bool {
 	ret := _m.Called(ctx)
 
+	if len(ret) == 0 {
+		panic("no return value specified for Next")
+	}
+
 	var r0 bool
 	if rf, ok := ret.Get(0).(func(context.Context) bool); ok {
 		r0 = rf(ctx)
@@ -322,6 +350,10 @@ func (_c *Cursor_Next_Call) RunAndReturn(run func(context.Context) bool) *Cursor
 // RemainingBatchLength provides a mock function with given fields:
 func (_m *Cursor) RemainingBatchLength() int {
 	ret := _m.Called()
+
+	if len(ret) == 0 {
+		panic("no return value specified for RemainingBatchLength")
+	}
 
 	var r0 int
 	if rf, ok := ret.Get(0).(func() int); ok {
@@ -462,6 +494,10 @@ func (_c *Cursor_SetMaxTime_Call) RunAndReturn(run func(time.Duration)) *Cursor_
 // TryNext provides a mock function with given fields: ctx
 func (_m *Cursor) TryNext(ctx context.Context) bool {
 	ret := _m.Called(ctx)
+
+	if len(ret) == 0 {
+		panic("no return value specified for TryNext")
+	}
 
 	var r0 bool
 	if rf, ok := ret.Get(0).(func(context.Context) bool); ok {

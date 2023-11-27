@@ -35,6 +35,10 @@ func (_m *ClientEncryption) EXPECT() *ClientEncryption_Expecter {
 func (_m *ClientEncryption) AddKeyAltName(ctx context.Context, id primitive.Binary, keyAltName string) mongoifc.SingleResult {
 	ret := _m.Called(ctx, id, keyAltName)
 
+	if len(ret) == 0 {
+		panic("no return value specified for AddKeyAltName")
+	}
+
 	var r0 mongoifc.SingleResult
 	if rf, ok := ret.Get(0).(func(context.Context, primitive.Binary, string) mongoifc.SingleResult); ok {
 		r0 = rf(ctx, id, keyAltName)
@@ -80,6 +84,10 @@ func (_c *ClientEncryption_AddKeyAltName_Call) RunAndReturn(run func(context.Con
 // Close provides a mock function with given fields: ctx
 func (_m *ClientEncryption) Close(ctx context.Context) error {
 	ret := _m.Called(ctx)
+
+	if len(ret) == 0 {
+		panic("no return value specified for Close")
+	}
 
 	var r0 error
 	if rf, ok := ret.Get(0).(func(context.Context) error); ok {
@@ -129,6 +137,10 @@ func (_m *ClientEncryption) CreateDataKey(ctx context.Context, kmsProvider strin
 	_ca = append(_ca, ctx, kmsProvider)
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for CreateDataKey")
+	}
 
 	var r0 primitive.Binary
 	var r1 error
@@ -190,6 +202,10 @@ func (_c *ClientEncryption_CreateDataKey_Call) RunAndReturn(run func(context.Con
 // CreateEncryptedCollection provides a mock function with given fields: ctx, db, coll, createOpts, kmsProvider, masterKey
 func (_m *ClientEncryption) CreateEncryptedCollection(ctx context.Context, db mongoifc.Database, coll string, createOpts *options.CreateCollectionOptions, kmsProvider string, masterKey interface{}) (mongoifc.Collection, primitive.M, error) {
 	ret := _m.Called(ctx, db, coll, createOpts, kmsProvider, masterKey)
+
+	if len(ret) == 0 {
+		panic("no return value specified for CreateEncryptedCollection")
+	}
 
 	var r0 mongoifc.Collection
 	var r1 primitive.M
@@ -259,6 +275,10 @@ func (_c *ClientEncryption_CreateEncryptedCollection_Call) RunAndReturn(run func
 func (_m *ClientEncryption) Decrypt(ctx context.Context, val primitive.Binary) (bson.RawValue, error) {
 	ret := _m.Called(ctx, val)
 
+	if len(ret) == 0 {
+		panic("no return value specified for Decrypt")
+	}
+
 	var r0 bson.RawValue
 	var r1 error
 	if rf, ok := ret.Get(0).(func(context.Context, primitive.Binary) (bson.RawValue, error)); ok {
@@ -311,6 +331,10 @@ func (_c *ClientEncryption_Decrypt_Call) RunAndReturn(run func(context.Context, 
 // DeleteKey provides a mock function with given fields: ctx, id
 func (_m *ClientEncryption) DeleteKey(ctx context.Context, id primitive.Binary) (*mongo.DeleteResult, error) {
 	ret := _m.Called(ctx, id)
+
+	if len(ret) == 0 {
+		panic("no return value specified for DeleteKey")
+	}
 
 	var r0 *mongo.DeleteResult
 	var r1 error
@@ -373,6 +397,10 @@ func (_m *ClientEncryption) Encrypt(ctx context.Context, val bson.RawValue, opts
 	_ca = append(_ca, ctx, val)
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for Encrypt")
+	}
 
 	var r0 primitive.Binary
 	var r1 error
@@ -442,6 +470,10 @@ func (_m *ClientEncryption) EncryptExpression(ctx context.Context, expr interfac
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
 
+	if len(ret) == 0 {
+		panic("no return value specified for EncryptExpression")
+	}
+
 	var r0 error
 	if rf, ok := ret.Get(0).(func(context.Context, interface{}, interface{}, ...*options.EncryptOptions) error); ok {
 		r0 = rf(ctx, expr, result, opts...)
@@ -494,6 +526,10 @@ func (_c *ClientEncryption_EncryptExpression_Call) RunAndReturn(run func(context
 func (_m *ClientEncryption) GetKey(ctx context.Context, id primitive.Binary) mongoifc.SingleResult {
 	ret := _m.Called(ctx, id)
 
+	if len(ret) == 0 {
+		panic("no return value specified for GetKey")
+	}
+
 	var r0 mongoifc.SingleResult
 	if rf, ok := ret.Get(0).(func(context.Context, primitive.Binary) mongoifc.SingleResult); ok {
 		r0 = rf(ctx, id)
@@ -539,6 +575,10 @@ func (_c *ClientEncryption_GetKey_Call) RunAndReturn(run func(context.Context, p
 func (_m *ClientEncryption) GetKeyByAltName(ctx context.Context, keyAltName string) mongoifc.SingleResult {
 	ret := _m.Called(ctx, keyAltName)
 
+	if len(ret) == 0 {
+		panic("no return value specified for GetKeyByAltName")
+	}
+
 	var r0 mongoifc.SingleResult
 	if rf, ok := ret.Get(0).(func(context.Context, string) mongoifc.SingleResult); ok {
 		r0 = rf(ctx, keyAltName)
@@ -583,6 +623,10 @@ func (_c *ClientEncryption_GetKeyByAltName_Call) RunAndReturn(run func(context.C
 // GetKeys provides a mock function with given fields: ctx
 func (_m *ClientEncryption) GetKeys(ctx context.Context) (mongoifc.Cursor, error) {
 	ret := _m.Called(ctx)
+
+	if len(ret) == 0 {
+		panic("no return value specified for GetKeys")
+	}
 
 	var r0 mongoifc.Cursor
 	var r1 error
@@ -638,6 +682,10 @@ func (_c *ClientEncryption_GetKeys_Call) RunAndReturn(run func(context.Context) 
 func (_m *ClientEncryption) RemoveKeyAltName(ctx context.Context, id primitive.Binary, keyAltName string) mongoifc.SingleResult {
 	ret := _m.Called(ctx, id, keyAltName)
 
+	if len(ret) == 0 {
+		panic("no return value specified for RemoveKeyAltName")
+	}
+
 	var r0 mongoifc.SingleResult
 	if rf, ok := ret.Get(0).(func(context.Context, primitive.Binary, string) mongoifc.SingleResult); ok {
 		r0 = rf(ctx, id, keyAltName)
@@ -690,6 +738,10 @@ func (_m *ClientEncryption) RewrapManyDataKey(ctx context.Context, filter interf
 	_ca = append(_ca, ctx, filter)
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for RewrapManyDataKey")
+	}
 
 	var r0 *mongo.RewrapManyDataKeyResult
 	var r1 error

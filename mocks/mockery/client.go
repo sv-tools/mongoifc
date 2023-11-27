@@ -34,6 +34,10 @@ func (_m *Client) EXPECT() *Client_Expecter {
 func (_m *Client) Connect(ctx context.Context) error {
 	ret := _m.Called(ctx)
 
+	if len(ret) == 0 {
+		panic("no return value specified for Connect")
+	}
+
 	var r0 error
 	if rf, ok := ret.Get(0).(func(context.Context) error); ok {
 		r0 = rf(ctx)
@@ -82,6 +86,10 @@ func (_m *Client) Database(name string, opts ...*options.DatabaseOptions) mongoi
 	_ca = append(_ca, name)
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for Database")
+	}
 
 	var r0 mongoifc.Database
 	if rf, ok := ret.Get(0).(func(string, ...*options.DatabaseOptions) mongoifc.Database); ok {
@@ -135,6 +143,10 @@ func (_c *Client_Database_Call) RunAndReturn(run func(string, ...*options.Databa
 func (_m *Client) Disconnect(ctx context.Context) error {
 	ret := _m.Called(ctx)
 
+	if len(ret) == 0 {
+		panic("no return value specified for Disconnect")
+	}
+
 	var r0 error
 	if rf, ok := ret.Get(0).(func(context.Context) error); ok {
 		r0 = rf(ctx)
@@ -183,6 +195,10 @@ func (_m *Client) ListDatabaseNames(ctx context.Context, filter interface{}, opt
 	_ca = append(_ca, ctx, filter)
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for ListDatabaseNames")
+	}
 
 	var r0 []string
 	var r1 error
@@ -254,6 +270,10 @@ func (_m *Client) ListDatabases(ctx context.Context, filter interface{}, opts ..
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
 
+	if len(ret) == 0 {
+		panic("no return value specified for ListDatabases")
+	}
+
 	var r0 mongo.ListDatabasesResult
 	var r1 error
 	if rf, ok := ret.Get(0).(func(context.Context, interface{}, ...*options.ListDatabasesOptions) (mongo.ListDatabasesResult, error)); ok {
@@ -315,6 +335,10 @@ func (_c *Client_ListDatabases_Call) RunAndReturn(run func(context.Context, inte
 func (_m *Client) NumberSessionsInProgress() int {
 	ret := _m.Called()
 
+	if len(ret) == 0 {
+		panic("no return value specified for NumberSessionsInProgress")
+	}
+
 	var r0 int
 	if rf, ok := ret.Get(0).(func() int); ok {
 		r0 = rf()
@@ -355,6 +379,10 @@ func (_c *Client_NumberSessionsInProgress_Call) RunAndReturn(run func() int) *Cl
 // Ping provides a mock function with given fields: ctx, rp
 func (_m *Client) Ping(ctx context.Context, rp *readpref.ReadPref) error {
 	ret := _m.Called(ctx, rp)
+
+	if len(ret) == 0 {
+		panic("no return value specified for Ping")
+	}
 
 	var r0 error
 	if rf, ok := ret.Get(0).(func(context.Context, *readpref.ReadPref) error); ok {
@@ -404,6 +432,10 @@ func (_m *Client) StartSession(opts ...*options.SessionOptions) (mongoifc.Sessio
 	var _ca []interface{}
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for StartSession")
+	}
 
 	var r0 mongoifc.Session
 	var r1 error
@@ -466,6 +498,10 @@ func (_c *Client_StartSession_Call) RunAndReturn(run func(...*options.SessionOpt
 func (_m *Client) Timeout() *time.Duration {
 	ret := _m.Called()
 
+	if len(ret) == 0 {
+		panic("no return value specified for Timeout")
+	}
+
 	var r0 *time.Duration
 	if rf, ok := ret.Get(0).(func() *time.Duration); ok {
 		r0 = rf()
@@ -509,6 +545,10 @@ func (_c *Client_Timeout_Call) RunAndReturn(run func() *time.Duration) *Client_T
 func (_m *Client) UseSession(ctx context.Context, fn func(mongoifc.SessionContext) error) error {
 	ret := _m.Called(ctx, fn)
 
+	if len(ret) == 0 {
+		panic("no return value specified for UseSession")
+	}
+
 	var r0 error
 	if rf, ok := ret.Get(0).(func(context.Context, func(mongoifc.SessionContext) error) error); ok {
 		r0 = rf(ctx, fn)
@@ -551,6 +591,10 @@ func (_c *Client_UseSession_Call) RunAndReturn(run func(context.Context, func(mo
 // UseSessionWithOptions provides a mock function with given fields: ctx, opts, fn
 func (_m *Client) UseSessionWithOptions(ctx context.Context, opts *options.SessionOptions, fn func(mongoifc.SessionContext) error) error {
 	ret := _m.Called(ctx, opts, fn)
+
+	if len(ret) == 0 {
+		panic("no return value specified for UseSessionWithOptions")
+	}
 
 	var r0 error
 	if rf, ok := ret.Get(0).(func(context.Context, *options.SessionOptions, func(mongoifc.SessionContext) error) error); ok {
@@ -602,6 +646,10 @@ func (_m *Client) Watch(ctx context.Context, pipeline interface{}, opts ...*opti
 	_ca = append(_ca, ctx, pipeline)
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for Watch")
+	}
 
 	var r0 mongoifc.ChangeStream
 	var r1 error
