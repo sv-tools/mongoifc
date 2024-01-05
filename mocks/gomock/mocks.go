@@ -5,6 +5,7 @@
 //
 //	mockgen -destination=mocks/gomock/mocks.go -package mocks . ChangeStream,Client,Collection,Cursor,Database,IndexView,Session,SingleResult,SessionContext,ClientEncryption
 //
+
 // Package mocks is a generated GoMock package.
 package mocks
 
