@@ -15,6 +15,11 @@ type IndexView interface {
 	CreateOne(ctx context.Context, model mongo.IndexModel, opts ...*options.CreateIndexesOptions) (string, error)
 	DropAll(ctx context.Context, opts ...*options.DropIndexesOptions) (bson.Raw, error)
 	DropOne(ctx context.Context, name string, opts ...*options.DropIndexesOptions) (bson.Raw, error)
+	DropOneWithKey(
+		ctx context.Context,
+		keySpecDocument interface{},
+		opts ...*options.DropIndexesOptions,
+	) (bson.Raw, error)
 	List(ctx context.Context, opts ...*options.ListIndexesOptions) (Cursor, error)
 	ListSpecifications(ctx context.Context, opts ...*options.ListIndexesOptions) ([]*mongo.IndexSpecification, error)
 }
@@ -45,6 +50,14 @@ func (i *indexView) DropAll(ctx context.Context, opts ...*options.DropIndexesOpt
 
 func (i *indexView) DropOne(ctx context.Context, name string, opts ...*options.DropIndexesOptions) (bson.Raw, error) {
 	return i.iv.DropOne(ctx, name, opts...)
+}
+
+func (i *indexView) DropOneWithKey(
+	ctx context.Context,
+	keySpecDocument interface{},
+	opts ...*options.DropIndexesOptions,
+) (bson.Raw, error) {
+	return i.iv.DropOneWithKey(ctx, keySpecDocument, opts...)
 }
 
 func (i *indexView) List(ctx context.Context, opts ...*options.ListIndexesOptions) (Cursor, error) {
