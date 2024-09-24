@@ -1470,6 +1470,26 @@ func (mr *MockIndexViewMockRecorder) DropOne(arg0, arg1 any, arg2 ...any) *gomoc
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DropOne", reflect.TypeOf((*MockIndexView)(nil).DropOne), varargs...)
 }
 
+// DropOneWithKey mocks base method.
+func (m *MockIndexView) DropOneWithKey(arg0 context.Context, arg1 any, arg2 ...*options.DropIndexesOptions) (bson.Raw, error) {
+	m.ctrl.T.Helper()
+	varargs := []any{arg0, arg1}
+	for _, a := range arg2 {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "DropOneWithKey", varargs...)
+	ret0, _ := ret[0].(bson.Raw)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// DropOneWithKey indicates an expected call of DropOneWithKey.
+func (mr *MockIndexViewMockRecorder) DropOneWithKey(arg0, arg1 any, arg2 ...any) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	varargs := append([]any{arg0, arg1}, arg2...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DropOneWithKey", reflect.TypeOf((*MockIndexView)(nil).DropOneWithKey), varargs...)
+}
+
 // List mocks base method.
 func (m *MockIndexView) List(arg0 context.Context, arg1 ...*options.ListIndexesOptions) (mongoifc.Cursor, error) {
 	m.ctrl.T.Helper()
