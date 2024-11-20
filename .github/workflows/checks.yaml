@@ -18,7 +18,7 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  GO: "1.21"
+  GO: "1.23"
   MONGO_USERNAME: "admin"
   MONGO_PASSWORD: "adminpass"
 
