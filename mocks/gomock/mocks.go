@@ -29,6 +29,7 @@ import (
 type MockChangeStream struct {
 	ctrl     *gomock.Controller
 	recorder *MockChangeStreamMockRecorder
+	isgomock struct{}
 }
 
 // MockChangeStreamMockRecorder is the mock recorder for MockChangeStream.
@@ -49,17 +50,17 @@ func (m *MockChangeStream) EXPECT() *MockChangeStreamMockRecorder {
 }
 
 // Close mocks base method.
-func (m *MockChangeStream) Close(arg0 context.Context) error {
+func (m *MockChangeStream) Close(ctx context.Context) error {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "Close", arg0)
+	ret := m.ctrl.Call(m, "Close", ctx)
 	ret0, _ := ret[0].(error)
 	return ret0
 }
 
 // Close indicates an expected call of Close.
-func (mr *MockChangeStreamMockRecorder) Close(arg0 any) *gomock.Call {
+func (mr *MockChangeStreamMockRecorder) Close(ctx any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Close", reflect.TypeOf((*MockChangeStream)(nil).Close), arg0)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Close", reflect.TypeOf((*MockChangeStream)(nil).Close), ctx)
 }
 
 // Current mocks base method.
@@ -77,17 +78,17 @@ func (mr *MockChangeStreamMockRecorder) Current() *gomock.Call {
 }
 
 // Decode mocks base method.
-func (m *MockChangeStream) Decode(arg0 any) error {
+func (m *MockChangeStream) Decode(val any) error {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "Decode", arg0)
+	ret := m.ctrl.Call(m, "Decode", val)
 	ret0, _ := ret[0].(error)
 	return ret0
 }
 
 // Decode indicates an expected call of Decode.
-func (mr *MockChangeStreamMockRecorder) Decode(arg0 any) *gomock.Call {
+func (mr *MockChangeStreamMockRecorder) Decode(val any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Decode", reflect.TypeOf((*MockChangeStream)(nil).Decode), arg0)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Decode", reflect.TypeOf((*MockChangeStream)(nil).Decode), val)
 }
 
 // Err mocks base method.
@@ -119,17 +120,17 @@ func (mr *MockChangeStreamMockRecorder) ID() *gomock.Call {
 }
 
 // Next mocks base method.
-func (m *MockChangeStream) Next(arg0 context.Context) bool {
+func (m *MockChangeStream) Next(ctx context.Context) bool {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "Next", arg0)
+	ret := m.ctrl.Call(m, "Next", ctx)
 	ret0, _ := ret[0].(bool)
 	return ret0
 }
 
 // Next indicates an expected call of Next.
-func (mr *MockChangeStreamMockRecorder) Next(arg0 any) *gomock.Call {
+func (mr *MockChangeStreamMockRecorder) Next(ctx any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Next", reflect.TypeOf((*MockChangeStream)(nil).Next), arg0)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Next", reflect.TypeOf((*MockChangeStream)(nil).Next), ctx)
 }
 
 // ResumeToken mocks base method.
@@ -147,35 +148,36 @@ func (mr *MockChangeStreamMockRecorder) ResumeToken() *gomock.Call {
 }
 
 // SetBatchSize mocks base method.
-func (m *MockChangeStream) SetBatchSize(arg0 int32) {
+func (m *MockChangeStream) SetBatchSize(size int32) {
 	m.ctrl.T.Helper()
-	m.ctrl.Call(m, "SetBatchSize", arg0)
+	m.ctrl.Call(m, "SetBatchSize", size)
 }
 
 // SetBatchSize indicates an expected call of SetBatchSize.
-func (mr *MockChangeStreamMockRecorder) SetBatchSize(arg0 any) *gomock.Call {
+func (mr *MockChangeStreamMockRecorder) SetBatchSize(size any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "SetBatchSize", reflect.TypeOf((*MockChangeStream)(nil).SetBatchSize), arg0)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "SetBatchSize", reflect.TypeOf((*MockChangeStream)(nil).SetBatchSize), size)
 }
 
 // TryNext mocks base method.
-func (m *MockChangeStream) TryNext(arg0 context.Context) bool {
+func (m *MockChangeStream) TryNext(ctx context.Context) bool {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "TryNext", arg0)
+	ret := m.ctrl.Call(m, "TryNext", ctx)
 	ret0, _ := ret[0].(bool)
 	return ret0
 }
 
 // TryNext indicates an expected call of TryNext.
-func (mr *MockChangeStreamMockRecorder) TryNext(arg0 any) *gomock.Call {
+func (mr *MockChangeStreamMockRecorder) TryNext(ctx any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "TryNext", reflect.TypeOf((*MockChangeStream)(nil).TryNext), arg0)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "TryNext", reflect.TypeOf((*MockChangeStream)(nil).TryNext), ctx)
 }
 
 // MockClient is a mock of Client interface.
 type MockClient struct {
 	ctrl     *gomock.Controller
 	recorder *MockClientMockRecorder
+	isgomock struct{}
 }
 
 // MockClientMockRecorder is the mock recorder for MockClient.
@@ -196,24 +198,24 @@ func (m *MockClient) EXPECT() *MockClientMockRecorder {
 }
 
 // Connect mocks base method.
-func (m *MockClient) Connect(arg0 context.Context) error {
+func (m *MockClient) Connect(ctx context.Context) error {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "Connect", arg0)
+	ret := m.ctrl.Call(m, "Connect", ctx)
 	ret0, _ := ret[0].(error)
 	return ret0
 }
 
 // Connect indicates an expected call of Connect.
-func (mr *MockClientMockRecorder) Connect(arg0 any) *gomock.Call {
+func (mr *MockClientMockRecorder) Connect(ctx any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Connect", reflect.TypeOf((*MockClient)(nil).Connect), arg0)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Connect", reflect.TypeOf((*MockClient)(nil).Connect), ctx)
 }
 
 // Database mocks base method.
-func (m *MockClient) Database(arg0 string, arg1 ...*options.DatabaseOptions) mongoifc.Database {
+func (m *MockClient) Database(name string, opts ...*options.DatabaseOptions) mongoifc.Database {
 	m.ctrl.T.Helper()
-	varargs := []any{arg0}
-	for _, a := range arg1 {
+	varargs := []any{name}
+	for _, a := range opts {
 		varargs = append(varargs, a)
 	}
 	ret := m.ctrl.Call(m, "Database", varargs...)
@@ -222,31 +224,31 @@ func (m *MockClient) Database(arg0 string, arg1 ...*options.DatabaseOptions) mon
 }
 
 // Database indicates an expected call of Database.
-func (mr *MockClientMockRecorder) Database(arg0 any, arg1 ...any) *gomock.Call {
+func (mr *MockClientMockRecorder) Database(name any, opts ...any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	varargs := append([]any{arg0}, arg1...)
+	varargs := append([]any{name}, opts...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Database", reflect.TypeOf((*MockClient)(nil).Database), varargs...)
 }
 
 // Disconnect mocks base method.
-func (m *MockClient) Disconnect(arg0 context.Context) error {
+func (m *MockClient) Disconnect(ctx context.Context) error {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "Disconnect", arg0)
+	ret := m.ctrl.Call(m, "Disconnect", ctx)
 	ret0, _ := ret[0].(error)
 	return ret0
 }
 
 // Disconnect indicates an expected call of Disconnect.
-func (mr *MockClientMockRecorder) Disconnect(arg0 any) *gomock.Call {
+func (mr *MockClientMockRecorder) Disconnect(ctx any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Disconnect", reflect.TypeOf((*MockClient)(nil).Disconnect), arg0)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Disconnect", reflect.TypeOf((*MockClient)(nil).Disconnect), ctx)
 }
 
 // ListDatabaseNames mocks base method.
-func (m *MockClient) ListDatabaseNames(arg0 context.Context, arg1 any, arg2 ...*options.ListDatabasesOptions) ([]string, error) {
+func (m *MockClient) ListDatabaseNames(ctx context.Context, filter any, opts ...*options.ListDatabasesOptions) ([]string, error) {
 	m.ctrl.T.Helper()
-	varargs := []any{arg0, arg1}
-	for _, a := range arg2 {
+	varargs := []any{ctx, filter}
+	for _, a := range opts {
 		varargs = append(varargs, a)
 	}
 	ret := m.ctrl.Call(m, "ListDatabaseNames", varargs...)
@@ -256,17 +258,17 @@ func (m *MockClient) ListDatabaseNames(arg0 context.Context, arg1 any, arg2 ...*
 }
 
 // ListDatabaseNames indicates an expected call of ListDatabaseNames.
-func (mr *MockClientMockRecorder) ListDatabaseNames(arg0, arg1 any, arg2 ...any) *gomock.Call {
+func (mr *MockClientMockRecorder) ListDatabaseNames(ctx, filter any, opts ...any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	varargs := append([]any{arg0, arg1}, arg2...)
+	varargs := append([]any{ctx, filter}, opts...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ListDatabaseNames", reflect.TypeOf((*MockClient)(nil).ListDatabaseNames), varargs...)
 }
 
 // ListDatabases mocks base method.
-func (m *MockClient) ListDatabases(arg0 context.Context, arg1 any, arg2 ...*options.ListDatabasesOptions) (mongo.ListDatabasesResult, error) {
+func (m *MockClient) ListDatabases(ctx context.Context, filter any, opts ...*options.ListDatabasesOptions) (mongo.ListDatabasesResult, error) {
 	m.ctrl.T.Helper()
-	varargs := []any{arg0, arg1}
-	for _, a := range arg2 {
+	varargs := []any{ctx, filter}
+	for _, a := range opts {
 		varargs = append(varargs, a)
 	}
 	ret := m.ctrl.Call(m, "ListDatabases", varargs...)
@@ -276,9 +278,9 @@ func (m *MockClient) ListDatabases(arg0 context.Context, arg1 any, arg2 ...*opti
 }
 
 // ListDatabases indicates an expected call of ListDatabases.
-func (mr *MockClientMockRecorder) ListDatabases(arg0, arg1 any, arg2 ...any) *gomock.Call {
+func (mr *MockClientMockRecorder) ListDatabases(ctx, filter any, opts ...any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	varargs := append([]any{arg0, arg1}, arg2...)
+	varargs := append([]any{ctx, filter}, opts...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ListDatabases", reflect.TypeOf((*MockClient)(nil).ListDatabases), varargs...)
 }
 
@@ -297,24 +299,24 @@ func (mr *MockClientMockRecorder) NumberSessionsInProgress() *gomock.Call {
 }
 
 // Ping mocks base method.
-func (m *MockClient) Ping(arg0 context.Context, arg1 *readpref.ReadPref) error {
+func (m *MockClient) Ping(ctx context.Context, rp *readpref.ReadPref) error {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "Ping", arg0, arg1)
+	ret := m.ctrl.Call(m, "Ping", ctx, rp)
 	ret0, _ := ret[0].(error)
 	return ret0
 }
 
 // Ping indicates an expected call of Ping.
-func (mr *MockClientMockRecorder) Ping(arg0, arg1 any) *gomock.Call {
+func (mr *MockClientMockRecorder) Ping(ctx, rp any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Ping", reflect.TypeOf((*MockClient)(nil).Ping), arg0, arg1)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Ping", reflect.TypeOf((*MockClient)(nil).Ping), ctx, rp)
 }
 
 // StartSession mocks base method.
-func (m *MockClient) StartSession(arg0 ...*options.SessionOptions) (mongoifc.Session, error) {
+func (m *MockClient) StartSession(opts ...*options.SessionOptions) (mongoifc.Session, error) {
 	m.ctrl.T.Helper()
 	varargs := []any{}
-	for _, a := range arg0 {
+	for _, a := range opts {
 		varargs = append(varargs, a)
 	}
 	ret := m.ctrl.Call(m, "StartSession", varargs...)
@@ -324,9 +326,9 @@ func (m *MockClient) StartSession(arg0 ...*options.SessionOptions) (mongoifc.Ses
 }
 
 // StartSession indicates an expected call of StartSession.
-func (mr *MockClientMockRecorder) StartSession(arg0 ...any) *gomock.Call {
+func (mr *MockClientMockRecorder) StartSession(opts ...any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "StartSession", reflect.TypeOf((*MockClient)(nil).StartSession), arg0...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "StartSession", reflect.TypeOf((*MockClient)(nil).StartSession), opts...)
 }
 
 // Timeout mocks base method.
@@ -344,38 +346,38 @@ func (mr *MockClientMockRecorder) Timeout() *gomock.Call {
 }
 
 // UseSession mocks base method.
-func (m *MockClient) UseSession(arg0 context.Context, arg1 func(mongoifc.SessionContext) error) error {
+func (m *MockClient) UseSession(ctx context.Context, fn func(mongoifc.SessionContext) error) error {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "UseSession", arg0, arg1)
+	ret := m.ctrl.Call(m, "UseSession", ctx, fn)
 	ret0, _ := ret[0].(error)
 	return ret0
 }
 
 // UseSession indicates an expected call of UseSession.
-func (mr *MockClientMockRecorder) UseSession(arg0, arg1 any) *gomock.Call {
+func (mr *MockClientMockRecorder) UseSession(ctx, fn any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UseSession", reflect.TypeOf((*MockClient)(nil).UseSession), arg0, arg1)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UseSession", reflect.TypeOf((*MockClient)(nil).UseSession), ctx, fn)
 }
 
 // UseSessionWithOptions mocks base method.
-func (m *MockClient) UseSessionWithOptions(arg0 context.Context, arg1 *options.SessionOptions, arg2 func(mongoifc.SessionContext) error) error {
+func (m *MockClient) UseSessionWithOptions(ctx context.Context, opts *options.SessionOptions, fn func(mongoifc.SessionContext) error) error {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "UseSessionWithOptions", arg0, arg1, arg2)
+	ret := m.ctrl.Call(m, "UseSessionWithOptions", ctx, opts, fn)
 	ret0, _ := ret[0].(error)
 	return ret0
 }
 
 // UseSessionWithOptions indicates an expected call of UseSessionWithOptions.
-func (mr *MockClientMockRecorder) UseSessionWithOptions(arg0, arg1, arg2 any) *gomock.Call {
+func (mr *MockClientMockRecorder) UseSessionWithOptions(ctx, opts, fn any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UseSessionWithOptions", reflect.TypeOf((*MockClient)(nil).UseSessionWithOptions), arg0, arg1, arg2)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UseSessionWithOptions", reflect.TypeOf((*MockClient)(nil).UseSessionWithOptions), ctx, opts, fn)
 }
 
 // Watch mocks base method.
-func (m *MockClient) Watch(arg0 context.Context, arg1 any, arg2 ...*options.ChangeStreamOptions) (mongoifc.ChangeStream, error) {
+func (m *MockClient) Watch(ctx context.Context, pipeline any, opts ...*options.ChangeStreamOptions) (mongoifc.ChangeStream, error) {
 	m.ctrl.T.Helper()
-	varargs := []any{arg0, arg1}
-	for _, a := range arg2 {
+	varargs := []any{ctx, pipeline}
+	for _, a := range opts {
 		varargs = append(varargs, a)
 	}
 	ret := m.ctrl.Call(m, "Watch", varargs...)
@@ -385,9 +387,9 @@ func (m *MockClient) Watch(arg0 context.Context, arg1 any, arg2 ...*options.Chan
 }
 
 // Watch indicates an expected call of Watch.
-func (mr *MockClientMockRecorder) Watch(arg0, arg1 any, arg2 ...any) *gomock.Call {
+func (mr *MockClientMockRecorder) Watch(ctx, pipeline any, opts ...any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	varargs := append([]any{arg0, arg1}, arg2...)
+	varargs := append([]any{ctx, pipeline}, opts...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Watch", reflect.TypeOf((*MockClient)(nil).Watch), varargs...)
 }
 
@@ -395,6 +397,7 @@ func (mr *MockClientMockRecorder) Watch(arg0, arg1 any, arg2 ...any) *gomock.Cal
 type MockCollection struct {
 	ctrl     *gomock.Controller
 	recorder *MockCollectionMockRecorder
+	isgomock struct{}
 }
 
 // MockCollectionMockRecorder is the mock recorder for MockCollection.
@@ -415,10 +418,10 @@ func (m *MockCollection) EXPECT() *MockCollectionMockRecorder {
 }
 
 // Aggregate mocks base method.
-func (m *MockCollection) Aggregate(arg0 context.Context, arg1 any, arg2 ...*options.AggregateOptions) (mongoifc.Cursor, error) {
+func (m *MockCollection) Aggregate(ctx context.Context, pipeline any, opts ...*options.AggregateOptions) (mongoifc.Cursor, error) {
 	m.ctrl.T.Helper()
-	varargs := []any{arg0, arg1}
-	for _, a := range arg2 {
+	varargs := []any{ctx, pipeline}
+	for _, a := range opts {
 		varargs = append(varargs, a)
 	}
 	ret := m.ctrl.Call(m, "Aggregate", varargs...)
@@ -428,17 +431,17 @@ func (m *MockCollection) Aggregate(arg0 context.Context, arg1 any, arg2 ...*opti
 }
 
 // Aggregate indicates an expected call of Aggregate.
-func (mr *MockCollectionMockRecorder) Aggregate(arg0, arg1 any, arg2 ...any) *gomock.Call {
+func (mr *MockCollectionMockRecorder) Aggregate(ctx, pipeline any, opts ...any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	varargs := append([]any{arg0, arg1}, arg2...)
+	varargs := append([]any{ctx, pipeline}, opts...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Aggregate", reflect.TypeOf((*MockCollection)(nil).Aggregate), varargs...)
 }
 
 // BulkWrite mocks base method.
-func (m *MockCollection) BulkWrite(arg0 context.Context, arg1 []mongo.WriteModel, arg2 ...*options.BulkWriteOptions) (*mongo.BulkWriteResult, error) {
+func (m *MockCollection) BulkWrite(ctx context.Context, models []mongo.WriteModel, opts ...*options.BulkWriteOptions) (*mongo.BulkWriteResult, error) {
 	m.ctrl.T.Helper()
-	varargs := []any{arg0, arg1}
-	for _, a := range arg2 {
+	varargs := []any{ctx, models}
+	for _, a := range opts {
 		varargs = append(varargs, a)
 	}
 	ret := m.ctrl.Call(m, "BulkWrite", varargs...)
@@ -448,17 +451,17 @@ func (m *MockCollection) BulkWrite(arg0 context.Context, arg1 []mongo.WriteModel
 }
 
 // BulkWrite indicates an expected call of BulkWrite.
-func (mr *MockCollectionMockRecorder) BulkWrite(arg0, arg1 any, arg2 ...any) *gomock.Call {
+func (mr *MockCollectionMockRecorder) BulkWrite(ctx, models any, opts ...any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	varargs := append([]any{arg0, arg1}, arg2...)
+	varargs := append([]any{ctx, models}, opts...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "BulkWrite", reflect.TypeOf((*MockCollection)(nil).BulkWrite), varargs...)
 }
 
 // Clone mocks base method.
-func (m *MockCollection) Clone(arg0 ...*options.CollectionOptions) (mongoifc.Collection, error) {
+func (m *MockCollection) Clone(opts ...*options.CollectionOptions) (mongoifc.Collection, error) {
 	m.ctrl.T.Helper()
 	varargs := []any{}
-	for _, a := range arg0 {
+	for _, a := range opts {
 		varargs = append(varargs, a)
 	}
 	ret := m.ctrl.Call(m, "Clone", varargs...)
@@ -468,16 +471,16 @@ func (m *MockCollection) Clone(arg0 ...*options.CollectionOptions) (mongoifc.Col
 }
 
 // Clone indicates an expected call of Clone.
-func (mr *MockCollectionMockRecorder) Clone(arg0 ...any) *gomock.Call {
+func (mr *MockCollectionMockRecorder) Clone(opts ...any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Clone", reflect.TypeOf((*MockCollection)(nil).Clone), arg0...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Clone", reflect.TypeOf((*MockCollection)(nil).Clone), opts...)
 }
 
 // CountDocuments mocks base method.
-func (m *MockCollection) CountDocuments(arg0 context.Context, arg1 any, arg2 ...*options.CountOptions) (int64, error) {
+func (m *MockCollection) CountDocuments(ctx context.Context, filter any, opts ...*options.CountOptions) (int64, error) {
 	m.ctrl.T.Helper()
-	varargs := []any{arg0, arg1}
-	for _, a := range arg2 {
+	varargs := []any{ctx, filter}
+	for _, a := range opts {
 		varargs = append(varargs, a)
 	}
 	ret := m.ctrl.Call(m, "CountDocuments", varargs...)
@@ -487,9 +490,9 @@ func (m *MockCollection) CountDocuments(arg0 context.Context, arg1 any, arg2 ...
 }
 
 // CountDocuments indicates an expected call of CountDocuments.
-func (mr *MockCollectionMockRecorder) CountDocuments(arg0, arg1 any, arg2 ...any) *gomock.Call {
+func (mr *MockCollectionMockRecorder) CountDocuments(ctx, filter any, opts ...any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	varargs := append([]any{arg0, arg1}, arg2...)
+	varargs := append([]any{ctx, filter}, opts...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CountDocuments", reflect.TypeOf((*MockCollection)(nil).CountDocuments), varargs...)
 }
 
@@ -508,10 +511,10 @@ func (mr *MockCollectionMockRecorder) Database() *gomock.Call {
 }
 
 // DeleteMany mocks base method.
-func (m *MockCollection) DeleteMany(arg0 context.Context, arg1 any, arg2 ...*options.DeleteOptions) (*mongo.DeleteResult, error) {
+func (m *MockCollection) DeleteMany(ctx context.Context, filter any, opts ...*options.DeleteOptions) (*mongo.DeleteResult, error) {
 	m.ctrl.T.Helper()
-	varargs := []any{arg0, arg1}
-	for _, a := range arg2 {
+	varargs := []any{ctx, filter}
+	for _, a := range opts {
 		varargs = append(varargs, a)
 	}
 	ret := m.ctrl.Call(m, "DeleteMany", varargs...)
@@ -521,17 +524,17 @@ func (m *MockCollection) DeleteMany(arg0 context.Context, arg1 any, arg2 ...*opt
 }
 
 // DeleteMany indicates an expected call of DeleteMany.
-func (mr *MockCollectionMockRecorder) DeleteMany(arg0, arg1 any, arg2 ...any) *gomock.Call {
+func (mr *MockCollectionMockRecorder) DeleteMany(ctx, filter any, opts ...any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	varargs := append([]any{arg0, arg1}, arg2...)
+	varargs := append([]any{ctx, filter}, opts...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DeleteMany", reflect.TypeOf((*MockCollection)(nil).DeleteMany), varargs...)
 }
 
 // DeleteOne mocks base method.
-func (m *MockCollection) DeleteOne(arg0 context.Context, arg1 any, arg2 ...*options.DeleteOptions) (*mongo.DeleteResult, error) {
+func (m *MockCollection) DeleteOne(ctx context.Context, filter any, opts ...*options.DeleteOptions) (*mongo.DeleteResult, error) {
 	m.ctrl.T.Helper()
-	varargs := []any{arg0, arg1}
-	for _, a := range arg2 {
+	varargs := []any{ctx, filter}
+	for _, a := range opts {
 		varargs = append(varargs, a)
 	}
 	ret := m.ctrl.Call(m, "DeleteOne", varargs...)
@@ -541,17 +544,17 @@ func (m *MockCollection) DeleteOne(arg0 context.Context, arg1 any, arg2 ...*opti
 }
 
 // DeleteOne indicates an expected call of DeleteOne.
-func (mr *MockCollectionMockRecorder) DeleteOne(arg0, arg1 any, arg2 ...any) *gomock.Call {
+func (mr *MockCollectionMockRecorder) DeleteOne(ctx, filter any, opts ...any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	varargs := append([]any{arg0, arg1}, arg2...)
+	varargs := append([]any{ctx, filter}, opts...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DeleteOne", reflect.TypeOf((*MockCollection)(nil).DeleteOne), varargs...)
 }
 
 // Distinct mocks base method.
-func (m *MockCollection) Distinct(arg0 context.Context, arg1 string, arg2 any, arg3 ...*options.DistinctOptions) ([]any, error) {
+func (m *MockCollection) Distinct(ctx context.Context, fieldName string, filter any, opts ...*options.DistinctOptions) ([]any, error) {
 	m.ctrl.T.Helper()
-	varargs := []any{arg0, arg1, arg2}
-	for _, a := range arg3 {
+	varargs := []any{ctx, fieldName, filter}
+	for _, a := range opts {
 		varargs = append(varargs, a)
 	}
 	ret := m.ctrl.Call(m, "Distinct", varargs...)
@@ -561,31 +564,31 @@ func (m *MockCollection) Distinct(arg0 context.Context, arg1 string, arg2 any, a
 }
 
 // Distinct indicates an expected call of Distinct.
-func (mr *MockCollectionMockRecorder) Distinct(arg0, arg1, arg2 any, arg3 ...any) *gomock.Call {
+func (mr *MockCollectionMockRecorder) Distinct(ctx, fieldName, filter any, opts ...any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	varargs := append([]any{arg0, arg1, arg2}, arg3...)
+	varargs := append([]any{ctx, fieldName, filter}, opts...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Distinct", reflect.TypeOf((*MockCollection)(nil).Distinct), varargs...)
 }
 
 // Drop mocks base method.
-func (m *MockCollection) Drop(arg0 context.Context) error {
+func (m *MockCollection) Drop(ctx context.Context) error {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "Drop", arg0)
+	ret := m.ctrl.Call(m, "Drop", ctx)
 	ret0, _ := ret[0].(error)
 	return ret0
 }
 
 // Drop indicates an expected call of Drop.
-func (mr *MockCollectionMockRecorder) Drop(arg0 any) *gomock.Call {
+func (mr *MockCollectionMockRecorder) Drop(ctx any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Drop", reflect.TypeOf((*MockCollection)(nil).Drop), arg0)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Drop", reflect.TypeOf((*MockCollection)(nil).Drop), ctx)
 }
 
 // EstimatedDocumentCount mocks base method.
-func (m *MockCollection) EstimatedDocumentCount(arg0 context.Context, arg1 ...*options.EstimatedDocumentCountOptions) (int64, error) {
+func (m *MockCollection) EstimatedDocumentCount(ctx context.Context, opts ...*options.EstimatedDocumentCountOptions) (int64, error) {
 	m.ctrl.T.Helper()
-	varargs := []any{arg0}
-	for _, a := range arg1 {
+	varargs := []any{ctx}
+	for _, a := range opts {
 		varargs = append(varargs, a)
 	}
 	ret := m.ctrl.Call(m, "EstimatedDocumentCount", varargs...)
@@ -595,17 +598,17 @@ func (m *MockCollection) EstimatedDocumentCount(arg0 context.Context, arg1 ...*o
 }
 
 // EstimatedDocumentCount indicates an expected call of EstimatedDocumentCount.
-func (mr *MockCollectionMockRecorder) EstimatedDocumentCount(arg0 any, arg1 ...any) *gomock.Call {
+func (mr *MockCollectionMockRecorder) EstimatedDocumentCount(ctx any, opts ...any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	varargs := append([]any{arg0}, arg1...)
+	varargs := append([]any{ctx}, opts...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "EstimatedDocumentCount", reflect.TypeOf((*MockCollection)(nil).EstimatedDocumentCount), varargs...)
 }
 
 // Find mocks base method.
-func (m *MockCollection) Find(arg0 context.Context, arg1 any, arg2 ...*options.FindOptions) (mongoifc.Cursor, error) {
+func (m *MockCollection) Find(ctx context.Context, filter any, opts ...*options.FindOptions) (mongoifc.Cursor, error) {
 	m.ctrl.T.Helper()
-	varargs := []any{arg0, arg1}
-	for _, a := range arg2 {
+	varargs := []any{ctx, filter}
+	for _, a := range opts {
 		varargs = append(varargs, a)
 	}
 	ret := m.ctrl.Call(m, "Find", varargs...)
@@ -615,17 +618,17 @@ func (m *MockCollection) Find(arg0 context.Context, arg1 any, arg2 ...*options.F
 }
 
 // Find indicates an expected call of Find.
-func (mr *MockCollectionMockRecorder) Find(arg0, arg1 any, arg2 ...any) *gomock.Call {
+func (mr *MockCollectionMockRecorder) Find(ctx, filter any, opts ...any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	varargs := append([]any{arg0, arg1}, arg2...)
+	varargs := append([]any{ctx, filter}, opts...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Find", reflect.TypeOf((*MockCollection)(nil).Find), varargs...)
 }
 
 // FindOne mocks base method.
-func (m *MockCollection) FindOne(arg0 context.Context, arg1 any, arg2 ...*options.FindOneOptions) mongoifc.SingleResult {
+func (m *MockCollection) FindOne(ctx context.Context, filter any, opts ...*options.FindOneOptions) mongoifc.SingleResult {
 	m.ctrl.T.Helper()
-	varargs := []any{arg0, arg1}
-	for _, a := range arg2 {
+	varargs := []any{ctx, filter}
+	for _, a := range opts {
 		varargs = append(varargs, a)
 	}
 	ret := m.ctrl.Call(m, "FindOne", varargs...)
@@ -634,17 +637,17 @@ func (m *MockCollection) FindOne(arg0 context.Context, arg1 any, arg2 ...*option
 }
 
 // FindOne indicates an expected call of FindOne.
-func (mr *MockCollectionMockRecorder) FindOne(arg0, arg1 any, arg2 ...any) *gomock.Call {
+func (mr *MockCollectionMockRecorder) FindOne(ctx, filter any, opts ...any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	varargs := append([]any{arg0, arg1}, arg2...)
+	varargs := append([]any{ctx, filter}, opts...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "FindOne", reflect.TypeOf((*MockCollection)(nil).FindOne), varargs...)
 }
 
 // FindOneAndDelete mocks base method.
-func (m *MockCollection) FindOneAndDelete(arg0 context.Context, arg1 any, arg2 ...*options.FindOneAndDeleteOptions) mongoifc.SingleResult {
+func (m *MockCollection) FindOneAndDelete(ctx context.Context, filter any, opts ...*options.FindOneAndDeleteOptions) mongoifc.SingleResult {
 	m.ctrl.T.Helper()
-	varargs := []any{arg0, arg1}
-	for _, a := range arg2 {
+	varargs := []any{ctx, filter}
+	for _, a := range opts {
 		varargs = append(varargs, a)
 	}
 	ret := m.ctrl.Call(m, "FindOneAndDelete", varargs...)
@@ -653,17 +656,17 @@ func (m *MockCollection) FindOneAndDelete(arg0 context.Context, arg1 any, arg2 .
 }
 
 // FindOneAndDelete indicates an expected call of FindOneAndDelete.
-func (mr *MockCollectionMockRecorder) FindOneAndDelete(arg0, arg1 any, arg2 ...any) *gomock.Call {
+func (mr *MockCollectionMockRecorder) FindOneAndDelete(ctx, filter any, opts ...any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	varargs := append([]any{arg0, arg1}, arg2...)
+	varargs := append([]any{ctx, filter}, opts...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "FindOneAndDelete", reflect.TypeOf((*MockCollection)(nil).FindOneAndDelete), varargs...)
 }
 
 // FindOneAndReplace mocks base method.
-func (m *MockCollection) FindOneAndReplace(arg0 context.Context, arg1, arg2 any, arg3 ...*options.FindOneAndReplaceOptions) mongoifc.SingleResult {
+func (m *MockCollection) FindOneAndReplace(ctx context.Context, filter, replacement any, opts ...*options.FindOneAndReplaceOptions) mongoifc.SingleResult {
 	m.ctrl.T.Helper()
-	varargs := []any{arg0, arg1, arg2}
-	for _, a := range arg3 {
+	varargs := []any{ctx, filter, replacement}
+	for _, a := range opts {
 		varargs = append(varargs, a)
 	}
 	ret := m.ctrl.Call(m, "FindOneAndReplace", varargs...)
@@ -672,17 +675,17 @@ func (m *MockCollection) FindOneAndReplace(arg0 context.Context, arg1, arg2 any,
 }
 
 // FindOneAndReplace indicates an expected call of FindOneAndReplace.
-func (mr *MockCollectionMockRecorder) FindOneAndReplace(arg0, arg1, arg2 any, arg3 ...any) *gomock.Call {
+func (mr *MockCollectionMockRecorder) FindOneAndReplace(ctx, filter, replacement any, opts ...any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	varargs := append([]any{arg0, arg1, arg2}, arg3...)
+	varargs := append([]any{ctx, filter, replacement}, opts...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "FindOneAndReplace", reflect.TypeOf((*MockCollection)(nil).FindOneAndReplace), varargs...)
 }
 
 // FindOneAndUpdate mocks base method.
-func (m *MockCollection) FindOneAndUpdate(arg0 context.Context, arg1, arg2 any, arg3 ...*options.FindOneAndUpdateOptions) mongoifc.SingleResult {
+func (m *MockCollection) FindOneAndUpdate(ctx context.Context, filter, update any, opts ...*options.FindOneAndUpdateOptions) mongoifc.SingleResult {
 	m.ctrl.T.Helper()
-	varargs := []any{arg0, arg1, arg2}
-	for _, a := range arg3 {
+	varargs := []any{ctx, filter, update}
+	for _, a := range opts {
 		varargs = append(varargs, a)
 	}
 	ret := m.ctrl.Call(m, "FindOneAndUpdate", varargs...)
@@ -691,9 +694,9 @@ func (m *MockCollection) FindOneAndUpdate(arg0 context.Context, arg1, arg2 any, 
 }
 
 // FindOneAndUpdate indicates an expected call of FindOneAndUpdate.
-func (mr *MockCollectionMockRecorder) FindOneAndUpdate(arg0, arg1, arg2 any, arg3 ...any) *gomock.Call {
+func (mr *MockCollectionMockRecorder) FindOneAndUpdate(ctx, filter, update any, opts ...any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	varargs := append([]any{arg0, arg1, arg2}, arg3...)
+	varargs := append([]any{ctx, filter, update}, opts...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "FindOneAndUpdate", reflect.TypeOf((*MockCollection)(nil).FindOneAndUpdate), varargs...)
 }
 
@@ -712,10 +715,10 @@ func (mr *MockCollectionMockRecorder) Indexes() *gomock.Call {
 }
 
 // InsertMany mocks base method.
-func (m *MockCollection) InsertMany(arg0 context.Context, arg1 []any, arg2 ...*options.InsertManyOptions) (*mongo.InsertManyResult, error) {
+func (m *MockCollection) InsertMany(ctx context.Context, documents []any, opts ...*options.InsertManyOptions) (*mongo.InsertManyResult, error) {
 	m.ctrl.T.Helper()
-	varargs := []any{arg0, arg1}
-	for _, a := range arg2 {
+	varargs := []any{ctx, documents}
+	for _, a := range opts {
 		varargs = append(varargs, a)
 	}
 	ret := m.ctrl.Call(m, "InsertMany", varargs...)
@@ -725,17 +728,17 @@ func (m *MockCollection) InsertMany(arg0 context.Context, arg1 []any, arg2 ...*o
 }
 
 // InsertMany indicates an expected call of InsertMany.
-func (mr *MockCollectionMockRecorder) InsertMany(arg0, arg1 any, arg2 ...any) *gomock.Call {
+func (mr *MockCollectionMockRecorder) InsertMany(ctx, documents any, opts ...any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	varargs := append([]any{arg0, arg1}, arg2...)
+	varargs := append([]any{ctx, documents}, opts...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "InsertMany", reflect.TypeOf((*MockCollection)(nil).InsertMany), varargs...)
 }
 
 // InsertOne mocks base method.
-func (m *MockCollection) InsertOne(arg0 context.Context, arg1 any, arg2 ...*options.InsertOneOptions) (*mongo.InsertOneResult, error) {
+func (m *MockCollection) InsertOne(ctx context.Context, document any, opts ...*options.InsertOneOptions) (*mongo.InsertOneResult, error) {
 	m.ctrl.T.Helper()
-	varargs := []any{arg0, arg1}
-	for _, a := range arg2 {
+	varargs := []any{ctx, document}
+	for _, a := range opts {
 		varargs = append(varargs, a)
 	}
 	ret := m.ctrl.Call(m, "InsertOne", varargs...)
@@ -745,9 +748,9 @@ func (m *MockCollection) InsertOne(arg0 context.Context, arg1 any, arg2 ...*opti
 }
 
 // InsertOne indicates an expected call of InsertOne.
-func (mr *MockCollectionMockRecorder) InsertOne(arg0, arg1 any, arg2 ...any) *gomock.Call {
+func (mr *MockCollectionMockRecorder) InsertOne(ctx, document any, opts ...any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	varargs := append([]any{arg0, arg1}, arg2...)
+	varargs := append([]any{ctx, document}, opts...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "InsertOne", reflect.TypeOf((*MockCollection)(nil).InsertOne), varargs...)
 }
 
@@ -766,10 +769,10 @@ func (mr *MockCollectionMockRecorder) Name() *gomock.Call {
 }
 
 // ReplaceOne mocks base method.
-func (m *MockCollection) ReplaceOne(arg0 context.Context, arg1, arg2 any, arg3 ...*options.ReplaceOptions) (*mongo.UpdateResult, error) {
+func (m *MockCollection) ReplaceOne(ctx context.Context, filter, replacement any, opts ...*options.ReplaceOptions) (*mongo.UpdateResult, error) {
 	m.ctrl.T.Helper()
-	varargs := []any{arg0, arg1, arg2}
-	for _, a := range arg3 {
+	varargs := []any{ctx, filter, replacement}
+	for _, a := range opts {
 		varargs = append(varargs, a)
 	}
 	ret := m.ctrl.Call(m, "ReplaceOne", varargs...)
@@ -779,9 +782,9 @@ func (m *MockCollection) ReplaceOne(arg0 context.Context, arg1, arg2 any, arg3 .
 }
 
 // ReplaceOne indicates an expected call of ReplaceOne.
-func (mr *MockCollectionMockRecorder) ReplaceOne(arg0, arg1, arg2 any, arg3 ...any) *gomock.Call {
+func (mr *MockCollectionMockRecorder) ReplaceOne(ctx, filter, replacement any, opts ...any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	varargs := append([]any{arg0, arg1, arg2}, arg3...)
+	varargs := append([]any{ctx, filter, replacement}, opts...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ReplaceOne", reflect.TypeOf((*MockCollection)(nil).ReplaceOne), varargs...)
 }
 
@@ -800,10 +803,10 @@ func (mr *MockCollectionMockRecorder) SearchIndexes() *gomock.Call {
 }
 
 // UpdateByID mocks base method.
-func (m *MockCollection) UpdateByID(arg0 context.Context, arg1, arg2 any, arg3 ...*options.UpdateOptions) (*mongo.UpdateResult, error) {
+func (m *MockCollection) UpdateByID(ctx context.Context, id, update any, opts ...*options.UpdateOptions) (*mongo.UpdateResult, error) {
 	m.ctrl.T.Helper()
-	varargs := []any{arg0, arg1, arg2}
-	for _, a := range arg3 {
+	varargs := []any{ctx, id, update}
+	for _, a := range opts {
 		varargs = append(varargs, a)
 	}
 	ret := m.ctrl.Call(m, "UpdateByID", varargs...)
@@ -813,17 +816,17 @@ func (m *MockCollection) UpdateByID(arg0 context.Context, arg1, arg2 any, arg3 .
 }
 
 // UpdateByID indicates an expected call of UpdateByID.
-func (mr *MockCollectionMockRecorder) UpdateByID(arg0, arg1, arg2 any, arg3 ...any) *gomock.Call {
+func (mr *MockCollectionMockRecorder) UpdateByID(ctx, id, update any, opts ...any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	varargs := append([]any{arg0, arg1, arg2}, arg3...)
+	varargs := append([]any{ctx, id, update}, opts...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateByID", reflect.TypeOf((*MockCollection)(nil).UpdateByID), varargs...)
 }
 
 // UpdateMany mocks base method.
-func (m *MockCollection) UpdateMany(arg0 context.Context, arg1, arg2 any, arg3 ...*options.UpdateOptions) (*mongo.UpdateResult, error) {
+func (m *MockCollection) UpdateMany(ctx context.Context, filter, update any, opts ...*options.UpdateOptions) (*mongo.UpdateResult, error) {
 	m.ctrl.T.Helper()
-	varargs := []any{arg0, arg1, arg2}
-	for _, a := range arg3 {
+	varargs := []any{ctx, filter, update}
+	for _, a := range opts {
 		varargs = append(varargs, a)
 	}
 	ret := m.ctrl.Call(m, "UpdateMany", varargs...)
@@ -833,17 +836,17 @@ func (m *MockCollection) UpdateMany(arg0 context.Context, arg1, arg2 any, arg3 .
 }
 
 // UpdateMany indicates an expected call of UpdateMany.
-func (mr *MockCollectionMockRecorder) UpdateMany(arg0, arg1, arg2 any, arg3 ...any) *gomock.Call {
+func (mr *MockCollectionMockRecorder) UpdateMany(ctx, filter, update any, opts ...any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	varargs := append([]any{arg0, arg1, arg2}, arg3...)
+	varargs := append([]any{ctx, filter, update}, opts...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateMany", reflect.TypeOf((*MockCollection)(nil).UpdateMany), varargs...)
 }
 
 // UpdateOne mocks base method.
-func (m *MockCollection) UpdateOne(arg0 context.Context, arg1, arg2 any, arg3 ...*options.UpdateOptions) (*mongo.UpdateResult, error) {
+func (m *MockCollection) UpdateOne(ctx context.Context, filter, update any, opts ...*options.UpdateOptions) (*mongo.UpdateResult, error) {
 	m.ctrl.T.Helper()
-	varargs := []any{arg0, arg1, arg2}
-	for _, a := range arg3 {
+	varargs := []any{ctx, filter, update}
+	for _, a := range opts {
 		varargs = append(varargs, a)
 	}
 	ret := m.ctrl.Call(m, "UpdateOne", varargs...)
@@ -853,17 +856,17 @@ func (m *MockCollection) UpdateOne(arg0 context.Context, arg1, arg2 any, arg3 ..
 }
 
 // UpdateOne indicates an expected call of UpdateOne.
-func (mr *MockCollectionMockRecorder) UpdateOne(arg0, arg1, arg2 any, arg3 ...any) *gomock.Call {
+func (mr *MockCollectionMockRecorder) UpdateOne(ctx, filter, update any, opts ...any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	varargs := append([]any{arg0, arg1, arg2}, arg3...)
+	varargs := append([]any{ctx, filter, update}, opts...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateOne", reflect.TypeOf((*MockCollection)(nil).UpdateOne), varargs...)
 }
 
 // Watch mocks base method.
-func (m *MockCollection) Watch(arg0 context.Context, arg1 any, arg2 ...*options.ChangeStreamOptions) (mongoifc.ChangeStream, error) {
+func (m *MockCollection) Watch(ctx context.Context, pipeline any, opts ...*options.ChangeStreamOptions) (mongoifc.ChangeStream, error) {
 	m.ctrl.T.Helper()
-	varargs := []any{arg0, arg1}
-	for _, a := range arg2 {
+	varargs := []any{ctx, pipeline}
+	for _, a := range opts {
 		varargs = append(varargs, a)
 	}
 	ret := m.ctrl.Call(m, "Watch", varargs...)
@@ -873,9 +876,9 @@ func (m *MockCollection) Watch(arg0 context.Context, arg1 any, arg2 ...*options.
 }
 
 // Watch indicates an expected call of Watch.
-func (mr *MockCollectionMockRecorder) Watch(arg0, arg1 any, arg2 ...any) *gomock.Call {
+func (mr *MockCollectionMockRecorder) Watch(ctx, pipeline any, opts ...any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	varargs := append([]any{arg0, arg1}, arg2...)
+	varargs := append([]any{ctx, pipeline}, opts...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Watch", reflect.TypeOf((*MockCollection)(nil).Watch), varargs...)
 }
 
@@ -883,6 +886,7 @@ func (mr *MockCollectionMockRecorder) Watch(arg0, arg1 any, arg2 ...any) *gomock
 type MockCursor struct {
 	ctrl     *gomock.Controller
 	recorder *MockCursorMockRecorder
+	isgomock struct{}
 }
 
 // MockCursorMockRecorder is the mock recorder for MockCursor.
@@ -903,31 +907,31 @@ func (m *MockCursor) EXPECT() *MockCursorMockRecorder {
 }
 
 // All mocks base method.
-func (m *MockCursor) All(arg0 context.Context, arg1 any) error {
+func (m *MockCursor) All(ctx context.Context, results any) error {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "All", arg0, arg1)
+	ret := m.ctrl.Call(m, "All", ctx, results)
 	ret0, _ := ret[0].(error)
 	return ret0
 }
 
 // All indicates an expected call of All.
-func (mr *MockCursorMockRecorder) All(arg0, arg1 any) *gomock.Call {
+func (mr *MockCursorMockRecorder) All(ctx, results any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "All", reflect.TypeOf((*MockCursor)(nil).All), arg0, arg1)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "All", reflect.TypeOf((*MockCursor)(nil).All), ctx, results)
 }
 
 // Close mocks base method.
-func (m *MockCursor) Close(arg0 context.Context) error {
+func (m *MockCursor) Close(ctx context.Context) error {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "Close", arg0)
+	ret := m.ctrl.Call(m, "Close", ctx)
 	ret0, _ := ret[0].(error)
 	return ret0
 }
 
 // Close indicates an expected call of Close.
-func (mr *MockCursorMockRecorder) Close(arg0 any) *gomock.Call {
+func (mr *MockCursorMockRecorder) Close(ctx any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Close", reflect.TypeOf((*MockCursor)(nil).Close), arg0)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Close", reflect.TypeOf((*MockCursor)(nil).Close), ctx)
 }
 
 // Current mocks base method.
@@ -945,17 +949,17 @@ func (mr *MockCursorMockRecorder) Current() *gomock.Call {
 }
 
 // Decode mocks base method.
-func (m *MockCursor) Decode(arg0 any) error {
+func (m *MockCursor) Decode(val any) error {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "Decode", arg0)
+	ret := m.ctrl.Call(m, "Decode", val)
 	ret0, _ := ret[0].(error)
 	return ret0
 }
 
 // Decode indicates an expected call of Decode.
-func (mr *MockCursorMockRecorder) Decode(arg0 any) *gomock.Call {
+func (mr *MockCursorMockRecorder) Decode(val any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Decode", reflect.TypeOf((*MockCursor)(nil).Decode), arg0)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Decode", reflect.TypeOf((*MockCursor)(nil).Decode), val)
 }
 
 // Err mocks base method.
@@ -987,17 +991,17 @@ func (mr *MockCursorMockRecorder) ID() *gomock.Call {
 }
 
 // Next mocks base method.
-func (m *MockCursor) Next(arg0 context.Context) bool {
+func (m *MockCursor) Next(ctx context.Context) bool {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "Next", arg0)
+	ret := m.ctrl.Call(m, "Next", ctx)
 	ret0, _ := ret[0].(bool)
 	return ret0
 }
 
 // Next indicates an expected call of Next.
-func (mr *MockCursorMockRecorder) Next(arg0 any) *gomock.Call {
+func (mr *MockCursorMockRecorder) Next(ctx any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Next", reflect.TypeOf((*MockCursor)(nil).Next), arg0)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Next", reflect.TypeOf((*MockCursor)(nil).Next), ctx)
 }
 
 // RemainingBatchLength mocks base method.
@@ -1015,59 +1019,60 @@ func (mr *MockCursorMockRecorder) RemainingBatchLength() *gomock.Call {
 }
 
 // SetBatchSize mocks base method.
-func (m *MockCursor) SetBatchSize(arg0 int32) {
+func (m *MockCursor) SetBatchSize(batchSize int32) {
 	m.ctrl.T.Helper()
-	m.ctrl.Call(m, "SetBatchSize", arg0)
+	m.ctrl.Call(m, "SetBatchSize", batchSize)
 }
 
 // SetBatchSize indicates an expected call of SetBatchSize.
-func (mr *MockCursorMockRecorder) SetBatchSize(arg0 any) *gomock.Call {
+func (mr *MockCursorMockRecorder) SetBatchSize(batchSize any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "SetBatchSize", reflect.TypeOf((*MockCursor)(nil).SetBatchSize), arg0)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "SetBatchSize", reflect.TypeOf((*MockCursor)(nil).SetBatchSize), batchSize)
 }
 
 // SetComment mocks base method.
-func (m *MockCursor) SetComment(arg0 any) {
+func (m *MockCursor) SetComment(comment any) {
 	m.ctrl.T.Helper()
-	m.ctrl.Call(m, "SetComment", arg0)
+	m.ctrl.Call(m, "SetComment", comment)
 }
 
 // SetComment indicates an expected call of SetComment.
-func (mr *MockCursorMockRecorder) SetComment(arg0 any) *gomock.Call {
+func (mr *MockCursorMockRecorder) SetComment(comment any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "SetComment", reflect.TypeOf((*MockCursor)(nil).SetComment), arg0)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "SetComment", reflect.TypeOf((*MockCursor)(nil).SetComment), comment)
 }
 
 // SetMaxTime mocks base method.
-func (m *MockCursor) SetMaxTime(arg0 time.Duration) {
+func (m *MockCursor) SetMaxTime(dur time.Duration) {
 	m.ctrl.T.Helper()
-	m.ctrl.Call(m, "SetMaxTime", arg0)
+	m.ctrl.Call(m, "SetMaxTime", dur)
 }
 
 // SetMaxTime indicates an expected call of SetMaxTime.
-func (mr *MockCursorMockRecorder) SetMaxTime(arg0 any) *gomock.Call {
+func (mr *MockCursorMockRecorder) SetMaxTime(dur any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "SetMaxTime", reflect.TypeOf((*MockCursor)(nil).SetMaxTime), arg0)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "SetMaxTime", reflect.TypeOf((*MockCursor)(nil).SetMaxTime), dur)
 }
 
 // TryNext mocks base method.
-func (m *MockCursor) TryNext(arg0 context.Context) bool {
+func (m *MockCursor) TryNext(ctx context.Context) bool {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "TryNext", arg0)
+	ret := m.ctrl.Call(m, "TryNext", ctx)
 	ret0, _ := ret[0].(bool)
 	return ret0
 }
 
 // TryNext indicates an expected call of TryNext.
-func (mr *MockCursorMockRecorder) TryNext(arg0 any) *gomock.Call {
+func (mr *MockCursorMockRecorder) TryNext(ctx any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "TryNext", reflect.TypeOf((*MockCursor)(nil).TryNext), arg0)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "TryNext", reflect.TypeOf((*MockCursor)(nil).TryNext), ctx)
 }
 
 // MockDatabase is a mock of Database interface.
 type MockDatabase struct {
 	ctrl     *gomock.Controller
 	recorder *MockDatabaseMockRecorder
+	isgomock struct{}
 }
 
 // MockDatabaseMockRecorder is the mock recorder for MockDatabase.
@@ -1088,10 +1093,10 @@ func (m *MockDatabase) EXPECT() *MockDatabaseMockRecorder {
 }
 
 // Aggregate mocks base method.
-func (m *MockDatabase) Aggregate(arg0 context.Context, arg1 any, arg2 ...*options.AggregateOptions) (mongoifc.Cursor, error) {
+func (m *MockDatabase) Aggregate(ctx context.Context, pipeline any, opts ...*options.AggregateOptions) (mongoifc.Cursor, error) {
 	m.ctrl.T.Helper()
-	varargs := []any{arg0, arg1}
-	for _, a := range arg2 {
+	varargs := []any{ctx, pipeline}
+	for _, a := range opts {
 		varargs = append(varargs, a)
 	}
 	ret := m.ctrl.Call(m, "Aggregate", varargs...)
@@ -1101,9 +1106,9 @@ func (m *MockDatabase) Aggregate(arg0 context.Context, arg1 any, arg2 ...*option
 }
 
 // Aggregate indicates an expected call of Aggregate.
-func (mr *MockDatabaseMockRecorder) Aggregate(arg0, arg1 any, arg2 ...any) *gomock.Call {
+func (mr *MockDatabaseMockRecorder) Aggregate(ctx, pipeline any, opts ...any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	varargs := append([]any{arg0, arg1}, arg2...)
+	varargs := append([]any{ctx, pipeline}, opts...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Aggregate", reflect.TypeOf((*MockDatabase)(nil).Aggregate), varargs...)
 }
 
@@ -1122,10 +1127,10 @@ func (mr *MockDatabaseMockRecorder) Client() *gomock.Call {
 }
 
 // Collection mocks base method.
-func (m *MockDatabase) Collection(arg0 string, arg1 ...*options.CollectionOptions) mongoifc.Collection {
+func (m *MockDatabase) Collection(name string, opts ...*options.CollectionOptions) mongoifc.Collection {
 	m.ctrl.T.Helper()
-	varargs := []any{arg0}
-	for _, a := range arg1 {
+	varargs := []any{name}
+	for _, a := range opts {
 		varargs = append(varargs, a)
 	}
 	ret := m.ctrl.Call(m, "Collection", varargs...)
@@ -1134,17 +1139,17 @@ func (m *MockDatabase) Collection(arg0 string, arg1 ...*options.CollectionOption
 }
 
 // Collection indicates an expected call of Collection.
-func (mr *MockDatabaseMockRecorder) Collection(arg0 any, arg1 ...any) *gomock.Call {
+func (mr *MockDatabaseMockRecorder) Collection(name any, opts ...any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	varargs := append([]any{arg0}, arg1...)
+	varargs := append([]any{name}, opts...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Collection", reflect.TypeOf((*MockDatabase)(nil).Collection), varargs...)
 }
 
 // CreateCollection mocks base method.
-func (m *MockDatabase) CreateCollection(arg0 context.Context, arg1 string, arg2 ...*options.CreateCollectionOptions) error {
+func (m *MockDatabase) CreateCollection(ctx context.Context, name string, opts ...*options.CreateCollectionOptions) error {
 	m.ctrl.T.Helper()
-	varargs := []any{arg0, arg1}
-	for _, a := range arg2 {
+	varargs := []any{ctx, name}
+	for _, a := range opts {
 		varargs = append(varargs, a)
 	}
 	ret := m.ctrl.Call(m, "CreateCollection", varargs...)
@@ -1153,17 +1158,17 @@ func (m *MockDatabase) CreateCollection(arg0 context.Context, arg1 string, arg2 
 }
 
 // CreateCollection indicates an expected call of CreateCollection.
-func (mr *MockDatabaseMockRecorder) CreateCollection(arg0, arg1 any, arg2 ...any) *gomock.Call {
+func (mr *MockDatabaseMockRecorder) CreateCollection(ctx, name any, opts ...any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	varargs := append([]any{arg0, arg1}, arg2...)
+	varargs := append([]any{ctx, name}, opts...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateCollection", reflect.TypeOf((*MockDatabase)(nil).CreateCollection), varargs...)
 }
 
 // CreateView mocks base method.
-func (m *MockDatabase) CreateView(arg0 context.Context, arg1, arg2 string, arg3 any, arg4 ...*options.CreateViewOptions) error {
+func (m *MockDatabase) CreateView(ctx context.Context, viewName, viewOn string, pipeline any, opts ...*options.CreateViewOptions) error {
 	m.ctrl.T.Helper()
-	varargs := []any{arg0, arg1, arg2, arg3}
-	for _, a := range arg4 {
+	varargs := []any{ctx, viewName, viewOn, pipeline}
+	for _, a := range opts {
 		varargs = append(varargs, a)
 	}
 	ret := m.ctrl.Call(m, "CreateView", varargs...)
@@ -1172,31 +1177,31 @@ func (m *MockDatabase) CreateView(arg0 context.Context, arg1, arg2 string, arg3 
 }
 
 // CreateView indicates an expected call of CreateView.
-func (mr *MockDatabaseMockRecorder) CreateView(arg0, arg1, arg2, arg3 any, arg4 ...any) *gomock.Call {
+func (mr *MockDatabaseMockRecorder) CreateView(ctx, viewName, viewOn, pipeline any, opts ...any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	varargs := append([]any{arg0, arg1, arg2, arg3}, arg4...)
+	varargs := append([]any{ctx, viewName, viewOn, pipeline}, opts...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateView", reflect.TypeOf((*MockDatabase)(nil).CreateView), varargs...)
 }
 
 // Drop mocks base method.
-func (m *MockDatabase) Drop(arg0 context.Context) error {
+func (m *MockDatabase) Drop(ctx context.Context) error {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "Drop", arg0)
+	ret := m.ctrl.Call(m, "Drop", ctx)
 	ret0, _ := ret[0].(error)
 	return ret0
 }
 
 // Drop indicates an expected call of Drop.
-func (mr *MockDatabaseMockRecorder) Drop(arg0 any) *gomock.Call {
+func (mr *MockDatabaseMockRecorder) Drop(ctx any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Drop", reflect.TypeOf((*MockDatabase)(nil).Drop), arg0)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Drop", reflect.TypeOf((*MockDatabase)(nil).Drop), ctx)
 }
 
 // ListCollectionNames mocks base method.
-func (m *MockDatabase) ListCollectionNames(arg0 context.Context, arg1 any, arg2 ...*options.ListCollectionsOptions) ([]string, error) {
+func (m *MockDatabase) ListCollectionNames(ctx context.Context, filter any, opts ...*options.ListCollectionsOptions) ([]string, error) {
 	m.ctrl.T.Helper()
-	varargs := []any{arg0, arg1}
-	for _, a := range arg2 {
+	varargs := []any{ctx, filter}
+	for _, a := range opts {
 		varargs = append(varargs, a)
 	}
 	ret := m.ctrl.Call(m, "ListCollectionNames", varargs...)
@@ -1206,17 +1211,17 @@ func (m *MockDatabase) ListCollectionNames(arg0 context.Context, arg1 any, arg2 
 }
 
 // ListCollectionNames indicates an expected call of ListCollectionNames.
-func (mr *MockDatabaseMockRecorder) ListCollectionNames(arg0, arg1 any, arg2 ...any) *gomock.Call {
+func (mr *MockDatabaseMockRecorder) ListCollectionNames(ctx, filter any, opts ...any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	varargs := append([]any{arg0, arg1}, arg2...)
+	varargs := append([]any{ctx, filter}, opts...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ListCollectionNames", reflect.TypeOf((*MockDatabase)(nil).ListCollectionNames), varargs...)
 }
 
 // ListCollectionSpecifications mocks base method.
-func (m *MockDatabase) ListCollectionSpecifications(arg0 context.Context, arg1 any, arg2 ...*options.ListCollectionsOptions) ([]*mongo.CollectionSpecification, error) {
+func (m *MockDatabase) ListCollectionSpecifications(ctx context.Context, filter any, opts ...*options.ListCollectionsOptions) ([]*mongo.CollectionSpecification, error) {
 	m.ctrl.T.Helper()
-	varargs := []any{arg0, arg1}
-	for _, a := range arg2 {
+	varargs := []any{ctx, filter}
+	for _, a := range opts {
 		varargs = append(varargs, a)
 	}
 	ret := m.ctrl.Call(m, "ListCollectionSpecifications", varargs...)
@@ -1226,17 +1231,17 @@ func (m *MockDatabase) ListCollectionSpecifications(arg0 context.Context, arg1 a
 }
 
 // ListCollectionSpecifications indicates an expected call of ListCollectionSpecifications.
-func (mr *MockDatabaseMockRecorder) ListCollectionSpecifications(arg0, arg1 any, arg2 ...any) *gomock.Call {
+func (mr *MockDatabaseMockRecorder) ListCollectionSpecifications(ctx, filter any, opts ...any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	varargs := append([]any{arg0, arg1}, arg2...)
+	varargs := append([]any{ctx, filter}, opts...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ListCollectionSpecifications", reflect.TypeOf((*MockDatabase)(nil).ListCollectionSpecifications), varargs...)
 }
 
 // ListCollections mocks base method.
-func (m *MockDatabase) ListCollections(arg0 context.Context, arg1 any, arg2 ...*options.ListCollectionsOptions) (mongoifc.Cursor, error) {
+func (m *MockDatabase) ListCollections(ctx context.Context, filter any, opts ...*options.ListCollectionsOptions) (mongoifc.Cursor, error) {
 	m.ctrl.T.Helper()
-	varargs := []any{arg0, arg1}
-	for _, a := range arg2 {
+	varargs := []any{ctx, filter}
+	for _, a := range opts {
 		varargs = append(varargs, a)
 	}
 	ret := m.ctrl.Call(m, "ListCollections", varargs...)
@@ -1246,9 +1251,9 @@ func (m *MockDatabase) ListCollections(arg0 context.Context, arg1 any, arg2 ...*
 }
 
 // ListCollections indicates an expected call of ListCollections.
-func (mr *MockDatabaseMockRecorder) ListCollections(arg0, arg1 any, arg2 ...any) *gomock.Call {
+func (mr *MockDatabaseMockRecorder) ListCollections(ctx, filter any, opts ...any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	varargs := append([]any{arg0, arg1}, arg2...)
+	varargs := append([]any{ctx, filter}, opts...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ListCollections", reflect.TypeOf((*MockDatabase)(nil).ListCollections), varargs...)
 }
 
@@ -1295,10 +1300,10 @@ func (mr *MockDatabaseMockRecorder) ReadPreference() *gomock.Call {
 }
 
 // RunCommand mocks base method.
-func (m *MockDatabase) RunCommand(arg0 context.Context, arg1 any, arg2 ...*options.RunCmdOptions) mongoifc.SingleResult {
+func (m *MockDatabase) RunCommand(ctx context.Context, runCommand any, opts ...*options.RunCmdOptions) mongoifc.SingleResult {
 	m.ctrl.T.Helper()
-	varargs := []any{arg0, arg1}
-	for _, a := range arg2 {
+	varargs := []any{ctx, runCommand}
+	for _, a := range opts {
 		varargs = append(varargs, a)
 	}
 	ret := m.ctrl.Call(m, "RunCommand", varargs...)
@@ -1307,17 +1312,17 @@ func (m *MockDatabase) RunCommand(arg0 context.Context, arg1 any, arg2 ...*optio
 }
 
 // RunCommand indicates an expected call of RunCommand.
-func (mr *MockDatabaseMockRecorder) RunCommand(arg0, arg1 any, arg2 ...any) *gomock.Call {
+func (mr *MockDatabaseMockRecorder) RunCommand(ctx, runCommand any, opts ...any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	varargs := append([]any{arg0, arg1}, arg2...)
+	varargs := append([]any{ctx, runCommand}, opts...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "RunCommand", reflect.TypeOf((*MockDatabase)(nil).RunCommand), varargs...)
 }
 
 // RunCommandCursor mocks base method.
-func (m *MockDatabase) RunCommandCursor(arg0 context.Context, arg1 any, arg2 ...*options.RunCmdOptions) (mongoifc.Cursor, error) {
+func (m *MockDatabase) RunCommandCursor(ctx context.Context, runCommand any, opts ...*options.RunCmdOptions) (mongoifc.Cursor, error) {
 	m.ctrl.T.Helper()
-	varargs := []any{arg0, arg1}
-	for _, a := range arg2 {
+	varargs := []any{ctx, runCommand}
+	for _, a := range opts {
 		varargs = append(varargs, a)
 	}
 	ret := m.ctrl.Call(m, "RunCommandCursor", varargs...)
@@ -1327,17 +1332,17 @@ func (m *MockDatabase) RunCommandCursor(arg0 context.Context, arg1 any, arg2 ...
 }
 
 // RunCommandCursor indicates an expected call of RunCommandCursor.
-func (mr *MockDatabaseMockRecorder) RunCommandCursor(arg0, arg1 any, arg2 ...any) *gomock.Call {
+func (mr *MockDatabaseMockRecorder) RunCommandCursor(ctx, runCommand any, opts ...any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	varargs := append([]any{arg0, arg1}, arg2...)
+	varargs := append([]any{ctx, runCommand}, opts...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "RunCommandCursor", reflect.TypeOf((*MockDatabase)(nil).RunCommandCursor), varargs...)
 }
 
 // Watch mocks base method.
-func (m *MockDatabase) Watch(arg0 context.Context, arg1 any, arg2 ...*options.ChangeStreamOptions) (mongoifc.ChangeStream, error) {
+func (m *MockDatabase) Watch(ctx context.Context, pipeline any, opts ...*options.ChangeStreamOptions) (mongoifc.ChangeStream, error) {
 	m.ctrl.T.Helper()
-	varargs := []any{arg0, arg1}
-	for _, a := range arg2 {
+	varargs := []any{ctx, pipeline}
+	for _, a := range opts {
 		varargs = append(varargs, a)
 	}
 	ret := m.ctrl.Call(m, "Watch", varargs...)
@@ -1347,9 +1352,9 @@ func (m *MockDatabase) Watch(arg0 context.Context, arg1 any, arg2 ...*options.Ch
 }
 
 // Watch indicates an expected call of Watch.
-func (mr *MockDatabaseMockRecorder) Watch(arg0, arg1 any, arg2 ...any) *gomock.Call {
+func (mr *MockDatabaseMockRecorder) Watch(ctx, pipeline any, opts ...any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	varargs := append([]any{arg0, arg1}, arg2...)
+	varargs := append([]any{ctx, pipeline}, opts...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Watch", reflect.TypeOf((*MockDatabase)(nil).Watch), varargs...)
 }
 
@@ -1371,6 +1376,7 @@ func (mr *MockDatabaseMockRecorder) WriteConcern() *gomock.Call {
 type MockIndexView struct {
 	ctrl     *gomock.Controller
 	recorder *MockIndexViewMockRecorder
+	isgomock struct{}
 }
 
 // MockIndexViewMockRecorder is the mock recorder for MockIndexView.
@@ -1391,10 +1397,10 @@ func (m *MockIndexView) EXPECT() *MockIndexViewMockRecorder {
 }
 
 // CreateMany mocks base method.
-func (m *MockIndexView) CreateMany(arg0 context.Context, arg1 []mongo.IndexModel, arg2 ...*options.CreateIndexesOptions) ([]string, error) {
+func (m *MockIndexView) CreateMany(ctx context.Context, models []mongo.IndexModel, opts ...*options.CreateIndexesOptions) ([]string, error) {
 	m.ctrl.T.Helper()
-	varargs := []any{arg0, arg1}
-	for _, a := range arg2 {
+	varargs := []any{ctx, models}
+	for _, a := range opts {
 		varargs = append(varargs, a)
 	}
 	ret := m.ctrl.Call(m, "CreateMany", varargs...)
@@ -1404,17 +1410,17 @@ func (m *MockIndexView) CreateMany(arg0 context.Context, arg1 []mongo.IndexModel
 }
 
 // CreateMany indicates an expected call of CreateMany.
-func (mr *MockIndexViewMockRecorder) CreateMany(arg0, arg1 any, arg2 ...any) *gomock.Call {
+func (mr *MockIndexViewMockRecorder) CreateMany(ctx, models any, opts ...any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	varargs := append([]any{arg0, arg1}, arg2...)
+	varargs := append([]any{ctx, models}, opts...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateMany", reflect.TypeOf((*MockIndexView)(nil).CreateMany), varargs...)
 }
 
 // CreateOne mocks base method.
-func (m *MockIndexView) CreateOne(arg0 context.Context, arg1 mongo.IndexModel, arg2 ...*options.CreateIndexesOptions) (string, error) {
+func (m *MockIndexView) CreateOne(ctx context.Context, model mongo.IndexModel, opts ...*options.CreateIndexesOptions) (string, error) {
 	m.ctrl.T.Helper()
-	varargs := []any{arg0, arg1}
-	for _, a := range arg2 {
+	varargs := []any{ctx, model}
+	for _, a := range opts {
 		varargs = append(varargs, a)
 	}
 	ret := m.ctrl.Call(m, "CreateOne", varargs...)
@@ -1424,17 +1430,17 @@ func (m *MockIndexView) CreateOne(arg0 context.Context, arg1 mongo.IndexModel, a
 }
 
 // CreateOne indicates an expected call of CreateOne.
-func (mr *MockIndexViewMockRecorder) CreateOne(arg0, arg1 any, arg2 ...any) *gomock.Call {
+func (mr *MockIndexViewMockRecorder) CreateOne(ctx, model any, opts ...any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	varargs := append([]any{arg0, arg1}, arg2...)
+	varargs := append([]any{ctx, model}, opts...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateOne", reflect.TypeOf((*MockIndexView)(nil).CreateOne), varargs...)
 }
 
 // DropAll mocks base method.
-func (m *MockIndexView) DropAll(arg0 context.Context, arg1 ...*options.DropIndexesOptions) (bson.Raw, error) {
+func (m *MockIndexView) DropAll(ctx context.Context, opts ...*options.DropIndexesOptions) (bson.Raw, error) {
 	m.ctrl.T.Helper()
-	varargs := []any{arg0}
-	for _, a := range arg1 {
+	varargs := []any{ctx}
+	for _, a := range opts {
 		varargs = append(varargs, a)
 	}
 	ret := m.ctrl.Call(m, "DropAll", varargs...)
@@ -1444,17 +1450,17 @@ func (m *MockIndexView) DropAll(arg0 context.Context, arg1 ...*options.DropIndex
 }
 
 // DropAll indicates an expected call of DropAll.
-func (mr *MockIndexViewMockRecorder) DropAll(arg0 any, arg1 ...any) *gomock.Call {
+func (mr *MockIndexViewMockRecorder) DropAll(ctx any, opts ...any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	varargs := append([]any{arg0}, arg1...)
+	varargs := append([]any{ctx}, opts...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DropAll", reflect.TypeOf((*MockIndexView)(nil).DropAll), varargs...)
 }
 
 // DropOne mocks base method.
-func (m *MockIndexView) DropOne(arg0 context.Context, arg1 string, arg2 ...*options.DropIndexesOptions) (bson.Raw, error) {
+func (m *MockIndexView) DropOne(ctx context.Context, name string, opts ...*options.DropIndexesOptions) (bson.Raw, error) {
 	m.ctrl.T.Helper()
-	varargs := []any{arg0, arg1}
-	for _, a := range arg2 {
+	varargs := []any{ctx, name}
+	for _, a := range opts {
 		varargs = append(varargs, a)
 	}
 	ret := m.ctrl.Call(m, "DropOne", varargs...)
@@ -1464,17 +1470,17 @@ func (m *MockIndexView) DropOne(arg0 context.Context, arg1 string, arg2 ...*opti
 }
 
 // DropOne indicates an expected call of DropOne.
-func (mr *MockIndexViewMockRecorder) DropOne(arg0, arg1 any, arg2 ...any) *gomock.Call {
+func (mr *MockIndexViewMockRecorder) DropOne(ctx, name any, opts ...any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	varargs := append([]any{arg0, arg1}, arg2...)
+	varargs := append([]any{ctx, name}, opts...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DropOne", reflect.TypeOf((*MockIndexView)(nil).DropOne), varargs...)
 }
 
 // DropOneWithKey mocks base method.
-func (m *MockIndexView) DropOneWithKey(arg0 context.Context, arg1 any, arg2 ...*options.DropIndexesOptions) (bson.Raw, error) {
+func (m *MockIndexView) DropOneWithKey(ctx context.Context, keySpecDocument any, opts ...*options.DropIndexesOptions) (bson.Raw, error) {
 	m.ctrl.T.Helper()
-	varargs := []any{arg0, arg1}
-	for _, a := range arg2 {
+	varargs := []any{ctx, keySpecDocument}
+	for _, a := range opts {
 		varargs = append(varargs, a)
 	}
 	ret := m.ctrl.Call(m, "DropOneWithKey", varargs...)
@@ -1484,17 +1490,17 @@ func (m *MockIndexView) DropOneWithKey(arg0 context.Context, arg1 any, arg2 ...*
 }
 
 // DropOneWithKey indicates an expected call of DropOneWithKey.
-func (mr *MockIndexViewMockRecorder) DropOneWithKey(arg0, arg1 any, arg2 ...any) *gomock.Call {
+func (mr *MockIndexViewMockRecorder) DropOneWithKey(ctx, keySpecDocument any, opts ...any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	varargs := append([]any{arg0, arg1}, arg2...)
+	varargs := append([]any{ctx, keySpecDocument}, opts...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DropOneWithKey", reflect.TypeOf((*MockIndexView)(nil).DropOneWithKey), varargs...)
 }
 
 // List mocks base method.
-func (m *MockIndexView) List(arg0 context.Context, arg1 ...*options.ListIndexesOptions) (mongoifc.Cursor, error) {
+func (m *MockIndexView) List(ctx context.Context, opts ...*options.ListIndexesOptions) (mongoifc.Cursor, error) {
 	m.ctrl.T.Helper()
-	varargs := []any{arg0}
-	for _, a := range arg1 {
+	varargs := []any{ctx}
+	for _, a := range opts {
 		varargs = append(varargs, a)
 	}
 	ret := m.ctrl.Call(m, "List", varargs...)
@@ -1504,17 +1510,17 @@ func (m *MockIndexView) List(arg0 context.Context, arg1 ...*options.ListIndexesO
 }
 
 // List indicates an expected call of List.
-func (mr *MockIndexViewMockRecorder) List(arg0 any, arg1 ...any) *gomock.Call {
+func (mr *MockIndexViewMockRecorder) List(ctx any, opts ...any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	varargs := append([]any{arg0}, arg1...)
+	varargs := append([]any{ctx}, opts...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "List", reflect.TypeOf((*MockIndexView)(nil).List), varargs...)
 }
 
 // ListSpecifications mocks base method.
-func (m *MockIndexView) ListSpecifications(arg0 context.Context, arg1 ...*options.ListIndexesOptions) ([]*mongo.IndexSpecification, error) {
+func (m *MockIndexView) ListSpecifications(ctx context.Context, opts ...*options.ListIndexesOptions) ([]*mongo.IndexSpecification, error) {
 	m.ctrl.T.Helper()
-	varargs := []any{arg0}
-	for _, a := range arg1 {
+	varargs := []any{ctx}
+	for _, a := range opts {
 		varargs = append(varargs, a)
 	}
 	ret := m.ctrl.Call(m, "ListSpecifications", varargs...)
@@ -1524,9 +1530,9 @@ func (m *MockIndexView) ListSpecifications(arg0 context.Context, arg1 ...*option
 }
 
 // ListSpecifications indicates an expected call of ListSpecifications.
-func (mr *MockIndexViewMockRecorder) ListSpecifications(arg0 any, arg1 ...any) *gomock.Call {
+func (mr *MockIndexViewMockRecorder) ListSpecifications(ctx any, opts ...any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	varargs := append([]any{arg0}, arg1...)
+	varargs := append([]any{ctx}, opts...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ListSpecifications", reflect.TypeOf((*MockIndexView)(nil).ListSpecifications), varargs...)
 }
 
@@ -1534,6 +1540,7 @@ func (mr *MockIndexViewMockRecorder) ListSpecifications(arg0 any, arg1 ...any) *
 type MockSession struct {
 	ctrl     *gomock.Controller
 	recorder *MockSessionMockRecorder
+	isgomock struct{}
 }
 
 // MockSessionMockRecorder is the mock recorder for MockSession.
@@ -1554,17 +1561,17 @@ func (m *MockSession) EXPECT() *MockSessionMockRecorder {
 }
 
 // AbortTransaction mocks base method.
-func (m *MockSession) AbortTransaction(arg0 context.Context) error {
+func (m *MockSession) AbortTransaction(ctx context.Context) error {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "AbortTransaction", arg0)
+	ret := m.ctrl.Call(m, "AbortTransaction", ctx)
 	ret0, _ := ret[0].(error)
 	return ret0
 }
 
 // AbortTransaction indicates an expected call of AbortTransaction.
-func (mr *MockSessionMockRecorder) AbortTransaction(arg0 any) *gomock.Call {
+func (mr *MockSessionMockRecorder) AbortTransaction(ctx any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "AbortTransaction", reflect.TypeOf((*MockSession)(nil).AbortTransaction), arg0)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "AbortTransaction", reflect.TypeOf((*MockSession)(nil).AbortTransaction), ctx)
 }
 
 // AdvanceClusterTime mocks base method.
@@ -1624,29 +1631,29 @@ func (mr *MockSessionMockRecorder) ClusterTime() *gomock.Call {
 }
 
 // CommitTransaction mocks base method.
-func (m *MockSession) CommitTransaction(arg0 context.Context) error {
+func (m *MockSession) CommitTransaction(ctx context.Context) error {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "CommitTransaction", arg0)
+	ret := m.ctrl.Call(m, "CommitTransaction", ctx)
 	ret0, _ := ret[0].(error)
 	return ret0
 }
 
 // CommitTransaction indicates an expected call of CommitTransaction.
-func (mr *MockSessionMockRecorder) CommitTransaction(arg0 any) *gomock.Call {
+func (mr *MockSessionMockRecorder) CommitTransaction(ctx any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CommitTransaction", reflect.TypeOf((*MockSession)(nil).CommitTransaction), arg0)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CommitTransaction", reflect.TypeOf((*MockSession)(nil).CommitTransaction), ctx)
 }
 
 // EndSession mocks base method.
-func (m *MockSession) EndSession(arg0 context.Context) {
+func (m *MockSession) EndSession(ctx context.Context) {
 	m.ctrl.T.Helper()
-	m.ctrl.Call(m, "EndSession", arg0)
+	m.ctrl.Call(m, "EndSession", ctx)
 }
 
 // EndSession indicates an expected call of EndSession.
-func (mr *MockSessionMockRecorder) EndSession(arg0 any) *gomock.Call {
+func (mr *MockSessionMockRecorder) EndSession(ctx any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "EndSession", reflect.TypeOf((*MockSession)(nil).EndSession), arg0)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "EndSession", reflect.TypeOf((*MockSession)(nil).EndSession), ctx)
 }
 
 // ID mocks base method.
@@ -1678,10 +1685,10 @@ func (mr *MockSessionMockRecorder) OperationTime() *gomock.Call {
 }
 
 // StartTransaction mocks base method.
-func (m *MockSession) StartTransaction(arg0 ...*options.TransactionOptions) error {
+func (m *MockSession) StartTransaction(opts ...*options.TransactionOptions) error {
 	m.ctrl.T.Helper()
 	varargs := []any{}
-	for _, a := range arg0 {
+	for _, a := range opts {
 		varargs = append(varargs, a)
 	}
 	ret := m.ctrl.Call(m, "StartTransaction", varargs...)
@@ -1690,16 +1697,16 @@ func (m *MockSession) StartTransaction(arg0 ...*options.TransactionOptions) erro
 }
 
 // StartTransaction indicates an expected call of StartTransaction.
-func (mr *MockSessionMockRecorder) StartTransaction(arg0 ...any) *gomock.Call {
+func (mr *MockSessionMockRecorder) StartTransaction(opts ...any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "StartTransaction", reflect.TypeOf((*MockSession)(nil).StartTransaction), arg0...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "StartTransaction", reflect.TypeOf((*MockSession)(nil).StartTransaction), opts...)
 }
 
 // WithTransaction mocks base method.
-func (m *MockSession) WithTransaction(arg0 context.Context, arg1 func(mongoifc.SessionContext) (any, error), arg2 ...*options.TransactionOptions) (any, error) {
+func (m *MockSession) WithTransaction(ctx context.Context, fn func(mongoifc.SessionContext) (any, error), opts ...*options.TransactionOptions) (any, error) {
 	m.ctrl.T.Helper()
-	varargs := []any{arg0, arg1}
-	for _, a := range arg2 {
+	varargs := []any{ctx, fn}
+	for _, a := range opts {
 		varargs = append(varargs, a)
 	}
 	ret := m.ctrl.Call(m, "WithTransaction", varargs...)
@@ -1709,9 +1716,9 @@ func (m *MockSession) WithTransaction(arg0 context.Context, arg1 func(mongoifc.S
 }
 
 // WithTransaction indicates an expected call of WithTransaction.
-func (mr *MockSessionMockRecorder) WithTransaction(arg0, arg1 any, arg2 ...any) *gomock.Call {
+func (mr *MockSessionMockRecorder) WithTransaction(ctx, fn any, opts ...any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	varargs := append([]any{arg0, arg1}, arg2...)
+	varargs := append([]any{ctx, fn}, opts...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "WithTransaction", reflect.TypeOf((*MockSession)(nil).WithTransaction), varargs...)
 }
 
@@ -1719,6 +1726,7 @@ func (mr *MockSessionMockRecorder) WithTransaction(arg0, arg1 any, arg2 ...any) 
 type MockSingleResult struct {
 	ctrl     *gomock.Controller
 	recorder *MockSingleResultMockRecorder
+	isgomock struct{}
 }
 
 // MockSingleResultMockRecorder is the mock recorder for MockSingleResult.
@@ -1739,17 +1747,17 @@ func (m *MockSingleResult) EXPECT() *MockSingleResultMockRecorder {
 }
 
 // Decode mocks base method.
-func (m *MockSingleResult) Decode(arg0 any) error {
+func (m *MockSingleResult) Decode(v any) error {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "Decode", arg0)
+	ret := m.ctrl.Call(m, "Decode", v)
 	ret0, _ := ret[0].(error)
 	return ret0
 }
 
 // Decode indicates an expected call of Decode.
-func (mr *MockSingleResultMockRecorder) Decode(arg0 any) *gomock.Call {
+func (mr *MockSingleResultMockRecorder) Decode(v any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Decode", reflect.TypeOf((*MockSingleResult)(nil).Decode), arg0)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Decode", reflect.TypeOf((*MockSingleResult)(nil).Decode), v)
 }
 
 // DecodeBytes mocks base method.
@@ -1800,6 +1808,7 @@ func (mr *MockSingleResultMockRecorder) Raw() *gomock.Call {
 type MockSessionContext struct {
 	ctrl     *gomock.Controller
 	recorder *MockSessionContextMockRecorder
+	isgomock struct{}
 }
 
 // MockSessionContextMockRecorder is the mock recorder for MockSessionContext.
@@ -1820,17 +1829,17 @@ func (m *MockSessionContext) EXPECT() *MockSessionContextMockRecorder {
 }
 
 // AbortTransaction mocks base method.
-func (m *MockSessionContext) AbortTransaction(arg0 context.Context) error {
+func (m *MockSessionContext) AbortTransaction(ctx context.Context) error {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "AbortTransaction", arg0)
+	ret := m.ctrl.Call(m, "AbortTransaction", ctx)
 	ret0, _ := ret[0].(error)
 	return ret0
 }
 
 // AbortTransaction indicates an expected call of AbortTransaction.
-func (mr *MockSessionContextMockRecorder) AbortTransaction(arg0 any) *gomock.Call {
+func (mr *MockSessionContextMockRecorder) AbortTransaction(ctx any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "AbortTransaction", reflect.TypeOf((*MockSessionContext)(nil).AbortTransaction), arg0)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "AbortTransaction", reflect.TypeOf((*MockSessionContext)(nil).AbortTransaction), ctx)
 }
 
 // AdvanceClusterTime mocks base method.
@@ -1890,17 +1899,17 @@ func (mr *MockSessionContextMockRecorder) ClusterTime() *gomock.Call {
 }
 
 // CommitTransaction mocks base method.
-func (m *MockSessionContext) CommitTransaction(arg0 context.Context) error {
+func (m *MockSessionContext) CommitTransaction(ctx context.Context) error {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "CommitTransaction", arg0)
+	ret := m.ctrl.Call(m, "CommitTransaction", ctx)
 	ret0, _ := ret[0].(error)
 	return ret0
 }
 
 // CommitTransaction indicates an expected call of CommitTransaction.
-func (mr *MockSessionContextMockRecorder) CommitTransaction(arg0 any) *gomock.Call {
+func (mr *MockSessionContextMockRecorder) CommitTransaction(ctx any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CommitTransaction", reflect.TypeOf((*MockSessionContext)(nil).CommitTransaction), arg0)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CommitTransaction", reflect.TypeOf((*MockSessionContext)(nil).CommitTransaction), ctx)
 }
 
 // Deadline mocks base method.
@@ -1933,15 +1942,15 @@ func (mr *MockSessionContextMockRecorder) Done() *gomock.Call {
 }
 
 // EndSession mocks base method.
-func (m *MockSessionContext) EndSession(arg0 context.Context) {
+func (m *MockSessionContext) EndSession(ctx context.Context) {
 	m.ctrl.T.Helper()
-	m.ctrl.Call(m, "EndSession", arg0)
+	m.ctrl.Call(m, "EndSession", ctx)
 }
 
 // EndSession indicates an expected call of EndSession.
-func (mr *MockSessionContextMockRecorder) EndSession(arg0 any) *gomock.Call {
+func (mr *MockSessionContextMockRecorder) EndSession(ctx any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "EndSession", reflect.TypeOf((*MockSessionContext)(nil).EndSession), arg0)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "EndSession", reflect.TypeOf((*MockSessionContext)(nil).EndSession), ctx)
 }
 
 // Err mocks base method.
@@ -1987,10 +1996,10 @@ func (mr *MockSessionContextMockRecorder) OperationTime() *gomock.Call {
 }
 
 // StartTransaction mocks base method.
-func (m *MockSessionContext) StartTransaction(arg0 ...*options.TransactionOptions) error {
+func (m *MockSessionContext) StartTransaction(opts ...*options.TransactionOptions) error {
 	m.ctrl.T.Helper()
 	varargs := []any{}
-	for _, a := range arg0 {
+	for _, a := range opts {
 		varargs = append(varargs, a)
 	}
 	ret := m.ctrl.Call(m, "StartTransaction", varargs...)
@@ -1999,30 +2008,30 @@ func (m *MockSessionContext) StartTransaction(arg0 ...*options.TransactionOption
 }
 
 // StartTransaction indicates an expected call of StartTransaction.
-func (mr *MockSessionContextMockRecorder) StartTransaction(arg0 ...any) *gomock.Call {
+func (mr *MockSessionContextMockRecorder) StartTransaction(opts ...any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "StartTransaction", reflect.TypeOf((*MockSessionContext)(nil).StartTransaction), arg0...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "StartTransaction", reflect.TypeOf((*MockSessionContext)(nil).StartTransaction), opts...)
 }
 
 // Value mocks base method.
-func (m *MockSessionContext) Value(arg0 any) any {
+func (m *MockSessionContext) Value(key any) any {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "Value", arg0)
+	ret := m.ctrl.Call(m, "Value", key)
 	ret0, _ := ret[0].(any)
 	return ret0
 }
 
 // Value indicates an expected call of Value.
-func (mr *MockSessionContextMockRecorder) Value(arg0 any) *gomock.Call {
+func (mr *MockSessionContextMockRecorder) Value(key any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Value", reflect.TypeOf((*MockSessionContext)(nil).Value), arg0)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Value", reflect.TypeOf((*MockSessionContext)(nil).Value), key)
 }
 
 // WithTransaction mocks base method.
-func (m *MockSessionContext) WithTransaction(arg0 context.Context, arg1 func(mongoifc.SessionContext) (any, error), arg2 ...*options.TransactionOptions) (any, error) {
+func (m *MockSessionContext) WithTransaction(ctx context.Context, fn func(mongoifc.SessionContext) (any, error), opts ...*options.TransactionOptions) (any, error) {
 	m.ctrl.T.Helper()
-	varargs := []any{arg0, arg1}
-	for _, a := range arg2 {
+	varargs := []any{ctx, fn}
+	for _, a := range opts {
 		varargs = append(varargs, a)
 	}
 	ret := m.ctrl.Call(m, "WithTransaction", varargs...)
@@ -2032,9 +2041,9 @@ func (m *MockSessionContext) WithTransaction(arg0 context.Context, arg1 func(mon
 }
 
 // WithTransaction indicates an expected call of WithTransaction.
-func (mr *MockSessionContextMockRecorder) WithTransaction(arg0, arg1 any, arg2 ...any) *gomock.Call {
+func (mr *MockSessionContextMockRecorder) WithTransaction(ctx, fn any, opts ...any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	varargs := append([]any{arg0, arg1}, arg2...)
+	varargs := append([]any{ctx, fn}, opts...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "WithTransaction", reflect.TypeOf((*MockSessionContext)(nil).WithTransaction), varargs...)
 }
 
@@ -2042,6 +2051,7 @@ func (mr *MockSessionContextMockRecorder) WithTransaction(arg0, arg1 any, arg2 .
 type MockClientEncryption struct {
 	ctrl     *gomock.Controller
 	recorder *MockClientEncryptionMockRecorder
+	isgomock struct{}
 }
 
 // MockClientEncryptionMockRecorder is the mock recorder for MockClientEncryption.
@@ -2062,38 +2072,38 @@ func (m *MockClientEncryption) EXPECT() *MockClientEncryptionMockRecorder {
 }
 
 // AddKeyAltName mocks base method.
-func (m *MockClientEncryption) AddKeyAltName(arg0 context.Context, arg1 primitive.Binary, arg2 string) mongoifc.SingleResult {
+func (m *MockClientEncryption) AddKeyAltName(ctx context.Context, id primitive.Binary, keyAltName string) mongoifc.SingleResult {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "AddKeyAltName", arg0, arg1, arg2)
+	ret := m.ctrl.Call(m, "AddKeyAltName", ctx, id, keyAltName)
 	ret0, _ := ret[0].(mongoifc.SingleResult)
 	return ret0
 }
 
 // AddKeyAltName indicates an expected call of AddKeyAltName.
-func (mr *MockClientEncryptionMockRecorder) AddKeyAltName(arg0, arg1, arg2 any) *gomock.Call {
+func (mr *MockClientEncryptionMockRecorder) AddKeyAltName(ctx, id, keyAltName any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "AddKeyAltName", reflect.TypeOf((*MockClientEncryption)(nil).AddKeyAltName), arg0, arg1, arg2)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "AddKeyAltName", reflect.TypeOf((*MockClientEncryption)(nil).AddKeyAltName), ctx, id, keyAltName)
 }
 
 // Close mocks base method.
-func (m *MockClientEncryption) Close(arg0 context.Context) error {
+func (m *MockClientEncryption) Close(ctx context.Context) error {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "Close", arg0)
+	ret := m.ctrl.Call(m, "Close", ctx)
 	ret0, _ := ret[0].(error)
 	return ret0
 }
 
 // Close indicates an expected call of Close.
-func (mr *MockClientEncryptionMockRecorder) Close(arg0 any) *gomock.Call {
+func (mr *MockClientEncryptionMockRecorder) Close(ctx any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Close", reflect.TypeOf((*MockClientEncryption)(nil).Close), arg0)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Close", reflect.TypeOf((*MockClientEncryption)(nil).Close), ctx)
 }
 
 // CreateDataKey mocks base method.
-func (m *MockClientEncryption) CreateDataKey(arg0 context.Context, arg1 string, arg2 ...*options.DataKeyOptions) (primitive.Binary, error) {
+func (m *MockClientEncryption) CreateDataKey(ctx context.Context, kmsProvider string, opts ...*options.DataKeyOptions) (primitive.Binary, error) {
 	m.ctrl.T.Helper()
-	varargs := []any{arg0, arg1}
-	for _, a := range arg2 {
+	varargs := []any{ctx, kmsProvider}
+	for _, a := range opts {
 		varargs = append(varargs, a)
 	}
 	ret := m.ctrl.Call(m, "CreateDataKey", varargs...)
@@ -2103,16 +2113,16 @@ func (m *MockClientEncryption) CreateDataKey(arg0 context.Context, arg1 string, 
 }
 
 // CreateDataKey indicates an expected call of CreateDataKey.
-func (mr *MockClientEncryptionMockRecorder) CreateDataKey(arg0, arg1 any, arg2 ...any) *gomock.Call {
+func (mr *MockClientEncryptionMockRecorder) CreateDataKey(ctx, kmsProvider any, opts ...any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	varargs := append([]any{arg0, arg1}, arg2...)
+	varargs := append([]any{ctx, kmsProvider}, opts...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateDataKey", reflect.TypeOf((*MockClientEncryption)(nil).CreateDataKey), varargs...)
 }
 
 // CreateEncryptedCollection mocks base method.
-func (m *MockClientEncryption) CreateEncryptedCollection(arg0 context.Context, arg1 mongoifc.Database, arg2 string, arg3 *options.CreateCollectionOptions, arg4 string, arg5 any) (mongoifc.Collection, primitive.M, error) {
+func (m *MockClientEncryption) CreateEncryptedCollection(ctx context.Context, db mongoifc.Database, coll string, createOpts *options.CreateCollectionOptions, kmsProvider string, masterKey any) (mongoifc.Collection, primitive.M, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "CreateEncryptedCollection", arg0, arg1, arg2, arg3, arg4, arg5)
+	ret := m.ctrl.Call(m, "CreateEncryptedCollection", ctx, db, coll, createOpts, kmsProvider, masterKey)
 	ret0, _ := ret[0].(mongoifc.Collection)
 	ret1, _ := ret[1].(primitive.M)
 	ret2, _ := ret[2].(error)
@@ -2120,46 +2130,46 @@ func (m *MockClientEncryption) CreateEncryptedCollection(arg0 context.Context, a
 }
 
 // CreateEncryptedCollection indicates an expected call of CreateEncryptedCollection.
-func (mr *MockClientEncryptionMockRecorder) CreateEncryptedCollection(arg0, arg1, arg2, arg3, arg4, arg5 any) *gomock.Call {
+func (mr *MockClientEncryptionMockRecorder) CreateEncryptedCollection(ctx, db, coll, createOpts, kmsProvider, masterKey any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateEncryptedCollection", reflect.TypeOf((*MockClientEncryption)(nil).CreateEncryptedCollection), arg0, arg1, arg2, arg3, arg4, arg5)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateEncryptedCollection", reflect.TypeOf((*MockClientEncryption)(nil).CreateEncryptedCollection), ctx, db, coll, createOpts, kmsProvider, masterKey)
 }
 
 // Decrypt mocks base method.
-func (m *MockClientEncryption) Decrypt(arg0 context.Context, arg1 primitive.Binary) (bson.RawValue, error) {
+func (m *MockClientEncryption) Decrypt(ctx context.Context, val primitive.Binary) (bson.RawValue, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "Decrypt", arg0, arg1)
+	ret := m.ctrl.Call(m, "Decrypt", ctx, val)
 	ret0, _ := ret[0].(bson.RawValue)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
 // Decrypt indicates an expected call of Decrypt.
-func (mr *MockClientEncryptionMockRecorder) Decrypt(arg0, arg1 any) *gomock.Call {
+func (mr *MockClientEncryptionMockRecorder) Decrypt(ctx, val any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Decrypt", reflect.TypeOf((*MockClientEncryption)(nil).Decrypt), arg0, arg1)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Decrypt", reflect.TypeOf((*MockClientEncryption)(nil).Decrypt), ctx, val)
 }
 
 // DeleteKey mocks base method.
-func (m *MockClientEncryption) DeleteKey(arg0 context.Context, arg1 primitive.Binary) (*mongo.DeleteResult, error) {
+func (m *MockClientEncryption) DeleteKey(ctx context.Context, id primitive.Binary) (*mongo.DeleteResult, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "DeleteKey", arg0, arg1)
+	ret := m.ctrl.Call(m, "DeleteKey", ctx, id)
 	ret0, _ := ret[0].(*mongo.DeleteResult)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
 // DeleteKey indicates an expected call of DeleteKey.
-func (mr *MockClientEncryptionMockRecorder) DeleteKey(arg0, arg1 any) *gomock.Call {
+func (mr *MockClientEncryptionMockRecorder) DeleteKey(ctx, id any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DeleteKey", reflect.TypeOf((*MockClientEncryption)(nil).DeleteKey), arg0, arg1)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DeleteKey", reflect.TypeOf((*MockClientEncryption)(nil).DeleteKey), ctx, id)
 }
 
 // Encrypt mocks base method.
-func (m *MockClientEncryption) Encrypt(arg0 context.Context, arg1 bson.RawValue, arg2 ...*options.EncryptOptions) (primitive.Binary, error) {
+func (m *MockClientEncryption) Encrypt(ctx context.Context, val bson.RawValue, opts ...*options.EncryptOptions) (primitive.Binary, error) {
 	m.ctrl.T.Helper()
-	varargs := []any{arg0, arg1}
-	for _, a := range arg2 {
+	varargs := []any{ctx, val}
+	for _, a := range opts {
 		varargs = append(varargs, a)
 	}
 	ret := m.ctrl.Call(m, "Encrypt", varargs...)
@@ -2169,17 +2179,17 @@ func (m *MockClientEncryption) Encrypt(arg0 context.Context, arg1 bson.RawValue,
 }
 
 // Encrypt indicates an expected call of Encrypt.
-func (mr *MockClientEncryptionMockRecorder) Encrypt(arg0, arg1 any, arg2 ...any) *gomock.Call {
+func (mr *MockClientEncryptionMockRecorder) Encrypt(ctx, val any, opts ...any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	varargs := append([]any{arg0, arg1}, arg2...)
+	varargs := append([]any{ctx, val}, opts...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Encrypt", reflect.TypeOf((*MockClientEncryption)(nil).Encrypt), varargs...)
 }
 
 // EncryptExpression mocks base method.
-func (m *MockClientEncryption) EncryptExpression(arg0 context.Context, arg1, arg2 any, arg3 ...*options.EncryptOptions) error {
+func (m *MockClientEncryption) EncryptExpression(ctx context.Context, expr, result any, opts ...*options.EncryptOptions) error {
 	m.ctrl.T.Helper()
-	varargs := []any{arg0, arg1, arg2}
-	for _, a := range arg3 {
+	varargs := []any{ctx, expr, result}
+	for _, a := range opts {
 		varargs = append(varargs, a)
 	}
 	ret := m.ctrl.Call(m, "EncryptExpression", varargs...)
@@ -2188,74 +2198,74 @@ func (m *MockClientEncryption) EncryptExpression(arg0 context.Context, arg1, arg
 }
 
 // EncryptExpression indicates an expected call of EncryptExpression.
-func (mr *MockClientEncryptionMockRecorder) EncryptExpression(arg0, arg1, arg2 any, arg3 ...any) *gomock.Call {
+func (mr *MockClientEncryptionMockRecorder) EncryptExpression(ctx, expr, result any, opts ...any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	varargs := append([]any{arg0, arg1, arg2}, arg3...)
+	varargs := append([]any{ctx, expr, result}, opts...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "EncryptExpression", reflect.TypeOf((*MockClientEncryption)(nil).EncryptExpression), varargs...)
 }
 
 // GetKey mocks base method.
-func (m *MockClientEncryption) GetKey(arg0 context.Context, arg1 primitive.Binary) mongoifc.SingleResult {
+func (m *MockClientEncryption) GetKey(ctx context.Context, id primitive.Binary) mongoifc.SingleResult {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "GetKey", arg0, arg1)
+	ret := m.ctrl.Call(m, "GetKey", ctx, id)
 	ret0, _ := ret[0].(mongoifc.SingleResult)
 	return ret0
 }
 
 // GetKey indicates an expected call of GetKey.
-func (mr *MockClientEncryptionMockRecorder) GetKey(arg0, arg1 any) *gomock.Call {
+func (mr *MockClientEncryptionMockRecorder) GetKey(ctx, id any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetKey", reflect.TypeOf((*MockClientEncryption)(nil).GetKey), arg0, arg1)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetKey", reflect.TypeOf((*MockClientEncryption)(nil).GetKey), ctx, id)
 }
 
 // GetKeyByAltName mocks base method.
-func (m *MockClientEncryption) GetKeyByAltName(arg0 context.Context, arg1 string) mongoifc.SingleResult {
+func (m *MockClientEncryption) GetKeyByAltName(ctx context.Context, keyAltName string) mongoifc.SingleResult {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "GetKeyByAltName", arg0, arg1)
+	ret := m.ctrl.Call(m, "GetKeyByAltName", ctx, keyAltName)
 	ret0, _ := ret[0].(mongoifc.SingleResult)
 	return ret0
 }
 
 // GetKeyByAltName indicates an expected call of GetKeyByAltName.
-func (mr *MockClientEncryptionMockRecorder) GetKeyByAltName(arg0, arg1 any) *gomock.Call {
+func (mr *MockClientEncryptionMockRecorder) GetKeyByAltName(ctx, keyAltName any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetKeyByAltName", reflect.TypeOf((*MockClientEncryption)(nil).GetKeyByAltName), arg0, arg1)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetKeyByAltName", reflect.TypeOf((*MockClientEncryption)(nil).GetKeyByAltName), ctx, keyAltName)
 }
 
 // GetKeys mocks base method.
-func (m *MockClientEncryption) GetKeys(arg0 context.Context) (mongoifc.Cursor, error) {
+func (m *MockClientEncryption) GetKeys(ctx context.Context) (mongoifc.Cursor, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "GetKeys", arg0)
+	ret := m.ctrl.Call(m, "GetKeys", ctx)
 	ret0, _ := ret[0].(mongoifc.Cursor)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
 // GetKeys indicates an expected call of GetKeys.
-func (mr *MockClientEncryptionMockRecorder) GetKeys(arg0 any) *gomock.Call {
+func (mr *MockClientEncryptionMockRecorder) GetKeys(ctx any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetKeys", reflect.TypeOf((*MockClientEncryption)(nil).GetKeys), arg0)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetKeys", reflect.TypeOf((*MockClientEncryption)(nil).GetKeys), ctx)
 }
 
 // RemoveKeyAltName mocks base method.
-func (m *MockClientEncryption) RemoveKeyAltName(arg0 context.Context, arg1 primitive.Binary, arg2 string) mongoifc.SingleResult {
+func (m *MockClientEncryption) RemoveKeyAltName(ctx context.Context, id primitive.Binary, keyAltName string) mongoifc.SingleResult {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "RemoveKeyAltName", arg0, arg1, arg2)
+	ret := m.ctrl.Call(m, "RemoveKeyAltName", ctx, id, keyAltName)
 	ret0, _ := ret[0].(mongoifc.SingleResult)
 	return ret0
 }
 
 // RemoveKeyAltName indicates an expected call of RemoveKeyAltName.
-func (mr *MockClientEncryptionMockRecorder) RemoveKeyAltName(arg0, arg1, arg2 any) *gomock.Call {
+func (mr *MockClientEncryptionMockRecorder) RemoveKeyAltName(ctx, id, keyAltName any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "RemoveKeyAltName", reflect.TypeOf((*MockClientEncryption)(nil).RemoveKeyAltName), arg0, arg1, arg2)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "RemoveKeyAltName", reflect.TypeOf((*MockClientEncryption)(nil).RemoveKeyAltName), ctx, id, keyAltName)
 }
 
 // RewrapManyDataKey mocks base method.
-func (m *MockClientEncryption) RewrapManyDataKey(arg0 context.Context, arg1 any, arg2 ...*options.RewrapManyDataKeyOptions) (*mongo.RewrapManyDataKeyResult, error) {
+func (m *MockClientEncryption) RewrapManyDataKey(ctx context.Context, filter any, opts ...*options.RewrapManyDataKeyOptions) (*mongo.RewrapManyDataKeyResult, error) {
 	m.ctrl.T.Helper()
-	varargs := []any{arg0, arg1}
-	for _, a := range arg2 {
+	varargs := []any{ctx, filter}
+	for _, a := range opts {
 		varargs = append(varargs, a)
 	}
 	ret := m.ctrl.Call(m, "RewrapManyDataKey", varargs...)
@@ -2265,8 +2275,8 @@ func (m *MockClientEncryption) RewrapManyDataKey(arg0 context.Context, arg1 any,
 }
 
 // RewrapManyDataKey indicates an expected call of RewrapManyDataKey.
-func (mr *MockClientEncryptionMockRecorder) RewrapManyDataKey(arg0, arg1 any, arg2 ...any) *gomock.Call {
+func (mr *MockClientEncryptionMockRecorder) RewrapManyDataKey(ctx, filter any, opts ...any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	varargs := append([]any{arg0, arg1}, arg2...)
+	varargs := append([]any{ctx, filter}, opts...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "RewrapManyDataKey", reflect.TypeOf((*MockClientEncryption)(nil).RewrapManyDataKey), varargs...)
 }
