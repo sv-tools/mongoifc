@@ -63,9 +63,9 @@ jobs:
         run: go test -race -cover -coverprofile=coverage.out -covermode=atomic
 
       - name: Codecov
-        uses: codecov/codecov-action@985343d70564a82044c1b7fcb84c2fa05405c1a2 # v5.0.4
-        with:
-          file: ./coverage.out
+        uses: codecov/codecov-action@015f24e6818733317a2da2edd6290ab26238649a # v5.0.7
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
   GolangCI-Lint:
     runs-on: ubuntu-latest
@@ -106,5 +106,6 @@ jobs:
           if [ -n "${DELTA}" ]
           then
             echo "::error title=Mocks are outdated::Please run 'make generate-mocks' to re-generate the mocks"
+            git status
             exit 1
           fi
