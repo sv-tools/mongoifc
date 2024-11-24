@@ -83,7 +83,6 @@ jobs:
         uses: golangci/golangci-lint-action@971e284b6050e8a5849b72094c50ab08da042db8 # v6.1.1
         with:
           version: latest
-          skip-build-cache: true
 
   Mocks:
     runs-on: ubuntu-latest
