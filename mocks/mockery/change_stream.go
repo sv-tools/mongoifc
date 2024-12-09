@@ -69,7 +69,7 @@ func (_c *ChangeStream_Close_Call) RunAndReturn(run func(context.Context) error)
 	return _c
 }
 
-// Current provides a mock function with given fields:
+// Current provides a mock function with no fields
 func (_m *ChangeStream) Current() bson.Raw {
 	ret := _m.Called()
 
@@ -162,7 +162,7 @@ func (_c *ChangeStream_Decode_Call) RunAndReturn(run func(interface{}) error) *C
 	return _c
 }
 
-// Err provides a mock function with given fields:
+// Err provides a mock function with no fields
 func (_m *ChangeStream) Err() error {
 	ret := _m.Called()
 
@@ -207,7 +207,7 @@ func (_c *ChangeStream_Err_Call) RunAndReturn(run func() error) *ChangeStream_Er
 	return _c
 }
 
-// ID provides a mock function with given fields:
+// ID provides a mock function with no fields
 func (_m *ChangeStream) ID() int64 {
 	ret := _m.Called()
 
@@ -298,7 +298,7 @@ func (_c *ChangeStream_Next_Call) RunAndReturn(run func(context.Context) bool) *
 	return _c
 }
 
-// ResumeToken provides a mock function with given fields:
+// ResumeToken provides a mock function with no fields
 func (_m *ChangeStream) ResumeToken() bson.Raw {
 	ret := _m.Called()
 
@@ -374,7 +374,7 @@ func (_c *ChangeStream_SetBatchSize_Call) Return() *ChangeStream_SetBatchSize_Ca
 }
 
 func (_c *ChangeStream_SetBatchSize_Call) RunAndReturn(run func(int32)) *ChangeStream_SetBatchSize_Call {
-	_c.Call.Return(run)
+	_c.Run(run)
 	return _c
 }
 

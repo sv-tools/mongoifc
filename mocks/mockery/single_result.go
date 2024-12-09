@@ -66,7 +66,7 @@ func (_c *SingleResult_Decode_Call) RunAndReturn(run func(interface{}) error) *S
 	return _c
 }
 
-// DecodeBytes provides a mock function with given fields:
+// DecodeBytes provides a mock function with no fields
 func (_m *SingleResult) DecodeBytes() (bson.Raw, error) {
 	ret := _m.Called()
 
@@ -123,7 +123,7 @@ func (_c *SingleResult_DecodeBytes_Call) RunAndReturn(run func() (bson.Raw, erro
 	return _c
 }
 
-// Err provides a mock function with given fields:
+// Err provides a mock function with no fields
 func (_m *SingleResult) Err() error {
 	ret := _m.Called()
 
@@ -168,7 +168,7 @@ func (_c *SingleResult_Err_Call) RunAndReturn(run func() error) *SingleResult_Er
 	return _c
 }
 
-// Raw provides a mock function with given fields:
+// Raw provides a mock function with no fields
 func (_m *SingleResult) Raw() (bson.Raw, error) {
 	ret := _m.Called()
 
