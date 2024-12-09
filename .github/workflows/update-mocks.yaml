@@ -1,0 +1,46 @@
+name: "Code Analysis"
+
+on:
+  workflow_dispatch:
+  
+permissions:
+  contents: write
+
+concurrency:
+  group: ${{ format('{0}-{1}', github.workflow, github.head_ref) }}
+  cancel-in-progress: true
+
+env:
+  GO: "1.23"
+
+jobs:
+  Update-Mocks:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - name: Install Go
+        uses: actions/setup-go@41dfa10bad2bb2ae585af6ee5bb4d7d973ad74ed # v5.1.0
+        with:
+          go-version: ${{ env.GO }}
+
+      - name: Generate Mocks
+        run: make go-install generate-mocks
+
+      - name: Checking Git
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          DELTA="$(git status --short)"
+          if [ -n "${DELTA}" ]
+          then
+            git config --global user.name 'SV Tools Bot'
+            git config --global user.email 'sv.go.tools@gmail.com'
+            git checkout -b update-mocks
+            git add .
+            git commit -m "Update Mocks"
+            git push origin update-mocks
+            gh pr create -B main -H update-mocks --title 'Update Mocks'
+          fi
