@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
   group: ${{ format('{0}-{1}', github.workflow, github.head_ref) }}
@@ -16,6 +16,8 @@ env:
 jobs:
   UpdateMocks:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
       - name: Checkout repository
@@ -42,5 +44,5 @@ jobs:
             git add .
             git commit -m "Update Mocks"
             git push origin update-mocks
-            gh pr create -B ${{ github.ref }} -H update-mocks --title "Update Mocks" --body "Updated mocks via workflow"
+            gh pr create -B ${GITHUB_REF:11} -H update-mocks --title "Update Mocks" --body "Updated mocks via workflow"
           fi
