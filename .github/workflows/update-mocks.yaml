@@ -14,7 +14,7 @@ env:
   GO: "1.23"
 
 jobs:
-  Update-Mocks:
+  UpdateMocks:
     runs-on: ubuntu-latest
 
     steps:
