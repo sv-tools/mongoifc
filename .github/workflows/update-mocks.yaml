@@ -42,5 +42,5 @@ jobs:
             git add .
             git commit -m "Update Mocks"
             git push origin update-mocks
-            gh pr create -B main -H update-mocks --title 'Update Mocks'
+            gh pr create -B ${{ github.ref }} -H update-mocks --title "Update Mocks" --body "Updated mocks via workflow"
           fi
