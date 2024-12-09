@@ -331,7 +331,7 @@ func (_c *Client_ListDatabases_Call) RunAndReturn(run func(context.Context, inte
 	return _c
 }
 
-// NumberSessionsInProgress provides a mock function with given fields:
+// NumberSessionsInProgress provides a mock function with no fields
 func (_m *Client) NumberSessionsInProgress() int {
 	ret := _m.Called()
 
@@ -494,7 +494,7 @@ func (_c *Client_StartSession_Call) RunAndReturn(run func(...*options.SessionOpt
 	return _c
 }
 
-// Timeout provides a mock function with given fields:
+// Timeout provides a mock function with no fields
 func (_m *Client) Timeout() *time.Duration {
 	ret := _m.Called()
 

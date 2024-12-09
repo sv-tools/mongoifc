@@ -317,7 +317,7 @@ func (_c *Collection_CountDocuments_Call) RunAndReturn(run func(context.Context,
 	return _c
 }
 
-// Database provides a mock function with given fields:
+// Database provides a mock function with no fields
 func (_m *Collection) Database() mongoifc.Database {
 	ret := _m.Called()
 
@@ -1036,7 +1036,7 @@ func (_c *Collection_FindOneAndUpdate_Call) RunAndReturn(run func(context.Contex
 	return _c
 }
 
-// Indexes provides a mock function with given fields:
+// Indexes provides a mock function with no fields
 func (_m *Collection) Indexes() mongoifc.IndexView {
 	ret := _m.Called()
 
@@ -1231,7 +1231,7 @@ func (_c *Collection_InsertOne_Call) RunAndReturn(run func(context.Context, inte
 	return _c
 }
 
-// Name provides a mock function with given fields:
+// Name provides a mock function with no fields
 func (_m *Collection) Name() string {
 	ret := _m.Called()
 
@@ -1351,7 +1351,7 @@ func (_c *Collection_ReplaceOne_Call) RunAndReturn(run func(context.Context, int
 	return _c
 }
 
-// SearchIndexes provides a mock function with given fields:
+// SearchIndexes provides a mock function with no fields
 func (_m *Collection) SearchIndexes() mongoifc.SearchIndexView {
 	ret := _m.Called()
 

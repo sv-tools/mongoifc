@@ -106,7 +106,7 @@ func (_c *Database_Aggregate_Call) RunAndReturn(run func(context.Context, interf
 	return _c
 }
 
-// Client provides a mock function with given fields:
+// Client provides a mock function with no fields
 func (_m *Database) Client() mongoifc.Client {
 	ret := _m.Called()
 
@@ -610,7 +610,7 @@ func (_c *Database_ListCollections_Call) RunAndReturn(run func(context.Context, 
 	return _c
 }
 
-// Name provides a mock function with given fields:
+// Name provides a mock function with no fields
 func (_m *Database) Name() string {
 	ret := _m.Called()
 
@@ -655,7 +655,7 @@ func (_c *Database_Name_Call) RunAndReturn(run func() string) *Database_Name_Cal
 	return _c
 }
 
-// ReadConcern provides a mock function with given fields:
+// ReadConcern provides a mock function with no fields
 func (_m *Database) ReadConcern() *readconcern.ReadConcern {
 	ret := _m.Called()
 
@@ -702,7 +702,7 @@ func (_c *Database_ReadConcern_Call) RunAndReturn(run func() *readconcern.ReadCo
 	return _c
 }
 
-// ReadPreference provides a mock function with given fields:
+// ReadPreference provides a mock function with no fields
 func (_m *Database) ReadPreference() *readpref.ReadPref {
 	ret := _m.Called()
 
@@ -961,7 +961,7 @@ func (_c *Database_Watch_Call) RunAndReturn(run func(context.Context, interface{
 	return _c
 }
 
-// WriteConcern provides a mock function with given fields:
+// WriteConcern provides a mock function with no fields
 func (_m *Database) WriteConcern() *writeconcern.WriteConcern {
 	ret := _m.Called()
 

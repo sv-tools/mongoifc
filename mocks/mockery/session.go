@@ -167,7 +167,7 @@ func (_c *Session_AdvanceOperationTime_Call) RunAndReturn(run func(*primitive.Ti
 	return _c
 }
 
-// Client provides a mock function with given fields:
+// Client provides a mock function with no fields
 func (_m *Session) Client() mongoifc.Client {
 	ret := _m.Called()
 
@@ -214,7 +214,7 @@ func (_c *Session_Client_Call) RunAndReturn(run func() mongoifc.Client) *Session
 	return _c
 }
 
-// ClusterTime provides a mock function with given fields:
+// ClusterTime provides a mock function with no fields
 func (_m *Session) ClusterTime() bson.Raw {
 	ret := _m.Called()
 
@@ -336,11 +336,11 @@ func (_c *Session_EndSession_Call) Return() *Session_EndSession_Call {
 }
 
 func (_c *Session_EndSession_Call) RunAndReturn(run func(context.Context)) *Session_EndSession_Call {
-	_c.Call.Return(run)
+	_c.Run(run)
 	return _c
 }
 
-// ID provides a mock function with given fields:
+// ID provides a mock function with no fields
 func (_m *Session) ID() bson.Raw {
 	ret := _m.Called()
 
@@ -387,7 +387,7 @@ func (_c *Session_ID_Call) RunAndReturn(run func() bson.Raw) *Session_ID_Call {
 	return _c
 }
 
-// OperationTime provides a mock function with given fields:
+// OperationTime provides a mock function with no fields
 func (_m *Session) OperationTime() *primitive.Timestamp {
 	ret := _m.Called()
 

@@ -118,7 +118,7 @@ func (_c *Cursor_Close_Call) RunAndReturn(run func(context.Context) error) *Curs
 	return _c
 }
 
-// Current provides a mock function with given fields:
+// Current provides a mock function with no fields
 func (_m *Cursor) Current() bson.Raw {
 	ret := _m.Called()
 
@@ -211,7 +211,7 @@ func (_c *Cursor_Decode_Call) RunAndReturn(run func(interface{}) error) *Cursor_
 	return _c
 }
 
-// Err provides a mock function with given fields:
+// Err provides a mock function with no fields
 func (_m *Cursor) Err() error {
 	ret := _m.Called()
 
@@ -256,7 +256,7 @@ func (_c *Cursor_Err_Call) RunAndReturn(run func() error) *Cursor_Err_Call {
 	return _c
 }
 
-// ID provides a mock function with given fields:
+// ID provides a mock function with no fields
 func (_m *Cursor) ID() int64 {
 	ret := _m.Called()
 
@@ -347,7 +347,7 @@ func (_c *Cursor_Next_Call) RunAndReturn(run func(context.Context) bool) *Cursor
 	return _c
 }
 
-// RemainingBatchLength provides a mock function with given fields:
+// RemainingBatchLength provides a mock function with no fields
 func (_m *Cursor) RemainingBatchLength() int {
 	ret := _m.Called()
 
@@ -421,7 +421,7 @@ func (_c *Cursor_SetBatchSize_Call) Return() *Cursor_SetBatchSize_Call {
 }
 
 func (_c *Cursor_SetBatchSize_Call) RunAndReturn(run func(int32)) *Cursor_SetBatchSize_Call {
-	_c.Call.Return(run)
+	_c.Run(run)
 	return _c
 }
 
@@ -454,7 +454,7 @@ func (_c *Cursor_SetComment_Call) Return() *Cursor_SetComment_Call {
 }
 
 func (_c *Cursor_SetComment_Call) RunAndReturn(run func(interface{})) *Cursor_SetComment_Call {
-	_c.Call.Return(run)
+	_c.Run(run)
 	return _c
 }
 
@@ -487,7 +487,7 @@ func (_c *Cursor_SetMaxTime_Call) Return() *Cursor_SetMaxTime_Call {
 }
 
 func (_c *Cursor_SetMaxTime_Call) RunAndReturn(run func(time.Duration)) *Cursor_SetMaxTime_Call {
-	_c.Call.Return(run)
+	_c.Run(run)
 	return _c
 }
 

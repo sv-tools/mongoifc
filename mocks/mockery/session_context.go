@@ -169,7 +169,7 @@ func (_c *SessionContext_AdvanceOperationTime_Call) RunAndReturn(run func(*primi
 	return _c
 }
 
-// Client provides a mock function with given fields:
+// Client provides a mock function with no fields
 func (_m *SessionContext) Client() mongoifc.Client {
 	ret := _m.Called()
 
@@ -216,7 +216,7 @@ func (_c *SessionContext_Client_Call) RunAndReturn(run func() mongoifc.Client) *
 	return _c
 }
 
-// ClusterTime provides a mock function with given fields:
+// ClusterTime provides a mock function with no fields
 func (_m *SessionContext) ClusterTime() bson.Raw {
 	ret := _m.Called()
 
@@ -309,7 +309,7 @@ func (_c *SessionContext_CommitTransaction_Call) RunAndReturn(run func(context.C
 	return _c
 }
 
-// Deadline provides a mock function with given fields:
+// Deadline provides a mock function with no fields
 func (_m *SessionContext) Deadline() (time.Time, bool) {
 	ret := _m.Called()
 
@@ -364,7 +364,7 @@ func (_c *SessionContext_Deadline_Call) RunAndReturn(run func() (time.Time, bool
 	return _c
 }
 
-// Done provides a mock function with given fields:
+// Done provides a mock function with no fields
 func (_m *SessionContext) Done() <-chan struct{} {
 	ret := _m.Called()
 
@@ -440,11 +440,11 @@ func (_c *SessionContext_EndSession_Call) Return() *SessionContext_EndSession_Ca
 }
 
 func (_c *SessionContext_EndSession_Call) RunAndReturn(run func(context.Context)) *SessionContext_EndSession_Call {
-	_c.Call.Return(run)
+	_c.Run(run)
 	return _c
 }
 
-// Err provides a mock function with given fields:
+// Err provides a mock function with no fields
 func (_m *SessionContext) Err() error {
 	ret := _m.Called()
 
@@ -489,7 +489,7 @@ func (_c *SessionContext_Err_Call) RunAndReturn(run func() error) *SessionContex
 	return _c
 }
 
-// ID provides a mock function with given fields:
+// ID provides a mock function with no fields
 func (_m *SessionContext) ID() bson.Raw {
 	ret := _m.Called()
 
@@ -536,7 +536,7 @@ func (_c *SessionContext_ID_Call) RunAndReturn(run func() bson.Raw) *SessionCont
 	return _c
 }
 
-// OperationTime provides a mock function with given fields:
+// OperationTime provides a mock function with no fields
 func (_m *SessionContext) OperationTime() *primitive.Timestamp {
 	ret := _m.Called()
 
