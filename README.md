@@ -102,16 +102,16 @@ This is the main reason of wrapping the original objects and using the `mongoifc
 
 ## Wrapped Interfaces
 
-- [x] Client: https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo#Client
-- [x] Database: https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo#Database
-- [x] Session: https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo#Session
 - [x] ChangeStream: https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo#ChangeStream
-- [x] Cursor: https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo#Cursor
-- [x] Collection: https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo#Collection
-- [x] SingleResult: https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo#SingleResult
-- [x] IndexView: https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo#IndexView
-- [x] SessionContext: https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo#SessionContext
+- [x] Client: https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo#Client
 - [x] ClientEncryption: https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo#ClientEncryption
+- [x] Collection: https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo#Collection
+- [x] Cursor: https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo#Cursor
+- [x] Database: https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo#Database
+- [x] IndexView: https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo#IndexView
+- [x] Session: https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo#Session
+- [x] SessionContext: https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo#SessionContext
+- [x] SingleResult: https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo#SingleResult
 
 ## Mocks
 
