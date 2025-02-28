@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 	"math/rand"
-	"os"
 	"testing"
 	"time"
 
@@ -21,21 +20,20 @@ import (
 
 func TestCollectionsWorkflow(t *testing.T) {
 	t.Parallel()
-	ctx := context.Background()
 
 	t.Run("mockery", func(t *testing.T) {
 		t.Parallel()
 
 		col := &mockeryMocks.Collection{}
 		defer col.AssertExpectations(t)
-		col.On("Drop", ctx).Return(nil)
+		col.On("Drop", t.Context()).Return(nil)
 
 		db := &mockeryMocks.Database{}
 		defer db.AssertExpectations(t)
 		db.On("Collection", mock.Anything).Return(col)
-		db.On("CreateCollection", ctx, mock.Anything).Return(nil)
-		db.On("ListCollectionNames", ctx, mock.AnythingOfType("primitive.M")).Return([]string{"fake"}, nil).Once()
-		db.On("ListCollectionNames", ctx, mock.AnythingOfType("primitive.M")).Return([]string{}, nil).Twice()
+		db.On("CreateCollection", t.Context(), mock.Anything).Return(nil)
+		db.On("ListCollectionNames", t.Context(), mock.AnythingOfType("primitive.M")).Return([]string{"fake"}, nil).Once()
+		db.On("ListCollectionNames", t.Context(), mock.AnythingOfType("primitive.M")).Return([]string{}, nil).Twice()
 
 		collectionsWorkflow(t, db)
 	})
@@ -47,13 +45,13 @@ func TestCollectionsWorkflow(t *testing.T) {
 		defer ctrl.Finish()
 
 		col := gomockMocks.NewMockCollection(ctrl)
-		col.EXPECT().Drop(ctx).Return(nil)
+		col.EXPECT().Drop(t.Context()).Return(nil)
 
 		db := gomockMocks.NewMockDatabase(ctrl)
 		db.EXPECT().Collection(gomock.Any()).Return(col)
-		db.EXPECT().CreateCollection(ctx, gomock.Any()).Return(nil)
-		db.EXPECT().ListCollectionNames(ctx, gomock.Any()).Return([]string{"fake"}, nil)
-		db.EXPECT().ListCollectionNames(ctx, gomock.Any()).Return([]string{}, nil).Times(2)
+		db.EXPECT().CreateCollection(t.Context(), gomock.Any()).Return(nil)
+		db.EXPECT().ListCollectionNames(t.Context(), gomock.Any()).Return([]string{"fake"}, nil)
+		db.EXPECT().ListCollectionNames(t.Context(), gomock.Any()).Return([]string{}, nil).Times(2)
 
 		collectionsWorkflow(t, db)
 	})
@@ -61,18 +59,12 @@ func TestCollectionsWorkflow(t *testing.T) {
 	t.Run("docker", func(t *testing.T) {
 		t.Parallel()
 
-		uri := os.Getenv("MONGO_URI")
-		require.NotEmpty(t, uri)
-
-		opt := options.Client().ApplyURI(uri)
-		cl, err := mongoifc.NewClient(opt)
+		opt := options.Client().ApplyURI(MongoUri)
+		cl, err := mongoifc.Connect(t.Context(), opt)
 		require.NoError(t, err)
 		require.NotNil(t, cl)
-
-		err = cl.Connect(ctx)
-		require.NoError(t, err)
 		t.Cleanup(func() {
-			require.NoError(t, cl.Disconnect(ctx))
+			require.NoError(t, cl.Disconnect(context.Background()))
 		})
 
 		db := cl.Database(fmt.Sprintf("simple_%d", time.Now().Unix()))
@@ -90,23 +82,24 @@ func randSeq(n int) string {
 	return string(b)
 }
 
-func collectionsWorkflow(t testing.TB, db mongoifc.Database) {
-	ctx := context.Background()
+func collectionsWorkflow(tb testing.TB, db mongoifc.Database) {
+	tb.Helper()
+
 	name := randSeq(42)
 
-	require.NoError(t, simple.CreateCollection(ctx, db, name))
+	require.NoError(tb, simple.CreateCollection(tb.Context(), db, name))
 
-	res, err := simple.CollectionExists(ctx, db, name)
-	require.NoError(t, err)
-	require.True(t, res)
+	res, err := simple.CollectionExists(tb.Context(), db, name)
+	require.NoError(tb, err)
+	require.True(tb, res)
 
-	res, err = simple.CollectionExists(ctx, db, name+"42")
-	require.NoError(t, err)
-	require.False(t, res)
+	res, err = simple.CollectionExists(tb.Context(), db, name+"42")
+	require.NoError(tb, err)
+	require.False(tb, res)
 
-	require.NoError(t, simple.DropCollection(ctx, db, name))
+	require.NoError(tb, simple.DropCollection(tb.Context(), db, name))
 
-	res, err = simple.CollectionExists(ctx, db, name)
-	require.NoError(t, err)
-	require.False(t, res)
+	res, err = simple.CollectionExists(tb.Context(), db, name)
+	require.NoError(tb, err)
+	require.False(tb, res)
 }

@@ -19,8 +19,6 @@ concurrency:
 
 env:
   GO: "1.24"
-  MONGO_USERNAME: "admin"
-  MONGO_PASSWORD: "adminpass"
 
 jobs:
   UnitTests:
@@ -34,14 +32,7 @@ jobs:
         with:
           go-version: ${{ env.GO }}
 
-      - name: Build and Run MongoDB
-        run: make run-docker
-        env:
-          SLEEP: 10
-
       - name: Run Unit Tests
-        env:
-          MONGO_URI: "mongodb://${{ env.MONGO_USERNAME }}:${{ env.MONGO_PASSWORD }}@127.0.0.1:27888/?authSource=admin&directConnection=true"
         run: go test -race -cover -coverprofile=coverage.out -covermode=atomic
 
       - name: Codecov

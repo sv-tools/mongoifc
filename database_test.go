@@ -1,7 +1,6 @@
 package mongoifc_test
 
 import (
-	"context"
 	"fmt"
 	"testing"
 	"time"
@@ -17,8 +16,8 @@ func TestWrapDatabase_UnWrapDatabase(t *testing.T) {
 	mcl := mongoifc.UnWrapClient(cl)
 	name := fmt.Sprintf("test_%d", time.Now().Unix())
 	orig := mcl.Database(name)
-	require.NoError(t, orig.CreateCollection(context.Background(), "orig"))
+	require.NoError(t, orig.CreateCollection(t.Context(), "orig"))
 	wrapped := mongoifc.WrapDatabase(orig)
-	require.NoError(t, wrapped.CreateCollection(context.Background(), "wrapped"))
+	require.NoError(t, wrapped.CreateCollection(t.Context(), "wrapped"))
 	require.Equal(t, orig, mongoifc.UnWrapDatabase(wrapped))
 }

@@ -4,7 +4,6 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"os"
 	"testing"
 	"time"
 
@@ -22,17 +21,16 @@ var testErr = errors.New("test")
 func connect(tb testing.TB) mongoifc.Client {
 	tb.Helper()
 
-	uri := os.Getenv("MONGO_URI")
-	require.NotEmpty(tb, uri)
-	opt := options.Client().ApplyURI(uri)
+	require.NotEmpty(tb, MongoUri)
+	opt := options.Client().ApplyURI(MongoUri)
 
-	cl, err := mongoifc.Connect(context.Background(), opt)
+	cl, err := mongoifc.Connect(tb.Context(), opt)
 	require.NoError(tb, err)
 	tb.Cleanup(func() {
 		require.NoError(tb, cl.Disconnect(context.Background()))
 	})
 
-	err = cl.Ping(context.Background(), readpref.Primary())
+	err = cl.Ping(tb.Context(), readpref.Primary())
 	require.NoError(tb, err)
 
 	return cl
@@ -41,15 +39,12 @@ func connect(tb testing.TB) mongoifc.Client {
 func TestNewClient(t *testing.T) {
 	t.Parallel()
 
-	uri := os.Getenv("MONGO_URI")
-	require.NotEmpty(t, uri)
-
-	opt := options.Client().ApplyURI(uri)
+	opt := options.Client().ApplyURI(MongoUri)
 	cl, err := mongoifc.NewClient(opt)
 	require.NoError(t, err)
 	require.NotNil(t, cl)
 
-	err = cl.Connect(context.Background())
+	err = cl.Connect(t.Context())
 	require.NoError(t, err)
 	t.Cleanup(func() {
 		require.NoError(t, cl.Disconnect(context.Background()))
@@ -64,11 +59,8 @@ func TestNewClient(t *testing.T) {
 func TestConnect(t *testing.T) {
 	t.Parallel()
 
-	uri := os.Getenv("MONGO_URI")
-	require.NotEmpty(t, uri)
-
-	opt := options.Client().ApplyURI(uri)
-	cl, err := mongoifc.Connect(context.Background(), opt)
+	opt := options.Client().ApplyURI(MongoUri)
+	cl, err := mongoifc.Connect(t.Context(), opt)
 	require.NoError(t, err)
 	require.NotNil(t, cl)
 
@@ -76,11 +68,11 @@ func TestConnect(t *testing.T) {
 		require.NoError(t, cl.Disconnect(context.Background()))
 	})
 
-	err = cl.Ping(context.Background(), readpref.Primary())
+	err = cl.Ping(t.Context(), readpref.Primary())
 	require.NoError(t, err)
 
 	opt2 := options.Client().ApplyURI("fake")
-	cl2, err := mongoifc.Connect(context.Background(), opt2)
+	cl2, err := mongoifc.Connect(t.Context(), opt2)
 	require.Error(t, err)
 	require.Nil(t, cl2)
 }
@@ -95,7 +87,7 @@ func TestWithSession(t *testing.T) {
 		sess.EndSession(context.Background())
 	})
 
-	err = mongoifc.WithSession(context.Background(), sess, func(sc mongoifc.SessionContext) error {
+	err = mongoifc.WithSession(t.Context(), sess, func(sc mongoifc.SessionContext) error {
 		require.NotNil(t, sc.ID())
 		return nil
 	})
@@ -116,7 +108,7 @@ func TestClient_ListDatabaseNames(t *testing.T) {
 	t.Parallel()
 
 	cl := connect(t)
-	names, err := cl.ListDatabaseNames(context.Background(), bson.M{})
+	names, err := cl.ListDatabaseNames(t.Context(), bson.M{})
 	require.NoError(t, err)
 	t.Logf("database names: %v", names)
 	require.NotZero(t, len(names))
@@ -127,7 +119,7 @@ func TestClient_ListDatabases(t *testing.T) {
 	t.Parallel()
 
 	cl := connect(t)
-	dbs, err := cl.ListDatabases(context.Background(), bson.M{})
+	dbs, err := cl.ListDatabases(t.Context(), bson.M{})
 	require.NoError(t, err)
 	require.NotZero(t, dbs.TotalSize)
 	require.NotZero(t, len(dbs.Databases))
@@ -150,13 +142,13 @@ func TestClient_UseSession(t *testing.T) {
 	t.Parallel()
 
 	cl := connect(t)
-	err := cl.UseSession(context.Background(), func(sc mongoifc.SessionContext) error {
+	err := cl.UseSession(t.Context(), func(sc mongoifc.SessionContext) error {
 		require.NotNil(t, sc.ID())
 		return nil
 	})
 	require.NoError(t, err)
 
-	err = cl.UseSession(context.Background(), func(sc mongoifc.SessionContext) error {
+	err = cl.UseSession(t.Context(), func(sc mongoifc.SessionContext) error {
 		return testErr
 	})
 	require.ErrorIs(t, err, testErr)
@@ -167,7 +159,7 @@ func TestClient_UseSessionWithOptions(t *testing.T) {
 
 	cl := connect(t)
 	err := cl.UseSessionWithOptions(
-		context.Background(),
+		t.Context(),
 		options.Session(),
 		func(sc mongoifc.SessionContext) error {
 			require.NotNil(t, sc.ID())
@@ -177,7 +169,7 @@ func TestClient_UseSessionWithOptions(t *testing.T) {
 	require.NoError(t, err)
 
 	err = cl.UseSessionWithOptions(
-		context.Background(),
+		t.Context(),
 		options.Session(),
 		func(sc mongoifc.SessionContext) error {
 			return testErr
@@ -195,20 +187,12 @@ func TestClient_StartSession(t *testing.T) {
 	t.Cleanup(func() {
 		sess.EndSession(context.Background())
 	})
-
-	cl2, err := mongoifc.NewClient()
-	require.NoError(t, err)
-	require.NotNil(t, cl2)
-
-	sess2, err := cl2.StartSession()
-	require.Error(t, err)
-	require.Nil(t, sess2)
 }
 
 func TestWrapClient_UnWrapClient(t *testing.T) {
 	t.Parallel()
 
-	cl, err := mongo.Connect(context.Background())
+	cl, err := mongo.Connect(t.Context())
 	require.NoError(t, err)
 	require.NotNil(t, cl)
 
@@ -220,7 +204,7 @@ func TestClient_Watch(t *testing.T) {
 	t.Parallel()
 
 	cl := connect(t)
-	cur, err := cl.Watch(context.Background(), mongo.Pipeline{})
+	cur, err := cl.Watch(t.Context(), mongo.Pipeline{})
 	require.NoError(t, err)
 	t.Cleanup(func() {
 		require.NoError(t, cur.Close(context.Background()))

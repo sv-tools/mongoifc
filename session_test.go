@@ -23,7 +23,7 @@ func TestSession_WithTransaction(t *testing.T) {
 		sess.EndSession(context.Background())
 	})
 	name := fmt.Sprintf("test_%d", time.Now().Unix())
-	res, err := sess.WithTransaction(context.Background(), func(sc mongoifc.SessionContext) (interface{}, error) {
+	res, err := sess.WithTransaction(t.Context(), func(sc mongoifc.SessionContext) (interface{}, error) {
 		return cl.
 			Database(name).
 			Collection("test-with").
@@ -35,7 +35,7 @@ func TestSession_WithTransaction(t *testing.T) {
 	n, err := cl.
 		Database(name).
 		Collection("test-with").
-		CountDocuments(context.Background(), bson.M{"foo": "bar"})
+		CountDocuments(t.Context(), bson.M{"foo": "bar"})
 	require.NoError(t, err)
 	require.Equal(t, int64(1), n)
 }
@@ -45,7 +45,7 @@ func TestSession_StartAndAbortTransaction(t *testing.T) {
 
 	cl := connect(t)
 	name := fmt.Sprintf("test_%d", time.Now().Unix())
-	err := cl.UseSession(context.Background(), func(sc mongoifc.SessionContext) error {
+	err := cl.UseSession(t.Context(), func(sc mongoifc.SessionContext) error {
 		err := sc.StartTransaction()
 		require.NoError(t, err)
 
@@ -63,7 +63,7 @@ func TestSession_StartAndAbortTransaction(t *testing.T) {
 	n, err := cl.
 		Database(name).
 		Collection("test-start-abort").
-		CountDocuments(context.Background(), bson.M{"foo": "bar"})
+		CountDocuments(t.Context(), bson.M{"foo": "bar"})
 	require.NoError(t, err)
 	require.Zero(t, n)
 }

@@ -1,7 +1,6 @@
 package mongoifc_test
 
 import (
-	"context"
 	"fmt"
 	"testing"
 	"time"
@@ -19,10 +18,10 @@ func TestWrapCollection_UnWrapCollection(t *testing.T) {
 	name := fmt.Sprintf("test_%d", time.Now().Unix())
 	db := mcl.Database(name)
 	orig := db.Collection("test")
-	_, err := orig.InsertOne(context.Background(), bson.M{"orig": "foo"})
+	_, err := orig.InsertOne(t.Context(), bson.M{"orig": "foo"})
 	require.NoError(t, err)
 	wrapped := mongoifc.WrapCollection(orig)
-	_, err = wrapped.InsertOne(context.Background(), bson.M{"wrapped": "foo"})
+	_, err = wrapped.InsertOne(t.Context(), bson.M{"wrapped": "foo"})
 	require.NoError(t, err)
 	require.Equal(t, orig, mongoifc.UnWrapCollection(wrapped))
 }
