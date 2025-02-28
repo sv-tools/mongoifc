@@ -28,6 +28,9 @@ jobs:
         with:
           go-version: ${{ env.GO }}
 
+      - name: tidy
+        run: go mod tidy
+
       - name: Clean mocks
         run: rm -rf ./mocks
 
