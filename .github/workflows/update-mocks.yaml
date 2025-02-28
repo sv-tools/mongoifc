@@ -11,7 +11,7 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  GO: "1.23"
+  GO: "1.24"
 
 jobs:
   UpdateMocks:
@@ -28,8 +28,14 @@ jobs:
         with:
           go-version: ${{ env.GO }}
 
-      - name: Generate Mocks
-        run: make go-install generate-mocks
+      - name: Run tidy
+        run: go mod tidy
+
+      - name: Clean mocks
+        run: rm -rf ./mocks
+
+      - name: Generate mocks
+        run: go generate
 
       - name: Checking Git
         env:

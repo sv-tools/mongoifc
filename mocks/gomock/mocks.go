@@ -2120,11 +2120,11 @@ func (mr *MockClientEncryptionMockRecorder) CreateDataKey(ctx, kmsProvider any, 
 }
 
 // CreateEncryptedCollection mocks base method.
-func (m *MockClientEncryption) CreateEncryptedCollection(ctx context.Context, db mongoifc.Database, coll string, createOpts *options.CreateCollectionOptions, kmsProvider string, masterKey any) (mongoifc.Collection, primitive.M, error) {
+func (m *MockClientEncryption) CreateEncryptedCollection(ctx context.Context, db mongoifc.Database, coll string, createOpts *options.CreateCollectionOptions, kmsProvider string, masterKey any) (mongoifc.Collection, bson.M, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "CreateEncryptedCollection", ctx, db, coll, createOpts, kmsProvider, masterKey)
 	ret0, _ := ret[0].(mongoifc.Collection)
-	ret1, _ := ret[1].(primitive.M)
+	ret1, _ := ret[1].(bson.M)
 	ret2, _ := ret[2].(error)
 	return ret0, ret1, ret2
 }
