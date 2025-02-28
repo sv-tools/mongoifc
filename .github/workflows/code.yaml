@@ -89,7 +89,7 @@ jobs:
           DELTA="$(git status --short)"
           if [ -n "${DELTA}" ]
           then
-            echo "::error title=Mocks are outdated::Please generate the mocks"
+            echo "::error title=Mocks are outdated::Please generate the mocks by running 'go tool mockgen' and 'go tool mockery'"
             git status
             exit 1
           fi
