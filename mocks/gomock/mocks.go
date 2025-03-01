@@ -1575,31 +1575,31 @@ func (mr *MockSessionMockRecorder) AbortTransaction(ctx any) *gomock.Call {
 }
 
 // AdvanceClusterTime mocks base method.
-func (m *MockSession) AdvanceClusterTime(arg0 bson.Raw) error {
+func (m *MockSession) AdvanceClusterTime(d bson.Raw) error {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "AdvanceClusterTime", arg0)
+	ret := m.ctrl.Call(m, "AdvanceClusterTime", d)
 	ret0, _ := ret[0].(error)
 	return ret0
 }
 
 // AdvanceClusterTime indicates an expected call of AdvanceClusterTime.
-func (mr *MockSessionMockRecorder) AdvanceClusterTime(arg0 any) *gomock.Call {
+func (mr *MockSessionMockRecorder) AdvanceClusterTime(d any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "AdvanceClusterTime", reflect.TypeOf((*MockSession)(nil).AdvanceClusterTime), arg0)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "AdvanceClusterTime", reflect.TypeOf((*MockSession)(nil).AdvanceClusterTime), d)
 }
 
 // AdvanceOperationTime mocks base method.
-func (m *MockSession) AdvanceOperationTime(arg0 *primitive.Timestamp) error {
+func (m *MockSession) AdvanceOperationTime(ts *primitive.Timestamp) error {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "AdvanceOperationTime", arg0)
+	ret := m.ctrl.Call(m, "AdvanceOperationTime", ts)
 	ret0, _ := ret[0].(error)
 	return ret0
 }
 
 // AdvanceOperationTime indicates an expected call of AdvanceOperationTime.
-func (mr *MockSessionMockRecorder) AdvanceOperationTime(arg0 any) *gomock.Call {
+func (mr *MockSessionMockRecorder) AdvanceOperationTime(ts any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "AdvanceOperationTime", reflect.TypeOf((*MockSession)(nil).AdvanceOperationTime), arg0)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "AdvanceOperationTime", reflect.TypeOf((*MockSession)(nil).AdvanceOperationTime), ts)
 }
 
 // Client mocks base method.
@@ -1843,31 +1843,31 @@ func (mr *MockSessionContextMockRecorder) AbortTransaction(ctx any) *gomock.Call
 }
 
 // AdvanceClusterTime mocks base method.
-func (m *MockSessionContext) AdvanceClusterTime(arg0 bson.Raw) error {
+func (m *MockSessionContext) AdvanceClusterTime(d bson.Raw) error {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "AdvanceClusterTime", arg0)
+	ret := m.ctrl.Call(m, "AdvanceClusterTime", d)
 	ret0, _ := ret[0].(error)
 	return ret0
 }
 
 // AdvanceClusterTime indicates an expected call of AdvanceClusterTime.
-func (mr *MockSessionContextMockRecorder) AdvanceClusterTime(arg0 any) *gomock.Call {
+func (mr *MockSessionContextMockRecorder) AdvanceClusterTime(d any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "AdvanceClusterTime", reflect.TypeOf((*MockSessionContext)(nil).AdvanceClusterTime), arg0)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "AdvanceClusterTime", reflect.TypeOf((*MockSessionContext)(nil).AdvanceClusterTime), d)
 }
 
 // AdvanceOperationTime mocks base method.
-func (m *MockSessionContext) AdvanceOperationTime(arg0 *primitive.Timestamp) error {
+func (m *MockSessionContext) AdvanceOperationTime(ts *primitive.Timestamp) error {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "AdvanceOperationTime", arg0)
+	ret := m.ctrl.Call(m, "AdvanceOperationTime", ts)
 	ret0, _ := ret[0].(error)
 	return ret0
 }
 
 // AdvanceOperationTime indicates an expected call of AdvanceOperationTime.
-func (mr *MockSessionContextMockRecorder) AdvanceOperationTime(arg0 any) *gomock.Call {
+func (mr *MockSessionContextMockRecorder) AdvanceOperationTime(ts any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "AdvanceOperationTime", reflect.TypeOf((*MockSessionContext)(nil).AdvanceOperationTime), arg0)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "AdvanceOperationTime", reflect.TypeOf((*MockSessionContext)(nil).AdvanceOperationTime), ts)
 }
 
 // Client mocks base method.
