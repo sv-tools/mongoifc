@@ -27,7 +27,7 @@ func connect(tb testing.TB) mongoifc.Client {
 	cl, err := mongoifc.Connect(tb.Context(), opt)
 	require.NoError(tb, err)
 	tb.Cleanup(func() {
-		require.NoError(tb, cl.Disconnect(context.Background()))
+		require.NoError(tb, cl.Disconnect(context.WithoutCancel(tb.Context())))
 	})
 
 	err = cl.Ping(tb.Context(), readpref.Primary())
@@ -47,7 +47,7 @@ func TestNewClient(t *testing.T) {
 	err = cl.Connect(t.Context())
 	require.NoError(t, err)
 	t.Cleanup(func() {
-		require.NoError(t, cl.Disconnect(context.Background()))
+		require.NoError(t, cl.Disconnect(context.WithoutCancel(t.Context())))
 	})
 
 	opt2 := options.Client().ApplyURI("fake")
@@ -65,7 +65,7 @@ func TestConnect(t *testing.T) {
 	require.NotNil(t, cl)
 
 	t.Cleanup(func() {
-		require.NoError(t, cl.Disconnect(context.Background()))
+		require.NoError(t, cl.Disconnect(context.WithoutCancel(t.Context())))
 	})
 
 	err = cl.Ping(t.Context(), readpref.Primary())
@@ -84,7 +84,7 @@ func TestWithSession(t *testing.T) {
 	sess, err := cl.StartSession()
 	require.NoError(t, err)
 	t.Cleanup(func() {
-		sess.EndSession(context.Background())
+		sess.EndSession(context.WithoutCancel(t.Context()))
 	})
 
 	err = mongoifc.WithSession(t.Context(), sess, func(sc mongoifc.SessionContext) error {
@@ -111,7 +111,7 @@ func TestClient_ListDatabaseNames(t *testing.T) {
 	names, err := cl.ListDatabaseNames(t.Context(), bson.M{})
 	require.NoError(t, err)
 	t.Logf("database names: %v", names)
-	require.NotZero(t, len(names))
+	require.NotEmpty(t, names)
 	require.Contains(t, names, "admin")
 }
 
@@ -122,7 +122,7 @@ func TestClient_ListDatabases(t *testing.T) {
 	dbs, err := cl.ListDatabases(t.Context(), bson.M{})
 	require.NoError(t, err)
 	require.NotZero(t, dbs.TotalSize)
-	require.NotZero(t, len(dbs.Databases))
+	require.NotEmpty(t, dbs.Databases)
 }
 
 func TestClient_NumberSessionsInProgress(t *testing.T) {
@@ -132,7 +132,7 @@ func TestClient_NumberSessionsInProgress(t *testing.T) {
 	sess, err := cl.StartSession()
 	require.NoError(t, err)
 	t.Cleanup(func() {
-		sess.EndSession(context.Background())
+		sess.EndSession(context.WithoutCancel(t.Context()))
 	})
 
 	require.NotZero(t, cl.NumberSessionsInProgress())
@@ -185,7 +185,7 @@ func TestClient_StartSession(t *testing.T) {
 	sess, err := cl.StartSession()
 	require.NoError(t, err)
 	t.Cleanup(func() {
-		sess.EndSession(context.Background())
+		sess.EndSession(context.WithoutCancel(t.Context()))
 	})
 }
 
@@ -207,7 +207,7 @@ func TestClient_Watch(t *testing.T) {
 	cur, err := cl.Watch(t.Context(), mongo.Pipeline{})
 	require.NoError(t, err)
 	t.Cleanup(func() {
-		require.NoError(t, cur.Close(context.Background()))
+		require.NoError(t, cur.Close(context.WithoutCancel(t.Context())))
 	})
 	require.NotZero(t, cur.ID())
 }

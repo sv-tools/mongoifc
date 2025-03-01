@@ -20,7 +20,7 @@ func TestSession_WithTransaction(t *testing.T) {
 	sess, err := cl.StartSession()
 	require.NoError(t, err)
 	t.Cleanup(func() {
-		sess.EndSession(context.Background())
+		sess.EndSession(context.WithoutCancel(t.Context()))
 	})
 	name := fmt.Sprintf("test_%d", time.Now().Unix())
 	res, err := sess.WithTransaction(t.Context(), func(sc mongoifc.SessionContext) (interface{}, error) {
