@@ -75,9 +75,9 @@ func (_c *Session_AbortTransaction_Call) RunAndReturn(run func(context.Context) 
 	return _c
 }
 
-// AdvanceClusterTime provides a mock function with given fields: _a0
-func (_m *Session) AdvanceClusterTime(_a0 bson.Raw) error {
-	ret := _m.Called(_a0)
+// AdvanceClusterTime provides a mock function with given fields: d
+func (_m *Session) AdvanceClusterTime(d bson.Raw) error {
+	ret := _m.Called(d)
 
 	if len(ret) == 0 {
 		panic("no return value specified for AdvanceClusterTime")
@@ -85,7 +85,7 @@ func (_m *Session) AdvanceClusterTime(_a0 bson.Raw) error {
 
 	var r0 error
 	if rf, ok := ret.Get(0).(func(bson.Raw) error); ok {
-		r0 = rf(_a0)
+		r0 = rf(d)
 	} else {
 		r0 = ret.Error(0)
 	}
@@ -99,12 +99,12 @@ type Session_AdvanceClusterTime_Call struct {
 }
 
 // AdvanceClusterTime is a helper method to define mock.On call
-//   - _a0 bson.Raw
-func (_e *Session_Expecter) AdvanceClusterTime(_a0 interface{}) *Session_AdvanceClusterTime_Call {
-	return &Session_AdvanceClusterTime_Call{Call: _e.mock.On("AdvanceClusterTime", _a0)}
+//   - d bson.Raw
+func (_e *Session_Expecter) AdvanceClusterTime(d interface{}) *Session_AdvanceClusterTime_Call {
+	return &Session_AdvanceClusterTime_Call{Call: _e.mock.On("AdvanceClusterTime", d)}
 }
 
-func (_c *Session_AdvanceClusterTime_Call) Run(run func(_a0 bson.Raw)) *Session_AdvanceClusterTime_Call {
+func (_c *Session_AdvanceClusterTime_Call) Run(run func(d bson.Raw)) *Session_AdvanceClusterTime_Call {
 	_c.Call.Run(func(args mock.Arguments) {
 		run(args[0].(bson.Raw))
 	})
@@ -121,9 +121,9 @@ func (_c *Session_AdvanceClusterTime_Call) RunAndReturn(run func(bson.Raw) error
 	return _c
 }
 
-// AdvanceOperationTime provides a mock function with given fields: _a0
-func (_m *Session) AdvanceOperationTime(_a0 *primitive.Timestamp) error {
-	ret := _m.Called(_a0)
+// AdvanceOperationTime provides a mock function with given fields: ts
+func (_m *Session) AdvanceOperationTime(ts *primitive.Timestamp) error {
+	ret := _m.Called(ts)
 
 	if len(ret) == 0 {
 		panic("no return value specified for AdvanceOperationTime")
@@ -131,7 +131,7 @@ func (_m *Session) AdvanceOperationTime(_a0 *primitive.Timestamp) error {
 
 	var r0 error
 	if rf, ok := ret.Get(0).(func(*primitive.Timestamp) error); ok {
-		r0 = rf(_a0)
+		r0 = rf(ts)
 	} else {
 		r0 = ret.Error(0)
 	}
@@ -145,12 +145,12 @@ type Session_AdvanceOperationTime_Call struct {
 }
 
 // AdvanceOperationTime is a helper method to define mock.On call
-//   - _a0 *primitive.Timestamp
-func (_e *Session_Expecter) AdvanceOperationTime(_a0 interface{}) *Session_AdvanceOperationTime_Call {
-	return &Session_AdvanceOperationTime_Call{Call: _e.mock.On("AdvanceOperationTime", _a0)}
+//   - ts *primitive.Timestamp
+func (_e *Session_Expecter) AdvanceOperationTime(ts interface{}) *Session_AdvanceOperationTime_Call {
+	return &Session_AdvanceOperationTime_Call{Call: _e.mock.On("AdvanceOperationTime", ts)}
 }
 
-func (_c *Session_AdvanceOperationTime_Call) Run(run func(_a0 *primitive.Timestamp)) *Session_AdvanceOperationTime_Call {
+func (_c *Session_AdvanceOperationTime_Call) Run(run func(ts *primitive.Timestamp)) *Session_AdvanceOperationTime_Call {
 	_c.Call.Run(func(args mock.Arguments) {
 		run(args[0].(*primitive.Timestamp))
 	})

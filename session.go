@@ -33,8 +33,8 @@ type Session interface {
 
 	// Functions to modify mutable session properties.
 
-	AdvanceClusterTime(bson.Raw) error
-	AdvanceOperationTime(*primitive.Timestamp) error
+	AdvanceClusterTime(d bson.Raw) error
+	AdvanceOperationTime(ts *primitive.Timestamp) error
 }
 
 type session struct {
