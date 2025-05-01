@@ -1,4 +1,8 @@
+version: "2"
+
 linters:
+  default: none
+  
   enable: # keep in ascending order
     - asasalint
     - asciicheck
@@ -13,17 +17,14 @@ linters:
     - exhaustive
     - exptostd
     - fatcontext
-    - gci
     - gocheckcompilerdirectives
     - gochecksumtype
     - gocognit
     - goconst
     - gocritic
     - gocyclo
-    - gofumpt
     - goprintffuncname
     - gosec
-    - gosimple
     - govet
     - iface
     - inamedparam
@@ -59,43 +60,55 @@ linters:
     - wastedassign
     - whitespace
 
-linters-settings:
-  dupl:
-    threshold: 100
-  misspell:
-    locale: US
-  gci:
-    sections:
-      - standard
-      - default
-      - prefix(github.com/sv-tools/mongoifc)
-  gocognit:
-    min-complexity: 15
-  gocyclo:
-    min-complexity: 15
-  gofumpt:
-    extra-rules: true
-  lll:
-    line-length: 120
-    tab-width: 4
-  goconst:
-    min-len: 3
-    min-occurrences: 3
-  prealloc:
-    for-loops: true
-  gocritic:
-    enabled-tags:
-      - diagnostic
-      - experimental
-      - opinionated
-      - performance
-      - style
-    disabled-checks:
-      - whyNoLint
+  settings:
+    dupl:
+      threshold: 100
+    misspell:
+      locale: US
+    gocognit:
+      min-complexity: 15
+    gocyclo:
+      min-complexity: 15
+    lll:
+      line-length: 120
+      tab-width: 4
+    goconst:
+      min-len: 3
+      min-occurrences: 3
+    prealloc:
+      for-loops: true
+    gocritic:
+      enabled-tags:
+        - diagnostic
+        - experimental
+        - opinionated
+        - performance
+        - style
+      disabled-checks:
+        - whyNoLint
 
-issues:
-  exclude-dirs:
-    - mocks
-  exclude-use-default: false
-  exclude:
-    - should have a package comment
+  exclusions:
+    warn-unused: true
+    paths:
+      - mocks
+    rules:
+      - linters:
+          - dupl
+        path: _test\.go
+      - linters:
+          - gosec
+        text: "G404:"
+        path: _test\.go
+
+formatters:
+  enable:
+    - gci
+    - gofumpt
+  settings:
+    gci:
+      sections:
+        - standard
+        - default
+        - prefix(github.com/sv-tools/mongoifc)
+    gofumpt:
+        extra-rules: true
