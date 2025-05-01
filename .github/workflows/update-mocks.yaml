@@ -10,33 +10,20 @@ concurrency:
   group: ${{ format('{0}-{1}', github.workflow, github.head_ref) }}
   cancel-in-progress: true
 
-env:
-  GO: "1.24"
-
 jobs:
   UpdateMocks:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4.2.2 # immutable action
-
-      - name: Install Go
-        uses: actions/setup-go@v5.4.0 # immutable action
+      - uses: actions/checkout@v4.2.2 # immutable action
+      - uses: actions/setup-go@v5.4.0 # immutable action
         with:
-          go-version: ${{ env.GO }}
-
-      - name: Run tidy
-        run: go mod tidy
-
+          go-version-file: go.mod
+      - run: go mod tidy
       - name: Clean mocks
         run: rm -rf ./mocks
-
-      - name: Generate mocks
-        run: go generate
-
+      - run: go generate
       - name: Checking Git
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
