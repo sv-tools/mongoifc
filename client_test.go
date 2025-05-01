@@ -16,7 +16,7 @@ import (
 	"github.com/sv-tools/mongoifc"
 )
 
-var testErr = errors.New("test")
+var errTest = errors.New("test")
 
 func connect(tb testing.TB) mongoifc.Client {
 	tb.Helper()
@@ -149,9 +149,9 @@ func TestClient_UseSession(t *testing.T) {
 	require.NoError(t, err)
 
 	err = cl.UseSession(t.Context(), func(sc mongoifc.SessionContext) error {
-		return testErr
+		return errTest
 	})
-	require.ErrorIs(t, err, testErr)
+	require.ErrorIs(t, err, errTest)
 }
 
 func TestClient_UseSessionWithOptions(t *testing.T) {
@@ -172,10 +172,10 @@ func TestClient_UseSessionWithOptions(t *testing.T) {
 		t.Context(),
 		options.Session(),
 		func(sc mongoifc.SessionContext) error {
-			return testErr
+			return errTest
 		},
 	)
-	require.ErrorIs(t, err, testErr)
+	require.ErrorIs(t, err, errTest)
 }
 
 func TestClient_StartSession(t *testing.T) {

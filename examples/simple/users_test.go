@@ -111,7 +111,7 @@ func TestUsersWorkflow(t *testing.T) {
 		require.NoError(t, err)
 		require.NotNil(t, cl)
 		t.Cleanup(func() {
-			require.NoError(t, cl.Disconnect(context.Background()))
+			require.NoError(t, cl.Disconnect(context.Background())) //nolint:usetesting
 		})
 
 		db := cl.Database(fmt.Sprintf("simple_%d", time.Now().Unix()))
