@@ -32,8 +32,12 @@ func TestCollectionsWorkflow(t *testing.T) {
 		defer db.AssertExpectations(t)
 		db.On("Collection", mock.Anything).Return(col)
 		db.On("CreateCollection", t.Context(), mock.Anything).Return(nil)
-		db.On("ListCollectionNames", t.Context(), mock.AnythingOfType("primitive.M")).Return([]string{"fake"}, nil).Once()
-		db.On("ListCollectionNames", t.Context(), mock.AnythingOfType("primitive.M")).Return([]string{}, nil).Twice()
+		db.On("ListCollectionNames", t.Context(), mock.AnythingOfType("primitive.M")).
+			Return([]string{"fake"}, nil).
+			Once()
+		db.On("ListCollectionNames", t.Context(), mock.AnythingOfType("primitive.M")).
+			Return([]string{}, nil).
+			Twice()
 
 		collectionsWorkflow(t, db)
 	})
@@ -64,7 +68,7 @@ func TestCollectionsWorkflow(t *testing.T) {
 		require.NoError(t, err)
 		require.NotNil(t, cl)
 		t.Cleanup(func() {
-			require.NoError(t, cl.Disconnect(context.Background()))
+			require.NoError(t, cl.Disconnect(context.Background())) //nolint:usetesting
 		})
 
 		db := cl.Database(fmt.Sprintf("simple_%d", time.Now().Unix()))
