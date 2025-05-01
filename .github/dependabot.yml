@@ -4,6 +4,13 @@ updates:
     directory: "/"
     schedule:
       interval: weekly
+    groups:
+      ci:
+        patterns:
+          - "*"
+      golangci-lint:
+        patterns:
+          - "golangci*"
   - package-ecosystem: github-actions
     directory: "/"
     schedule:
