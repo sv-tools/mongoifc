@@ -3,59 +3,58 @@ package mongoifc
 import (
 	"context"
 
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
-	"go.mongodb.org/mongo-driver/mongo"
-	"go.mongodb.org/mongo-driver/mongo/options"
+	"go.mongodb.org/mongo-driver/v2/bson"
+	"go.mongodb.org/mongo-driver/v2/mongo"
+	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
 // ClientEncryption is an interface for `mongo.ClientEncryption` structure
-// Documentation: https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo#ClientEncryption
+// Documentation: https://pkg.go.dev/go.mongodb.org/mongo-driver/v2/mongo#ClientEncryption
 type ClientEncryption interface {
 	AddKeyAltName(
 		ctx context.Context,
-		id primitive.Binary,
+		id bson.Binary,
 		keyAltName string,
 	) SingleResult
 	Close(ctx context.Context) error
 	CreateDataKey(
 		ctx context.Context,
 		kmsProvider string,
-		opts ...*options.DataKeyOptions,
-	) (primitive.Binary, error)
+		opts ...options.Lister[options.DataKeyOptions],
+	) (bson.Binary, error)
 	CreateEncryptedCollection(
 		ctx context.Context,
 		db Database,
 		coll string,
-		createOpts *options.CreateCollectionOptions,
+		createOpts options.Lister[options.CreateCollectionOptions],
 		kmsProvider string,
-		masterKey interface{},
+		masterKey any,
 	) (Collection, bson.M, error)
-	Decrypt(ctx context.Context, val primitive.Binary) (bson.RawValue, error)
-	DeleteKey(ctx context.Context, id primitive.Binary) (*mongo.DeleteResult, error)
+	Decrypt(ctx context.Context, val bson.Binary) (bson.RawValue, error)
+	DeleteKey(ctx context.Context, id bson.Binary) (*mongo.DeleteResult, error)
 	Encrypt(
 		ctx context.Context,
 		val bson.RawValue,
-		opts ...*options.EncryptOptions,
-	) (primitive.Binary, error)
+		opts ...options.Lister[options.EncryptOptions],
+	) (bson.Binary, error)
 	EncryptExpression(
 		ctx context.Context,
-		expr interface{},
-		result interface{},
-		opts ...*options.EncryptOptions,
+		expr any,
+		result any,
+		opts ...options.Lister[options.EncryptOptions],
 	) error
-	GetKey(ctx context.Context, id primitive.Binary) SingleResult
+	GetKey(ctx context.Context, id bson.Binary) SingleResult
 	GetKeyByAltName(ctx context.Context, keyAltName string) SingleResult
 	GetKeys(ctx context.Context) (Cursor, error)
 	RemoveKeyAltName(
 		ctx context.Context,
-		id primitive.Binary,
+		id bson.Binary,
 		keyAltName string,
 	) SingleResult
 	RewrapManyDataKey(
 		ctx context.Context,
-		filter interface{},
-		opts ...*options.RewrapManyDataKeyOptions,
+		filter any,
+		opts ...options.Lister[options.RewrapManyDataKeyOptions],
 	) (*mongo.RewrapManyDataKeyResult, error)
 }
 
@@ -63,7 +62,7 @@ type clientEncryption struct {
 	ce *mongo.ClientEncryption
 }
 
-func (c *clientEncryption) AddKeyAltName(ctx context.Context, id primitive.Binary, keyAltName string) SingleResult {
+func (c *clientEncryption) AddKeyAltName(ctx context.Context, id bson.Binary, keyAltName string) SingleResult {
 	return wrapSingleResult(c.ce.AddKeyAltName(ctx, id, keyAltName))
 }
 
@@ -74,8 +73,8 @@ func (c *clientEncryption) Close(ctx context.Context) error {
 func (c *clientEncryption) CreateDataKey(
 	ctx context.Context,
 	kmsProvider string,
-	opts ...*options.DataKeyOptions,
-) (primitive.Binary, error) {
+	opts ...options.Lister[options.DataKeyOptions],
+) (bson.Binary, error) {
 	return c.ce.CreateDataKey(ctx, kmsProvider, opts...)
 }
 
@@ -83,9 +82,9 @@ func (c *clientEncryption) CreateEncryptedCollection(
 	ctx context.Context,
 	db Database,
 	coll string,
-	createOpts *options.CreateCollectionOptions,
+	createOpts options.Lister[options.CreateCollectionOptions],
 	kmsProvider string,
-	masterKey interface{},
+	masterKey any,
 ) (Collection, bson.M, error) {
 	col, doc, err := c.ce.CreateEncryptedCollection(ctx, UnWrapDatabase(db), coll, createOpts, kmsProvider, masterKey)
 	if err != nil {
@@ -94,32 +93,32 @@ func (c *clientEncryption) CreateEncryptedCollection(
 	return wrapCollection(col, db.(*database)), doc, err
 }
 
-func (c *clientEncryption) Decrypt(ctx context.Context, val primitive.Binary) (bson.RawValue, error) {
+func (c *clientEncryption) Decrypt(ctx context.Context, val bson.Binary) (bson.RawValue, error) {
 	return c.ce.Decrypt(ctx, val)
 }
 
-func (c *clientEncryption) DeleteKey(ctx context.Context, id primitive.Binary) (*mongo.DeleteResult, error) {
+func (c *clientEncryption) DeleteKey(ctx context.Context, id bson.Binary) (*mongo.DeleteResult, error) {
 	return c.ce.DeleteKey(ctx, id)
 }
 
 func (c *clientEncryption) Encrypt(
 	ctx context.Context,
 	val bson.RawValue,
-	opts ...*options.EncryptOptions,
-) (primitive.Binary, error) {
+	opts ...options.Lister[options.EncryptOptions],
+) (bson.Binary, error) {
 	return c.ce.Encrypt(ctx, val, opts...)
 }
 
 func (c *clientEncryption) EncryptExpression(
 	ctx context.Context,
-	expr interface{},
-	result interface{},
-	opts ...*options.EncryptOptions,
+	expr any,
+	result any,
+	opts ...options.Lister[options.EncryptOptions],
 ) error {
 	return c.ce.EncryptExpression(ctx, expr, result, opts...)
 }
 
-func (c *clientEncryption) GetKey(ctx context.Context, id primitive.Binary) SingleResult {
+func (c *clientEncryption) GetKey(ctx context.Context, id bson.Binary) SingleResult {
 	return wrapSingleResult(c.ce.GetKey(ctx, id))
 }
 
@@ -137,7 +136,7 @@ func (c *clientEncryption) GetKeys(ctx context.Context) (Cursor, error) {
 
 func (c *clientEncryption) RemoveKeyAltName(
 	ctx context.Context,
-	id primitive.Binary,
+	id bson.Binary,
 	keyAltName string,
 ) SingleResult {
 	return wrapSingleResult(c.ce.RemoveKeyAltName(ctx, id, keyAltName))
@@ -145,13 +144,16 @@ func (c *clientEncryption) RemoveKeyAltName(
 
 func (c *clientEncryption) RewrapManyDataKey(
 	ctx context.Context,
-	filter interface{},
-	opts ...*options.RewrapManyDataKeyOptions,
+	filter any,
+	opts ...options.Lister[options.RewrapManyDataKeyOptions],
 ) (*mongo.RewrapManyDataKeyResult, error) {
 	return c.ce.RewrapManyDataKey(ctx, filter, opts...)
 }
 
-func NewClientEncryption(keyVaultClient Client, opts ...*options.ClientEncryptionOptions) (ClientEncryption, error) {
+func NewClientEncryption(
+	keyVaultClient Client,
+	opts ...options.Lister[options.ClientEncryptionOptions],
+) (ClientEncryption, error) {
 	ce, err := mongo.NewClientEncryption(UnWrapClient(keyVaultClient), opts...)
 	if err != nil {
 		return nil, err

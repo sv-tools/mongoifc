@@ -9,7 +9,7 @@ import (
 
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/require"
-	"go.mongodb.org/mongo-driver/mongo/options"
+	"go.mongodb.org/mongo-driver/v2/mongo/options"
 	"go.uber.org/mock/gomock"
 
 	"github.com/sv-tools/mongoifc"
@@ -32,10 +32,10 @@ func TestCollectionsWorkflow(t *testing.T) {
 		defer db.AssertExpectations(t)
 		db.On("Collection", mock.Anything).Return(col)
 		db.On("CreateCollection", t.Context(), mock.Anything).Return(nil)
-		db.On("ListCollectionNames", t.Context(), mock.AnythingOfType("primitive.M")).
+		db.On("ListCollectionNames", t.Context(), mock.AnythingOfType("bson.M")).
 			Return([]string{"fake"}, nil).
 			Once()
-		db.On("ListCollectionNames", t.Context(), mock.AnythingOfType("primitive.M")).
+		db.On("ListCollectionNames", t.Context(), mock.AnythingOfType("bson.M")).
 			Return([]string{}, nil).
 			Twice()
 
@@ -64,7 +64,7 @@ func TestCollectionsWorkflow(t *testing.T) {
 		t.Parallel()
 
 		opt := options.Client().ApplyURI(MongoUri)
-		cl, err := mongoifc.Connect(t.Context(), opt)
+		cl, err := mongoifc.Connect(opt)
 		require.NoError(t, err)
 		require.NotNil(t, cl)
 		t.Cleanup(func() {

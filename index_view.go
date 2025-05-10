@@ -3,25 +3,31 @@ package mongoifc
 import (
 	"context"
 
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/mongo"
-	"go.mongodb.org/mongo-driver/mongo/options"
+	"go.mongodb.org/mongo-driver/v2/mongo"
+	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
 // IndexView is an interface for `mongo.IndexView` structure
-// Documentation: https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo#IndexView
+// Documentation: https://pkg.go.dev/go.mongodb.org/mongo-driver/v2/mongo#IndexView
 type IndexView interface {
-	CreateMany(ctx context.Context, models []mongo.IndexModel, opts ...*options.CreateIndexesOptions) ([]string, error)
-	CreateOne(ctx context.Context, model mongo.IndexModel, opts ...*options.CreateIndexesOptions) (string, error)
-	DropAll(ctx context.Context, opts ...*options.DropIndexesOptions) (bson.Raw, error)
-	DropOne(ctx context.Context, name string, opts ...*options.DropIndexesOptions) (bson.Raw, error)
-	DropOneWithKey(
+	CreateMany(
 		ctx context.Context,
-		keySpecDocument interface{},
-		opts ...*options.DropIndexesOptions,
-	) (bson.Raw, error)
-	List(ctx context.Context, opts ...*options.ListIndexesOptions) (Cursor, error)
-	ListSpecifications(ctx context.Context, opts ...*options.ListIndexesOptions) ([]*mongo.IndexSpecification, error)
+		models []mongo.IndexModel,
+		opts ...options.Lister[options.CreateIndexesOptions],
+	) ([]string, error)
+	CreateOne(
+		ctx context.Context,
+		model mongo.IndexModel,
+		opts ...options.Lister[options.CreateIndexesOptions],
+	) (string, error)
+	DropAll(ctx context.Context, opts ...options.Lister[options.DropIndexesOptions]) error
+	DropOne(ctx context.Context, name string, opts ...options.Lister[options.DropIndexesOptions]) error
+	DropWithKey(ctx context.Context, keySpecDocument any, opts ...options.Lister[options.DropIndexesOptions]) error
+	List(ctx context.Context, opts ...options.Lister[options.ListIndexesOptions]) (Cursor, error)
+	ListSpecifications(
+		ctx context.Context,
+		opts ...options.Lister[options.ListIndexesOptions],
+	) ([]mongo.IndexSpecification, error)
 }
 
 type indexView struct {
@@ -31,7 +37,7 @@ type indexView struct {
 func (i *indexView) CreateMany(
 	ctx context.Context,
 	models []mongo.IndexModel,
-	opts ...*options.CreateIndexesOptions,
+	opts ...options.Lister[options.CreateIndexesOptions],
 ) ([]string, error) {
 	return i.iv.CreateMany(ctx, models, opts...)
 }
@@ -39,28 +45,38 @@ func (i *indexView) CreateMany(
 func (i *indexView) CreateOne(
 	ctx context.Context,
 	model mongo.IndexModel,
-	opts ...*options.CreateIndexesOptions,
+	opts ...options.Lister[options.CreateIndexesOptions],
 ) (string, error) {
 	return i.iv.CreateOne(ctx, model, opts...)
 }
 
-func (i *indexView) DropAll(ctx context.Context, opts ...*options.DropIndexesOptions) (bson.Raw, error) {
+func (i *indexView) DropAll(
+	ctx context.Context,
+	opts ...options.Lister[options.DropIndexesOptions],
+) error {
 	return i.iv.DropAll(ctx, opts...)
 }
 
-func (i *indexView) DropOne(ctx context.Context, name string, opts ...*options.DropIndexesOptions) (bson.Raw, error) {
+func (i *indexView) DropOne(
+	ctx context.Context,
+	name string,
+	opts ...options.Lister[options.DropIndexesOptions],
+) error {
 	return i.iv.DropOne(ctx, name, opts...)
 }
 
-func (i *indexView) DropOneWithKey(
+func (i *indexView) DropWithKey(
 	ctx context.Context,
-	keySpecDocument interface{},
-	opts ...*options.DropIndexesOptions,
-) (bson.Raw, error) {
-	return i.iv.DropOneWithKey(ctx, keySpecDocument, opts...)
+	keySpecDocument any,
+	opts ...options.Lister[options.DropIndexesOptions],
+) error {
+	return i.iv.DropWithKey(ctx, keySpecDocument, opts...)
 }
 
-func (i *indexView) List(ctx context.Context, opts ...*options.ListIndexesOptions) (Cursor, error) {
+func (i *indexView) List(
+	ctx context.Context,
+	opts ...options.Lister[options.ListIndexesOptions],
+) (Cursor, error) {
 	cr, err := i.iv.List(ctx, opts...)
 	if err != nil {
 		return nil, err
@@ -71,8 +87,8 @@ func (i *indexView) List(ctx context.Context, opts ...*options.ListIndexesOption
 
 func (i *indexView) ListSpecifications(
 	ctx context.Context,
-	opts ...*options.ListIndexesOptions,
-) ([]*mongo.IndexSpecification, error) {
+	opts ...options.Lister[options.ListIndexesOptions],
+) ([]mongo.IndexSpecification, error) {
 	return i.iv.ListSpecifications(ctx, opts...)
 }
 

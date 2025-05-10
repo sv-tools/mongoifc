@@ -102,16 +102,19 @@ This is the main reason of wrapping the original objects and using the `mongoifc
 
 ## Wrapped Interfaces
 
-- [x] ChangeStream: https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo#ChangeStream
-- [x] Client: https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo#Client
-- [x] ClientEncryption: https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo#ClientEncryption
-- [x] Collection: https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo#Collection
-- [x] Cursor: https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo#Cursor
-- [x] Database: https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo#Database
-- [x] IndexView: https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo#IndexView
-- [x] Session: https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo#Session
-- [x] SessionContext: https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo#SessionContext
-- [x] SingleResult: https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo#SingleResult
+- [x] ChangeStream: https://pkg.go.dev/go.mongodb.org/mongo-driver/v2/mongo#ChangeStream
+- [x] Client: https://pkg.go.dev/go.mongodb.org/mongo-driver/v2/mongo#Client
+- [x] ClientEncryption: https://pkg.go.dev/go.mongodb.org/mongo-driver/v2/mongo#ClientEncryption
+- [x] Collection: https://pkg.go.dev/go.mongodb.org/mongo-driver/v2/mongo#Collection
+- [x] Cursor: https://pkg.go.dev/go.mongodb.org/mongo-driver/v2/mongo#Cursor
+- [x] Database: https://pkg.go.dev/go.mongodb.org/mongo-driver/v2/mongo#Database
+- [x] IndexView: https://pkg.go.dev/go.mongodb.org/mongo-driver/v2/mongo#IndexView
+- [x] Session: https://pkg.go.dev/go.mongodb.org/mongo-driver/v2/mongo#Session
+- [x] SingleResult: https://pkg.go.dev/go.mongodb.org/mongo-driver/v2/mongo#SingleResult
+- [x] DistinctResult: https://pkg.go.dev/go.mongodb.org/mongo-driver/v2/mongo#DistinctResult
+- [x] GridFSBucket: https://pkg.go.dev/go.mongodb.org/mongo-driver/v2/mongo#GridFSBucket
+- [x] GridFSUploadStream: https://pkg.go.dev/go.mongodb.org/mongo-driver/v2/mongo#GridFSUploadStream
+- [x] GridFSDownloadStream: https://pkg.go.dev/go.mongodb.org/mongo-driver/v2/mongo#GridFSDownloadStream
 
 ## Mocks
 

@@ -5,7 +5,7 @@ package mocks
 import (
 	context "context"
 
-	bson "go.mongodb.org/mongo-driver/bson"
+	bson "go.mongodb.org/mongo-driver/v2/bson"
 
 	mock "github.com/stretchr/testify/mock"
 
@@ -458,35 +458,35 @@ func (_c *Cursor_SetComment_Call) RunAndReturn(run func(interface{})) *Cursor_Se
 	return _c
 }
 
-// SetMaxTime provides a mock function with given fields: dur
-func (_m *Cursor) SetMaxTime(dur time.Duration) {
+// SetMaxAwaitTime provides a mock function with given fields: dur
+func (_m *Cursor) SetMaxAwaitTime(dur time.Duration) {
 	_m.Called(dur)
 }
 
-// Cursor_SetMaxTime_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'SetMaxTime'
-type Cursor_SetMaxTime_Call struct {
+// Cursor_SetMaxAwaitTime_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'SetMaxAwaitTime'
+type Cursor_SetMaxAwaitTime_Call struct {
 	*mock.Call
 }
 
-// SetMaxTime is a helper method to define mock.On call
+// SetMaxAwaitTime is a helper method to define mock.On call
 //   - dur time.Duration
-func (_e *Cursor_Expecter) SetMaxTime(dur interface{}) *Cursor_SetMaxTime_Call {
-	return &Cursor_SetMaxTime_Call{Call: _e.mock.On("SetMaxTime", dur)}
+func (_e *Cursor_Expecter) SetMaxAwaitTime(dur interface{}) *Cursor_SetMaxAwaitTime_Call {
+	return &Cursor_SetMaxAwaitTime_Call{Call: _e.mock.On("SetMaxAwaitTime", dur)}
 }
 
-func (_c *Cursor_SetMaxTime_Call) Run(run func(dur time.Duration)) *Cursor_SetMaxTime_Call {
+func (_c *Cursor_SetMaxAwaitTime_Call) Run(run func(dur time.Duration)) *Cursor_SetMaxAwaitTime_Call {
 	_c.Call.Run(func(args mock.Arguments) {
 		run(args[0].(time.Duration))
 	})
 	return _c
 }
 
-func (_c *Cursor_SetMaxTime_Call) Return() *Cursor_SetMaxTime_Call {
+func (_c *Cursor_SetMaxAwaitTime_Call) Return() *Cursor_SetMaxAwaitTime_Call {
 	_c.Call.Return()
 	return _c
 }
 
-func (_c *Cursor_SetMaxTime_Call) RunAndReturn(run func(time.Duration)) *Cursor_SetMaxTime_Call {
+func (_c *Cursor_SetMaxAwaitTime_Call) RunAndReturn(run func(time.Duration)) *Cursor_SetMaxAwaitTime_Call {
 	_c.Run(run)
 	return _c
 }
