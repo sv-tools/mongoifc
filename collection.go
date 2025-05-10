@@ -17,10 +17,22 @@ type Collection interface {
 		opts ...options.Lister[options.BulkWriteOptions],
 	) (*mongo.BulkWriteResult, error)
 	Clone(opts ...options.Lister[options.CollectionOptions]) Collection
-	CountDocuments(ctx context.Context, filter any, opts ...options.Lister[options.CountOptions]) (int64, error)
+	CountDocuments(
+		ctx context.Context,
+		filter any,
+		opts ...options.Lister[options.CountOptions],
+	) (int64, error)
 	Database() Database
-	DeleteMany(ctx context.Context, filter any, opts ...options.Lister[options.DeleteManyOptions]) (*mongo.DeleteResult, error)
-	DeleteOne(ctx context.Context, filter any, opts ...options.Lister[options.DeleteOneOptions]) (*mongo.DeleteResult, error)
+	DeleteMany(
+		ctx context.Context,
+		filter any,
+		opts ...options.Lister[options.DeleteManyOptions],
+	) (*mongo.DeleteResult, error)
+	DeleteOne(
+		ctx context.Context,
+		filter any,
+		opts ...options.Lister[options.DeleteOneOptions],
+	) (*mongo.DeleteResult, error)
 	Distinct(
 		ctx context.Context,
 		fieldName string,

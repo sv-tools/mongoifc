@@ -150,7 +150,10 @@ func (c *clientEncryption) RewrapManyDataKey(
 	return c.ce.RewrapManyDataKey(ctx, filter, opts...)
 }
 
-func NewClientEncryption(keyVaultClient Client, opts ...options.Lister[options.ClientEncryptionOptions]) (ClientEncryption, error) {
+func NewClientEncryption(
+	keyVaultClient Client,
+	opts ...options.Lister[options.ClientEncryptionOptions],
+) (ClientEncryption, error) {
 	ce, err := mongo.NewClientEncryption(UnWrapClient(keyVaultClient), opts...)
 	if err != nil {
 		return nil, err

@@ -112,6 +112,7 @@ func (d *database) CreateView(
 func (d *database) Drop(ctx context.Context) error {
 	return d.db.Drop(ctx)
 }
+
 func (d *database) GridFSBucket(opts ...options.Lister[options.BucketOptions]) GridFSBucket {
 	return wrapGridFSBucket(d.db.GridFSBucket(opts...))
 }

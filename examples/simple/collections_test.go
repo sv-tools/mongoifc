@@ -64,7 +64,7 @@ func TestCollectionsWorkflow(t *testing.T) {
 		t.Parallel()
 
 		opt := options.Client().ApplyURI(MongoUri)
-		cl, err := mongoifc.Connect(t.Context(), opt)
+		cl, err := mongoifc.Connect(opt)
 		require.NoError(t, err)
 		require.NotNil(t, cl)
 		t.Cleanup(func() {
