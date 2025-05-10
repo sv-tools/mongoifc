@@ -8,9 +8,9 @@ import (
 
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/require"
-	"go.mongodb.org/mongo-driver/bson/primitive"
-	"go.mongodb.org/mongo-driver/mongo"
-	"go.mongodb.org/mongo-driver/mongo/options"
+	"go.mongodb.org/mongo-driver/v2/bson"
+	"go.mongodb.org/mongo-driver/v2/mongo"
+	"go.mongodb.org/mongo-driver/v2/mongo/options"
 	"go.uber.org/mock/gomock"
 
 	"github.com/sv-tools/mongoifc"
@@ -41,17 +41,17 @@ func TestUsersWorkflow(t *testing.T) {
 		defer col.AssertExpectations(t)
 		col.On("InsertMany", t.Context(), mock.Anything).Return(
 			&mongo.InsertManyResult{
-				InsertedIDs: []interface{}{
-					primitive.NewObjectID(),
-					primitive.NewObjectID(),
-					primitive.NewObjectID(),
-					primitive.NewObjectID(),
+				InsertedIDs: []any{
+					bson.NewObjectID(),
+					bson.NewObjectID(),
+					bson.NewObjectID(),
+					bson.NewObjectID(),
 				},
 			},
 			nil,
 		)
 		col.On("Find", t.Context(), mock.AnythingOfType("User")).Return(cur, nil)
-		col.On("DeleteMany", t.Context(), mock.AnythingOfType("primitive.M")).Return(
+		col.On("DeleteMany", t.Context(), mock.AnythingOfType("bson.M")).Return(
 			&mongo.DeleteResult{
 				DeletedCount: 4,
 			},
@@ -72,7 +72,7 @@ func TestUsersWorkflow(t *testing.T) {
 		defer ctrl.Finish()
 
 		cur := gomockMocks.NewMockCursor(ctrl)
-		cur.EXPECT().All(t.Context(), gomock.Any()).Do(func(ctx context.Context, arg interface{}) {
+		cur.EXPECT().All(t.Context(), gomock.Any()).Do(func(ctx context.Context, arg any) {
 			users := arg.(*[]simple.User)
 			*users = append(*users, expectedUsers...)
 		}).Return(nil)
@@ -80,11 +80,11 @@ func TestUsersWorkflow(t *testing.T) {
 		col := gomockMocks.NewMockCollection(ctrl)
 		col.EXPECT().InsertMany(t.Context(), gomock.Any()).Return(
 			&mongo.InsertManyResult{
-				InsertedIDs: []interface{}{
-					primitive.NewObjectID(),
-					primitive.NewObjectID(),
-					primitive.NewObjectID(),
-					primitive.NewObjectID(),
+				InsertedIDs: []any{
+					bson.NewObjectID(),
+					bson.NewObjectID(),
+					bson.NewObjectID(),
+					bson.NewObjectID(),
 				},
 			},
 			nil,

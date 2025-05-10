@@ -7,8 +7,8 @@ import (
 	"time"
 
 	"github.com/stretchr/testify/require"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/mongo"
+	"go.mongodb.org/mongo-driver/v2/bson"
+	"go.mongodb.org/mongo-driver/v2/mongo"
 
 	"github.com/sv-tools/mongoifc"
 )
@@ -23,11 +23,11 @@ func TestSession_WithTransaction(t *testing.T) {
 		sess.EndSession(context.WithoutCancel(t.Context()))
 	})
 	name := fmt.Sprintf("test_%d", time.Now().Unix())
-	res, err := sess.WithTransaction(t.Context(), func(sc mongoifc.SessionContext) (interface{}, error) {
+	res, err := sess.WithTransaction(t.Context(), func(ctx context.Context) (any, error) {
 		return cl.
 			Database(name).
 			Collection("test-with").
-			InsertOne(sc, bson.M{"foo": "bar"})
+			InsertOne(ctx, bson.M{"foo": "bar"})
 	})
 	require.NoError(t, err)
 	require.NotNil(t, res.(*mongo.InsertOneResult).InsertedID)
@@ -45,18 +45,19 @@ func TestSession_StartAndAbortTransaction(t *testing.T) {
 
 	cl := connect(t)
 	name := fmt.Sprintf("test_%d", time.Now().Unix())
-	err := cl.UseSession(t.Context(), func(sc mongoifc.SessionContext) error {
+	err := cl.UseSession(t.Context(), func(ctx context.Context) error {
+		sc := mongo.SessionFromContext(ctx)
 		err := sc.StartTransaction()
 		require.NoError(t, err)
 
 		res, err := cl.
 			Database(name).
 			Collection("test-start-abort").
-			InsertOne(sc, bson.M{"foo": "bar"})
+			InsertOne(ctx, bson.M{"foo": "bar"})
 		require.NoError(t, err)
 		require.NotNil(t, res.InsertedID)
 
-		return sc.AbortTransaction(sc)
+		return sc.AbortTransaction(ctx)
 	})
 	require.NoError(t, err)
 

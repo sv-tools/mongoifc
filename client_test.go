@@ -8,10 +8,10 @@ import (
 	"time"
 
 	"github.com/stretchr/testify/require"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/mongo"
-	"go.mongodb.org/mongo-driver/mongo/options"
-	"go.mongodb.org/mongo-driver/mongo/readpref"
+	"go.mongodb.org/mongo-driver/v2/bson"
+	"go.mongodb.org/mongo-driver/v2/mongo"
+	"go.mongodb.org/mongo-driver/v2/mongo/options"
+	"go.mongodb.org/mongo-driver/v2/mongo/readpref"
 
 	"github.com/sv-tools/mongoifc"
 )
@@ -24,7 +24,7 @@ func connect(tb testing.TB) mongoifc.Client {
 	require.NotEmpty(tb, MongoUri)
 	opt := options.Client().ApplyURI(MongoUri)
 
-	cl, err := mongoifc.Connect(tb.Context(), opt)
+	cl, err := mongoifc.Connect(opt)
 	require.NoError(tb, err)
 	tb.Cleanup(func() {
 		require.NoError(tb, cl.Disconnect(context.WithoutCancel(tb.Context())))
@@ -36,31 +36,11 @@ func connect(tb testing.TB) mongoifc.Client {
 	return cl
 }
 
-func TestNewClient(t *testing.T) {
-	t.Parallel()
-
-	opt := options.Client().ApplyURI(MongoUri)
-	cl, err := mongoifc.NewClient(opt)
-	require.NoError(t, err)
-	require.NotNil(t, cl)
-
-	err = cl.Connect(t.Context())
-	require.NoError(t, err)
-	t.Cleanup(func() {
-		require.NoError(t, cl.Disconnect(context.WithoutCancel(t.Context())))
-	})
-
-	opt2 := options.Client().ApplyURI("fake")
-	cl2, err := mongoifc.NewClient(opt2)
-	require.Error(t, err)
-	require.Nil(t, cl2)
-}
-
 func TestConnect(t *testing.T) {
 	t.Parallel()
 
 	opt := options.Client().ApplyURI(MongoUri)
-	cl, err := mongoifc.Connect(t.Context(), opt)
+	cl, err := mongoifc.Connect(opt)
 	require.NoError(t, err)
 	require.NotNil(t, cl)
 
@@ -72,7 +52,7 @@ func TestConnect(t *testing.T) {
 	require.NoError(t, err)
 
 	opt2 := options.Client().ApplyURI("fake")
-	cl2, err := mongoifc.Connect(t.Context(), opt2)
+	cl2, err := mongoifc.Connect(opt2)
 	require.Error(t, err)
 	require.Nil(t, cl2)
 }
@@ -87,8 +67,8 @@ func TestWithSession(t *testing.T) {
 		sess.EndSession(context.WithoutCancel(t.Context()))
 	})
 
-	err = mongoifc.WithSession(t.Context(), sess, func(sc mongoifc.SessionContext) error {
-		require.NotNil(t, sc.ID())
+	err = mongoifc.WithSession(t.Context(), sess, func(ctx context.Context) error {
+		require.NotNil(t, mongo.SessionFromContext(ctx))
 		return nil
 	})
 	require.NoError(t, err)
@@ -142,13 +122,13 @@ func TestClient_UseSession(t *testing.T) {
 	t.Parallel()
 
 	cl := connect(t)
-	err := cl.UseSession(t.Context(), func(sc mongoifc.SessionContext) error {
-		require.NotNil(t, sc.ID())
+	err := cl.UseSession(t.Context(), func(ctx context.Context) error {
+		require.NotNil(t, mongo.SessionFromContext(ctx))
 		return nil
 	})
 	require.NoError(t, err)
 
-	err = cl.UseSession(t.Context(), func(sc mongoifc.SessionContext) error {
+	err = cl.UseSession(t.Context(), func(ctx context.Context) error {
 		return errTest
 	})
 	require.ErrorIs(t, err, errTest)
@@ -161,8 +141,8 @@ func TestClient_UseSessionWithOptions(t *testing.T) {
 	err := cl.UseSessionWithOptions(
 		t.Context(),
 		options.Session(),
-		func(sc mongoifc.SessionContext) error {
-			require.NotNil(t, sc.ID())
+		func(ctx context.Context) error {
+			require.NotNil(t, mongo.SessionFromContext(ctx))
 			return nil
 		},
 	)
@@ -171,7 +151,7 @@ func TestClient_UseSessionWithOptions(t *testing.T) {
 	err = cl.UseSessionWithOptions(
 		t.Context(),
 		options.Session(),
-		func(sc mongoifc.SessionContext) error {
+		func(ctx context.Context) error {
 			return errTest
 		},
 	)
@@ -192,7 +172,7 @@ func TestClient_StartSession(t *testing.T) {
 func TestWrapClient_UnWrapClient(t *testing.T) {
 	t.Parallel()
 
-	cl, err := mongo.Connect(t.Context())
+	cl, err := mongo.Connect()
 	require.NoError(t, err)
 	require.NotNil(t, cl)
 

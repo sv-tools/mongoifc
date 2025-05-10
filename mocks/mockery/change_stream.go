@@ -5,7 +5,7 @@ package mocks
 import (
 	context "context"
 
-	bson "go.mongodb.org/mongo-driver/bson"
+	bson "go.mongodb.org/mongo-driver/v2/bson"
 
 	mock "github.com/stretchr/testify/mock"
 )
@@ -294,6 +294,51 @@ func (_c *ChangeStream_Next_Call) Return(_a0 bool) *ChangeStream_Next_Call {
 }
 
 func (_c *ChangeStream_Next_Call) RunAndReturn(run func(context.Context) bool) *ChangeStream_Next_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// RemainingBatchLength provides a mock function with no fields
+func (_m *ChangeStream) RemainingBatchLength() int {
+	ret := _m.Called()
+
+	if len(ret) == 0 {
+		panic("no return value specified for RemainingBatchLength")
+	}
+
+	var r0 int
+	if rf, ok := ret.Get(0).(func() int); ok {
+		r0 = rf()
+	} else {
+		r0 = ret.Get(0).(int)
+	}
+
+	return r0
+}
+
+// ChangeStream_RemainingBatchLength_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'RemainingBatchLength'
+type ChangeStream_RemainingBatchLength_Call struct {
+	*mock.Call
+}
+
+// RemainingBatchLength is a helper method to define mock.On call
+func (_e *ChangeStream_Expecter) RemainingBatchLength() *ChangeStream_RemainingBatchLength_Call {
+	return &ChangeStream_RemainingBatchLength_Call{Call: _e.mock.On("RemainingBatchLength")}
+}
+
+func (_c *ChangeStream_RemainingBatchLength_Call) Run(run func()) *ChangeStream_RemainingBatchLength_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run()
+	})
+	return _c
+}
+
+func (_c *ChangeStream_RemainingBatchLength_Call) Return(_a0 int) *ChangeStream_RemainingBatchLength_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *ChangeStream_RemainingBatchLength_Call) RunAndReturn(run func() int) *ChangeStream_RemainingBatchLength_Call {
 	_c.Call.Return(run)
 	return _c
 }

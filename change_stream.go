@@ -3,19 +3,20 @@ package mongoifc
 import (
 	"context"
 
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/mongo"
+	"go.mongodb.org/mongo-driver/v2/bson"
+	"go.mongodb.org/mongo-driver/v2/mongo"
 )
 
 // ChangeStream is an interface for `mongo.ChangeStream` structure
-// Documentation: https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo#ChangeStream
+// Documentation: https://pkg.go.dev/go.mongodb.org/mongo-driver/v2/mongo#ChangeStream
 type ChangeStream interface {
 	Current() bson.Raw
 	Close(ctx context.Context) error
-	Decode(val interface{}) error
+	Decode(val any) error
 	Err() error
 	ID() int64
 	Next(ctx context.Context) bool
+	RemainingBatchLength() int
 	ResumeToken() bson.Raw
 	SetBatchSize(size int32)
 	TryNext(ctx context.Context) bool
@@ -33,7 +34,7 @@ func (c *changeStream) Close(ctx context.Context) error {
 	return c.cs.Close(ctx)
 }
 
-func (c *changeStream) Decode(val interface{}) error {
+func (c *changeStream) Decode(val any) error {
 	return c.cs.Decode(val)
 }
 
@@ -48,6 +49,8 @@ func (c *changeStream) ID() int64 {
 func (c *changeStream) Next(ctx context.Context) bool {
 	return c.cs.Next(ctx)
 }
+
+func (c *changeStream) RemainingBatchLength() int { return c.cs.RemainingBatchLength() }
 
 func (c *changeStream) ResumeToken() bson.Raw {
 	return c.cs.ResumeToken()

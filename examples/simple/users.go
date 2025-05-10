@@ -4,8 +4,7 @@ import (
 	"context"
 	"fmt"
 
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 
 	"github.com/sv-tools/mongoifc"
 )
@@ -38,7 +37,7 @@ func GetAdmins(ctx context.Context, db mongoifc.Database) ([]User, error) {
 }
 
 func Create(ctx context.Context, db mongoifc.Database, users ...User) ([]string, error) {
-	documents := make([]interface{}, len(users))
+	documents := make([]any, len(users))
 	for i := range users {
 		documents[i] = users[i]
 	}
@@ -48,15 +47,15 @@ func Create(ctx context.Context, db mongoifc.Database, users ...User) ([]string,
 	}
 	ids := make([]string, len(res.InsertedIDs))
 	for i := range len(res.InsertedIDs) {
-		ids[i] = res.InsertedIDs[i].(primitive.ObjectID).Hex()
+		ids[i] = res.InsertedIDs[i].(bson.ObjectID).Hex()
 	}
 	return ids, nil
 }
 
 func Delete(ctx context.Context, db mongoifc.Database, ids ...string) error {
-	documents := make([]primitive.ObjectID, len(ids))
+	documents := make([]bson.ObjectID, len(ids))
 	for i := range ids {
-		id, err := primitive.ObjectIDFromHex(ids[i])
+		id, err := bson.ObjectIDFromHex(ids[i])
 		if err != nil {
 			return fmt.Errorf("%s: %w", ids[i], err)
 		}
