@@ -13,10 +13,10 @@ import (
 	"go.mongodb.org/mongo-driver/v2/mongo/options"
 	"go.uber.org/mock/gomock"
 
-	"github.com/sv-tools/mongoifc"
-	"github.com/sv-tools/mongoifc/examples/simple"
-	gomockMocks "github.com/sv-tools/mongoifc/mocks/gomock"
-	mockeryMocks "github.com/sv-tools/mongoifc/mocks/mockery"
+	"github.com/sv-tools/mongoifc/v2"
+	"github.com/sv-tools/mongoifc/v2/examples/simple"
+	gomockMocks "github.com/sv-tools/mongoifc/v2/mocks/gomock"
+	mockeryMocks "github.com/sv-tools/mongoifc/v2/mocks/mockery"
 )
 
 var expectedUsers = []simple.User{

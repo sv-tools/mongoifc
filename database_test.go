@@ -7,7 +7,7 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/sv-tools/mongoifc"
+	"github.com/sv-tools/mongoifc/v2"
 )
 
 func TestWrapDatabase_UnWrapDatabase(t *testing.T) {
