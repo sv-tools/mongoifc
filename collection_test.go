@@ -8,7 +8,7 @@ import (
 	"github.com/stretchr/testify/require"
 	"go.mongodb.org/mongo-driver/v2/bson"
 
-	"github.com/sv-tools/mongoifc"
+	"github.com/sv-tools/mongoifc/v2"
 )
 
 func TestWrapCollection_UnWrapCollection(t *testing.T) {

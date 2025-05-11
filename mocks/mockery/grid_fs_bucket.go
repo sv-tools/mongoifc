@@ -11,7 +11,7 @@ import (
 
 	mock "github.com/stretchr/testify/mock"
 
-	mongoifc "github.com/sv-tools/mongoifc"
+	mongoifc "github.com/sv-tools/mongoifc/v2"
 
 	options "go.mongodb.org/mongo-driver/v2/mongo/options"
 )

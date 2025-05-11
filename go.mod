@@ -1,4 +1,4 @@
-module github.com/sv-tools/mongoifc
+module github.com/sv-tools/mongoifc/v2
 
 go 1.24.0
 

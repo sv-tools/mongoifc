@@ -106,6 +106,6 @@ formatters:
       sections:
         - standard
         - default
-        - prefix(github.com/sv-tools/mongoifc)
+        - prefix(github.com/sv-tools/mongoifc/v2)
     gofumpt:
         extra-rules: true
