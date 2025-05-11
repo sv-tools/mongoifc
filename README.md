@@ -9,6 +9,10 @@
 
 The Interfaces for the [MongoDB driver](https://github.com/mongodb/mongo-go-driver).
 
+```shell
+go get -u github.com/sv-tools/mongoifc/v2
+```
+
 ## Versioning Policy
 
 The `mongoifc` code is stabilized, so now the version will match the version of the MongoDB driver since `v1.8.0`.
