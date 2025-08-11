@@ -16,7 +16,7 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v4.2.2 # immutable action
+      - uses: actions/checkout@v5.0.0 # immutable action
       - uses: actions/setup-go@v5.5.0 # immutable action
         with:
           go-version-file: go.mod
