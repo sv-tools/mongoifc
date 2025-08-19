@@ -20,7 +20,7 @@ const (
 
 func TestMain(m *testing.M) {
 	fmt.Println("Building docker image...")
-	cmd := exec.Command(
+	cmd := exec.Command( //nolint:noctx
 		"docker",
 		"build", ".",
 		"--rm",
@@ -34,7 +34,7 @@ func TestMain(m *testing.M) {
 	}
 
 	fmt.Println("Starting docker container...")
-	cmd = exec.Command(
+	cmd = exec.Command( //nolint:noctx
 		"docker",
 		"run",
 		"-d",
@@ -51,7 +51,7 @@ func TestMain(m *testing.M) {
 	}
 	defer func() {
 		fmt.Println("Stopping docker container...")
-		cmd := exec.Command(
+		cmd := exec.Command( //nolint:noctx
 			"docker",
 			"rm",
 			"--force",
@@ -68,7 +68,7 @@ func TestMain(m *testing.M) {
 	time.Sleep(10 * time.Second)
 
 	fmt.Println("Initializing mongodb...")
-	cmd = exec.Command(
+	cmd = exec.Command( //nolint:noctx
 		"docker",
 		"exec", DockerName,
 		"/usr/bin/mongosh",
