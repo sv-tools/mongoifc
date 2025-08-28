@@ -60,7 +60,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check status
-        if: ${{ needs.UnitTestJob.result != 'success' }}
+        if: ${{ needs.UnitTestsJob.result != 'success' }}
         run: exit 1
 
   Lint:
