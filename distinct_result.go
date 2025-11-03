@@ -17,18 +17,17 @@ type distinctResult struct {
 	dr *mongo.DistinctResult
 }
 
+// Decode is a wrapper for `mongo.DistinctResult.Decode` method
 func (s *distinctResult) Decode(v any) error {
 	return s.dr.Decode(v)
 }
 
-// Raw returns the document represented by this SingleResult as a bson.Raw. If
-// there was an error from the operation that created this SingleResult, both
-// the result and that error will be returned. If the operation returned no
-// documents, this will return (nil, ErrNoDocuments).
+// Raw is a wrapper for `mongo.DistinctResult.Raw` method
 func (s *distinctResult) Raw() (bson.RawArray, error) {
 	return s.dr.Raw()
 }
 
+// Err is a wrapper for `mongo.DistinctResult.Err` method
 func (s *distinctResult) Err() error {
 	return s.dr.Err()
 }

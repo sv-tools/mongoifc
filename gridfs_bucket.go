@@ -65,14 +65,17 @@ type gridFSBucket struct {
 	bt *mongo.GridFSBucket
 }
 
+// Delete is a wrapper for `mongo.GridFSBucket.Delete` method
 func (g *gridFSBucket) Delete(ctx context.Context, fileID any) error {
 	return g.bt.Delete(ctx, fileID)
 }
 
+// DownloadToStream is a wrapper for `mongo.GridFSBucket.DownloadToStream` method
 func (g *gridFSBucket) DownloadToStream(ctx context.Context, fileID any, stream io.Writer) (int64, error) {
 	return g.bt.DownloadToStream(ctx, fileID, stream)
 }
 
+// DownloadToStreamByName is a wrapper for `mongo.GridFSBucket.DownloadToStreamByName` method
 func (g *gridFSBucket) DownloadToStreamByName(
 	ctx context.Context,
 	filename string,
@@ -82,10 +85,12 @@ func (g *gridFSBucket) DownloadToStreamByName(
 	return g.bt.DownloadToStreamByName(ctx, filename, stream, opts...)
 }
 
+// Drop is a wrapper for `mongo.GridFSBucket.Drop` method
 func (g *gridFSBucket) Drop(ctx context.Context) error {
 	return g.bt.Drop(ctx)
 }
 
+// Find is a wrapper for `mongo.GridFSBucket.Find` method
 func (g *gridFSBucket) Find(
 	ctx context.Context,
 	filter any,
@@ -98,14 +103,17 @@ func (g *gridFSBucket) Find(
 	return wrapCursor(cr), nil
 }
 
+// GetChunksCollection is a wrapper for `mongo.GridFSBucket.GetChunksCollection` method
 func (g *gridFSBucket) GetChunksCollection() Collection {
 	return WrapCollection(g.bt.GetChunksCollection())
 }
 
+// GetFilesCollection is a wrapper for `mongo.GridFSBucket.GetFilesCollection` method
 func (g *gridFSBucket) GetFilesCollection() Collection {
 	return WrapCollection(g.bt.GetFilesCollection())
 }
 
+// OpenDownloadStream is a wrapper for `mongo.GridFSBucket.OpenDownloadStream` method
 func (g *gridFSBucket) OpenDownloadStream(ctx context.Context, fileID any) (GridFSDownloadStream, error) {
 	ds, err := g.bt.OpenDownloadStream(ctx, fileID)
 	if err != nil {
@@ -114,6 +122,7 @@ func (g *gridFSBucket) OpenDownloadStream(ctx context.Context, fileID any) (Grid
 	return wrapGridFSDownloadStream(ds), nil
 }
 
+// OpenDownloadStreamByName is a wrapper for `mongo.GridFSBucket.OpenDownloadStreamByName` method
 func (g *gridFSBucket) OpenDownloadStreamByName(
 	ctx context.Context,
 	filename string,
@@ -126,6 +135,7 @@ func (g *gridFSBucket) OpenDownloadStreamByName(
 	return wrapGridFSDownloadStream(ds), nil
 }
 
+// OpenUploadStream is a wrapper for `mongo.GridFSBucket.OpenUploadStream` method
 func (g *gridFSBucket) OpenUploadStream(
 	ctx context.Context,
 	filename string,
@@ -138,6 +148,7 @@ func (g *gridFSBucket) OpenUploadStream(
 	return wrapGridFSUploadStream(us), nil
 }
 
+// OpenUploadStreamWithID is a wrapper for `mongo.GridFSBucket.OpenUploadStreamWithID` method
 func (g *gridFSBucket) OpenUploadStreamWithID(
 	ctx context.Context,
 	fileID any,
@@ -151,10 +162,12 @@ func (g *gridFSBucket) OpenUploadStreamWithID(
 	return wrapGridFSUploadStream(us), nil
 }
 
+// Rename is a wrapper for `mongo.GridFSBucket.Rename` method
 func (g *gridFSBucket) Rename(ctx context.Context, fileID any, newFilename string) error {
 	return g.bt.Rename(ctx, fileID, newFilename)
 }
 
+// UploadFromStream is a wrapper for `mongo.GridFSBucket.UploadFromStream` method
 func (g *gridFSBucket) UploadFromStream(
 	ctx context.Context,
 	filename string,
@@ -164,6 +177,7 @@ func (g *gridFSBucket) UploadFromStream(
 	return g.bt.UploadFromStream(ctx, filename, source, opts...)
 }
 
+// UploadFromStreamWithID is a wrapper for `mongo.GridFSBucket.UploadFromStreamWithID` method
 func (g *gridFSBucket) UploadFromStreamWithID(
 	ctx context.Context,
 	fileID any,

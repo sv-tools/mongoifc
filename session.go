@@ -41,18 +41,22 @@ type session struct {
 	cl *client
 }
 
+// StartTransaction is a wrapper for `mongo.Session.StartTransaction` method
 func (s *session) StartTransaction(opts ...options.Lister[options.TransactionOptions]) error {
 	return s.ss.StartTransaction(opts...)
 }
 
+// AbortTransaction is a wrapper for `mongo.Session.AbortTransaction` method
 func (s *session) AbortTransaction(ctx context.Context) error {
 	return s.ss.AbortTransaction(ctx)
 }
 
+// CommitTransaction is a wrapper for `mongo.Session.CommitTransaction` method
 func (s *session) CommitTransaction(ctx context.Context) error {
 	return s.ss.CommitTransaction(ctx)
 }
 
+// WithTransaction is a wrapper for `mongo.Session.WithTransaction` method
 func (s *session) WithTransaction(
 	ctx context.Context,
 	fn func(ctx context.Context) (any, error),
@@ -61,30 +65,37 @@ func (s *session) WithTransaction(
 	return s.ss.WithTransaction(ctx, fn, opts...)
 }
 
+// EndSession is a wrapper for `mongo.Session.EndSession` method
 func (s *session) EndSession(ctx context.Context) {
 	s.ss.EndSession(ctx)
 }
 
+// ClusterTime is a wrapper for `mongo.Session.ClusterTime` method
 func (s *session) ClusterTime() bson.Raw {
 	return s.ss.ClusterTime()
 }
 
+// OperationTime is a wrapper for `mongo.Session.OperationTime` method
 func (s *session) OperationTime() *bson.Timestamp {
 	return s.ss.OperationTime()
 }
 
+// Client is a wrapper for `mongo.Session.Client` method
 func (s *session) Client() Client {
 	return s.cl
 }
 
+// ID is a wrapper for `mongo.Session.ID` method
 func (s *session) ID() bson.Raw {
 	return s.ss.ID()
 }
 
+// AdvanceClusterTime is a wrapper for `mongo.Session.AdvanceClusterTime` method
 func (s *session) AdvanceClusterTime(d bson.Raw) error {
 	return s.ss.AdvanceClusterTime(d)
 }
 
+// AdvanceOperationTime is a wrapper for `mongo.Session.AdvanceOperationTime` method
 func (s *session) AdvanceOperationTime(ts *bson.Timestamp) error {
 	return s.ss.AdvanceOperationTime(ts)
 }

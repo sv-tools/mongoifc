@@ -34,6 +34,7 @@ type indexView struct {
 	iv *mongo.IndexView
 }
 
+// CreateMany is a wrapper for `mongo.IndexView.CreateMany` method
 func (i *indexView) CreateMany(
 	ctx context.Context,
 	models []mongo.IndexModel,
@@ -42,6 +43,7 @@ func (i *indexView) CreateMany(
 	return i.iv.CreateMany(ctx, models, opts...)
 }
 
+// CreateOne is a wrapper for `mongo.IndexView.CreateOne` method
 func (i *indexView) CreateOne(
 	ctx context.Context,
 	model mongo.IndexModel,
@@ -50,6 +52,7 @@ func (i *indexView) CreateOne(
 	return i.iv.CreateOne(ctx, model, opts...)
 }
 
+// DropAll is a wrapper for `mongo.IndexView.DropAll` method
 func (i *indexView) DropAll(
 	ctx context.Context,
 	opts ...options.Lister[options.DropIndexesOptions],
@@ -57,6 +60,7 @@ func (i *indexView) DropAll(
 	return i.iv.DropAll(ctx, opts...)
 }
 
+// DropOne is a wrapper for `mongo.IndexView.DropOne` method
 func (i *indexView) DropOne(
 	ctx context.Context,
 	name string,
@@ -65,6 +69,7 @@ func (i *indexView) DropOne(
 	return i.iv.DropOne(ctx, name, opts...)
 }
 
+// DropWithKey is a wrapper for `mongo.IndexView.DropWithKey` method
 func (i *indexView) DropWithKey(
 	ctx context.Context,
 	keySpecDocument any,
@@ -73,6 +78,7 @@ func (i *indexView) DropWithKey(
 	return i.iv.DropWithKey(ctx, keySpecDocument, opts...)
 }
 
+// List is a wrapper for `mongo.IndexView.List` method
 func (i *indexView) List(
 	ctx context.Context,
 	opts ...options.Lister[options.ListIndexesOptions],
@@ -85,6 +91,7 @@ func (i *indexView) List(
 	return wrapCursor(cr), nil
 }
 
+// ListSpecifications is a wrapper for `mongo.IndexView.ListSpecifications` method
 func (i *indexView) ListSpecifications(
 	ctx context.Context,
 	opts ...options.Lister[options.ListIndexesOptions],
