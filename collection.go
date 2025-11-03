@@ -112,6 +112,7 @@ type collection struct {
 	db *database
 }
 
+// Aggregate is a wrapper for `mongo.Collection.Aggregate` method
 func (c *collection) Aggregate(
 	ctx context.Context,
 	pipeline any,
@@ -125,6 +126,7 @@ func (c *collection) Aggregate(
 	return wrapCursor(cr), nil
 }
 
+// BulkWrite is a wrapper for `mongo.Collection.BulkWrite` method
 func (c *collection) BulkWrite(
 	ctx context.Context,
 	models []mongo.WriteModel,
@@ -133,10 +135,12 @@ func (c *collection) BulkWrite(
 	return c.co.BulkWrite(ctx, models, opts...)
 }
 
+// Clone is a wrapper for `mongo.Collection.Clone` method
 func (c *collection) Clone(opts ...options.Lister[options.CollectionOptions]) Collection {
 	return wrapCollection(c.co.Clone(opts...), c.db)
 }
 
+// CountDocuments is a wrapper for `mongo.Collection.CountDocuments` method
 func (c *collection) CountDocuments(
 	ctx context.Context,
 	filter any,
@@ -145,10 +149,12 @@ func (c *collection) CountDocuments(
 	return c.co.CountDocuments(ctx, filter, opts...)
 }
 
+// Database is a wrapper for `mongo.Collection.Database` method
 func (c *collection) Database() Database {
 	return c.db
 }
 
+// DeleteMany is a wrapper for `mongo.Collection.DeleteMany` method
 func (c *collection) DeleteMany(
 	ctx context.Context,
 	filter any,
@@ -157,6 +163,7 @@ func (c *collection) DeleteMany(
 	return c.co.DeleteMany(ctx, filter, opts...)
 }
 
+// DeleteOne is a wrapper for `mongo.Collection.DeleteOne` method
 func (c *collection) DeleteOne(
 	ctx context.Context,
 	filter any,
@@ -165,6 +172,7 @@ func (c *collection) DeleteOne(
 	return c.co.DeleteOne(ctx, filter, opts...)
 }
 
+// Distinct is a wrapper for `mongo.Collection.Distinct` method
 func (c *collection) Distinct(
 	ctx context.Context,
 	fieldName string,
@@ -174,10 +182,12 @@ func (c *collection) Distinct(
 	return wrapDistinctResult(c.co.Distinct(ctx, fieldName, filter, opts...))
 }
 
+// Drop is a wrapper for `mongo.Collection.Drop` method
 func (c *collection) Drop(ctx context.Context) error {
 	return c.co.Drop(ctx)
 }
 
+// EstimatedDocumentCount is a wrapper for `mongo.Collection.EstimatedDocumentCount` method
 func (c *collection) EstimatedDocumentCount(
 	ctx context.Context,
 	opts ...options.Lister[options.EstimatedDocumentCountOptions],
@@ -185,6 +195,7 @@ func (c *collection) EstimatedDocumentCount(
 	return c.co.EstimatedDocumentCount(ctx, opts...)
 }
 
+// Find is a wrapper for `mongo.Collection.Find` method
 func (c *collection) Find(
 	ctx context.Context,
 	filter any,
@@ -198,6 +209,7 @@ func (c *collection) Find(
 	return wrapCursor(cr), nil
 }
 
+// FindOne is a wrapper for `mongo.Collection.FindOne` method
 func (c *collection) FindOne(
 	ctx context.Context,
 	filter any,
@@ -206,6 +218,7 @@ func (c *collection) FindOne(
 	return wrapSingleResult(c.co.FindOne(ctx, filter, opts...))
 }
 
+// FindOneAndDelete is a wrapper for `mongo.Collection.FindOneAndDelete` method
 func (c *collection) FindOneAndDelete(
 	ctx context.Context,
 	filter any,
@@ -214,6 +227,7 @@ func (c *collection) FindOneAndDelete(
 	return wrapSingleResult(c.co.FindOneAndDelete(ctx, filter, opts...))
 }
 
+// FindOneAndReplace is a wrapper for `mongo.Collection.FindOneAndReplace` method
 func (c *collection) FindOneAndReplace(
 	ctx context.Context,
 	filter any,
@@ -223,6 +237,7 @@ func (c *collection) FindOneAndReplace(
 	return wrapSingleResult(c.co.FindOneAndReplace(ctx, filter, replacement, opts...))
 }
 
+// FindOneAndUpdate is a wrapper for `mongo.Collection.FindOneAndUpdate` method
 func (c *collection) FindOneAndUpdate(
 	ctx context.Context,
 	filter any,
@@ -232,11 +247,13 @@ func (c *collection) FindOneAndUpdate(
 	return wrapSingleResult(c.co.FindOneAndUpdate(ctx, filter, update, opts...))
 }
 
+// Indexes is a wrapper for `mongo.Collection.Indexes` method
 func (c *collection) Indexes() IndexView {
 	iv := c.co.Indexes()
 	return wrapIndexView(&iv)
 }
 
+// InsertMany is a wrapper for `mongo.Collection.InsertMany` method
 func (c *collection) InsertMany(
 	ctx context.Context,
 	documents []any,
@@ -245,6 +262,7 @@ func (c *collection) InsertMany(
 	return c.co.InsertMany(ctx, documents, opts...)
 }
 
+// InsertOne is a wrapper for `mongo.Collection.InsertOne` method
 func (c *collection) InsertOne(
 	ctx context.Context,
 	document any,
@@ -253,10 +271,12 @@ func (c *collection) InsertOne(
 	return c.co.InsertOne(ctx, document, opts...)
 }
 
+// Name is a wrapper for `mongo.Collection.Name` method
 func (c *collection) Name() string {
 	return c.co.Name()
 }
 
+// ReplaceOne is a wrapper for `mongo.Collection.ReplaceOne` method
 func (c *collection) ReplaceOne(
 	ctx context.Context,
 	filter any,
@@ -266,11 +286,13 @@ func (c *collection) ReplaceOne(
 	return c.co.ReplaceOne(ctx, filter, replacement, opts...)
 }
 
+// SearchIndexes is a wrapper for `mongo.Collection.SearchIndexes` method
 func (c *collection) SearchIndexes() SearchIndexView {
 	siv := c.co.SearchIndexes()
 	return wrapSearchIndexView(&siv)
 }
 
+// UpdateByID is a wrapper for `mongo.Collection.UpdateByID` method
 func (c *collection) UpdateByID(
 	ctx context.Context,
 	id any,
@@ -280,6 +302,7 @@ func (c *collection) UpdateByID(
 	return c.co.UpdateByID(ctx, id, update, opts...)
 }
 
+// UpdateMany is a wrapper for `mongo.Collection.UpdateMany` method
 func (c *collection) UpdateMany(
 	ctx context.Context,
 	filter any,
@@ -289,6 +312,7 @@ func (c *collection) UpdateMany(
 	return c.co.UpdateMany(ctx, filter, update, opts...)
 }
 
+// UpdateOne is a wrapper for `mongo.Collection.UpdateOne` method
 func (c *collection) UpdateOne(
 	ctx context.Context,
 	filter any,
@@ -298,6 +322,7 @@ func (c *collection) UpdateOne(
 	return c.co.UpdateOne(ctx, filter, update, opts...)
 }
 
+// Watch is a wrapper for `mongo.Collection.Watch` method
 func (c *collection) Watch(
 	ctx context.Context,
 	pipeline any,

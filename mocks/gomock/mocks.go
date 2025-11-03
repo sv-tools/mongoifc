@@ -209,6 +209,38 @@ func (m *MockClient) EXPECT() *MockClientMockRecorder {
 	return m.recorder
 }
 
+// AppendDriverInfo mocks base method.
+func (m *MockClient) AppendDriverInfo(info options.DriverInfo) {
+	m.ctrl.T.Helper()
+	m.ctrl.Call(m, "AppendDriverInfo", info)
+}
+
+// AppendDriverInfo indicates an expected call of AppendDriverInfo.
+func (mr *MockClientMockRecorder) AppendDriverInfo(info any) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "AppendDriverInfo", reflect.TypeOf((*MockClient)(nil).AppendDriverInfo), info)
+}
+
+// BulkWrite mocks base method.
+func (m *MockClient) BulkWrite(ctx context.Context, writes []mongo.ClientBulkWrite, opts ...options.Lister[options.ClientBulkWriteOptions]) (*mongo.ClientBulkWriteResult, error) {
+	m.ctrl.T.Helper()
+	varargs := []any{ctx, writes}
+	for _, a := range opts {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "BulkWrite", varargs...)
+	ret0, _ := ret[0].(*mongo.ClientBulkWriteResult)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// BulkWrite indicates an expected call of BulkWrite.
+func (mr *MockClientMockRecorder) BulkWrite(ctx, writes any, opts ...any) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	varargs := append([]any{ctx, writes}, opts...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "BulkWrite", reflect.TypeOf((*MockClient)(nil).BulkWrite), varargs...)
+}
+
 // Database mocks base method.
 func (m *MockClient) Database(name string, opts ...options.Lister[options.DatabaseOptions]) mongoifc.Database {
 	m.ctrl.T.Helper()

@@ -68,6 +68,7 @@ type database struct {
 	cl *client
 }
 
+// Aggregate is a wrapper for `mongo.Database.Aggregate` method
 func (d *database) Aggregate(
 	ctx context.Context,
 	pipeline any,
@@ -81,10 +82,12 @@ func (d *database) Aggregate(
 	return wrapCursor(cr), nil
 }
 
+// Client is a wrapper for `mongo.Database.Client` method
 func (d *database) Client() Client {
 	return d.cl
 }
 
+// Collection is a wrapper for `mongo.Database.Collection` method
 func (d *database) Collection(
 	name string,
 	opts ...options.Lister[options.CollectionOptions],
@@ -92,6 +95,7 @@ func (d *database) Collection(
 	return wrapCollection(d.db.Collection(name, opts...), d)
 }
 
+// CreateCollection is a wrapper for `mongo.Database.CreateCollection` method
 func (d *database) CreateCollection(
 	ctx context.Context,
 	name string,
@@ -100,6 +104,7 @@ func (d *database) CreateCollection(
 	return d.db.CreateCollection(ctx, name, opts...)
 }
 
+// CreateView is a wrapper for `mongo.Database.CreateView` method
 func (d *database) CreateView(
 	ctx context.Context,
 	viewName, viewOn string,
@@ -109,14 +114,17 @@ func (d *database) CreateView(
 	return d.db.CreateView(ctx, viewName, viewOn, pipeline, opts...)
 }
 
+// Drop is a wrapper for `mongo.Database.Drop` method
 func (d *database) Drop(ctx context.Context) error {
 	return d.db.Drop(ctx)
 }
 
+// GridFSBucket is a wrapper for `mongo.Database.GridFSBucket` method
 func (d *database) GridFSBucket(opts ...options.Lister[options.BucketOptions]) GridFSBucket {
 	return wrapGridFSBucket(d.db.GridFSBucket(opts...))
 }
 
+// ListCollectionNames is a wrapper for `mongo.Database.ListCollectionNames` method
 func (d *database) ListCollectionNames(
 	ctx context.Context,
 	filter any,
@@ -125,6 +133,7 @@ func (d *database) ListCollectionNames(
 	return d.db.ListCollectionNames(ctx, filter, opts...)
 }
 
+// ListCollections is a wrapper for `mongo.Database.ListCollections` method
 func (d *database) ListCollections(
 	ctx context.Context,
 	filter any,
@@ -138,6 +147,7 @@ func (d *database) ListCollections(
 	return wrapCursor(cr), nil
 }
 
+// ListCollectionSpecifications is a wrapper for `mongo.Database.ListCollectionSpecifications` method
 func (d *database) ListCollectionSpecifications(
 	ctx context.Context,
 	filter any,
@@ -146,10 +156,12 @@ func (d *database) ListCollectionSpecifications(
 	return d.db.ListCollectionSpecifications(ctx, filter, opts...)
 }
 
+// Name is a wrapper for `mongo.Database.Name` method
 func (d *database) Name() string {
 	return d.db.Name()
 }
 
+// RunCommand is a wrapper for `mongo.Database.RunCommand` method
 func (d *database) RunCommand(
 	ctx context.Context,
 	runCommand any,
@@ -158,6 +170,7 @@ func (d *database) RunCommand(
 	return wrapSingleResult(d.db.RunCommand(ctx, runCommand, opts...))
 }
 
+// RunCommandCursor is a wrapper for `mongo.Database.RunCommandCursor` method
 func (d *database) RunCommandCursor(
 	ctx context.Context,
 	runCommand any,
@@ -171,6 +184,7 @@ func (d *database) RunCommandCursor(
 	return wrapCursor(cr), nil
 }
 
+// Watch is a wrapper for `mongo.Database.Watch` method
 func (d *database) Watch(
 	ctx context.Context,
 	pipeline any,

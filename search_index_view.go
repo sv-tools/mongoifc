@@ -42,6 +42,7 @@ type searchIndexView struct {
 	siv *mongo.SearchIndexView
 }
 
+// CreateMany is a wrapper for `mongo.SearchIndexView.CreateMany` method
 func (i *searchIndexView) CreateMany(
 	ctx context.Context,
 	models []mongo.SearchIndexModel,
@@ -50,6 +51,7 @@ func (i *searchIndexView) CreateMany(
 	return i.siv.CreateMany(ctx, models, opts...)
 }
 
+// CreateOne is a wrapper for `mongo.SearchIndexView.CreateOne` method
 func (i *searchIndexView) CreateOne(
 	ctx context.Context,
 	model mongo.SearchIndexModel,
@@ -58,6 +60,7 @@ func (i *searchIndexView) CreateOne(
 	return i.siv.CreateOne(ctx, model, opts...)
 }
 
+// DropOne is a wrapper for `mongo.SearchIndexView.DropOne` method
 func (i *searchIndexView) DropOne(
 	ctx context.Context, name string,
 	opts ...options.Lister[options.DropSearchIndexOptions],
@@ -65,6 +68,7 @@ func (i *searchIndexView) DropOne(
 	return i.siv.DropOne(ctx, name, opts...)
 }
 
+// List is a wrapper for `mongo.SearchIndexView.List` method
 func (i *searchIndexView) List(
 	ctx context.Context,
 	searchIdxOpts options.Lister[options.SearchIndexesOptions],
@@ -78,6 +82,7 @@ func (i *searchIndexView) List(
 	return wrapCursor(cr), nil
 }
 
+// UpdateOne is a wrapper for `mongo.SearchIndexView.UpdateOne` method
 func (i *searchIndexView) UpdateOne(
 	ctx context.Context,
 	name string,

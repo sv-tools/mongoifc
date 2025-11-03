@@ -29,50 +29,62 @@ type cursor struct {
 	cr *mongo.Cursor
 }
 
+// Current is a wrapper for `mongo.Cursor.Current` field
 func (c *cursor) Current() bson.Raw {
 	return c.cr.Current
 }
 
+// All is a wrapper for `mongo.Cursor.All` method
 func (c *cursor) All(ctx context.Context, results any) error {
 	return c.cr.All(ctx, results)
 }
 
+// Close is a wrapper for `mongo.Cursor.Close` method
 func (c *cursor) Close(ctx context.Context) error {
 	return c.cr.Close(ctx)
 }
 
+// Decode is a wrapper for `mongo.Cursor.Decode` method
 func (c *cursor) Decode(val any) error {
 	return c.cr.Decode(val)
 }
 
+// Err is a wrapper for `mongo.Cursor.Err` method
 func (c *cursor) Err() error {
 	return c.cr.Err()
 }
 
+// ID is a wrapper for `mongo.Cursor.ID` method
 func (c *cursor) ID() int64 {
 	return c.cr.ID()
 }
 
+// Next is a wrapper for `mongo.Cursor.Next` method
 func (c *cursor) Next(ctx context.Context) bool {
 	return c.cr.Next(ctx)
 }
 
+// RemainingBatchLength is a wrapper for `mongo.Cursor.RemainingBatchLength` method
 func (c *cursor) RemainingBatchLength() int {
 	return c.cr.RemainingBatchLength()
 }
 
+// SetComment is a wrapper for `mongo.Cursor.SetComment` method
 func (c *cursor) SetComment(comment any) {
 	c.cr.SetComment(comment)
 }
 
+// SetMaxAwaitTime is a wrapper for `mongo.Cursor.SetMaxAwaitTime` method
 func (c *cursor) SetMaxAwaitTime(dur time.Duration) {
 	c.cr.SetMaxAwaitTime(dur)
 }
 
+// TryNext is a wrapper for `mongo.Cursor.TryNext` method
 func (c *cursor) TryNext(ctx context.Context) bool {
 	return c.cr.TryNext(ctx)
 }
 
+// SetBatchSize is a wrapper for `mongo.Cursor.SetBatchSize` method
 func (c *cursor) SetBatchSize(batchSize int32) {
 	c.cr.SetBatchSize(batchSize)
 }

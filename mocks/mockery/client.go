@@ -28,6 +28,113 @@ func (_m *Client) EXPECT() *Client_Expecter {
 	return &Client_Expecter{mock: &_m.Mock}
 }
 
+// AppendDriverInfo provides a mock function with given fields: info
+func (_m *Client) AppendDriverInfo(info options.DriverInfo) {
+	_m.Called(info)
+}
+
+// Client_AppendDriverInfo_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'AppendDriverInfo'
+type Client_AppendDriverInfo_Call struct {
+	*mock.Call
+}
+
+// AppendDriverInfo is a helper method to define mock.On call
+//   - info options.DriverInfo
+func (_e *Client_Expecter) AppendDriverInfo(info interface{}) *Client_AppendDriverInfo_Call {
+	return &Client_AppendDriverInfo_Call{Call: _e.mock.On("AppendDriverInfo", info)}
+}
+
+func (_c *Client_AppendDriverInfo_Call) Run(run func(info options.DriverInfo)) *Client_AppendDriverInfo_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(options.DriverInfo))
+	})
+	return _c
+}
+
+func (_c *Client_AppendDriverInfo_Call) Return() *Client_AppendDriverInfo_Call {
+	_c.Call.Return()
+	return _c
+}
+
+func (_c *Client_AppendDriverInfo_Call) RunAndReturn(run func(options.DriverInfo)) *Client_AppendDriverInfo_Call {
+	_c.Run(run)
+	return _c
+}
+
+// BulkWrite provides a mock function with given fields: ctx, writes, opts
+func (_m *Client) BulkWrite(ctx context.Context, writes []mongo.ClientBulkWrite, opts ...options.Lister[options.ClientBulkWriteOptions]) (*mongo.ClientBulkWriteResult, error) {
+	_va := make([]interface{}, len(opts))
+	for _i := range opts {
+		_va[_i] = opts[_i]
+	}
+	var _ca []interface{}
+	_ca = append(_ca, ctx, writes)
+	_ca = append(_ca, _va...)
+	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for BulkWrite")
+	}
+
+	var r0 *mongo.ClientBulkWriteResult
+	var r1 error
+	if rf, ok := ret.Get(0).(func(context.Context, []mongo.ClientBulkWrite, ...options.Lister[options.ClientBulkWriteOptions]) (*mongo.ClientBulkWriteResult, error)); ok {
+		return rf(ctx, writes, opts...)
+	}
+	if rf, ok := ret.Get(0).(func(context.Context, []mongo.ClientBulkWrite, ...options.Lister[options.ClientBulkWriteOptions]) *mongo.ClientBulkWriteResult); ok {
+		r0 = rf(ctx, writes, opts...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*mongo.ClientBulkWriteResult)
+		}
+	}
+
+	if rf, ok := ret.Get(1).(func(context.Context, []mongo.ClientBulkWrite, ...options.Lister[options.ClientBulkWriteOptions]) error); ok {
+		r1 = rf(ctx, writes, opts...)
+	} else {
+		r1 = ret.Error(1)
+	}
+
+	return r0, r1
+}
+
+// Client_BulkWrite_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'BulkWrite'
+type Client_BulkWrite_Call struct {
+	*mock.Call
+}
+
+// BulkWrite is a helper method to define mock.On call
+//   - ctx context.Context
+//   - writes []mongo.ClientBulkWrite
+//   - opts ...options.Lister[options.ClientBulkWriteOptions]
+func (_e *Client_Expecter) BulkWrite(ctx interface{}, writes interface{}, opts ...interface{}) *Client_BulkWrite_Call {
+	return &Client_BulkWrite_Call{Call: _e.mock.On("BulkWrite",
+		append([]interface{}{ctx, writes}, opts...)...)}
+}
+
+func (_c *Client_BulkWrite_Call) Run(run func(ctx context.Context, writes []mongo.ClientBulkWrite, opts ...options.Lister[options.ClientBulkWriteOptions])) *Client_BulkWrite_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]options.Lister[options.ClientBulkWriteOptions], len(args)-2)
+		for i, a := range args[2:] {
+			if a != nil {
+				variadicArgs[i] = a.(options.Lister[options.ClientBulkWriteOptions])
+			}
+		}
+		run(args[0].(context.Context), args[1].([]mongo.ClientBulkWrite), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *Client_BulkWrite_Call) Return(_a0 *mongo.ClientBulkWriteResult, _a1 error) *Client_BulkWrite_Call {
+	_c.Call.Return(_a0, _a1)
+	return _c
+}
+
+func (_c *Client_BulkWrite_Call) RunAndReturn(run func(context.Context, []mongo.ClientBulkWrite, ...options.Lister[options.ClientBulkWriteOptions]) (*mongo.ClientBulkWriteResult, error)) *Client_BulkWrite_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // Database provides a mock function with given fields: name, opts
 func (_m *Client) Database(name string, opts ...options.Lister[options.DatabaseOptions]) mongoifc.Database {
 	_va := make([]interface{}, len(opts))
