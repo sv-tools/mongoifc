@@ -432,6 +432,51 @@ func (_c *Session_OperationTime_Call) RunAndReturn(run func() *bson.Timestamp) *
 	return _c
 }
 
+// SnapshotTime provides a mock function with no fields
+func (_m *Session) SnapshotTime() bson.Timestamp {
+	ret := _m.Called()
+
+	if len(ret) == 0 {
+		panic("no return value specified for SnapshotTime")
+	}
+
+	var r0 bson.Timestamp
+	if rf, ok := ret.Get(0).(func() bson.Timestamp); ok {
+		r0 = rf()
+	} else {
+		r0 = ret.Get(0).(bson.Timestamp)
+	}
+
+	return r0
+}
+
+// Session_SnapshotTime_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'SnapshotTime'
+type Session_SnapshotTime_Call struct {
+	*mock.Call
+}
+
+// SnapshotTime is a helper method to define mock.On call
+func (_e *Session_Expecter) SnapshotTime() *Session_SnapshotTime_Call {
+	return &Session_SnapshotTime_Call{Call: _e.mock.On("SnapshotTime")}
+}
+
+func (_c *Session_SnapshotTime_Call) Run(run func()) *Session_SnapshotTime_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run()
+	})
+	return _c
+}
+
+func (_c *Session_SnapshotTime_Call) Return(_a0 bson.Timestamp) *Session_SnapshotTime_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *Session_SnapshotTime_Call) RunAndReturn(run func() bson.Timestamp) *Session_SnapshotTime_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // StartTransaction provides a mock function with given fields: opts
 func (_m *Session) StartTransaction(opts ...options.Lister[options.TransactionOptions]) error {
 	_va := make([]interface{}, len(opts))

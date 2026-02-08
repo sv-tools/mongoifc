@@ -2532,6 +2532,20 @@ func (mr *MockSessionMockRecorder) OperationTime() *gomock.Call {
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "OperationTime", reflect.TypeOf((*MockSession)(nil).OperationTime))
 }
 
+// SnapshotTime mocks base method.
+func (m *MockSession) SnapshotTime() bson.Timestamp {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "SnapshotTime")
+	ret0, _ := ret[0].(bson.Timestamp)
+	return ret0
+}
+
+// SnapshotTime indicates an expected call of SnapshotTime.
+func (mr *MockSessionMockRecorder) SnapshotTime() *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "SnapshotTime", reflect.TypeOf((*MockSession)(nil).SnapshotTime))
+}
+
 // StartTransaction mocks base method.
 func (m *MockSession) StartTransaction(opts ...options.Lister[options.TransactionOptions]) error {
 	m.ctrl.T.Helper()
