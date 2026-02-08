@@ -29,6 +29,7 @@ type Session interface {
 	OperationTime() *bson.Timestamp
 	Client() Client
 	ID() bson.Raw
+	SnapshotTime() bson.Timestamp
 
 	// Functions to modify mutable session properties.
 
@@ -88,6 +89,11 @@ func (s *session) Client() Client {
 // ID is a wrapper for `mongo.Session.ID` method
 func (s *session) ID() bson.Raw {
 	return s.ss.ID()
+}
+
+// SnapshotTime is a wrapper for `mongo.Session.SnapshotTime` method
+func (s *session) SnapshotTime() bson.Timestamp {
+	return s.ss.SnapshotTime()
 }
 
 // AdvanceClusterTime is a wrapper for `mongo.Session.AdvanceClusterTime` method
