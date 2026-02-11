@@ -26,7 +26,7 @@ func TestCollectionsWorkflow(t *testing.T) {
 
 		col := &mockeryMocks.Collection{}
 		defer col.AssertExpectations(t)
-		col.On("Drop", t.Context()).Return(nil)
+		col.On("Drop", t.Context(), mock.Anything).Return(nil)
 
 		db := &mockeryMocks.Database{}
 		defer db.AssertExpectations(t)
@@ -49,7 +49,7 @@ func TestCollectionsWorkflow(t *testing.T) {
 		defer ctrl.Finish()
 
 		col := gomockMocks.NewMockCollection(ctrl)
-		col.EXPECT().Drop(t.Context()).Return(nil)
+		col.EXPECT().Drop(t.Context(), gomock.Any()).Return(nil)
 
 		db := gomockMocks.NewMockDatabase(ctrl)
 		db.EXPECT().Collection(gomock.Any()).Return(col)
