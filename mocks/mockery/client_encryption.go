@@ -5,14 +5,10 @@ package mocks
 import (
 	context "context"
 
-	bson "go.mongodb.org/mongo-driver/v2/bson"
-
 	mock "github.com/stretchr/testify/mock"
-
-	mongo "go.mongodb.org/mongo-driver/v2/mongo"
-
 	mongoifc "github.com/sv-tools/mongoifc/v2"
-
+	bson "go.mongodb.org/mongo-driver/v2/bson"
+	mongo "go.mongodb.org/mongo-driver/v2/mongo"
 	options "go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 

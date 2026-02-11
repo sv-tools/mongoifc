@@ -6,10 +6,8 @@ import (
 	context "context"
 
 	mock "github.com/stretchr/testify/mock"
-	mongo "go.mongodb.org/mongo-driver/v2/mongo"
-
 	mongoifc "github.com/sv-tools/mongoifc/v2"
-
+	mongo "go.mongodb.org/mongo-driver/v2/mongo"
 	options "go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
@@ -567,17 +565,24 @@ func (_c *Collection_Distinct_Call) RunAndReturn(run func(context.Context, strin
 	return _c
 }
 
-// Drop provides a mock function with given fields: ctx
-func (_m *Collection) Drop(ctx context.Context) error {
-	ret := _m.Called(ctx)
+// Drop provides a mock function with given fields: ctx, opts
+func (_m *Collection) Drop(ctx context.Context, opts ...options.Lister[options.DropCollectionOptions]) error {
+	_va := make([]interface{}, len(opts))
+	for _i := range opts {
+		_va[_i] = opts[_i]
+	}
+	var _ca []interface{}
+	_ca = append(_ca, ctx)
+	_ca = append(_ca, _va...)
+	ret := _m.Called(_ca...)
 
 	if len(ret) == 0 {
 		panic("no return value specified for Drop")
 	}
 
 	var r0 error
-	if rf, ok := ret.Get(0).(func(context.Context) error); ok {
-		r0 = rf(ctx)
+	if rf, ok := ret.Get(0).(func(context.Context, ...options.Lister[options.DropCollectionOptions]) error); ok {
+		r0 = rf(ctx, opts...)
 	} else {
 		r0 = ret.Error(0)
 	}
@@ -592,13 +597,21 @@ type Collection_Drop_Call struct {
 
 // Drop is a helper method to define mock.On call
 //   - ctx context.Context
-func (_e *Collection_Expecter) Drop(ctx interface{}) *Collection_Drop_Call {
-	return &Collection_Drop_Call{Call: _e.mock.On("Drop", ctx)}
+//   - opts ...options.Lister[options.DropCollectionOptions]
+func (_e *Collection_Expecter) Drop(ctx interface{}, opts ...interface{}) *Collection_Drop_Call {
+	return &Collection_Drop_Call{Call: _e.mock.On("Drop",
+		append([]interface{}{ctx}, opts...)...)}
 }
 
-func (_c *Collection_Drop_Call) Run(run func(ctx context.Context)) *Collection_Drop_Call {
+func (_c *Collection_Drop_Call) Run(run func(ctx context.Context, opts ...options.Lister[options.DropCollectionOptions])) *Collection_Drop_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(context.Context))
+		variadicArgs := make([]options.Lister[options.DropCollectionOptions], len(args)-1)
+		for i, a := range args[1:] {
+			if a != nil {
+				variadicArgs[i] = a.(options.Lister[options.DropCollectionOptions])
+			}
+		}
+		run(args[0].(context.Context), variadicArgs...)
 	})
 	return _c
 }
@@ -608,7 +621,7 @@ func (_c *Collection_Drop_Call) Return(_a0 error) *Collection_Drop_Call {
 	return _c
 }
 
-func (_c *Collection_Drop_Call) RunAndReturn(run func(context.Context) error) *Collection_Drop_Call {
+func (_c *Collection_Drop_Call) RunAndReturn(run func(context.Context, ...options.Lister[options.DropCollectionOptions]) error) *Collection_Drop_Call {
 	_c.Call.Return(run)
 	return _c
 }
