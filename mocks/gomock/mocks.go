@@ -819,17 +819,22 @@ func (mr *MockCollectionMockRecorder) Distinct(ctx, fieldName, filter any, opts 
 }
 
 // Drop mocks base method.
-func (m *MockCollection) Drop(ctx context.Context) error {
+func (m *MockCollection) Drop(ctx context.Context, opts ...options.Lister[options.DropCollectionOptions]) error {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "Drop", ctx)
+	varargs := []any{ctx}
+	for _, a := range opts {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "Drop", varargs...)
 	ret0, _ := ret[0].(error)
 	return ret0
 }
 
 // Drop indicates an expected call of Drop.
-func (mr *MockCollectionMockRecorder) Drop(ctx any) *gomock.Call {
+func (mr *MockCollectionMockRecorder) Drop(ctx any, opts ...any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Drop", reflect.TypeOf((*MockCollection)(nil).Drop), ctx)
+	varargs := append([]any{ctx}, opts...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Drop", reflect.TypeOf((*MockCollection)(nil).Drop), varargs...)
 }
 
 // EstimatedDocumentCount mocks base method.

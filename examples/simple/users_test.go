@@ -106,7 +106,11 @@ func TestUsersWorkflow(t *testing.T) {
 	t.Run("docker", func(t *testing.T) {
 		t.Parallel()
 
-		opt := options.Client().ApplyURI(MongoUri)
+		opt := options.Client().
+			ApplyURI(MongoUri).
+			SetBSONOptions(&options.BSONOptions{
+				ObjectIDAsHexString: true,
+			})
 		cl, err := mongoifc.Connect(opt)
 		require.NoError(t, err)
 		require.NotNil(t, cl)

@@ -119,3 +119,13 @@ func WrapSession(ss *mongo.Session) Session {
 func UnWrapSession(ss Session) *mongo.Session {
 	return ss.(*session).ss
 }
+
+// SessionFromContext is a wrapper for `mongo.SessionFromContext` function to return the object as `Session` interface
+// Documentation: https://pkg.go.dev/go.mongodb.org/mongo-driver/v2/mongo#SessionFromContext
+func SessionFromContext(ctx context.Context) Session {
+	ss := mongo.SessionFromContext(ctx)
+	if ss == nil {
+		return nil
+	}
+	return WrapSession(ss)
+}

@@ -39,7 +39,7 @@ type Collection interface {
 		filter any,
 		opts ...options.Lister[options.DistinctOptions],
 	) DistinctResult
-	Drop(ctx context.Context) error
+	Drop(ctx context.Context, opts ...options.Lister[options.DropCollectionOptions]) error
 	EstimatedDocumentCount(
 		ctx context.Context,
 		opts ...options.Lister[options.EstimatedDocumentCountOptions],
@@ -183,8 +183,8 @@ func (c *collection) Distinct(
 }
 
 // Drop is a wrapper for `mongo.Collection.Drop` method
-func (c *collection) Drop(ctx context.Context) error {
-	return c.co.Drop(ctx)
+func (c *collection) Drop(ctx context.Context, opts ...options.Lister[options.DropCollectionOptions]) error {
+	return c.co.Drop(ctx, opts...)
 }
 
 // EstimatedDocumentCount is a wrapper for `mongo.Collection.EstimatedDocumentCount` method
